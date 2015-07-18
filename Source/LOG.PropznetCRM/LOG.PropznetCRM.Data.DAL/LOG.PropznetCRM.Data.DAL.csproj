@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDDE85D1-9F9D-40AD-8821-1F4701FD8787}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LOG.PropznetCRM.Data.DAL</RootNamespace>
+    <AssemblyName>LOG.PropznetCRM.Data.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Auth">
+      <HintPath>..\..\packages\Logiticks.Common.Auth.SingleTenant.1.0.2\lib\Common.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Auth.SingleTenant">
+      <HintPath>..\..\packages\Logiticks.Common.Auth.SingleTenant.1.0.2\lib\Common.Auth.SingleTenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Data">
+      <HintPath>..\..\packages\Logiticks.Common.Data.1.0.5\lib\Common.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Providers.Email">
+      <HintPath>..\..\packages\Logiticks.Common.Providers.Email.1.0.1\lib\Common.Providers.Email.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Security">
+      <HintPath>..\..\packages\Logiticks.Common.Auth.SingleTenant.1.0.2\lib\Common.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Settings">
+      <HintPath>..\..\packages\Logiticks.Common.Settings.1.0.0\lib\Common.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountRepository.cs" />
+    <Compile Include="AgentPropertyMapRepository.cs" />
+    <Compile Include="AgentRepository.cs" />
+    <Compile Include="CommunicationDetailRepository.cs" />
+    <Compile Include="ContactRepository.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\DataContext.Entities.cs" />
+    <Compile Include="Data\DataSeeder.cs" />
+    <Compile Include="LeadRepository.cs" />
+    <Compile Include="LeadSourceRepository.cs" />
+    <Compile Include="LeadStatusRepository.cs" />
+    <Compile Include="LocationRepository.cs" />
+    <Compile Include="PotentialRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyCategoryRepository.cs" />
+    <Compile Include="PropertyRepository.cs" />
+    <Compile Include="SalesStageRepository.cs" />
+    <Compile Include="StateRepository.cs" />
+    <Compile Include="ToDoMapRepository.cs" />
+    <Compile Include="ToDoRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LOG.PropznetCRM.Data.Model\LOG.PropznetCRM.Data.Model.csproj">
+      <Project>{bed355ed-ac06-4aa4-8f2e-f7c414385e02}</Project>
+      <Name>LOG.PropznetCRM.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LOG.PropznetCRM.Data.ViewModel\LOG.PropznetCRM.Data.ViewModel.csproj">
+      <Project>{ee8eb855-a17d-4ada-8a71-425f07fcffde}</Project>
+      <Name>LOG.PropznetCRM.Data.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LOG.PropznetCRM.Data.Core\LOG.PropznetCRM.Data.Core.csproj">
+      <Project>{7066d030-7719-4084-9c7d-aa754164f474}</Project>
+      <Name>LOG.PropznetCRM.Data.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LOG.PropznetCRM.Data.Entities\LOG.PropznetCRM.Data.Entities.csproj">
+      <Project>{A7F112DA-D071-4CF2-B059-24DC0312BF8B}</Project>
+      <Name>LOG.PropznetCRM.Data.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,42 @@
+﻿@model Common.Auth.SingleTenant.ViewModels.SignInViewModel
+@using LOG.PropznetCRM.Data.Infrastructure;
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+    <div class="container">
+        <div class="login-form">
+            <div class="login-form-header">
+                <img src=@StringTrimmer.QuotesRemover(ImageUrlResolver.ThumbNail(),ViewBag.Settings.LogoPath) alt="logo" class="resp" /></div>
+            <div class="login-form-header-title">SIGN IN TO YOUR ACCOUNT</div>
+            <div class="login-wrap">
+                
+                   
+                    @using (Html.BeginForm("SignIn", "User", FormMethod.Post))
+                    {
+                         <div class="input-group">
+                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <div class="form-group">         
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control",@placeholder="Enter your email" })
+                               
+                            </div>
+                             </div>
+                            @Html.ValidationMessageFor(model => model.Username)
+                            <div class="form-group">  
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+                                   
+                                </div></div>
+                         @Html.ValidationMessageFor(model => model.Password)
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Sign in" />
+                                <a href="/User/ForgotPassword" class="pull-right" style="color:#fff;padding-top:7px;">Forgot password?</a>
+                            </div>
+                            <span class="validation-summary-errors" style="background:white;">@ViewBag.Message</span>
+                        
+                    }
+                
+            </div>
+    </div>
+</div>

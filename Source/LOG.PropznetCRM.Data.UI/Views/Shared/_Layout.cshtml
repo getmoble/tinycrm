@@ -1,0 +1,447 @@
+﻿@using LOG.PropznetCRM.Data.Core
+@using LOG.PropznetCRM.Data.Entities.Enum
+@using LOG.PropznetCRM.Data.Infrastructure;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>PropsnetCRM-Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <!-- bootstrap theme -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="~/Content/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap_calendar.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <!-- easy pie chart-->
+    <!--<link href="css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>-->
+    <!-- owl carousel -->
+    <link href="~/Content/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/css/widgets.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+   
+    <link href="~/Content/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content/css/new-style.css" rel="stylesheet" />
+    <link href="~/Content/css/rightside.css" rel="stylesheet" />
+    <link href="~/Content/css/fullcalendar.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="~/Content/css/fileinput.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="container" class="vbox">
+        <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+            <!--logo start-->
+            <a href="/Home/Index" class="logo"><img src=@StringTrimmer.QuotesRemover(ImageUrlResolver.ThumbNail(),ViewBag.Settings.LogoPath) alt="logo"></a>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="input input--makiko">
+                    <input class="input__field input__field--makiko" type="text" id="search" />
+                    <label class="input__label input__label--makiko" for="search">
+                        <span class="input__label-content input__label-content--makiko">Search</span>
+                    </label>
+                </div>
+            </div>
+            <!--logo end-->
+            <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
+
+            <a href="#menu-toggle" class="cd-nav-trigger" id="menu-toggle">
+                Menu
+                <span class="cd-nav-icon"></span>
+
+                <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54">
+                    <circle fill="transparent" stroke="#fff" stroke-width="0" cx="27" cy="27" r="25" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+                </svg>
+            </a>
+            <!--<div class="nav search-row" id="top_menu">
+
+                <ul class="nav top-menu">
+                    <li>
+                        <form class="navbar-form">
+                            <input class="form-control" placeholder="Search" type="text">
+                        </form>
+                    </li>
+                </ul>
+
+            </div>-->
+
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+
+                    <!-- task notificatoin start -->
+                    @*<li id="task_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-align-left"></i>
+                            <span class="badge bg-important">6</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">You have 6 pending letter</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Design PSD </div>
+                                        <div class="percent">90%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                            <span class="sr-only">90% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">
+                                            Project 1
+                                        </div>
+                                        <div class="percent">30%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                            <span class="sr-only">30% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Digital Marketing</div>
+                                        <div class="percent">80%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Logo Designing</div>
+                                        <div class="percent">78%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
+                                            <span class="sr-only">78% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Mobile App</div>
+                                        <div class="percent">50%</div>
+                                    </div>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                            <span class="sr-only">50% Complete</span>
+                                        </div>
+                                    </div>
+
+                                </a>
+
+                            </li>
+                            <li class="external">
+                                <a href="#">See All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>*@
+                    <!-- task notificatoin end -->
+                    <!-- inbox notificatoin start-->
+                    @*<li id="mail_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-important">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">You have 5 new messages</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Greg  Martin</span>
+                                        <span class="time">1 min</span>
+                                    </span>
+                                    <span class="message">
+                                        I really like this admin panel.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Bob   Mckenzie</span>
+                                        <span class="time">5 mins</span>
+                                    </span>
+                                    <span class="message">
+                                        Hi, What is next project plan?
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Phillip   Park</span>
+                                        <span class="time">2 hrs</span>
+                                    </span>
+                                    <span class="message">
+                                        I am like to buy this Admin Template.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                                    <span class="subject">
+                                        <span class="from">Ray   Munoz</span>
+                                        <span class="time">1 day</span>
+                                    </span>
+                                    <span class="message">
+                                        Icon fonts are great.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all messages</a>
+                            </li>
+                        </ul>
+                    </li>*@
+                    <!-- inbox notificatoin end -->
+                    <!-- alert notification start-->
+                   
+                    <li id="alert_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge bg-important">7</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue">You have 4 new notifications</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-primary"><i class="icon_profile"></i></span>
+                                    Friend Request
+                                    <span class="small italic pull-right">5 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-warning"><i class="icon_pin"></i></span>
+                                    John location.
+                                    <span class="small italic pull-right">50 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-danger"><i class="icon_book_alt"></i></span>
+                                    Project 3 Completed.
+                                    <span class="small italic pull-right">1 hr</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-success"><i class="icon_like"></i></span>
+                                    Mick appreciated your work.
+                                    <span class="small italic pull-right"> Today</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- alert notification end-->
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="/Upload/Agent/@ViewBag.Image">
+                            </span>
+                            <span class="username">Hi, @User.Identity.Name</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                <a href="/User/UpdateProfile"><i class=""></i> My Profile</a>
+                            </li>
+                            <li>
+                                <a href="/User/ChangePassword"><i class=""></i> Change Password</a>
+                            </li>
+                            @if (PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.Settings))
+                            {
+                                <li>
+                                    <a href="/Settings/Index"><i class=""></i> Settings</a>
+                                </li>
+                            }
+                            <li>
+                                <a href="/User/SignOut"><i class=""></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+        <!--header end-->
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+
+ <!--sidebar start-->
+                <aside class="bg-dark lter aside-md hidden-print hidden-xs" id="nav">
+                    <section class="vbox">
+
+                        <section class="w-f scrollable">
+                            <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+                                <!-- nav -->
+                                <nav class="nav-primary hidden-xs">
+                                    <ul class="nav">
+                                        @*<li class="active">
+                                                <a href="index.html" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i>  </span> <span>Dashboard</span> </a>
+
+                                            </li>*@
+                                        @*<li>
+                                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>Leads</span> </a>
+                                                <ul class="nav lt">
+                                                    <li> <a href="layout-c.html"> <i class="fa fa-angle-right"></i> <span>Loren ipsum</span> </a> </li>
+                                                    <li> <a href="layout-r.html"> <i class="fa fa-angle-right"></i> <span>Loren ipsum</span> </a> </li>
+                                                </ul>
+                                            </li>*@
+                                        @*<li>
+                                                <a href="#uikit"> <i class="fa fa-dollar"> <b class="bg-success"></b> </i> <span class="pull-right">  </span> <span>Accounts</span> </a>
+
+                                            </li>*@
+                                        @*<li>
+                                            <a href="#pages"> <i class="fa fa-envelope"> <b class="bg-primary"></b> </i> <span class="pull-right"> </span> <span>Contacts</span> </a>
+
+                                            </li>*@
+                                        <li class="active"> <a href="@Url.Action("Index", "Home")"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Dashboard</span> </a> </li>
+                                        <li> <a href="@Url.Action("Index", "Lead")"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i>  <span>Leads</span> </a> 
+                                        
+                                        </li>
+                                        
+                                        <li> <a href="@Url.Action("Index", "Account")"> <i class="fa fa-dollar"> <b class="bg-success"></b> </i> <span>Account</span> </a> </li>
+                                        <li> <a href="@Url.Action("Index", "Contact")"> <i class="fa fa-envelope"> <b class="bg-primary"></b> </i> <span>Contacts</span> </a> </li>
+                                        <li> <a href="@Url.Action("Index", "Potential")"> <i class="fa fa-envelope-o icon"><b class="bg-dark"></b> </i> <span>Potentials</span> </a> </li>
+                                        <li> <a href="@Url.Action("Index", "Agent")"> <i class="fa fa-users"> <b class="bg-info"></b> </i> <span>Agents</span> </a> </li>
+                                        @*@PermissionChecker.MenuForUser(ViewBag.CurrentUser)*@
+                                    </ul>
+                                </nav>
+
+                               
+                                <!-- / nav -->
+                            </div>
+                        </section>
+
+                    </section>
+                </aside>
+            </div>
+            <!--sidebar end-->
+            <!--main content start-->
+            <div id="page-content-wrapper">
+
+                <section id="main-content">
+                    <section class="wrapper">
+                        @RenderBody()
+
+                    </section>
+                </section>
+            </div>
+            <!--main content end-->
+            <!-- container section start -->
+            <footer>
+                <div class="footer_copyright">
+                    © 2015 - PropznetCRM
+
+                </div>
+            </footer>
+    </section>
+
+
+    @*@Scripts.Render("~/Content/js/AllScripts")*@
+    @*@Scripts.Render("~/Content/js/Allknockout")*@
+    <script src="~/Content/js/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/js/bootstrap.min.js"></script>*@
+    <script src="~/Content/js/jquery-ui.js"></script>
+    <script src="~/Content/js/jquery.ui.widget.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.5.7/jquery.iframe-transport.js"></script>
+    <script src="~/Content/js/jquery.fileupload.js"></script>
+    @*<script src="~/Content/js/jquery-ui-1.9.2.custom.min.js"></script>*@
+    <script src="~/Content/js/chartinator.js"></script>
+    <script src="~/Content/js/fileinput.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Content/js/knockout-3.2.0.js"></script>
+    <script src="~/Content/js/knockout.validation.js"></script>
+    <script src="~/Content/js/knockout.custom.js"></script>
+    <script src="~/Content/js/bootbox.min.js"></script>
+   @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+    
+    <script src="~/Content/js/countto.js"></script>
+    <script src="~/Content/js/classie.js"></script>
+    <script src="~/Content/js/jquery.knob.js"></script>
+    <script src="~/Content/js/jquery.sparkline.js"></script>
+    <script src="~/Content/js/jquery.rateit.min.js"></script>
+    <script src="~/Content/js/jquery.customSelect.min.js"></script>
+    <script src="~/Content/js/owl.carousel.js"></script>
+    <script src="~/Content/js/scripts.js"></script>
+    <script src="~/Content/js/demo.js"></script>
+    <script src="~/Content/js/jquery.autosize.min.js"></script>
+    <script src="~/Content/js/jquery.placeholder.min.js"></script>
+    <script src="~/Content/js/jquery.slimscroll.min.js"></script>
+    @*<script src="~/Content/js/menu-right.js"></script>*@
+    <script src="~/Content/js/uisearch.js"></script>
+    <script src="~/Content/js/bootstrap_calendar.js"></script>
+    @*<script src="~/Content/js/calendar-custom.js"></script>*@
+    @*<script src="~/Content/js/bootstrap-modal.js"></script>*@
+    <script src="~/Content/js/moment.min.js"></script>
+    <script src="~/Content/js/fullcalendar.min.js"></script>   
+    <script src="~/Content/js/jquery.nicescroll.js"></script>
+    <script src="~/Content/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/js/dataTables.bootstrap.js"></script>
+    <script src="~/App/utils.js"></script>
+    <script src="~/App/viewModels.js"></script>
+    <script src="~/App/models.js"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>*@
+
+    @*<script>new UISearch(document.getElementById('sb-search'));</script>*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<script type="text/javascript">
+    $("#search").keypress(function (event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            var serchvalue = document.getElementById("search").value;
+            // alert(serchvalue);
+            window.location.href = "/Search/Index?searchvalue=" + serchvalue;
+        }
+    });
+
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+   
+
+</script>
