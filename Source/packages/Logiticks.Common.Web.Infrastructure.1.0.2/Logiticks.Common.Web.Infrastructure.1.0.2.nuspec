@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Logiticks.Common.Web.Infrastructure</id>
+    <version>1.0.2</version>
+    <title>Logiticks.Common.UI.Web.Infrastructure</title>
+    <authors>Moble Joseph</authors>
+    <owners>Moble Joseph</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Web Infrastructure will provide the basic helper methods for an ASP.NET MVC project</description>
+    <copyright>www.logiticks.com</copyright>
+  </metadata>
+</package>

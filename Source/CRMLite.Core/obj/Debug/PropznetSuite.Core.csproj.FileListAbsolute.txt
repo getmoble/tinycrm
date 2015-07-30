@@ -1,0 +1,15 @@
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetSuite.Core.dll.config
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetSuite.Core.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetSuite.Core.pdb
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\Common.Data.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetCommon.Features.Common.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetCommon.Features.CRM.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\PropznetCommon.Features.ERP.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\Common.Auth.SingleTenant.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.xml
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\obj\Debug\PropznetSuite.Core.csprojResolveAssemblyReference.cache
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\obj\Debug\PropznetSuite.Core.dll
+D:\Git\Logiticks\PropznetSuite\Source\PropznetSuite.Core\obj\Debug\PropznetSuite.Core.pdb

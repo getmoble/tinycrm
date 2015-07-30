@@ -1,0 +1,518 @@
+﻿<div class="col-md-12 m-top20">
+    <h3 class="inline-b">Create Property</h3><br />
+</div>
+<div class="col-md-12">
+    <div class="panel with-nav-tabs">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#addProperty" data-toggle="tab">Add Property</a></li>
+        </ul>
+
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="addProperty">
+                    <div data-bind="template:{name:'create-Property-template',data:selectedProperty}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createAminityForProperty" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body clearfix" data-bind="with:selectedAminity">
+                <h4 class="text-primary">Add Amenity</h4>
+                <div class="col-lg-12">
+                    <div class="form-group ">
+                        <label>Amenity Name</label>
+                        <input type="text" data-bind="value:Name" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.CreateAminity"><span class=" ladda-label">Save</span></button>
+                    @*<button type="button" class="btn btn-primary" data-bind="click:$root.CreateAminity" data-dismiss="modal" aria-hidden="true">Save</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="create-aminities-template">
+    <div class="col-md-4">
+        <input type="checkbox" data-bind="checked:IsSelectAmenity">
+        <label data-bind="text:Name"></label>
+    </div>
+</script>
+<script type="text/html" id="item-listedOwner-template">
+    <tr>
+        <td data-title="Slno">
+            <span data-bind="text: ($index() + 1)"> </span>
+        </td>
+        <td data-title="FirstName">
+            <span data-bind="text: FirstName"> </span>
+        </td>
+        <td data-title="Email">
+            <span data-bind="text: Email"> </span>
+        </td>
+        <td data-title="Mobile">
+            <span data-bind="text: Mobile"> </span>
+        </td>
+        <td data-title="Ownership">
+            <span data-bind="text: Ownership"> </span>
+        </td>
+        <td>
+            <a href="#" data-bind="click:$root.removeOwner"><i class="fa fa-lg fa-trash-o" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"></i></a>
+        </td>
+    </tr>
+</script>
+<script type="text/html" id="item-owner-template">
+    <tr>
+        <td data-title="ownerCheckbox">
+            <input type="checkbox" data-bind="checked:IsSelect">
+        </td>
+        <td data-title="Slno">
+            <span data-bind="text: ($index() + 1)"> </span>
+        </td>
+        <td data-title="FirstName">
+            <span data-bind="text: FirstName"> </span>
+        </td>
+        <td data-title="Email">
+            <span data-bind="text: Email"> </span>
+        </td>
+        <td data-title="Mobile">
+            <span data-bind="text: Mobile"> </span>
+        </td>
+        <td data-title="Ownership">
+            <span data-bind="text: Ownership"> </span>
+        </td>
+    </tr>
+</script>
+<script id="create-Property-template" type="text/html">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Property Name/No</label>
+                <input type="text" data-bind="value:PropertyName" placeholder="Enter Property Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Portfolio</label>
+                <div class="col-md-11 row">
+                    <select id="PortfolioDropdwn" class="form-control" data-bind="options:$root.portfolios,optionsText:'Name',optionsValue:'Id',value:PortfolioId,optionsCaption:'Select Portfolio'"></select>
+                </div><button type="button" class="btn btn-primary m-l-lg" data-bind="click:$root.gotoAddProperty"><i class="fa fa-plus"></i></button>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="CategoryDropdwn" class="form-control" data-bind="options:$root.usageTypes,optionsText:'Text',optionsValue:'Value',value:CategoryType"></select>
+            </div>
+            <div class="form-group">
+                <label>Source</label>
+                <select id="SourceDropdwn" class="form-control" data-bind="options:$root.sourceTypes,optionsText:'Text',optionsValue:'Value',value:SourceType"></select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div class=" form-group">
+                <label>Usage Type</label>
+                <select class="form-control" data-bind="options:$root.usageTypes,optionsText:'Text',optionsValue:'Value',value:UsageType"></select>
+            </div>
+            <div class=" form-group">
+                <label>Listed By</label>
+                <select class="form-control" data-bind="options:$root.users,optionsText:'Name',optionsValue:'Id',value:ListedBy"></select>
+            </div>
+            <div class="form-group">
+                <label>Contract Start Date</label>
+                <div id="datetimepicker1" class="input-append date">
+                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ContractStartDate,noKeyPress:true" id="ContractStartDatetxt" />
+                    <span class="add-on">
+                        <i class="fa fa-calendar" data-time-icon="icon-time"></i>
+                    </span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label>Contract End Date</label>
+                <div id="datetimepicker2" class="input-append date">
+                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ContractEndDate,noKeyPress:true" id="ContractEndDatetxt"></input>
+                    <span class="add-on">
+                        <i class="fa fa-calendar" data-time-icon="icon-time"></i>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <div class="form-group m-b-xl">
+                <label>Property Type</label>
+
+                <div class="col-md-3 m-l-sm">
+                    <div class="radio i-checks">
+                        <label>
+                            <input type="radio" name="radioType" value="Building" data-bind="checked: IsBuilding">
+                            <i></i> Building
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="radio i-checks">
+                        <label>
+                            <input type="radio" name="radioType" value="Land" data-bind="checked: IsLand">
+                            <i></i> Land
+                        </label>
+                    </div>
+                </div>
+            </div>      
+             
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-md-8"><div class="form-group">
+    <label>Total Area</label>
+    <input type="text" data-bind="value:TotalArea,numericOnly:true" class="form-control" />
+</div></div>
+
+                <div class="col-md-4">
+                    <label></label>
+                    <select class="form-control m-t-sm" data-bind="options:$root.measurementUnit,optionsText:'Text',optionsValue:'Value',value:TotalAreaMeasurementUnit,optionsCaption:'Select Unit'"></select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Parking</label>
+
+                <div class="col-md-3 m-l-sm">
+                    <div class="radio i-checks">
+                        <label>
+                            <input type="radio" name='radioParkingType' value="Yes" data-bind="checked: Parking">
+                            <i></i> Yes
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="radio i-checks">
+                        <label>
+                            <input type="radio" name='radioParkingType' value="No" data-bind="checked: Parking">
+                            <i></i> No
+                        </label>
+                    </div>
+                </div>
+
+
+                
+                
+                
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <input type="text" data-bind="value:ParkingNumber,numericOnly:true,visible:IsParking" class="form-control" placeholder="Enter Number of parking" />
+            </div>
+            <div class="form-group">
+                <label>Multiple Unit</label>
+                <select class="form-control" data-bind="options:$root.multiUnits,optionsText:'Text',optionsValue:'Value',value:MultipleUnit,optionsCaption:'Select Multiple Unit'"></select>
+                <select class="form-control" data-bind="options:$root.furnishTypes,optionsText:'Text',optionsValue:'Value',value:FurnishType,optionsCaption:'Select Furnish Type',visible:$root.isMultiUnitIsNo"></select>
+            </div>
+            <div class="form-group bdr">
+                <label>Property For</label>
+                
+
+                <div class="col-md-2 m-l-sm">
+                    <label class="checkbox-inline i-checks">
+                        <input type="checkbox" data-bind="checked:IsRent">
+                        <i></i>Rent
+                    </label>
+                </div>
+
+                <div class="col-md-2 m-l-sm">
+                    <label class="checkbox-inline i-checks">
+                        <input type="checkbox" data-bind="checked:IsSale">
+                        <i></i>Sale
+                    </label>
+                </div>
+            </div>
+            
+            </div>
+
+        <div class="col-lg-6"><div class="row">
+    <div class="col-md-8">
+
+        <div class="form-group">
+            <label>BUA</label>
+            <input type="text" data-bind="value:BuildUpArea,numericOnly:true" class="form-control" />
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <label></label>
+        <select class="form-control m-t-sm" data-bind="options:$root.measurementUnit,optionsText:'Text',optionsValue:'Value',value:BuildUpAreaMeasurementUnit,optionsCaption:'Select Unit'"></select>
+    </div>
+    <div>
+        <div class="col-md-6" data-bind="if:$root.isBuidingProperty">
+            
+                <div class="form-group">
+                    <label>Bed</label>
+                    <input type="number" data-bind="value:NoOfBed,numericOnly:true" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Total Floors</label>
+                    <input type="text" data-bind="value:Floor,numericOnly:true" class="form-control" />
+                </div>
+           
+        </div>
+        <div class="col-md-6" data-bind="if:$root.isBuidingProperty">
+           
+                <div class="form-group">
+                    <label>Bath</label>
+                    <input type="number" data-bind="value:NoOfBath,numericOnly:true" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Floor Number</label>
+                    <input type="text" data-bind="value:FloorNumber,numericOnly:true" class="form-control" />
+                </div>
+           
+        </div>
+    </div>
+</div>
+
+        </div>
+
+        
+        
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <h4 class="text-primary" data-bind="visible:IsRent()">Rent Charge</h4>
+            <div class="clearfix bdr" data-bind="visible:IsRent()">
+                @*<div class="col-md-6">
+                        <div class="form-group">
+                            <label>Target Rent</label>
+                            <input type="text" data-bind="value:RentAmount,numericOnly:true" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Deposit</label>
+                            <input type="text" data-bind="value:Deposit,numericOnly:true" class="form-control" />
+                        </div>
+
+                </div>
+                <div class="col-md-4">
+                    <label></label>
+                    <select class="form-control top5" data-bind="options:$root.targetRentType,optionsText:'Text',optionsValue:'Value',value:RentalTerms,optionsCaption:'Select Unit'"></select>
+                </div>*@
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sl No</th>
+                            <th class="text-left">Charges</th>
+                            <th class="text-left">Amount</th>
+                            <th class="text-left">Every</th>
+                            <th class="text-left"></th>
+                            <th class="text-left"></th>
+                            <th class="text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="template: { name: 'add-RentInfoViewModel-template', foreach:RentInfoViewModel}"></tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-6 m-t-lg">
+                        <div class="col-md-4">
+                        <label class="checkbox-inline i-checks">
+                            <input type="checkbox" data-bind="value:IsRentalCommission">
+                            <i></i>Rental Commission
+                        </label>
+                    </div>
+
+                        <div class="col-md-5">
+                            <label class="checkbox-inline i-checks">
+                                <input type="checkbox" data-bind="value:IsManagementCommission">
+                                <i></i>Management Commission
+                            </label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="checkbox-inline i-checks">
+                                <input type="checkbox" data-bind="value:IsLeasingTax">
+                                <i></i>Leasing Tax
+                            </label>
+                        </div>
+
+                        @*<input type="checkbox" data-bind="value:IsRentalCommission" /><span>&nbsp;Rental Commission</span><br />*@
+                        @*<input type="checkbox" data-bind="value:IsManagementCommission" /><span>&nbsp;Management Commission</span><br />
+                        <input type="checkbox" data-bind="value:IsLeasingTax" /><span>&nbsp;Leasing Tax</span>*@
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Availability</label>
+                            <select class="form-control" data-bind="options:$root.vacancies,optionsText:'Text',optionsValue:'Value',value:Availability"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="text-primary" data-bind="visible:IsSale()">Sale</h4>
+            <div class="bdr row" data-bind="visible:IsSale()">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Expected Price</label>
+                        <input type="text" data-bind="value:ExpectedPrice,numericOnly:true" class="form-control" />
+                    </div>
+                    <div class="form-inline m-t-lg-h">
+
+                        <label class="checkbox-inline i-checks">
+                            <input type="checkbox" data-bind="value:IsExpectedPrice">
+                            <i></i>Sales Commission
+                        </label>
+
+                       
+                    </div>
+                    <div class="form-group m-t-lg">
+                        <label>GL Account</label>
+                        <select class="form-control" data-bind="options:$root.gLAccounts,optionsText:'Text',optionsValue:'Value',value:GLAccount"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <select class="form-control top5" data-bind="options:$root.measurementUnit,optionsText:'Text',optionsValue:'Value',value:PropertyMeasurementUnit,optionsCaption:'Select Unit'"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control" data-bind="options:$root.commissionType,optionsText:'Text',optionsValue:'Value',value:CommissionType"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="text" class="form-control" data-bind="value:SalesAmount,numericOnly:true">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Sales Term</label>
+                    <textarea class="form-control" data-bind="value:SalesTerms" rows="9"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea data-bind="value:Address" class="form-control"></textarea>
+                    </div>
+                    <div class=" form-group">
+                        <label>Country</label>
+                        <select class="form-control" data-bind="options:$root.countries,optionsText:'Name',optionsValue:'Id',value:$parent.selectedCountry,optionsCaption:'Select Country'"></select>
+                    </div>
+                    <div class=" form-group">
+                        <label>State</label>
+                        <select class="form-control" data-bind="options:$root.states,optionsText:'Name',optionsValue:'Id',value:$parent.selectedState,optionsCaption:'Select State'"></select>
+                    </div>
+                    <div class=" form-group">
+                        <label>City</label>
+                        <select class="form-control" data-bind="options:$root.cities,optionsText:'Name',optionsValue:'Id',value:CityId,optionsCaption:'Select City'"></select>
+                    </div>
+                    <div class=" form-group">
+                        <label>Area</label>
+                        <input type="text" data-bind="value:Area" class="form-control" />
+                    </div>
+                    <div class=" form-group">
+                        <label>Zip</label>
+                        <input type="text" data-bind="value:Zip,numericOnly:true" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div id="map_canvas" style="width: 100%; height: 400px; margin-top:0 auto">
+                        </div>
+                        <input type="hidden" id="hdlogitude" />
+                        <input type="hidden" id="hdlatitude" />
+                    </div>
+                    <div class=" form-group m-t">
+                        <label>Vacancy</label>
+                        <select class="form-control" data-bind="options:$root.vacancies,optionsText:'Text',optionsValue:'Value',value:Vaccancy"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" data-bind="value:Description"></textarea>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div @*data-bind="loading:$root.isBusy"*@>
+                        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$parent.saveProperty"><span class=" ladda-label">Save</span></button>
+                        @*<button type="button" class="btn btn-primary" data-bind="click:$parent.saveProperty" data-dismiss="modal" aria-hidden="true">
+                                Save
+                            </button>*@
+                        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.saveAndCopyBusy,click:$parent.saveAndCopyProperty"><span class=" ladda-label">Save and Copy</span></button>
+                        @*<button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click:$parent.saveAndCopyProperty" aria-hidden="true">
+                                Save and Copy
+                            </button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>
+<script id="add-RentInfoViewModel-template" type="text/html">
+    <tr>
+        <td data-title="Slno">
+            <span data-bind="text: ($index() + 1)"> </span>
+        </td>
+        <td><select id="ChargeDropdwn" class="form-control" data-bind="options:$root.charges,optionsText:'ChargeName',optionsValue:'Id',value:ChargeId"></select></td>
+        <td><input type="text" data-bind="value:Amount,numericOnly:true" class="form-control" /></td>
+        <td>
+            <input type="number" data-bind="value:Month,numericOnly:true" class="form-control" /></td>
+        <td>
+            <label>Month</label>
+        </td>
+        <td>
+        
+            <label class="checkbox-inline i-checks">
+                <input type="checkbox" data-bind="checked:Supress">
+                <i></i>
+            </label>
+       </td>
+        <td class="text-center"><a href="#" data-bind="click:$root.AddNewRowForRentInfoViewModel,visible:IsDeleted"><i class="fa fa-2x fa-plus-circle" style="color: green"></i></a><a href="#" data-bind="click:$root.removeRow"><i class="fa fa-2x fa-trash-o" style="color: red"></i></a></td>
+
+    </tr>
+</script>
+@section scripts{
+    <script src="~/App/ViewModels/Amenity/AmenityModel.js"></script>
+    <script src="~/App/ViewModels/Owner/OwnerModel.js"></script>
+    <script src="~/App/ViewModels/Property/PropertyModel.js"></script>
+    <script src="~/App/ViewModels/Property/PropertyViewModel.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="~/Content/js/googleMapInProperty.js"></script>
+    <script>
+        var vm = new PropertyViewModel();
+        ko.applyBindings(vm);
+        vm.init();
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+
+            });
+        });
+    </script>
+}

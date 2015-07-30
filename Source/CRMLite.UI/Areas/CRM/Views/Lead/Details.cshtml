@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-md-12">
+<h3 class="inline-b">
+    Details</h3>
+    <div></div>
+        <input type="hidden" id="hdnLeadId" value="@ViewBag.LeadId" />
+        <div data-bind="with:selectedLead">
+            <div class="clearfix">
+                <div class="col-lg-12 row">
+                    
+                        <i class="fa fa-envelope"></i> &nbsp;<span id="mailus"></span>
+                        <i class="fa fa-filter"></i>
+                        <a href="#" data-bind="click:$root.convertLead" data-toggle="modal" data-target="#ConvertLead">
+                            Convert To Potential
+                        </a>
+                        <i class="fa fa-calendar"></i>
+                        <a href="#" data-bind="click:$root.ToDo">ToDo</a>
+                   
+                </div>
+                <hr />
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="lblwidth"><b>First Name </b></label>
+                            <span data-bind="text:FirstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Last Name </b></label>
+                            <span data-bind="text:LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Company/Family </b></label>
+                            <span data-bind="text:Company"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Assigned To </b></label><span data-bind="text:Assignedto"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Lead Status </b></label><span data-bind="text:LeadStatus"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Lead Source </b></label><span data-bind="text:LeadSource"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <h4 class="text-primary">Communication Details</h4>
+            <div class="clearfix">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Email </b> </label><span data-bind="text:Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Website </b> </label><span data-bind="text:Website"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="lblwidth"><b>Phone Number </b></label><span data-bind="text:Phone,numericOnly:true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <h4>Other</h4>
+            <div class="clearfix">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label class="lblwidth"><b>Comments </b></label><span data-bind="text:Comment"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section scripts{
+        <script src="~/Content/js/emailinjector.js"></script>
+        <script src="~/App/ViewModels/CRM/models.js"></script>
+        <script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
+        <script src="~/Content/js/mailus.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var vm = new LeadViewModel();
+                ko.applyBindings(vm);
+                vm.leaddetail();
+            });
+        </script>
+    }

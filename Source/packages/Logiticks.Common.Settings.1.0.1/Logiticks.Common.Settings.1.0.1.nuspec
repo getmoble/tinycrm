@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Logiticks.Common.Settings</id>
+    <version>1.0.1</version>
+    <title>Logiticks.Common.Settings</title>
+    <authors>Moble Joseph</authors>
+    <owners>Moble Joseph</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the common Settings related classes</description>
+    <copyright>www.logiticks.com</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="EntityFramework" version="6.1.3" />
+        <dependency id="Newtonsoft.Json" version="6.0.8" />
+        <dependency id="Logiticks.Common.Data" version="1.0.6" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

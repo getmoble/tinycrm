@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Data Export</h2>
+<form action="/DataExport/ExportData" method="post">
+    <div class="form-group">
+        <input type="file" id="excelfileuploader" />
+        <input type="hidden" id="file" name="file" />
+        <input type="submit" id="export" value="Export" />
+    </div>
+</form>
+@section scripts{
+   
+<script src="~/Content/js/excelfileupload.js"></script> 
+}

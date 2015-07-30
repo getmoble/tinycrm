@@ -1,0 +1,220 @@
+﻿@model PropznetCommon.Features.CRM.ElasticSearch.SearchResult
+<div class="">
+    <div class="col-md-12 m-top20">
+        <h3 class="inline-b">Search Results</h3>
+    </div>
+    <div class="bdr marB-md pad-sm">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span>Accounts(@Model.AccountSearchResult.Count)</span>
+                            </a>
+                            <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapseOne"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @if (@Model.AccountSearchResult.Count != 0)
+                            {
+                                foreach (var item in @Model.AccountSearchResult)
+                                {
+                                    <div class="bdr bot">
+                                        <div class="col-md-6">
+                                            <label><b>Account Name</b> </label><a href="">@item.AccountName</a><br />
+                                            <label><b>Address</b> </label>&nbsp;@item.Address<br />
+                                            <label><b>Industry</b> </label>&nbsp;@item.Industry
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Email</b> </label>&nbsp;@item.Email<br />
+                                            <label><b>Phone</b> </label>&nbsp;@item.Phone<br />
+                                            <label><b>Website</b> </label>&nbsp;@item.Website<br />
+                                            <label><b>Comments</b> </label>&nbsp;@item.Comment
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Sorry, No account information found</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <span>Contacts(@Model.ContactSearchResult.Count)</span>
+                            </a>
+                            <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapseTwo"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if (@Model.ContactSearchResult.Count != 0)
+                            {
+                                foreach (var item in @Model.ContactSearchResult)
+                                {
+                                    <div class="bdr bot">
+                                        <div class="col-md-6">
+                                            <label><b>Title</b> </label>&nbsp;@item.Title<br />
+                                            <label><b>First Name</b> </label>&nbsp; <a href="">@item.FirstName</a><br />
+                                            <label><b>Last Name</b> </label>&nbsp;@item.LastName<br />
+                                            <label><b>Account</b> </label>&nbsp;@item.Account
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Email</b> </label>&nbsp;@item.Email<br />
+                                            <label><b>Phone</b> </label>&nbsp;@item.Phone<br />
+                                            <label><b>Address</b> </label>&nbsp;@item.Address<br />
+                                            <label><b>Comments</b> </label>&nbsp;@item.Comments<br />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Sorry, No contact information found</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <span>Agents(@Model.AgentSearchResult.Count)</span>
+                            </a>
+                            <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapseThree"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if (@Model.AgentSearchResult.Count != 0)
+                            {
+                                foreach (var item in @Model.AgentSearchResult)
+                                {
+                                    <div class="bdr bot">
+                                        <div class="col-md-6">
+                                            <label><b>First Name </b></label>&nbsp; <a href="">@item.FirstName</a><br />
+                                            <label><b>Last Name</b> </label>&nbsp;@item.LastName<br />
+                                            <label><b>Address</b> </label>&nbsp;@item.Address<br />
+                                            <label><b>Created By </b></label>&nbsp;@item.CreatedBy<br />
+                                            <label><b>DED LicenseNumber</b> </label>&nbsp;@item.DEDLicenseNumber
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Email </b></label>&nbsp;@item.Email<br />
+                                            <label><b>Phone </b></label>&nbsp;@item.Phone<br />
+                                            <label><b>Image </b></label>&nbsp;<img style="width: 20%" src=@Url.Content("~/Upload/Agent/" + @item.Image)> <br />
+                                            <label><b>Is Listing Member </b></label>&nbsp;@item.IsListingMember<br />
+                                            <label><b>RERA Registration Number </b></label>&nbsp;@item.RERARegistrationNumber<br />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Sorry, No lead information found</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour">
+                                <span>Potentials(@Model.PotentialSearchResult.Count)</span>
+                            </a>
+                            <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapsefour"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapsefour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if (@Model.PotentialSearchResult.Count != 0)
+                            {
+                                foreach (var item in @Model.PotentialSearchResult)
+                                {
+                                    <div class="bdr bot">
+                                        <div class="col-md-6">
+                                            <label><b>Name </b></label> <a href="">&nbsp;@item.PotentialName</a><br />
+                                            <label><b>Account </b></label>&nbsp;@item.Account<br />
+                                            <label><b>Area </b></label>&nbsp;@item.Area<br />
+                                            <label><b>Budget From </b></label>&nbsp;@item.BudgetFrom<br />
+                                            <label><b>Budget To </b></label>&nbsp;@item.BudgetTo
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Expected Close Date </b></label>&nbsp;@item.ExpectedCloseDate<br />
+                                            <label><b>Floor </b></label>&nbsp;@item.Floor<br />
+                                            <label><b>Lead Source </b></label>&nbsp;@item.LeadSource<br />
+                                            <label><b>Sale Stage </b></label>&nbsp;@item.SalesStage<br />
+                                            <label><b>Agent </b></label>&nbsp;@item.selectedAgent<br />
+                                            <label><b>Selected Contact </b></label>&nbsp;@item.SelectedContact<br />
+                                            <label><b>Selected Location </b></label>&nbsp;@item.selectedLocation<br />
+                                            <label><b>Property Category </b></label>&nbsp;@item.selectedPropertyCategory<br />
+                                            <label><b>Slelected Date </b></label>&nbsp;@item.selectedState<br />
+                                            <label><b>Comments </b></label>&nbsp;@item.Comments
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Sorry, No potential information found</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">
+                                <span>Leads(@Model.LeadSearchResult.Count)</span>
+                            </a>
+                            <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapsefive"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapsefive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @if (@Model.LeadSearchResult.Count != 0)
+                            {
+                                foreach (var item in @Model.LeadSearchResult)
+                                {
+                                    <div class="bdr bot">
+                                        <div class="col-md-6">
+                                            <label><b>First Name </b></label> <a href="">&nbsp;@item.FirstName</a><br />
+                                            <label><b>Last Name </b></label>&nbsp;@item.LastName<br />
+                                            <label><b>Lead Source </b></label>&nbsp;@item.LeadSource<br />
+                                            <label><b>Lead Source Name </b></label>&nbsp;@item.LeadSourceName<br />
+                                            <label><b>Lead Status</b> </label>&nbsp;@item.LeadStatus
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label><b>Phone </b></label>&nbsp;@item.Phone<br />
+                                            <label><b>Agent </b></label>&nbsp;@item.SelectedAssignedTo<br />
+                                            <label><b>Website </b></label>&nbsp;@item.Website<br />
+                                            <label><b>Assigned To </b></label>&nbsp;@item.Assignedto<br />
+                                            <label><b>Comment </b></label>&nbsp;@item.Comment<br />
+                                            <label><b>Company </b></label>&nbsp;@item.Company<br />
+                                            <label><b>Created By </b></label>&nbsp;@item.CreatedBy<br />
+                                            <label><b>Email </b></label>&nbsp;@item.Email<br />
+                                            <label><b>Enity Type </b></label>&nbsp;@item.Enitytype<br />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>Sorry, No potential information found</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script src="~/Content/js/toggleChevron.js"></script>
+    }
