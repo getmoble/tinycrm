@@ -47,11 +47,12 @@
                             <div class="form-group">
                                 <label>Expected Close Date</label>
                                 <div id="datetimepicker2" class="input-append date">
-                                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedMoveInDate"></input>
+                                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
                                     <span class="add-on">
                                         <i class="fa fa-calendar" data-time-icon="icon-time"></i>
                                     </span>
                                 </div>
+
                                 @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
                             </div>
                             <div class="form-group">
@@ -81,14 +82,30 @@
                                 <label>Type of Property:</label>
                                 <select data-bind="options: $root.propertycategories ,optionsText: 'Name', optionsValue: 'Id', value:selectedPropertyCategory, optionsCaption:'Select Category'" class="form-control"></select>
                             </div>
+                        @*<div class=" form-group">
+                            <label>Country</label>
+                            <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:$parent.selectedCountry,optionsCaption:'Select Country'"></select>
+                        </div>
                             <div class="form-group">
-                                <label>Emirates</label>
+                                <label>States</label>
                                 <select data-bind="options: $root.states ,optionsText: 'Name', optionsValue: 'Id', value:selectedState, optionsCaption:'Select State'" class="form-control"></select>
                             </div>
                             <div class="form-group">
-                                <label>Location</label>
+                                <label>City</label>
                                 <select data-bind="options: $root.SelectedPotential().locations ,optionsText: 'Name', optionsValue: 'Id', value:selectedLocation, optionsCaption:'Select Location'" class="form-control"></select>
-                            </div>
+                            </div>*@
+                        <div class=" form-group">
+                            <label>Country</label>
+                            <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:$parent.selectedCountry,optionsCaption:'Select Country'"></select>
+                        </div>
+                        <div class=" form-group">
+                            <label>State</label>
+                            <select class="form-control" data-bind="options:$root.States,optionsText:'Name',optionsValue:'Id',value:$parent.selectedState,optionsCaption:'Select State'"></select>
+                        </div>
+                        <div class=" form-group">
+                            <label>City</label>
+                            <select class="form-control" data-bind="options:$root.Cities,optionsText:'Name',optionsValue:'Id',value:CityId,optionsCaption:'Select City'"></select>
+                        </div>
                             <div class="form-group">
                                 <label>Floor</label>
                                 <input type="text" class="form-control" data-bind="value:Floor,numericOnly:true" />
@@ -161,7 +178,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <strong><span data-bind="text:DisplayTitle"></span></strong>
                 </div>
-                <div class="modal-body clearfix" data-bind="with:SelectedAccount">
+                <div class="modal-body" data-bind="with:SelectedAccount">
                     <h4 class="text-primary">Account Details</h4>
                     <div class=" bdr row">
                         <div class="col-md-6">
@@ -210,12 +227,15 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label">Save</span></button>
+                </div>
+                
             </div>
-                    <div class="col-md-12 modal-footer">
-                        
-                        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.CreateAccount"><span class=" ladda-label">Save</span></button>
-                    </div>
+                    
             </div>
         </div>
    
@@ -224,7 +244,6 @@
         <link href="~/Content/css/select2.css" rel="stylesheet" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="~/Content/js/select2.min.js"></script>
-        <script src="~/App/ViewModels/Amenity/AmenityModel.js"></script>
         <script src="~/App/ViewModels/CRM/models.js"></script>
         <script src="~/App/ViewModels/Potential/PotentialViewModel.js"></script>
         <script type="text/javascript">

@@ -1,6 +1,8 @@
 function PotentialViewModel() {
     var self = this;
     self.url = urls.CRM;
+    var editedState = '';
+    var editedCity = '';
     self.DisplayTitle = ko.observable();
     self.busy = ko.observable();
     self.PotentialLists = ko.observableArray();
@@ -17,6 +19,12 @@ function PotentialViewModel() {
     self.propertyId = ko.observableArray();
     self.isCreate = ko.observable(false);
     self.isUpdate = ko.observable(false);
+    self.initialStage = ko.observable(false);
+    self.initialCityStage = ko.observable(false);
+    self.Cities = ko.observableArray();
+    self.States = ko.observableArray();
+    self.Countries = ko.observableArray();
+    self.Countries = ko.observableArray();
     self.states = ko.observableArray();
     self.Agent = ko.observableArray();
     self.Account = ko.observableArray();
@@ -25,6 +33,9 @@ function PotentialViewModel() {
     self.SearchLeadSource = ko.observable();
     self.SearchSalesStage = ko.observable();
     self.isBusy = ko.observable(false);
+    self.SelectedContact = ko.observable(new Contact({}));
+    self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
+    self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
     self.SelectedPotential = ko.observable(new Potential({}));
     self.SelectedAccount = ko.observable(new Account({}));
     self.potentialdelete = function (item) {
@@ -43,7 +54,7 @@ function PotentialViewModel() {
             }
         });
     };
-   
+ 
     self.addProperties = function () {
         self.assignProperty.removeAll();
         self.propertyId.removeAll();
@@ -81,7 +92,7 @@ function PotentialViewModel() {
                 self.busy(false);
             });
         }
-    }; 
+    };
     self.getEditPage = function (item) {
         var self = this;
         self.CRMUrl = urls.CRM;
@@ -99,9 +110,14 @@ function PotentialViewModel() {
         $('#accordion').on('shown.bs.collapse', toggleChevron);
         self.isCreate(false);
         self.isUpdate(true);
-        var potentialIdValue = $("#hdnPotentialId").data('value');
+        var potentialIdValue = $("#hdnPotentialId").data('value');    
+
         $.get(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue, function (data) {
+            self.initialStage(true);
             self.SelectedPotential(new Potential(data.Potential));
+            self.selectedCountry(data.Potential.Property.City.State.CountryId);
+            editedState = ko.toJS(self.SelectedPotential().StateId);
+            editedCity = ko.toJS(data.CityId);
             $("#AccountSelect").select2();
         });
 
@@ -111,10 +127,52 @@ function PotentialViewModel() {
     };
     self.potentialdetail = function () {
         var id = $("#hdnPotentialId").val();
-        $.get(ko.toJS(self.url.potentialapiDetails) + Id, function (data) {
+        $.get(ko.toJS(self.url.potentialapiDetails) + id, function (data) {
             self.SelectedPotential(new Potential(data));
         });
     };
+    self.selectedCountry.subscribe(function (newValue) {
+        // self.resetValidation();
+        if (ko.toJS(self.selectedCountry) != null) {
+            var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllStates) + ko.toJS(self.selectedCountry()));
+            result.done(function (data) {
+                self.States.removeAll();
+                self.Cities.removeAll();
+                $.each(data, function (k, v) {
+                    self.States.push(v);
+                });
+                if (self.initialStage()) {
+                    self.initialCityStage(true);
+                    self.selectedState(editedState);
+                }
+                else {
+                    self.selectedState('');
+                    self.SelectedPotential().CityId('');
+                }
+                self.initialStage(false);
+            });
+        }
+    });
+    self.selectedState.subscribe(function () {
+        //self.resetValidation();
+        if (ko.toJS(self.selectedState)) {
+            var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllCities) + ko.toJS(self.selectedState));
+            result.done(function (data) {
+                self.Cities.removeAll();
+                $.each(data, function (k, v) {
+                    self.Cities.push(v);
+                });
+                if (self.initialCityStage())
+                    self.SelectedPotential().CityId(editedCity);
+                else {
+
+                    self.SelectedPotential().CityId('');
+
+                }
+                self.initialCityStage(false);
+            });
+        }
+    });
 };
 PotentialViewModel.prototype.init = function () {
     var self = this;
@@ -123,7 +181,7 @@ PotentialViewModel.prototype.init = function () {
     self.isBusy(true);
     self.SelectedPotential().resetValidation();
     $.get(ko.toJS(self.url.potentialapiGetAllPotential), function (response) {
-  
+
         if (response.Status === false) {
             if (response.Code === 401) {
                 window.location.href = ko.toJS(self.url.errorNotAuthorized);
@@ -133,10 +191,10 @@ PotentialViewModel.prototype.init = function () {
             }
         } else {
             if (response) {
-        
+
                 $.each($.parseJSON(response.Potential), function (key, value) {
                     self.PotentialLists.push(new Potential(value));
-                   
+
                 });
             }
             $("#pagination").DataTable({
@@ -169,6 +227,10 @@ PotentialViewModel.prototype.init = function () {
             $.each(response.Category, function (k, v) {
                 self.propertycategories.push(new PropertyCategory(v));
             });
+            $.each(response.Countries, function (k, v) {
+                self.Countries.push(new Country(v));
+            });
+            
         }
         $("#AccountSelect").select2();
         self.isBusy(false);
@@ -182,10 +244,12 @@ PotentialViewModel.prototype.gotoPotentialPage = function () {
 PotentialViewModel.prototype.savePotential = function () {
     var self = this;
     self.SelectedPotential().resetValidation();
+
+    self.SelectedPotential().ExpectedCloseDate($("#ExpectedDate").val());
+    self.SelectedPotential().ExpectedMoveInDate($("#ExpectedMoveInDate").val());
     if (self.SelectedPotential().modelState.isValid()) {
+      
         self.busy(true);
-        self.SelectedPotential().ExpectedCloseDate($("#ExpectedDate").val());
-        self.SelectedPotential().ExpectedMoveInDate($("#ExpectedMoveInDate").val());
         var jsonData = ko.toJS(self.SelectedPotential());
         var result = $.post(ko.toJS(self.url.potentialapiCreatePotential), jsonData);
         result.done(function (response) {
@@ -290,7 +354,9 @@ PotentialViewModel.prototype.clear = function () {
     $('#accordion').on('shown.bs.collapse', toggleChevron);
     $("#AccountSelect").select2();
 };
-PotentialViewModel.prototype.ToDo = function(item) {
+PotentialViewModel.prototype.ToDo = function (item) {
     var self = this;
+    self.url = urls.CRM;
     window.location.href = ko.toJS(self.url.fullCalenderIndexentityTypePotential) + ko.toJS(item.Id);
 }
+

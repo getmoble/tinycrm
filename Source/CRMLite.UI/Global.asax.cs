@@ -14,6 +14,7 @@ namespace CRMLite.UI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

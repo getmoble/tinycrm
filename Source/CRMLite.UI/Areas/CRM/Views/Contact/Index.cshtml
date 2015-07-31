@@ -40,10 +40,10 @@
                     <th class="text-center">First Name </th>
                     <th class="text-center">Last Name </th>
                     <th class="text-center">Title</th>
-                    <th class="text-center">Related To</th>
+                    @*<th class="text-center">Related To</th>*@
                     <th class="text-center">Email </th>
                     <th class="text-center">Phone</th>
-                    <th class="text-center">Assigned To</th>
+                    @*<th class="text-center">Assigned To</th>*@
                     <th class="text-center"> Actions </th>
                 </tr>
             </thead>
@@ -53,10 +53,10 @@
                     <td><span data-bind="text: FirstName"> </span></td>
                     <td><span data-bind="text: LastName"> </span></td>
                     <td><span data-bind="text: Title"> </span></td>
-                    <td><span data-bind="text: AccountName"> </span></td>
+                    @*<td><span data-bind="text: AccountName"> </span></td>*@
                     <td><span data-bind="text: Email"> </span></td>
                     <td><span data-bind="text: Phone"> </span></td>
-                    <td><span data-bind="text: AssignedTo"> </span></td>
+                    @*<td><span data-bind="text: AssignedTo"> </span></td>*@
                     <td>
                         <a href="#" data-bind="click:$root.gotoContactdetails" data-toggle="modal" data-target="#Details"><i class="fa fa-lg fa-info-circle " data-toggle="tooltip" data-placement="top" title="Details" data-original-title="Details"></i></a>&nbsp;&nbsp;
                         @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageContact))

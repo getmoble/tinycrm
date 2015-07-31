@@ -37,22 +37,40 @@ namespace CRMLite.Data.Data.Seeders
             context.Roles.Add(ownerRole);
             context.SaveChanges();
 
-            var person = new Person { FirstName = "Admin", LastName = "Zeztate", PhoneNo = "9495925241", RefId = new Guid().ToString("N") };
+            var person = new Person { FirstName = "Sreenath", LastName = "Kezhakkedath", PhoneNo = "+4253014269", RefId = new Guid().ToString("N") };
             context.Persons.Add(person);
             context.SaveChanges();
 
-            var newPerson = new Person { FirstName = "User", LastName = "Zeztate", PhoneNo = "9495925241", RefId = new Guid().ToString("N") };
-            context.Persons.Add(newPerson);
-            context.SaveChanges();
-
-
-            var admin = new User { Username = "admin@logiticks.com", Name = "Admin", Password = HashHelper.Hash("admin"), PersonId = person.Id, AccessRuleId = newAdminAccessRule.Id };
+            var admin = new User { Username = "sreenath@logiticks.com", Name = "Sreenath", Password = HashHelper.Hash("pass@123"), PersonId = person.Id, AccessRuleId = newAdminAccessRule.Id };
             context.Users.Add(admin);
             context.SaveChanges();
 
-            var newuser = new User { Username = "user@logiticks.com", Name = "User", Password = HashHelper.Hash("user"), PersonId = newPerson.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            var newPerson = new Person { FirstName = "Mark", LastName = " ", PhoneNo = "", RefId = new Guid().ToString("N") };
+            context.Persons.Add(newPerson);
+            context.SaveChanges();
+
+            var newuser = new User { Username = "mark@logiticks.com", Name = "Mark", Password = HashHelper.Hash("pass@123"), PersonId = newPerson.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser);
             context.SaveChanges();
+
+            var newPerson2 = new Person { FirstName = "Dhanya", LastName = "Viswanadh ", PhoneNo = "", RefId = new Guid().ToString("N") };
+            context.Persons.Add(newPerson2);
+            context.SaveChanges();
+
+            var newuser1 = new User { Username = "dhanya@logiticks.com", Name = "Dhanya", Password = HashHelper.Hash("pass@123"), PersonId = newPerson2.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            context.Users.Add(newuser1);
+            context.SaveChanges();
+
+            var newPerson3 = new Person { FirstName = "Jithin", LastName = "Sreedhar ", PhoneNo = "9895981814", RefId = new Guid().ToString("N") };
+            context.Persons.Add(newPerson3);
+            context.SaveChanges();
+
+            var newuser2 = new User { Username = "jithin@logiticks.com", Name = "Jithin", Password = HashHelper.Hash("pass@123"), PersonId = newPerson3.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            context.Users.Add(newuser2);
+            context.SaveChanges();
+         
+         
+
         }
     }
 }

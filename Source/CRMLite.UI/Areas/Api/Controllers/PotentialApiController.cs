@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Common.Utilities;
+using CRMLite.Infrastructure;
+using CRMLite.Infrastructure.Enum;
 using Newtonsoft.Json;
 using PropznetCommon.Features.CRM.Entities.Enum;
 using PropznetCommon.Features.CRM.Interfaces.Services;
@@ -53,7 +55,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         {
             return ExecuteIfValid(() =>
             {
-                if (!WebUser.IsInRole("Admin"))
+                if (!RoleChecker.CheckRole(WebUser.RoleId, RoleIds.Admin))
                 {
                     var potentials = _potentialService.GetAllPotentials(WebUser.Id, WebUser.PermissionCodes).ToList();
                     var leadsource = _leadSourceService.GetAllLeadSources();
@@ -63,6 +65,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     var contacts = _contactService.GetAllContacts();
                     var categories = _propertyCategoryService.GetAllPropertyCategories();
                     var propertytype = Enum.GetValues(typeof(CRMPropertyType)).Cast<CRMPropertyType>();
+                    var countries = _locationService.GetAllCountries();
                     var getpropertytype = propertytype.Select(i => new SelectListItem
                     {
                         Text = i.ToString(),
@@ -92,7 +95,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                             AgentId = potential.AgentId,
                             AgentName = potential.Agent.FirstName,
                             SalesStageName = potential.SalesStage.Name,
-                            RefId = potential.RefId
+                            RefId = potential.RefId,
                         };
                         potentialvm.Add(model);
                     }
@@ -107,7 +110,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         Propertytype = getpropertytype,
                         States = states,
                         Category = categories,
-                        Accounts = accounts
+                        Accounts = accounts,
+                        Countries = countries
                     };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
@@ -119,6 +123,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     var salesstage = _salesStageService.GetAllSalesStages();
                     var agents = _agentService.GetAllAgents();
                     var contacts = _contactService.GetAllContacts();
+                    var countries = _locationService.GetAllCountries();
                     var categories = _propertyCategoryService.GetAllPropertyCategories();
                     var propertytype = Enum.GetValues(typeof(CRMPropertyType)).Cast<CRMPropertyType>();
                     var getpropertytype = propertytype.Select(i => new SelectListItem
@@ -144,13 +149,14 @@ namespace CRMLite.UI.Areas.Api.Controllers
                             ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
                             ShowingDate = potential.ExpectedCloseDate.DateTime.ToShortDateString(),
                             LeadSourceName = potential.LeadSource.Name,
+
                             AccountName = potential.Account.Name,
                             PropertyType = propertyType,
                             Id = potential.Id,
                             AgentId = potential.AgentId,
                             AgentName = potential.Agent.FirstName,
                             SalesStageName = potential.SalesStage.Name,
-                            RefId = potential.RefId
+                            RefId = potential.RefId,
                         };
                         potentialvm.Add(model);
                     }
@@ -163,6 +169,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         Contacts = contacts,
                         Agents = agents,
                         Propertytype = getpropertytype,
+                        Countries = countries,
                         States = states,
                         Category = categories,
                         Accounts = accounts
@@ -176,8 +183,23 @@ namespace CRMLite.UI.Areas.Api.Controllers
             },
             error =>
             {
-                return Json(false, JsonRequestBehavior.AllowGet); 
+                return Json(false, JsonRequestBehavior.AllowGet);
             });
+        }
+        public ActionResult GetAllCountries()
+        {
+            var countries = _locationService.GetAllCountries();
+            return Json(countries, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetAllStates(long id)
+        {
+            var states = _locationService.GetAllStatesByCountry(id);
+            return Json(states, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetAllCities(long id)
+        {
+            var cities = _locationService.GetAllCitiesByState(id);
+            return Json(cities, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeletePotential(long id)
         {
@@ -186,7 +208,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetLocations(long id)
         {
-            var locations = _locationService.GetAllStatesByCountry(id);
+            var locations = _locationService.GetAllCitiesByState(id);
             return Json(locations, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CreatePotential(PotentialModel potentialModel)
@@ -199,9 +221,10 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 Floor = potentialModel.Floor,
                 Baths = potentialModel.Baths,
                 Beds = potentialModel.Beds,
-                CityId = potentialModel.selectedLocation,
+                CityId = potentialModel.CityId,
                 PropertyCategoryId = potentialModel.selectedPropertyCategory,
-                PropertyType = potentialModel.selectedProperty
+                PropertyType = potentialModel.selectedProperty,
+                // StateId = potentialModel.selectedState,
             };
             var createProperty = _propertyService.CreateProperty(propertyModel);
             potentialModel.PropertyId = createProperty.Id;
@@ -258,7 +281,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult UpdatePotential(PotentialModel potentialModel)
         {
-            if (potentialModel.PropertyId>0)
+            if (potentialModel.PropertyId > 0)
             {
                 if (potentialModel.PropertyId != null)
                 {
@@ -270,9 +293,10 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         Floor = potentialModel.Floor,
                         Baths = potentialModel.Baths,
                         Beds = potentialModel.Beds,
-                        CityId = potentialModel.selectedLocation,
+                        //LocationId = potentialModel.selectedLocation,
                         PropertyCategoryId = potentialModel.selectedPropertyCategory,
                         PropertyType = potentialModel.selectedProperty,
+                        //StateId = potentialModel.selectedState,
                         Id = potentialModel.PropertyId.Value
                     };
                     _propertyService.UpdateProperty(propertyModel);

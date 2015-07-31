@@ -220,6 +220,9 @@ function SelectAccount(account) {
 function Potential(potential) {
     var self = this;
     self.Id = ko.observable(potential.Id || 0);
+    self.CityId = ko.observable().extend({ required: { params: true, message: "Please Select City" } });
+    self.StateId = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
+    self.CountryId = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.locations = ko.observableArray();
     self.ShowingDate = ko.observable(potential.ShowingDate || '');
     self.RefId = ko.observable(potential.RefId || '');
@@ -271,16 +274,23 @@ function Potential(potential) {
         self.ExpectedMoveInDate = ko.observable('');
     }
 
-    self.selectedState.subscribe(function (newValue) {
-        if (newValue !== '' && newValue != null && newValue != 'undefined') {
-            $.get('/Api/PotentialApi/GetLocations?id=' + newValue, function (data) {
-                self.locations.removeAll();
-                $.each(data, function (k, v) {
-                    self.locations.push(new Location(v));
-                });
-            });
+    //self.selectedState.subscribe(function (newValue) {
+    //    if (newValue !== '' && newValue != null && newValue != 'undefined') {
+    //        $.get('/Api/PotentialApi/GetLocations?id=' + newValue, function (data) {
+    //            self.locations.removeAll();
+    //            $.each(data, function (k, v) {
+    //                self.locations.push(new Location(v));
+    //            });
+    //        });
+    //    }
+    //});
+    if (potential.Property) {
+        if (potential.Property.City) {
+            self.CountryId(potential.Property.City.State.CountryId);
+            self.StateId(potential.Property.City.StateId);
+            self.CityId(potential.Property.CityId);
         }
-    });
+        }
     self.LeadSourceName = ko.observable(potential.LeadSourceName || '');
     self.ContactNo = ko.observable(potential.ContactNo || '');
     self.ContactName = ko.observable(potential.ContactName || '');
@@ -319,8 +329,6 @@ function Potential(potential) {
     self.modelState = ko.validatedObservable(
   {
       selectedPropertyCategory: self.selectedPropertyCategory,
-      selectedLocation: self.selectedLocation,
-      selectedState: self.selectedState,
       AccountId: self.AccountId,
       PotentialAmount: self.PotentialAmount,
       PotentialName: self.PotentialName,
@@ -358,12 +366,14 @@ function Contact(contact) {
     self.Title = ko.observable(contact.Title || '').extend({ required: { params: true, message: "Please Enter Title" } });
     self.Comapny = ko.observable(contact.Comapny || '').extend({ required: { params: true, message: "Please Enter Company Name" } });
     self.Region = ko.observable();
-    self.CityId = ko.observable(contact.CityId || 0);
-    self.Zip = ko.observable();
+    self.CityId = ko.observable().extend({ required: { params: true, message: "Please Select City" } });
+    self.StateId = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
+    self.CountryId = ko.observable('0').extend({ required: { params: true, message: "Please Select Country" } });
+    self.Zip = ko.observable(contact.Zip);
     self.TaxEligible = ko.observable(contact.TaxEligible);
-    self.SecondaryEmail = ko.observable();
-    self.Description = ko.observable();
-    self.OfficePhone = ko.observable();
+    self.SecondaryEmail = ko.observable(contact.SecondaryEmail);
+    self.Description = ko.observable(contact.Description);
+    self.OfficePhone = ko.observable(contact.OfficePhone);
     self.TaxId = ko.observable(contact.TaxId);
     self.TaxPayerName = ko.observable(contact.TaxPayerName);
     self.Ownership = ko.observable(contact.Ownership);
@@ -403,6 +413,14 @@ function Contact(contact) {
     } else {
         self.AssignedTo = ko.observable('');
     }
+    if (contact.City) {
+        self.CountryId(contact.City.State.CountryId);
+        self.StateId(contact.City.StateId);
+            self.CityId(contact.CityId);
+
+
+        }
+    
     self.modelState = ko.validatedObservable(
   {
       FirstName: self.FirstName,
@@ -477,6 +495,11 @@ function PropertyCategory(propertyCategory) {
     var self = this;
     self.Id = ko.observable(propertyCategory.Id);
     self.Name = ko.observable(propertyCategory.Name);
+}
+function Country(country) {
+    var self = this;
+    self.Id = ko.observable(country.Id);
+    self.Name = ko.observable(country.Name);
 }
 function State(state) {
     var self = this;

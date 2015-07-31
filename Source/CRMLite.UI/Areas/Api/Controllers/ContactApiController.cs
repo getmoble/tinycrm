@@ -2,6 +2,8 @@
 using PropznetCommon.Features.CRM.Interfaces.Services;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
 using PropznetCommon.Features.CRM.Model.Contact;
+using CRMLite.Infrastructure.Enum;
+using CRMLite.Infrastructure;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {
@@ -12,22 +14,20 @@ namespace CRMLite.UI.Areas.Api.Controllers
         readonly IAccountService _accountService;
         readonly IAgentService _agentService;
         readonly ILocationService _locationService;
-        readonly IStateService _stateService;
         public ContactApiController(IContactService contactService, IAccountService accountService, IAgentService agentService,
-            ICommunicationDetailService communicationDetailService, ILocationService locationService, IStateService stateService)
+            ICommunicationDetailService communicationDetailService, ILocationService locationService)
         {
             _contactService = contactService;
             _accountService = accountService;
             _agentService = agentService;
             _communicationDetailService = communicationDetailService;
             _locationService = locationService;
-            _stateService = stateService;
         }
         public ActionResult GetAllContacts()
         {
             return ExecuteIfValid(() =>
             {
-                if (!WebUser.IsInRole("Admin"))
+                if (!RoleChecker.CheckRole(WebUser.RoleId, RoleIds.Admin))
                 {
                     var contacts = _contactService.GetAllContactsByUserId(WebUser.Id, WebUser.PermissionCodes);
                     var accounts = _accountService.GetAllAccounts();
@@ -54,15 +54,20 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             });
         }
-        public ActionResult GetAllStates()
+        public ActionResult GetAllCountries()
         {
-            var states = _stateService.GetAllStates();
+            var countries = _locationService.GetAllCountries();
+            return Json(countries, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetAllStates(long id)
+        {
+            var states = _locationService.GetAllStatesByCountry(id);
             return Json(states, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetAllCountries(long id)
+        public ActionResult GetAllCities(long id)
         {
-            var locations = _locationService.GetAllCountries();
-            return Json(locations, JsonRequestBehavior.AllowGet);
+            var cities = _locationService.GetAllCitiesByState(id);
+            return Json(cities, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteContact(long id)
         {
@@ -80,7 +85,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 Address = contactModel.Address,
                 Email = contactModel.Email,
-                Phone = contactModel.Phone
+                Phone = contactModel.Phone,
+
             };
             var createCommunicationDetails = _communicationDetailService.CreateCommunicationDetail(communicationDetail);
             contactModel.CommunicationDetailId = createCommunicationDetails;

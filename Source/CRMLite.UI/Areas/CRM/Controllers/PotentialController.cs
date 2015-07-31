@@ -14,25 +14,22 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(View);
         }
-        //public ActionResult Edit(long id)
-        //{
-        //    return RedirectIfNotLoggedIn(() =>
-        //    {
-        //        if (PermissionChecker.CheckPermission(WebUser.PermissionCodes, PermissionCodes.ManagePotential))
-        //        {
-        //            ViewBag.PotentialId = id;
-        //            return View();
-        //        }
-        //        else
-        //        {
-        //            return Redirect("Index");
-        //        }
-        //    });
-        //}
-             public ActionResult Edit()
+        public ActionResult Edit(long id)
         {
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                if (PermissionChecker.CheckPermission(WebUser.PermissionCodes, PermissionCodes.ManagePotential))
+                {
+                    ViewBag.PotentialId = id;
+                    return View();
+                }
+                else
+                {
+                    return Redirect("Index");
+                }
+            });
         }
+
         public ActionResult Details(long id)
         {
             ViewBag.PotentialId = id;

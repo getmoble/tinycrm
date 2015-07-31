@@ -47,8 +47,9 @@ function Urls() {
     self.CRM.contactapiCreateContact = '/Api/ContactApi/CreateContact';
     self.CRM.contactapiUpdateContact = '/Api/ContactApi/UpdateContact';
     self.CRM.contactapiSearch = '/Api/ContactApi/Search';
-    self.CRM.contactapiGetCountries = '/Api/ContactApi/GetAllCountries';
-    self.CRM.contactapiGetAllStates = '/Api/ContactApi/GetAllStates';
+    self.CRM.contactapiGetAllCountries = '/Api/ContactApi/GetAllCountries';
+    self.CRM.contactapiGetAllStates = '/Api/ContactApi/GetAllStates?id=';
+    self.CRM.contactapiGetAllCities = '/Api/ContactApi/GetAllCities?id=';
 
     //Contact Controllers
     self.CRM.contactIndex = "/CRM/Contact/Index";
@@ -102,7 +103,10 @@ function Urls() {
     self.CRM.potentialManageCreateAminity = '/Api/PropertyManage/CreateAminity';
     self.CRM.potentialManagegetPropertyAminities = '/Api/PotentialApi/GetPropertiesAndAminities';
     self.CRM.potentialCreateMorePotential = '/Api/PotentialApi/CreateMorePotential';
-    
+    self.CRM.potentialapiGetAllCountries = '/Api/PotentialApi/GetAllCountries';
+    self.CRM.potentialapiGetAllStates = '/Api/PotentialApi/GetAllStates?id=';
+    self.CRM.potentialapiGetAllCities = '/Api/PotentialApi/GetAllCities?id=';
+
 
     //Potential Controllers
     self.CRM.potentialIndex = "/CRM/Potential/Index";
@@ -129,7 +133,7 @@ function Urls() {
     self.ERP.managerEdit = '/ERP/Manager/Edit?id=';
 
     //Owner Api
-    self.ERP.ownerManageInit ='/Api/OwnerManage/Init';
+    self.ERP.ownerManageInit = '/Api/OwnerManage/Init';
     self.ERP.ownerManageEditOwner = '/Api/OwnerManage/EditOwner?id=';
     self.ERP.OwnerManageGetAllStatesByCountry = '/Api/OwnerManage/GetAllStatesByCountry?countryId=';
     self.ERP.ownerManageGetAllCitiesByState = '/Api/OwnerManage/GetAllCitiesByState?stateId=';
@@ -165,8 +169,8 @@ function Urls() {
     self.ERP.propertyManageCreateMoreProperty = '/Api/PropertyManage/CreateMoreProperty';
     self.ERP.propertyManageGetAllProperties = '/Api/PropertyManage/GetAllProperties';
     self.ERP.propertyManageEditPrperty = '/Api/PropertyManage/EditPrperty?id=';
-    self.ERP.propertyManageUpdateProperty ='/Api/PropertyManage/UpdateProperty';
-    self.ERP.propertyManageDeleteProperty ='/Api/PropertyManage/DeleteProperty?id=';
+    self.ERP.propertyManageUpdateProperty = '/Api/PropertyManage/UpdateProperty';
+    self.ERP.propertyManageDeleteProperty = '/Api/PropertyManage/DeleteProperty?id=';
 
 
     //Property Controllers
@@ -174,7 +178,7 @@ function Urls() {
     self.ERP.propertyCreate = "/ERP/property/create";
 
     //Setting Api
-    self.ERP.settingManageChangePagingSize ='/Api/SettingManage/ChangePagingSize?pagingsize=';
+    self.ERP.settingManageChangePagingSize = '/Api/SettingManage/ChangePagingSize?pagingsize=';
 
     //Setting Controllers
     self.ERP.settingsList = "/ERP/Settings";
@@ -203,6 +207,8 @@ function Urls() {
     //Charge Controllers
 
     self.ERP.chargeCreate = '/ERP/Charge/Create';
+    self.ERP.chargeIndex = '/ERP/Charge/Index';
+
 };
 urls = {};
 urls.CRM = new Urls().CRM;

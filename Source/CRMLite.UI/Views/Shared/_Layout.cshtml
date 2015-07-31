@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>CRM Version2</title>
     <!--css here-->
-    @Styles.Render("~/Content/BootstrapminCss")
+        @Styles.Render("~/Content/BootstrapminCss")
     @*<link href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/BootstrapCommonCss")
     @Styles.Render("~/Content/FontAndIconCommonCss")
@@ -19,6 +19,7 @@
 </head>
 <body>
     @using CRMLite.UI.Helpers;
+@using Microsoft.AspNet.Identity
     <div id="preloader">
         @*<div id="preloader_status">
             <div class="spinner"></div>
@@ -106,7 +107,7 @@
             </section>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Admin <b class="caret"></b> </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Hello  @User.Identity.GetUserName() <b class="caret"></b> </a>
             <ul class="dropdown-menu animated fadeInRight">
                 <li> <span class="arrow top"></span> <a href="@Url.Action("Index", "Settings", new {area = "CRM"})">Settings</a> </li>
                 <li> <a href="@Url.Action("UpdateProfile", "User", new {area = ""})">Profile</a> </li>

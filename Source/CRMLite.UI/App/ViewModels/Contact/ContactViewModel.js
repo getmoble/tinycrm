@@ -1,6 +1,8 @@
 ﻿function ContactViewModel() {
     var self = this;
     self.url = urls.CRM;
+    var editedState = '';
+    var editedCity = '';
     self.DisplayTitle = ko.observable();
     self.busy = ko.observable();
     self.Account = ko.observableArray();
@@ -12,19 +14,63 @@
     self.isCreate = ko.observable(false);
     self.isUpdate = ko.observable(false);
     self.isBusy = ko.observable(false);
+    self.initialStage = ko.observable(false);
+    self.initialCityStage = ko.observable(false);
     self.Cities = ko.observableArray();
     self.States = ko.observableArray();
     self.Countries = ko.observableArray();
     self.SelectedContact = ko.observable(new Contact({}));
     self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
-    self.selectedState.subscribe(function (newValue) {
-        if (newValue !== '' && newValue != null && newValue != 'undefined') {
-            $.get('/Api/ContactApi/GetAllCountries?id=' + newValue, function (data) {
+    //self.selectedState.subscribe(function (newValue) {
+    //    if (newValue !== '' && newValue != null && newValue != 'undefined') {
+    //        $.get('/Api/ContactApi/GetAllCountries?id=' + newValue, function (data) {
+    //            self.Cities.removeAll();
+    //            $.each(data, function (k, v) {
+    //                self.Cities.push(new Location(v));
+    //            });
+    //        });
+    //    }
+    //});
+    self.selectedCountry.subscribe(function (newValue) {
+       // self.resetValidation();
+        if (ko.toJS(self.selectedCountry) != null) {
+            var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllStates) + ko.toJS(self.selectedCountry()));
+            result.done(function (data) {
+                self.States.removeAll();
                 self.Cities.removeAll();
                 $.each(data, function (k, v) {
-                    self.Cities.push(new Location(v));
+                    self.States.push(v);
                 });
+                if (self.initialStage()) {
+                    self.initialCityStage(true);
+                    self.selectedState(editedState);
+                }
+                else {
+                    self.selectedState('');
+                    self.SelectedContact().CityId('');
+                }
+                self.initialStage(false);
+            });
+        }
+    });
+    self.selectedState.subscribe(function () {
+        //self.resetValidation();
+        if (ko.toJS(self.selectedState)) {
+            var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllCities) + ko.toJS(self.selectedState));
+            result.done(function (data) {
+                self.Cities.removeAll();
+                $.each(data, function (k, v) {
+                    self.Cities.push(v);
+                });
+                if (self.initialCityStage())
+                    self.SelectedContact().CityId(editedCity);
+                else {
+
+                    self.SelectedContact().CityId('');
+
+                }
+                self.initialCityStage(false);
             });
         }
     });
@@ -47,7 +93,7 @@
         self.isCreate(false);
         self.isUpdate(true);
         self.isBusy(true);
-        $.get(ko.toJS(self.url.contactapiGetAllContacts), function (response) {
+        $.get(ko.toJS(self.url.contactapiGetAllCountries), function (response) {
             if (response.Status === false) {
                 if (response.Code === 401) {
                     window.location.href = ko.toJS(self.url.errorNotAuthorized);
@@ -56,12 +102,14 @@
                     bootbox.alert(response);
                 }
             } else {
-                $.each(response.Agents, function (key, value) {
-                    self.Agent.push(new SelectAssignedTo(value));
+
+                $.each(response, function (key, value) {
+                    self.Countries.push(new Country(value));
+                    //self.Agent.push(new SelectAssignedTo(value));
                 });
-                $.each(response.Accounts, function (key, value) {
-                    self.Account.push(new SelectAccount(value));
-                });
+                //$.each(response.Accounts, function (key, value) {
+                //    self.Account.push(new SelectAccount(value));
+                //});
                 self.isBusy(false);
             }
 
@@ -69,7 +117,13 @@
         });
         var contactIdValue = $("#hdnContactId").data('value');
         $.get(ko.toJS(self.url.contactapiGetContact) + contactIdValue, function (data) {
+           // alert(ko.toJSON(data));
+            
+            self.initialStage(true);
             self.SelectedContact(new Contact(data));
+            self.selectedCountry(data.City.State.CountryId);
+            editedState = ko.toJS(self.SelectedContact().StateId);
+            editedCity = ko.toJS(data.CityId);
         });
     };
     self.gotoContactdetails = function (item) {
@@ -121,9 +175,9 @@ ContactViewModel.prototype.init = function () {
 };
 ContactViewModel.prototype.createPage = function () {
     var self = this;
-    var result = $.get(ko.toJS(self.url.contactapiGetAllStates), function (response) {
+    var result = $.get(ko.toJS(self.url.contactapiGetAllCountries), function (response) {
         $.each(response, function (k, v) {
-            self.States.push(new State(v));
+            self.Countries.push(new Country(v));
         });
     });
 };
