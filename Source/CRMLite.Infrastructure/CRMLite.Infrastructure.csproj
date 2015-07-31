@@ -64,9 +64,6 @@
     <Reference Include="PropznetCommon.Features.CRM">
       <HintPath>..\Libs\PropznetCommon.Features.CRM.dll</HintPath>
     </Reference>
-    <Reference Include="PropznetCommon.Features.ERP">
-      <HintPath>..\Libs\PropznetCommon.Features.ERP.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />

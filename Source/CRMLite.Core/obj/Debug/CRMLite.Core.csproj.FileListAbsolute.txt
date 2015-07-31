@@ -1,16 +1,3 @@
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\CRMLite.Core.dll.config
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\CRMLite.Core.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\CRMLite.Core.pdb
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\Common.Data.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.SqlServer.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\PropznetCommon.Features.CRM.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\Common.Auth.SingleTenant.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.xml
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\bin\Debug\EntityFramework.SqlServer.xml
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\obj\Debug\CRMLite.Core.dll
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\obj\Debug\CRMLite.Core.pdb
-D:\Git\Logiticks\CRMLite\Source\PropznetSuite.Core\obj\Debug\CRMLite.Core.csprojResolveAssemblyReference.cache
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\CRMLite.Core.dll.config
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\CRMLite.Core.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\CRMLite.Core.pdb
@@ -21,5 +8,6 @@ D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\PropznetCommon.Features.C
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\Common.Auth.SingleTenant.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\EntityFramework.xml
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\obj\Debug\CRMLite.Core.csprojResolveAssemblyReference.cache
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\obj\Debug\CRMLite.Core.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Core\obj\Debug\CRMLite.Core.pdb
