@@ -7,6 +7,7 @@
     <title>CRM Version2</title>
     <!--css here-->
     @Styles.Render("~/Content/BootstrapminCss")
+    @*<link href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/BootstrapCommonCss")
     @Styles.Render("~/Content/FontAndIconCommonCss")
     @Styles.Render("~/Content/Googleapis")
@@ -23,239 +24,255 @@
             <div class="spinner"></div>
         </div>*@
     </div>
-            <div class="vbox">
-                <header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
-                    <div class="navbar-header aside-md dk"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html"> <i class="fa fa-bars"></i> </a> <a href="/Home/Index" class="navbar-brand"> <img src="~/Content/images/props-logo.png" class="m-r-sm" alt="scale"> <span class="hidden-nav-xs"></span> </a> <a href="#nav" id="btntoggle" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs"> <i class="fa fa-reorder text"></i> <i class="fa fa-arrow-left text-active"></i> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user"> <i class="fa fa-cog"></i> </a> </div>
-                    <ul class="nav navbar-nav hidden-xs">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-th"></i> </a>
-                            <section class="dropdown-menu aside-lg bg-white on animated fadeInLeft">
-                                <div class="row m-l-none m-r-none m-t m-b text-center">
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-envelope fa-2x text-primary-lt"></i> </span> <small class="text-muted">Mailbox</small> </a> </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-calendar fa-2x text-danger-lt"></i> </span> <small class="text-muted">Calendar</small> </a> </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-map-marker fa-2x text-success-lt"></i> </span> <small class="text-muted">Map</small> </a> </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-rocket fa-2x text-info-lt"></i> </span> <small class="text-muted">Trainning</small> </a> </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-picture-o fa-2x text-muted"></i> </span> <small class="text-muted">Photos</small> </a> </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-clock-o fa-2x text-warning-lter"></i> </span> <small class="text-muted">Timeline</small> </a> </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </li>
-                    </ul>
-                    <!-- <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
-                      <div class="form-group">
-                        <div class="input-group"> <span class="input-group-btn">
+<div class="vbox">
+<header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
+    <div class="navbar-header aside-md dk"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html"> <i class="fa fa-bars"></i> </a> <a href="/Home/Index" class="navbar-brand"> <img src="~/Content/images/crm-lite-logo.png" class="m-r-sm" alt="scale"> <span class="hidden-nav-xs"></span> </a> <a href="#nav" id="btntoggle" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs"> <i class="fa fa-reorder text"></i> <i class="fa fa-arrow-left text-active"></i> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user"> <i class="fa fa-cog"></i> </a>
+    </div>
+    <ul class="nav navbar-nav hidden-xs">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-th"></i> </a>
+            <section class="dropdown-menu aside-lg bg-white on animated fadeInLeft">
+                <div class="row m-l-none m-r-none m-t m-b text-center">
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-envelope fa-2x text-primary-lt"></i> </span> <small class="text-muted">Mailbox</small> </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-calendar fa-2x text-danger-lt"></i> </span> <small class="text-muted">Calendar</small> </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-map-marker fa-2x text-success-lt"></i> </span> <small class="text-muted">Map</small> </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-rocket fa-2x text-info-lt"></i> </span> <small class="text-muted">Trainning</small> </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-picture-o fa-2x text-muted"></i> </span> <small class="text-muted">Photos</small> </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="vertical-v"> <a href="#"> <span class="m-b-xs block"> <i class="fa fa-clock-o fa-2x text-warning-lter"></i> </span> <small class="text-muted">Timeline</small> </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </li>
+    </ul>
+    <!-- <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+        <div class="form-group">
+            <div class="input-group"> <span class="input-group-btn">
                           <button type="submit" class="btn btn-sm bg-white b-white btn-icon"><i class="fa fa-search"></i></button>
                           </span>
-                          <input type="text" class="form-control input-sm no-border" placeholder="Search apps, projects...">
-                        </div>
-                      </div>
-                    </form>-->
-                    <div class="form-divider">
-                        <form id="searchForm">
-                            <fieldset>
-                                <div class="input">
-                                    <input type="text" name="s" id="s" value="search" />
-                                </div>
-                                <input type="submit" id="searchSubmit" value="" />
-                            </fieldset>
-                        </form>
+                <input type="text" class="form-control input-sm no-border" placeholder="Search apps, projects...">
+            </div>
+        </div>
+    </form>-->
+    <div class="form-divider">
+        <form id="searchForm">
+            <fieldset>
+                <div class="input">
+                    <input type="text" name="s" id="s" value="search"/>
+                </div>
+                <input type="submit" id="searchSubmit" value=""/>
+            </fieldset>
+        </form>
+    </div>
+    <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
+        <li class="hidden-xs">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-align-left"></i> <span class="badge badge-sm up bg-danger count">2</span> </a>
+            <section class="dropdown-menu aside-xl animated flipInY">
+                <section class="panel bg-white">
+                    <div class="panel-heading b-light bg-light"> <strong>You have <span class="count">2</span> notifications</strong>
                     </div>
-                    <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
-                        <li class="hidden-xs">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-align-left"></i> <span class="badge badge-sm up bg-danger count">2</span> </a>
-                            <section class="dropdown-menu aside-xl animated flipInY">
-                                <section class="panel bg-white">
-                                    <div class="panel-heading b-light bg-light"> <strong>You have <span class="count">2</span> notifications</strong> </div>
-                                    <div class="list-group list-group-alt">
-                                        <a href="#" class="media list-group-item">
-                                            <span class="pull-left thumb-sm"> <img src="~/Content/images/logo.png" alt="..." class="img-circle"> </span> <span class="media-body block m-b-none">
+                    <div class="list-group list-group-alt">
+                        <a href="#" class="media list-group-item">
+                            <span class="pull-left thumb-sm"> <img src="~/Content/images/logo.png" alt="..." class="img-circle"> </span> <span class="media-body block m-b-none">
                                                 Loren ipsum dollor<br>
                                                 <small class="text-muted">10 minutes ago</small>
                                             </span>
-                                        </a> <a href="#" class="media list-group-item">
-                                            <span class="media-body block m-b-none">
+                        </a> <a href="#" class="media list-group-item">
+                            <span class="media-body block m-b-none">
                                                 Loren ipsum dollor<br>
                                                 <small class="text-muted">1 hour ago</small>
                                             </span>
-                                        </a>
-                                    </div>
-                                    <div class="panel-footer text-sm"> <a href="#" class="pull-right"><i class="fa fa-cog"></i></a> <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a> </div>
-                                </section>
-                            </section>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Admin <b class="caret"></b> </a>
-                            <ul class="dropdown-menu animated fadeInRight">
-                                <li> <span class="arrow top"></span> <a href="@Url.Action("Index", "Settings", new { area = "CRM" })">Settings</a> </li>
-                                <li> <a href="@Url.Action("UpdateProfile", "User", new { area = "" })">Profile</a> </li>
-                                @*<li> <a href="#"> <span class="badge bg-danger pull-right">3</span> Notifications </a> </li>*@
-                                @*<li> <a href="#">Help</a> </li>*@
-                                <li class="divider"></li>
-                                <li> <a href="@Url.Action("SignOut", "User", new { area = "" })">Logout</a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </header>
-                <section class="hbox stretch fixed-right">
-                    <!-- .aside -->
-                    <aside class="bg-black aside-md hidden-print hidden-xs" id="nav">
-                        <section class="vbox">
-                            <section class="w-f scrollable">
-                                <div class="slim-scroll" data-height="100%" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railopacity="0.2">
+                        </a>
+                    </div>
+                    <div class="panel-footer text-sm"> <a href="#" class="pull-right"><i class="fa fa-cog"></i></a> <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+                    </div>
+                </section>
+            </section>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Admin <b class="caret"></b> </a>
+            <ul class="dropdown-menu animated fadeInRight">
+                <li> <span class="arrow top"></span> <a href="@Url.Action("Index", "Settings", new {area = "CRM"})">Settings</a> </li>
+                <li> <a href="@Url.Action("UpdateProfile", "User", new {area = ""})">Profile</a> </li>
+                @*<li> <a href="#"> <span class="badge bg-danger pull-right">3</span> Notifications </a> </li>*@
+                @*<li> <a href="#">Help</a> </li>*@
+                <li class="divider"></li>
+                <li> <a href="@Url.Action("SignOut", "User", new {area = ""})">Logout</a> </li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<section class="hbox stretch fixed-right">
+    <!-- .aside -->
+    <aside class="bg-black aside-md hidden-print hidden-xs" id="nav">
+        <section class="vbox">
+            <section class="w-f scrollable">
+                <div class="slim-scroll" data-height="100%" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railopacity="0.2">
 
-                                    <nav class="nav-primary hidden-xs">
-                                        <ul class="nav">
-                                            @*@if (User != null)
+                    <nav class="nav-primary hidden-xs">
+                        <ul class="nav">
+                            @*@if (User != null)
                                                 {
                                                     @DynamicMenuRenderingHelper.BuildMenu(ViewBag.MenuItems);
                                                     }*@
 
-                                            <li class="active"> <a href="@Url.Action("index", "Home" , new { area="CRM" })"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Dashboard</span> </a> </li>
-                                            <li class="">
-                                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
-                                                <ul class="nav lt">
-                                            <li>
-                                                <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Leads</span> </a>
-                                                <ul class="nav bg" style="display: none;">
-                                                    <li> <a href="@Url.Action("index", "Lead", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
-                                                    <li> <a href="@Url.Action("create", "Lead", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
-                                                </ul>
-                                            </li>
-                                                    <li>
-                                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Account</span> </a>
-                                                        <ul class="nav bg" style="display: none;">
-                                                            <li> <a href="@Url.Action("index", "Account", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
-                                                            <li> <a href="@Url.Action("create", "Account", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
-                                                        </ul>
-                                                        
-                                                       
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Contacts</span> </a>
-                                                        <ul class="nav bg" style="display: none;">
-                                                            <li> <a href="@Url.Action("index", "Contact", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
-                                                            <li> <a href="@Url.Action("create", "Contact", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                      <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Potentials</span> </a>
-                                                        <ul class="nav bg" style="display: none;">
-                                                            <li> <a href="@Url.Action("index", "Potential", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
-                                                            <li> <a href="@Url.Action("create", "Potential", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
-                                                        </ul>
-                                                    </li>
-                                            <li>
-                                                <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Agents</span> </a>
-                                                <ul class="nav bg" style="display: none;">
-                                                    <li> <a href="@Url.Action("index", "Agent", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
-                                                    <li> <a href="@Url.Action("create", "Agent", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
-                                                </ul>
-                                            </li>
-
-                                                </ul>
-                                            </li>
-
+                            <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Dashboard</span> </a> </li>
+                            <li class="">
+                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
+                                <ul class="nav lt">
+                                    <li>
+                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Leads</span> </a>
+                                        <ul class="nav bg" style="display: none;">
+                                            <li> <a href="@Url.Action("index", "Lead", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                            <li> <a href="@Url.Action("create", "Lead", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                         </ul>
-                                    </nav>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Account</span> </a>
+                                        <ul class="nav bg" style="display: none;">
+                                            <li> <a href="@Url.Action("index", "Account", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                            <li> <a href="@Url.Action("create", "Account", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
+                                        </ul>
 
-                                    <!-- / nav -->
-                                </div>
-                            </section>
-                            <!-- <footer class="footer hidden-xs no-padder text-center-nav-xs"> <a href="#" data-toggle="ajaxModal" class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs hidden-nav-xs"> <i class="i i-logout"></i> </a>  </footer>-->
-                        </section>
-                    </aside>
-                    <!-- /.aside -->
-                    <section id="content">
-                        <div class="scroll-y auto-height">
-                        <section class="hbox stretch">
-                            <section>
-                                @RenderBody()
-                            </section>
-                            <!-- side content -->
-                            <aside class="aside-md bg-black hide" id="sidebar">
-                                <section class="vbox animated fadeInRight">
-                                    <section class="scrollable">
-                                        <div class="wrapper"><strong>Live feed</strong></div>
-                                        <ul class="list-group no-bg no-borders auto">
-                                            <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-success"></i> <i class="fa fa-reply fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Goody@gmail.com</a> sent your email <small class="icon-muted">13 minutes ago</small> </span> </li>
-                                            <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-danger"></i> <i class="fa fa-file-o fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Mide@live.com</a> invite you to join a meeting <small class="icon-muted">20 minutes ago</small> </span> </li>
-                                            <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i> <i class="fa fa-map-marker fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Geoge@yahoo.com</a> is online <small class="icon-muted">1 hour ago</small> </span> </li>
-                                            <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-primary"></i> <i class="fa fa-info fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#"><strong>Admin</strong></a> post a info <small class="icon-muted">1 day ago</small> </span> </li>
+
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Contacts</span> </a>
+                                        <ul class="nav bg" style="display: none;">
+                                            <li> <a href="@Url.Action("index", "Contact", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                            <li> <a href="@Url.Action("create", "Contact", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                         </ul>
-                                        <div class="wrapper"><strong>Friends</strong></div>
-                                        <ul class="list-group no-bg no-borders auto">
-                                            <li class="list-group-item">
-                                                <div class="media">
-                                                    <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..." class="img-circle"> <i class="on b-black bottom"></i> </span>
-                                                    <div class="media-body">
-                                                        <div><a href="#">Chris Fox</a></div>
-                                                        <small class="text-muted">about 2 minutes ago</small>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="media">
-                                                    <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="on b-black bottom"></i> </span>
-                                                    <div class="media-body">
-                                                        <div><a href="#">Amanda Conlan</a></div>
-                                                        <small class="text-muted">about 2 hours ago</small>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="media">
-                                                    <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="busy b-black bottom"></i> </span>
-                                                    <div class="media-body">
-                                                        <div><a href="#">Dan Doorack</a></div>
-                                                        <small class="text-muted">3 days ago</small>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="media">
-                                                    <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="away b-black bottom"></i> </span>
-                                                    <div class="media-body">
-                                                        <div><a href="#">Lauren Taylor</a></div>
-                                                        <small class="text-muted">about 2 minutes ago</small>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Potentials</span> </a>
+                                        <ul class="nav bg" style="display: none;">
+                                            <li> <a href="@Url.Action("index", "Potential", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                            <li> <a href="@Url.Action("create", "Potential", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                         </ul>
-                                    </section>
-                                </section>
-                            </aside>
-                            <!-- / side content -->
-                        </section>
-                        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
-                        </div>
-                    </section>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Agents</span> </a>
+                                        <ul class="nav bg" style="display: none;">
+                                            <li> <a href="@Url.Action("index", "Agent", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                            <li> <a href="@Url.Action("create", "Agent", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                    <!-- / nav -->
+                </div>
+            </section>
+            <!-- <footer class="footer hidden-xs no-padder text-center-nav-xs"> <a href="#" data-toggle="ajaxModal" class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs hidden-nav-xs"> <i class="i i-logout"></i> </a> </footer>-->
+        </section>
+    </aside>
+    <!-- /.aside -->
+    <section id="content">
+        <div class="scroll-y auto-height">
+            <section class="hbox stretch">
+                <section>
+                    @RenderBody()
                 </section>
-            </div>
-            @Scripts.Render("~/Content/Js/JqueryminJs")
-            @Scripts.Render("~/Content/Js/BootstrapminJs")
+                <!-- side content -->
+                <aside class="aside-md bg-black hide" id="sidebar">
+                    <section class="vbox animated fadeInRight">
+                        <section class="scrollable">
+                            <div class="wrapper"><strong>Live feed</strong>
+                            </div>
+                            <ul class="list-group no-bg no-borders auto">
+                                <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-success"></i> <i class="fa fa-reply fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Goody@gmail.com</a> sent your email <small class="icon-muted">13 minutes ago</small> </span> </li>
+                                <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-danger"></i> <i class="fa fa-file-o fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Mide@live.com</a> invite you to join a meeting <small class="icon-muted">20 minutes ago</small> </span> </li>
+                                <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i> <i class="fa fa-map-marker fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Geoge@yahoo.com</a> is online <small class="icon-muted">1 hour ago</small> </span> </li>
+                                <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-primary"></i> <i class="fa fa-info fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#"><strong>Admin</strong></a> post a info <small class="icon-muted">1 day ago</small> </span> </li>
+                            </ul>
+                            <div class="wrapper"><strong>Friends</strong>
+                            </div>
+                            <ul class="list-group no-bg no-borders auto">
+                                <li class="list-group-item">
+                                    <div class="media">
+                                        <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..." class="img-circle"> <i class="on b-black bottom"></i> </span>
+                                        <div class="media-body">
+                                            <div><a href="#">Chris Fox</a>
+                                            </div>
+                                            <small class="text-muted">about 2 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="media">
+                                        <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="on b-black bottom"></i> </span>
+                                        <div class="media-body">
+                                            <div><a href="#">Amanda Conlan</a>
+                                            </div>
+                                            <small class="text-muted">about 2 hours ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="media">
+                                        <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="busy b-black bottom"></i> </span>
+                                        <div class="media-body">
+                                            <div><a href="#">Dan Doorack</a>
+                                            </div>
+                                            <small class="text-muted">3 days ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="media">
+                                        <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="away b-black bottom"></i> </span>
+                                        <div class="media-body">
+                                            <div><a href="#">Lauren Taylor</a>
+                                            </div>
+                                            <small class="text-muted">about 2 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+                </aside>
+                <!-- / side content -->
+            </section>
+            <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </div>
+    </section>
+</section>
+</div>
+           <script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
+           @Scripts.Render("~/Content/Js/BootstrapminJs")
             @Scripts.Render("~/Content/Js/JqueryScripts")
             @Scripts.Render("~/Content/Js/BlueimpfileuploadJs")
             @Scripts.Render("~/Content/Js/CustomCommonJs")
-    <script src="~/Content/js/spin.min.js"></script>
-    <script src="~/Content/js/ladda.min.js"></script>
-    <script src="~/Content/js/script-ladda.js"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>*@
-            @Scripts.Render("~/Content/Js/KnockoutJS")
+            @*<script src="~/Content/js/spin.min.js"></script>
+           <script src="~/Content/js/ladda.min.js"></script>*@
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
+           <script src="~/Content/js/script-ladda.js"></script>
+            @*@Scripts.Render("~/Content/Js/KnockoutJS")*@
+           <script src="https://cdn.jsdelivr.net/knockout/3.3.0/knockout.js"></script>
             @Scripts.Render("~/Content/Js/CommonKnockoutJs")
-    <script src="~/Content/js/select2.min.js"></script>
+            <script src="~/Content/js/select2.min.js"></script>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
             @RenderSection("scripts", required: false)
 </body>

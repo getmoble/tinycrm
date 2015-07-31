@@ -53,6 +53,7 @@
 };
 AccountViewModel.prototype.init = function () {
     var self = this;
+    self.isBusy(true);
     self.SelectedAccount().resetValidation();
     $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
         if (response.Status === false) {
@@ -66,6 +67,7 @@ AccountViewModel.prototype.init = function () {
             if (response) {
                 $.each(response.Account, function (key, value) {
                     self.AccountLists.push(new Account(value));
+                    self.isBusy(false);
                 });
             }
             $("#pagination").DataTable({

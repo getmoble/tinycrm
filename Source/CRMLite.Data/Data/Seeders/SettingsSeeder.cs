@@ -13,7 +13,7 @@ namespace CRMLite.Data.Data.Seeders
     {
         public static void Seed(DataContext context)
         {
-            var logoSetting = new Setting { Key = "logo", Value = "logo.png", CreatedOn = DateTime.UtcNow, DefaultValue = "props-logo.png" };
+            var logoSetting = new Setting { Key = "logo", Value = "logo.png", CreatedOn = DateTime.UtcNow, DefaultValue = "crm-lite-logo.png" };
             context.Settings.Add(logoSetting);
             context.SaveChanges();
 

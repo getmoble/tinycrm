@@ -53,9 +53,14 @@
                         <label>Expected Closing Date</label>
 
 
+                        <div id="datetimepicker1" class="input-append date">
+                            <input data-format="dd/MM/yyyy" type="text" class="form-control" id="datePickerPoint" />
+                            <span class="add-on">
+                                <i class="fa fa-calendar" data-time-icon="icon-time"></i>
+                            </span>
+                        </div>
 
-
-                        <input type="text" placeholder="Click here to Add Date" id="datePickerPoint" class="form-control datePtoP">
+                        @*<input type="text" placeholder="Click here to Add Date" id="" class="form-control datePtoP">*@
                         @*<input type="text" id="ExpectedDate" class="form-control" data-bind="datepicker:ExpectedDate,value:ExpectedDate" />*@
                     </div>
                     <div class="form-group">
@@ -103,13 +108,19 @@
     <script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
     <script src="~/Content/js/mailus.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             var vm = new LeadViewModel();
             ko.applyBindings(vm);
             vm.init();
             vm.convertSelectedLead();
-            $('#datePickerPoint').datepicker();
         });
     </script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+
+        });
+    });
+</script>
 <script src="~/Content/js/script-ladda.js"></script>
 }

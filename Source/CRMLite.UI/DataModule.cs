@@ -88,6 +88,9 @@ namespace CRMLite.UI
             container.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             container.RegisterType<AccessRuleRepository>().As<IAccessRuleRepository>().InstancePerRequest();
             container.RegisterType<PersonRepository>().As<IPersonRepository>().InstancePerRequest();
+            container.RegisterType<CountryRepository>().As<ICountryRepository>().InstancePerRequest();
+            container.RegisterType<StateRepository>().As<IStateRepository>().InstancePerRequest();
+            container.RegisterType<CityRepository>().As<ICityRepository>().InstancePerRequest(); 
         }
         static void RegisterCrmServices(ContainerBuilder container)
         {

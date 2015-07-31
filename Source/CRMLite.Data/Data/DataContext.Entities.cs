@@ -76,17 +76,7 @@ namespace CRMLite.Data.Data
            .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CRMProperty>()
-           .HasRequired(s => s.Location)
-           .WithMany()
-           .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CRMProperty>()
            .HasRequired(s => s.PropertyCategory)
-           .WithMany()
-           .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CRMProperty>()
-           .HasRequired(s => s.State)
            .WithMany()
            .WillCascadeOnDelete(false);
 

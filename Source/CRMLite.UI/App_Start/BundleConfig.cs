@@ -8,7 +8,7 @@ namespace CRMLite.UI
         {
             bundles.UseCdn = true;
 
-            var jqueryBundle = new StyleBundle("~/Content/BootstrapminCss", "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css").Include(
+            var jqueryBundle = new StyleBundle("~/Content/BootstrapminCss").Include(
               "~/Content/css/bootstrap.min.css");
             bundles.Add(jqueryBundle);
 

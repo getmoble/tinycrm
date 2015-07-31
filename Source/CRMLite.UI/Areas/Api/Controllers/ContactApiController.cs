@@ -61,7 +61,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetAllCountries(long id)
         {
-            var locations = _locationService.GetAllLocations(id);
+            var locations = _locationService.GetAllCountries();
             return Json(locations, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteContact(long id)

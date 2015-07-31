@@ -221,6 +221,7 @@
     <Content Include="Content\css\widgets.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\avatar.jpg" />
+    <Content Include="Content\images\crm-lite-logo.png" />
     <Content Include="Content\images\login-bg.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\multy-user.png" />
