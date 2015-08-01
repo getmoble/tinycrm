@@ -1,9 +1,9 @@
-﻿using System.Data.Entity;
-using Common.Auth.SingleTenant.Interfaces.Data;
+﻿using Common.Auth.SingleTenant.Interfaces.Data;
 using Common.DynamicMenu.Interfaces.Data;
 using Common.Providers.Email.Intefaces.Data;
 using Common.Settings.Interfaces.Data;
 using CRMLite.Core.Interfaces.Data;
+using System.Data.Entity;
 
 namespace CRMLite.Data.Data
 {
@@ -16,6 +16,5 @@ namespace CRMLite.Data.Data
             Database.Initialize(true);
             Configuration.ProxyCreationEnabled = false;
         }
-
     }
 }

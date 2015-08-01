@@ -1,13 +1,9 @@
 ﻿using PropznetCommon.Features.CRM.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class AgentSeeder
+    public static class AgentSeeder
     {
         public static void Seed(DataContext context)
         {

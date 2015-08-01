@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Common.Auth.SingleTenant.Entities;
+﻿using Common.Auth.SingleTenant.Entities;
 using Common.Security;
+using System;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class UserSeeder
+    public static class UserSeeder
     {
         public static void Seed(DataContext context)
         {
@@ -68,9 +67,6 @@ namespace CRMLite.Data.Data.Seeders
             var newuser2 = new User { Username = "jithin@logiticks.com", Name = "Jithin", Password = HashHelper.Hash("pass@123"), PersonId = newPerson3.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser2);
             context.SaveChanges();
-         
-         
-
         }
     }
 }

@@ -8,6 +8,7 @@ using Common.DynamicMenu.Interfaces.Services;
 using Common.Settings.Interfaces.Services;
 using Common.UI.Web.Infrastructure;
 using CRMLite.Data.Model.Setting;
+using CRMLite.Data.Model.Settings;
 using CRMLite.Infrastructure;
 using PropznetCommon.Features.CRM.ViewModel.Setting;
 

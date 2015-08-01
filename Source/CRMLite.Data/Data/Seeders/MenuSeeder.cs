@@ -1,15 +1,9 @@
 ﻿using Common.DynamicMenu.Entities;
-using CRMLite.Core.Interfaces.Data;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class MenuSeeder
+    public static class MenuSeeder
     {
         public static void Seed(DataContext context)
         {
