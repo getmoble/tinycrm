@@ -84,8 +84,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
                                             {
                                                 Id = t.Id,
                                                 Title = t.ToDo.Title,
-                                                StartTime = t.ToDo.DueDate.DateTime,
-                                                EndTime = t.ToDo.DueDate.DateTime,
+                                                StartTime = t.ToDo.DueDate,
+                                                EndTime = t.ToDo.DueDate,
                                                 Time = t.ToDo.Time.ToShortTimeString()
                                             });
             return Json(result, JsonRequestBehavior.AllowGet);

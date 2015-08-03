@@ -68,9 +68,6 @@ namespace CRMLite.Data.Data.Seeders
             var newuser2 = new User { Username = "jithin@logiticks.com", Name = "Jithin", Password = HashHelper.Hash("pass@123"), PersonId = newPerson3.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser2);
             context.SaveChanges();
-         
-         
-
         }
     }
 }
