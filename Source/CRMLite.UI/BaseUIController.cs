@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Common.Settings.Interfaces.Services;
+using CRMLite.Data.Model.Settings;
 using PropznetCommon.Features.CRM.ViewModel.Setting;
 using CRMLite.Infrastructure;
 using Common.DynamicMenu.Interfaces.Services;

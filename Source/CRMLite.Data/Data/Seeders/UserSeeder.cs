@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Common.Auth.SingleTenant.Entities;
+﻿using Common.Auth.SingleTenant.Entities;
 using Common.Security;
+using System;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class UserSeeder
+    public static class UserSeeder
     {
         public static void Seed(DataContext context)
         {

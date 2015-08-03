@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CRMLite.Data.Model.Setting
+﻿namespace CRMLite.Data.Model.Settings
 {
     public class SettingsModel
     {
@@ -27,7 +21,7 @@ namespace CRMLite.Data.Model.Setting
         }
         public SettingsModel(SettingsModel vm)
         {
-            Id=vm.Id;
+            Id = vm.Id;
             ElasticSearchUrl = vm.ElasticSearchUrl;
             DefaultIndex = vm.DefaultIndex;
             Potentialprefix = vm.Potentialprefix;

@@ -1,15 +1,14 @@
-﻿using System.Data.Entity;
-using Common.Auth.SingleTenant.Entities;
-using Common.Auth.SingleTenant.Interfaces.Data;
+﻿using Common.Auth.SingleTenant.Entities;
 using Common.Data.Entities;
 using Common.DynamicMenu.Entities;
 using Common.Providers.Email.Entities;
 using Common.Settings.Entities;
 using PropznetCommon.Features.CRM.Entities;
+using System.Data.Entity;
 
 namespace CRMLite.Data.Data
 {
-    public partial class DataContext : ISingleTenantAuthDbContext
+    public partial class DataContext
     {
         public DbSet<AgentPropertyMap> AgentPropertyMaps { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -39,7 +38,7 @@ namespace CRMLite.Data.Data
         public DbSet<CRMToDoMap> CRMToDoMaps { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Permission> Permissions { get; set; }
- 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Agent>()

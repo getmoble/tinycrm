@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Common.Utilities;
+﻿using Common.Utilities;
 using CRMLite.Infrastructure;
 using CRMLite.Infrastructure.Enum;
 using Newtonsoft.Json;
@@ -11,6 +7,10 @@ using PropznetCommon.Features.CRM.Interfaces.Services;
 using PropznetCommon.Features.CRM.Model.Potential;
 using PropznetCommon.Features.CRM.Model.Property;
 using PropznetCommon.Features.CRM.ViewModel.Potential;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {

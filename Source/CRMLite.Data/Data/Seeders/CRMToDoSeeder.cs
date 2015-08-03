@@ -2,13 +2,10 @@
 using PropznetCommon.Features.CRM.Entities.Enum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class CRMToDoSeeder
+    public static class CRMToDoSeeder
     {
         public static void Seed(DataContext context)
         {

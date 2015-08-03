@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using CRMLite.Data.Data.Seeders;
+﻿using CRMLite.Data.Data.Seeders;
+using System.Data.Entity;
 
 namespace CRMLite.Data.Data
 {
@@ -12,7 +12,7 @@ namespace CRMLite.Data.Data
             CommunicationDetailSeeder.Seed(context);
             UserSeeder.Seed(context);
             AgentSeeder.Seed(context);
-            AccountSeeder.Seed(context);         
+            AccountSeeder.Seed(context);
             ContactSeeder.Seed(context);
             CRMToDoSeeder.Seed(context);
             LeadSeeder.Seed(context);

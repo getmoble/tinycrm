@@ -1,15 +1,12 @@
 ﻿using Common.Settings.Entities;
-using Newtonsoft.Json;
 using CRMLite.Data.Model.Setting;
+using CRMLite.Data.Model.Settings;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMLite.Data.Data.Seeders
 {
-    public class SettingsSeeder
+    public static class SettingsSeeder
     {
         public static void Seed(DataContext context)
         {
