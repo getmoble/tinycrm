@@ -4,6 +4,7 @@ using Common.Providers.Email.Intefaces.Data;
 using Common.Settings.Interfaces.Data;
 using CRMLite.Core.Interfaces.Data;
 using System.Data.Entity;
+using PropznetCommon.Features.CRM.Entities;
 
 namespace CRMLite.Data.Data
 {
@@ -16,5 +17,10 @@ namespace CRMLite.Data.Data
             Database.Initialize(true);
             Configuration.ProxyCreationEnabled = false;
         }
+
+        public DbSet<ContactPropertyInfo> ContactPropertyInfos { get; set; }
+        public DbSet<PropertyContact> PropertyContacts { get; set; }
+        public DbSet<PotentialPropertyInfo> PotentialPropertyInfos { get; set; }
+        public DbSet<PropertyPotential> PropertyPotentials { get; set; }
     }
 }

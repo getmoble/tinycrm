@@ -14,6 +14,7 @@
     self.isCreate = ko.observable(false);
     self.isUpdate = ko.observable(false);
     self.isBusy = ko.observable(false);
+    self.isDropdownChange = ko.observable(false);
     self.initialStage = ko.observable(false);
     self.initialCityStage = ko.observable(false);
     self.Cities = ko.observableArray();
@@ -22,19 +23,9 @@
     self.SelectedContact = ko.observable(new Contact({}));
     self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
-    //self.selectedState.subscribe(function (newValue) {
-    //    if (newValue !== '' && newValue != null && newValue != 'undefined') {
-    //        $.get('/Api/ContactApi/GetAllCountries?id=' + newValue, function (data) {
-    //            self.Cities.removeAll();
-    //            $.each(data, function (k, v) {
-    //                self.Cities.push(new Location(v));
-    //            });
-    //        });
-    //    }
-    //});
     self.selectedCountry.subscribe(function (newValue) {
-       // self.resetValidation();
         if (ko.toJS(self.selectedCountry) != null) {
+            self.isBusy(true);
             var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllStates) + ko.toJS(self.selectedCountry()));
             result.done(function (data) {
                 self.States.removeAll();
@@ -51,12 +42,13 @@
                     self.SelectedContact().CityId('');
                 }
                 self.initialStage(false);
+                self.isBusy(false);
             });
         }
     });
     self.selectedState.subscribe(function () {
-        //self.resetValidation();
         if (ko.toJS(self.selectedState)) {
+            self.isBusy(true);
             var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllCities) + ko.toJS(self.selectedState));
             result.done(function (data) {
                 self.Cities.removeAll();
@@ -71,6 +63,7 @@
 
                 }
                 self.initialCityStage(false);
+                self.isBusy(false);
             });
         }
     });
@@ -105,11 +98,7 @@
 
                 $.each(response, function (key, value) {
                     self.Countries.push(new Country(value));
-                    //self.Agent.push(new SelectAssignedTo(value));
                 });
-                //$.each(response.Accounts, function (key, value) {
-                //    self.Account.push(new SelectAccount(value));
-                //});
                 self.isBusy(false);
             }
 
@@ -117,8 +106,6 @@
         });
         var contactIdValue = $("#hdnContactId").data('value');
         $.get(ko.toJS(self.url.contactapiGetContact) + contactIdValue, function (data) {
-           // alert(ko.toJSON(data));
-            
             self.initialStage(true);
             self.SelectedContact(new Contact(data));
             self.selectedCountry(data.City.State.CountryId);
@@ -175,10 +162,12 @@ ContactViewModel.prototype.init = function () {
 };
 ContactViewModel.prototype.createPage = function () {
     var self = this;
+    self.isBusy(true);
     var result = $.get(ko.toJS(self.url.contactapiGetAllCountries), function (response) {
         $.each(response, function (k, v) {
             self.Countries.push(new Country(v));
         });
+        self.isBusy(false);
     });
 };
 ContactViewModel.prototype.saveContact = function () {

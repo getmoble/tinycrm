@@ -20,12 +20,12 @@ namespace CRMLite.Data.Data.Seeders
             context.SaveChanges();
             var toDoMaps = new List<CRMToDoMap>
             {
-                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Lead,CreatedBy=1},
-                new CRMToDoMap{ToDoId=2,EntityType=CRMEntityType.Lead,CreatedBy=1},
-                new CRMToDoMap{ToDoId=3,EntityType=CRMEntityType.Lead,CreatedBy=2},
-                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=1},
-                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=1},
-                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=2}
+                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Lead,CreatedBy=1,CreatedOn = DateTime.Now},
+                new CRMToDoMap{ToDoId=2,EntityType=CRMEntityType.Lead,CreatedBy=1,CreatedOn =DateTime.Now},
+                new CRMToDoMap{ToDoId=3,EntityType=CRMEntityType.Lead,CreatedBy=2,CreatedOn = DateTime.Now},
+                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=1,CreatedOn = DateTime.Now},
+                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=1,CreatedOn = DateTime.Now},
+                new CRMToDoMap{ToDoId=1,EntityType=CRMEntityType.Account,CreatedBy=2,CreatedOn = DateTime.Now}
             };
             toDoMaps.ForEach(s => context.CRMToDoMaps.Add(s));
             context.SaveChanges();

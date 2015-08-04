@@ -32,8 +32,11 @@ namespace CRMLite.UI.Areas.CRM.Controllers
 
         public ActionResult Details(long id)
         {
-            ViewBag.PotentialId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.PotentialId = id;
+                return View();
+            });
         }
 	}
 }

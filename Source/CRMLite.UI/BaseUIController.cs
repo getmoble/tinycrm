@@ -4,14 +4,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Common.Settings.Interfaces.Services;
-using CRMLite.Data.Model.Settings;
-using PropznetCommon.Features.CRM.ViewModel.Setting;
-using CRMLite.Infrastructure;
 using Common.DynamicMenu.Interfaces.Services;
-using Common.DynamicMenu.ViewModel;
-using CRMLite.Data.Model.Setting;
+using Common.Settings.Interfaces.Services;
 using Common.UI.Web.Infrastructure;
+using CRMLite.Data.Model.Settings;
+using CRMLite.Infrastructure;
+using PropznetCommon.Features.CRM.ViewModel.Setting;
 
 namespace CRMLite.UI
 {

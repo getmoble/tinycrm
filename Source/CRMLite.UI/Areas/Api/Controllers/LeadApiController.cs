@@ -131,8 +131,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var createAccount = _accountService.CreateAccount(account);
             var contact = new ContactModel
             {
-                AccountId = createAccount.Id,
-                AgentId = convertLeadModel.selectedAssignedTo,
+                //AccountId = createAccount.Id,
+                //AgentId = convertLeadModel.selectedAssignedTo,
                 CommunicationDetailId = convertLeadModel.CommunicationDetailId,
                 FirstName = convertLeadModel.FirstName,
                 LastName = convertLeadModel.LastName

@@ -1,8 +1,7 @@
-﻿using Common.Settings.Entities;
-using CRMLite.Data.Model.Setting;
+﻿using System;
+using Common.Settings.Entities;
 using CRMLite.Data.Model.Settings;
 using Newtonsoft.Json;
-using System;
 
 namespace CRMLite.Data.Data.Seeders
 {

@@ -187,9 +187,9 @@ namespace CRMLite.UI.Controllers
             {
                 var passwordChangeStatus = _accountService.ChangePassword(WebUser.Email, changePasswordViewModel.CurrentPassword, changePasswordViewModel.NewPassword);
                 if (passwordChangeStatus)
-                    ViewBag.Message = "Successfully changed your password";
+                    ViewBag.ChangedMessage = "Successfully changed your password";
                 else
-                    ViewBag.Message = "Sorry something bad occured, please try again later";
+                    ViewBag.Message = "Sorry, passwords don't match ! ";
             }
             return View();
         }

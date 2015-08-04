@@ -9,6 +9,7 @@ using PropznetCommon.Features.CRM.Model.Property;
 using PropznetCommon.Features.CRM.ViewModel.Potential;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -77,11 +78,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     string propertyType = null;
                     foreach (var potential in potentials)
                     {
-
-                        if (potential.Property != null)
-                        {
-                            propertyType = EnumUtils.GetEnumDescription(potential.Property.PropertyType);
-                        }
                         var model = new PotentialViewModel
                         {
                             Name = potential.Name,
@@ -137,11 +133,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     string propertyType = null;
                     foreach (var potential in potentials)
                     {
-
-                        if (potential.Property != null)
-                        {
-                            propertyType = EnumUtils.GetEnumDescription(potential.Property.PropertyType);
-                        }
                         var model = new PotentialViewModel
                         {
                             Name = potential.Name,
@@ -213,21 +204,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult CreatePotential(PotentialModel potentialModel)
         {
-            var propertyModel = new PropertyModel
-            {
-                Area = potentialModel.Area,
-                BudgetFrom = potentialModel.BudgetFrom,
-                BudgetTo = potentialModel.BudgetTo,
-                Floor = potentialModel.Floor,
-                Baths = potentialModel.Baths,
-                Beds = potentialModel.Beds,
-                CityId = potentialModel.CityId,
-                PropertyCategoryId = potentialModel.selectedPropertyCategory,
-                PropertyType = potentialModel.selectedProperty,
-                // StateId = potentialModel.selectedState,
-            };
-            var createProperty = _propertyService.CreateProperty(propertyModel);
-            potentialModel.PropertyId = createProperty.Id;
             potentialModel.CreatedBy = WebUser.Id;
             _potentialService.CreatePotential(potentialModel, SiteSettings.Potentialprefix);
             return Json(true, JsonRequestBehavior.AllowGet);
@@ -245,13 +221,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
         {
             var potential = _potentialService.GetPotential(id);
             var propertyType = "";
-            if (potential.Property != null)
-                propertyType = EnumUtils.GetEnumDescription(potential.Property.PropertyType);
-            var propertyArea = potential.Coalesce(p => p.Property, a => a.Area, 0);  //potential.Property.Area; 
-            var propertyBudgetFrom = potential.Coalesce(p => p.Property, a => a.BudgetFrom, 0);
-            var propertyBudgetTo = potential.Coalesce(p => p.Property, a => a.BudgetTo, 0);
-            var propertyCategory = potential.Coalesce(p => p.Property, a => a.PropertyCategory, n => n.Name, "");
-            var propertyFloor = potential.Coalesce(p => p.Property, a => a.Floor, 0);
             var potentialvm = new PotentialViewModel
             {
                 Name = potential.Name,
@@ -270,38 +239,12 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 ContactNo = potential.Contact.RefId,
                 AccountNo = potential.Account.RefId,
                 Industry = potential.Account.Industry,
-                ContactTitle = potential.Contact.Title,
-                PropertyArea = propertyArea,
-                PropertyBudgetFrom = propertyBudgetFrom,
-                PropertyBudgetTo = propertyBudgetTo,
-                PropertyCategory = propertyCategory,
-                PropertyFloor = propertyFloor
+                ContactTitle = potential.Contact.Title
             };
             return Json(potentialvm, JsonRequestBehavior.AllowGet);
         }
         public ActionResult UpdatePotential(PotentialModel potentialModel)
         {
-            if (potentialModel.PropertyId > 0)
-            {
-                if (potentialModel.PropertyId != null)
-                {
-                    var propertyModel = new PropertyModel
-                    {
-                        Area = potentialModel.Area,
-                        BudgetFrom = potentialModel.BudgetFrom,
-                        BudgetTo = potentialModel.BudgetTo,
-                        Floor = potentialModel.Floor,
-                        Baths = potentialModel.Baths,
-                        Beds = potentialModel.Beds,
-                        //LocationId = potentialModel.selectedLocation,
-                        PropertyCategoryId = potentialModel.selectedPropertyCategory,
-                        PropertyType = potentialModel.selectedProperty,
-                        //StateId = potentialModel.selectedState,
-                        Id = potentialModel.PropertyId.Value
-                    };
-                    _propertyService.UpdateProperty(propertyModel);
-                }
-            }
             _potentialService.UpdatePotential(potentialModel);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -316,11 +259,10 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 {
                     Name = potential.Name,
                     ExpectedAmount = potential.ExpectedAmount,
-                    ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
-                    ShowingDate = potential.ExpectedCloseDate.ToString(),
+                    ExpectedCloseDate = potential.ExpectedCloseDate.ToString(CultureInfo.InvariantCulture),
+                    ShowingDate = potential.ExpectedCloseDate.ToString(CultureInfo.InvariantCulture),
                     LeadSourceName = potential.LeadSource.Name,
                     AccountName = potential.Account.Name,
-                    PropertyType = EnumUtils.GetEnumDescription(potential.Property.PropertyType),
                     Id = potential.Id,
                     AgentId = potential.AgentId,
                     AgentName = potential.Agent.FirstName,

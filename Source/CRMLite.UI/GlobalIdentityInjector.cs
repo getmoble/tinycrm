@@ -5,7 +5,6 @@ using System.Web.Security;
 using Common.Auth.SingleTenant.Interfaces.Services;
 using Common.UI.Web.Infrastructure;
 using CRMLite.Infrastructure;
-//using UserInfo = CRMLite.Infrastructure.CRM.UserInfo;
 
 namespace CRMLite.UI
 {

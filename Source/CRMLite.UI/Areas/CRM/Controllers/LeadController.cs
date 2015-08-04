@@ -16,18 +16,27 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         }
         public ActionResult Edit(long id=1)
         {
-            ViewBag.LeadId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.LeadId = id;
+                return View();
+            });
         }
         public ActionResult ConvertLead(int id)
         {
-            ViewBag.LeadId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.LeadId = id;
+                return View();
+            });
         }
         public ActionResult Details(long id)
         {
-            ViewBag.LeadId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.LeadId = id;
+                return View();
+            });
         }
     }
 }

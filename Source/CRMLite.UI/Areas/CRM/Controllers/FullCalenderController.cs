@@ -7,12 +7,15 @@ namespace CRMLite.UI.Areas.CRM.Controllers
     {
         public ActionResult Index(string entityType, long id)
         {
-            var fullCalenderVm = new FullCalenderViewModel
+            return RedirectIfNotLoggedIn(() =>
             {
-                EntityType = entityType,
-                Id = id
-            };
-            return View(fullCalenderVm);
+                var fullCalenderVm = new FullCalenderViewModel
+                {
+                    EntityType = entityType,
+                    Id = id
+                };
+                return View(fullCalenderVm);
+            });
         }
     }
 }

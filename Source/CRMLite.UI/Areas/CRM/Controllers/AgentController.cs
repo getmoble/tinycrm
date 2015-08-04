@@ -8,7 +8,10 @@ namespace CRMLite.UI.Areas.CRM.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                return View();
+            });
         }
         [HttpGet]
         public ActionResult Update(long id)
@@ -29,18 +32,27 @@ namespace CRMLite.UI.Areas.CRM.Controllers
 
         public ActionResult Edit(int id)
         {
-            ViewBag.AgentId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.AgentId = id;
+                return View();
+            });
         }
 
         public ActionResult Create()
         {
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                return View();
+            });
         }
         public ActionResult Details(long id)
         {
-            ViewBag.AgentId = id;
-            return View();
+            return RedirectIfNotLoggedIn(() =>
+            {
+                ViewBag.AgentId = id;
+                return View();
+            });
         }
     }
 }

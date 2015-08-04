@@ -8,6 +8,7 @@
 
 ko.validation.init({ insertMessages: true, decorateElement: true });
 
+
 ko.bindingHandlers.loading = {
     init: function (element) {
         var $element = $(element), currentPosition = $element.css("position");
@@ -27,7 +28,7 @@ ko.bindingHandlers.loading = {
             left: "50%",
             "margin-left": -($loader.width() / 2) + "px",
             //"margin-top": -($loader.height()/2) + "px"
-            "margin-top":"80px"
+            "margin-top": "80px"
         });
     },
     update: function (element, valueAccessor) {
@@ -48,6 +49,46 @@ ko.bindingHandlers.loading = {
         }
     }
 };
+
+ko.bindingHandlers.arcLoader = {
+    init: function (element) {
+        var $element = $(element), currentPosition = $element.css("position");
+        $arc = $("<div>").addClass("arc").hide();
+
+        //add the arc
+        $element.append($arc);
+
+        //make sure that we can absolutely position the arc against the original element
+        if (currentPosition === "auto" || currentPosition == "static")
+            $element.css("position", "relative");
+
+        //center the arc
+        $arc.css({
+            position: "absolute",
+            top: "80%",
+            left: "50%",
+            "margin-left": -($arc.width() / 2) + "px",
+            //"margin-top": -($arc.height()/2) + "px"
+            "margin-top": "20px"
+        });
+    },
+    update: function (element, valueAccessor) {
+        var isArc = ko.utils.unwrapObservable(valueAccessor()),
+            $element = $(element),
+            $arc = $element.find("div.arc");
+        if (isArc) {
+            $element.fadeTo('slow', .6);
+            $element.append('<div class="childDiv" style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
+            $arc.show();
+        }
+        else {
+            $element.fadeTo("fast", 1);
+            $arc.fadeOut("fast");
+            $('.childDiv').remove();
+        }
+    }
+};
+
 
 ko.bindingHandlers.datepicker = {
 
