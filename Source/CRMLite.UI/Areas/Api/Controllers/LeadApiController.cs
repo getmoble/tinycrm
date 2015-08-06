@@ -6,30 +6,31 @@ using PropznetCommon.Features.CRM.Model.CommunicationDetail;
 using PropznetCommon.Features.CRM.Model.Contact;
 using PropznetCommon.Features.CRM.Model.Lead;
 using PropznetCommon.Features.CRM.Model.Potential;
-using CRMLite.Infrastructure;
+using Common.Auth.SingleTenant.Interfaces.Services;
+using Common.Auth.SingleTenant.Models;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {
     public class LeadApiController : BaseApiController
     {
         readonly ILeadService _leadService;
-        readonly ICommunicationDetailService _communicationDetailService;
-        readonly IAgentService _agentService;
+        readonly IPersonService _personDetailService;
+        readonly IUserService _userService;
         readonly ILeadSourceService _leadSourceService;
         readonly ILeadStatusService _leadStatusService;
         readonly ISalesStageService _salesStageService;
-        readonly IAccountService _accountService;
+        readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
         readonly IContactService _contactServise;
         readonly IPotentialService _potentialService;
         public LeadApiController(ILeadService leadService,
-            ICommunicationDetailService communicationDetailService, IAgentService agentService
+            IPersonService personDetailService, IUserService userService
             , ILeadSourceService leadSourceService, ILeadStatusService leadStatusService,
-            ISalesStageService salesStageService, IAccountService accountService, IContactService contactService,
+            ISalesStageService salesStageService, PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService, IContactService contactService,
             IPotentialService potentialService)
         {
             _leadService = leadService;
-            _communicationDetailService = communicationDetailService;
-            _agentService = agentService;
+            _personDetailService = personDetailService;
+            _userService = userService;
             _leadSourceService = leadSourceService;
             _leadStatusService = leadStatusService;
             _salesStageService = salesStageService;
@@ -39,7 +40,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetData()
         {
-            var agent = _agentService.GetAllAgents();
+            var agent = _userService.GetAllUsers();
             var leadsource = _leadSourceService.GetAllLeadSources();
             var leadstatus = _leadStatusService.GetAllLeadStatuses();
             var salesstage = _salesStageService.GetAllSalesStages();
@@ -76,14 +77,14 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult Create(LeadModel leadModel)
         {
-            var communicationDetailModel = new CommunicationDetailModel
+            var personModel = new PersonModel
             {
                 Email = leadModel.Email,
-                Phone = leadModel.Phone,
+                PhoneNo = leadModel.Phone,
                 Website = leadModel.Website
             };
-            var communicationDetailId = _communicationDetailService.CreateCommunicationDetail(communicationDetailModel);
-            leadModel.CommunicationDetailID = communicationDetailId;
+            var communicationDetailId = _personDetailService.CreatePerson(personModel);
+            leadModel.CommunicationDetailID = communicationDetailId.Id;
             leadModel.CreatedBy = WebUser.Id;
             var lead = _leadService.CreateLead(leadModel);
             return Json(lead);
@@ -91,15 +92,15 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult Update(LeadModel leadModel)
         {
-            var communicationDetailModel = new CommunicationDetailModel
+            var personModel = new PersonModel
             {
                 Id = leadModel.CommunicationDetailID,
                 Email = leadModel.Email,
-                Phone = leadModel.Phone,
+                PhoneNo = leadModel.Phone,
                 Website = leadModel.Website
             };
-            var communicationDetailId = _communicationDetailService.UpdateCommunicationDetail(communicationDetailModel);
-            leadModel.CommunicationDetailID = communicationDetailId;
+            var person = _personDetailService.UpdatePerson(personModel);
+            leadModel.CommunicationDetailID = person.Id;
             _leadService.UpdateLead(leadModel);
             return Json(true);
         }
@@ -125,7 +126,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var account = new AccountModel
             {
                 SelectedAssignedto = convertLeadModel.selectedAssignedTo,
-                CommunicationDetailId = convertLeadModel.CommunicationDetailId,
+                PersonId = convertLeadModel.CommunicationDetailId,
                 AccountName = convertLeadModel.AccountName
             };
             var createAccount = _accountService.CreateAccount(account);

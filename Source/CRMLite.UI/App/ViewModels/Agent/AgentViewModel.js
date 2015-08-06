@@ -229,7 +229,6 @@ AgentViewModel.prototype.clear = function () {
     var self = this;
     self.isCreate(true);
     self.isUpdate(false);
-    self.isBusy(true);
     self.DisplayTitle('Create Agent');
     self.selectedAgent(new Agent({}));
     self.selectedAgent().resetValidation();
@@ -262,7 +261,6 @@ AgentViewModel.prototype.clear = function () {
         o.src = imagPath;;
         path = ko.toJS(strPath);
     }
-    self.isBusy(false);
 };
 AgentViewModel.prototype.getAgent = function () {
     var self = this;

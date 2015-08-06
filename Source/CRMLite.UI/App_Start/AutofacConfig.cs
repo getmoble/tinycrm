@@ -30,7 +30,7 @@ namespace CRMLite.UI
                .As<DataContext>()
                .As<IDbContext>()
                 .As<IDataContext>()
-                .As<ICRMDataContext>()
+                .As<ICRMLiteDataContext>()
                .As<ISettingsDataContext>()
                .As<ISingleTenantAuthDbContext>().
                As<IEmailProviderDataContext>()

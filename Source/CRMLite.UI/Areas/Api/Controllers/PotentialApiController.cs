@@ -1,4 +1,5 @@
-﻿using Common.Utilities;
+﻿using Common.Auth.SingleTenant.Interfaces.Services;
+using Common.Utilities;
 using CRMLite.Infrastructure;
 using CRMLite.Infrastructure.Enum;
 using Newtonsoft.Json;
@@ -22,35 +23,26 @@ namespace CRMLite.UI.Areas.Api.Controllers
         readonly ILeadStatusService _leadStatusService;
         readonly ISalesStageService _salesStageService;
         readonly IContactService _contactService;
-        readonly IAgentService _agentService;
-        readonly ILocationService _locationService;
-        readonly IStateService _stateService;
-        readonly IAccountService _accountService;
-        readonly IPropertyCategoryService _propertyCategoryService;
-        readonly IPropertyService _propertyService;
+        readonly IUserService _userService;
+        readonly ICountryService _countryService;
+        readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
         public PotentialApiController(IPotentialService potentialService,
                                       ILeadSourceService leadSourceService,
                                       ILeadStatusService leadStatusService,
                                       ISalesStageService salesStageService,
                                       IContactService contactService,
-                                      IAgentService agentService,
-                                      IStateService stateService,
-                                      ILocationService locationService,
-                                      IPropertyCategoryService propertyCategoryService,
-                                      IAccountService accountService,
-                                      IPropertyService propertyService)
+                                      IUserService userService,
+                                      ICountryService countryService,
+                                      PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService)
         {
             _potentialService = potentialService;
             _leadSourceService = leadSourceService;
             _leadStatusService = leadStatusService;
             _salesStageService = salesStageService;
             _contactService = contactService;
-            _agentService = agentService;
-            _stateService = stateService;
-            _locationService = locationService;
+            _userService = userService;
+            _countryService = countryService;
             _accountService = accountService;
-            _propertyService = propertyService;
-            _propertyCategoryService = propertyCategoryService;
         }
         public ActionResult GetAllPotential()
         {
@@ -62,17 +54,10 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     var leadsource = _leadSourceService.GetAllLeadSources();
                     var leadstatus = _leadStatusService.GetAllLeadStatuses();
                     var salesstage = _salesStageService.GetAllSalesStages();
-                    var agents = _agentService.GetAllAgents();
+                    var users = _userService.GetAllUsers();
                     var contacts = _contactService.GetAllContacts();
-                    var categories = _propertyCategoryService.GetAllPropertyCategories();
-                    var propertytype = Enum.GetValues(typeof(CRMPropertyType)).Cast<CRMPropertyType>();
-                    var countries = _locationService.GetAllCountries();
-                    var getpropertytype = propertytype.Select(i => new SelectListItem
-                    {
-                        Text = i.ToString(),
-                        Value = ((int)i).ToString()
-                    });
-                    var states = _stateService.GetAllStates();
+                    var countries = _countryService.GetAllCountries();
+                    //var states = _stateService.GetAllStates();
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
                     var potentialvm = new List<PotentialViewModel>();
                     string propertyType = null;
@@ -80,16 +65,16 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     {
                         var model = new PotentialViewModel
                         {
-                            Name = potential.Name,
+                            Name = potential.Person.FirstName,
                             ExpectedAmount = potential.ExpectedAmount,
-                            ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
-                            ShowingDate = potential.ExpectedCloseDate.ToShortDateString(),
+                            ExpectedCloseDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
+                            ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                             LeadSourceName = potential.LeadSource.Name,
-                            AccountName = potential.Account.Name,
+                            AccountName = potential.Account.Person.FirstName,
                             PropertyType = propertyType,
                             Id = potential.Id,
-                            AgentId = potential.AgentId,
-                            AgentName = potential.Agent.FirstName,
+                            AgentId = potential.AssignedToUserId,
+                            AgentName = potential.AssignedToUser.Person.FirstName,
                             SalesStageName = potential.SalesStage.Name,
                             RefId = potential.RefId,
                         };
@@ -102,10 +87,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         LeadSource = leadsource,
                         SalesStage = salesstage,
                         Contacts = contacts,
-                        Agents = agents,
-                        Propertytype = getpropertytype,
-                        States = states,
-                        Category = categories,
+                        Users = users,
                         Accounts = accounts,
                         Countries = countries
                     };
@@ -117,17 +99,9 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     var leadsource = _leadSourceService.GetAllLeadSources();
                     var leadstatus = _leadStatusService.GetAllLeadStatuses();
                     var salesstage = _salesStageService.GetAllSalesStages();
-                    var agents = _agentService.GetAllAgents();
+                    var users = _userService.GetAllUsers();
                     var contacts = _contactService.GetAllContacts();
-                    var countries = _locationService.GetAllCountries();
-                    var categories = _propertyCategoryService.GetAllPropertyCategories();
-                    var propertytype = Enum.GetValues(typeof(CRMPropertyType)).Cast<CRMPropertyType>();
-                    var getpropertytype = propertytype.Select(i => new SelectListItem
-                    {
-                        Text = i.ToString(),
-                        Value = ((int)i).ToString()
-                    });
-                    var states = _stateService.GetAllStates();
+                    var countries = _countryService.GetAllCountries();            
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
                     var potentialvm = new List<PotentialViewModel>();
                     string propertyType = null;
@@ -135,17 +109,17 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     {
                         var model = new PotentialViewModel
                         {
-                            Name = potential.Name,
+                            Name = potential.Person.FirstName,
                             ExpectedAmount = potential.ExpectedAmount,
                             ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
-                            ShowingDate = potential.ExpectedCloseDate.ToShortDateString(),
+                            ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                             LeadSourceName = potential.LeadSource.Name,
 
-                            AccountName = potential.Account.Name,
+                            AccountName = potential.Account.Person.FirstName,
                             PropertyType = propertyType,
                             Id = potential.Id,
-                            AgentId = potential.AgentId,
-                            AgentName = potential.Agent.FirstName,
+                            AgentId = potential.AssignedToUserId,
+                            AgentName = potential.AssignedToUser.Person.FirstName,
                             SalesStageName = potential.SalesStage.Name,
                             RefId = potential.RefId,
                         };
@@ -158,11 +132,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         LeadSource = leadsource,
                         SalesStage = salesstage,
                         Contacts = contacts,
-                        Agents = agents,
-                        Propertytype = getpropertytype,
+                        Users = users,
                         Countries = countries,
-                        States = states,
-                        Category = categories,
                         Accounts = accounts
                     };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
@@ -179,29 +150,19 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetAllCountries()
         {
-            var countries = _locationService.GetAllCountries();
+            var countries = _countryService.GetAllCountries();
             return Json(countries, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult GetAllStates(long id)
-        {
-            var states = _locationService.GetAllStatesByCountry(id);
-            return Json(states, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult GetAllCities(long id)
-        {
-            var cities = _locationService.GetAllCitiesByState(id);
-            return Json(cities, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeletePotential(long id)
         {
             var potential = _potentialService.DeletePotential(id);
             return Json(potential, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetLocations(long id)
-        {
-            var locations = _locationService.GetAllCitiesByState(id);
-            return Json(locations, JsonRequestBehavior.AllowGet);
-        }
+        //public ActionResult GetLocations(long id)
+        //{
+        //    var locations = _locationService.GetAllCitiesByState(id);
+        //    return Json(locations, JsonRequestBehavior.AllowGet);
+        //}
         public ActionResult CreatePotential(PotentialModel potentialModel)
         {
             potentialModel.CreatedBy = WebUser.Id;
@@ -223,23 +184,23 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var propertyType = "";
             var potentialvm = new PotentialViewModel
             {
-                Name = potential.Name,
+                Name = potential.Person.FirstName,
                 ExpectedAmount = potential.ExpectedAmount,
                 ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
-                ShowingDate = potential.ExpectedCloseDate.ToShortDateString(),
+                ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                 LeadSourceName = potential.LeadSource.Name,
-                AccountName = potential.Account.Name,
+                AccountName = potential.Account.Person.FirstName,
                 PropertyType = propertyType,
                 Id = potential.Id,
-                AgentId = potential.AgentId,
-                AgentName = potential.Agent.FirstName,
+                AgentId = potential.AssignedToUserId,
+                AgentName = potential.Person.FirstName,
                 SalesStageName = potential.SalesStage.Name,
                 RefId = potential.RefId,
-                ContactName = potential.Contact.FirstName,
+                ContactName = potential.Contact.Person.FirstName,
                 ContactNo = potential.Contact.RefId,
                 AccountNo = potential.Account.RefId,
                 Industry = potential.Account.Industry,
-                ContactTitle = potential.Contact.Title
+                ContactTitle = potential.Contact.Person.Title
             };
             return Json(potentialvm, JsonRequestBehavior.AllowGet);
         }
@@ -257,15 +218,15 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 var model = new PotentialViewModel
                 {
-                    Name = potential.Name,
+                    Name = potential.Person.FirstName,
                     ExpectedAmount = potential.ExpectedAmount,
-                    ExpectedCloseDate = potential.ExpectedCloseDate.ToString(CultureInfo.InvariantCulture),
-                    ShowingDate = potential.ExpectedCloseDate.ToString(CultureInfo.InvariantCulture),
+                    ExpectedCloseDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
+                    ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                     LeadSourceName = potential.LeadSource.Name,
-                    AccountName = potential.Account.Name,
+                    AccountName = potential.Account.Person.FirstName,
                     Id = potential.Id,
-                    AgentId = potential.AgentId,
-                    AgentName = potential.Agent.FirstName,
+                    AgentId = potential.AssignedToUserId,
+                    AgentName = potential.Person.FirstName,
                     SalesStageName = potential.SalesStage.Name,
                     RefId = potential.RefId
                 };

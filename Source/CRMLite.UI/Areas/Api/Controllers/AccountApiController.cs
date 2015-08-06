@@ -2,19 +2,21 @@
 using PropznetCommon.Features.CRM.Interfaces.Services;
 using PropznetCommon.Features.CRM.Model.Account;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
+using Common.Auth.SingleTenant.Interfaces.Services;
+using Common.Auth.SingleTenant.Models;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {
     public class AccountApiController : BaseApiController
     {
-        readonly IAccountService _accountService;
-        readonly IAgentService _agentService;
-        readonly ICommunicationDetailService _communicationDetailService;
-        public AccountApiController(IAccountService accountService, IAgentService agentService, ICommunicationDetailService communicationDetailService)
+        readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
+        readonly IUserService _userService;
+        readonly IPersonService _personDetailService;
+        public AccountApiController(PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService, IUserService userService, IPersonService personService)
         {
             _accountService = accountService;
-            _agentService = agentService;
-            _communicationDetailService = communicationDetailService;
+            _userService = userService;
+            _personDetailService = personService;
         }
         public ActionResult GetAllAccounts()
         {
@@ -22,14 +24,14 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
-                    var agents = _agentService.GetAllAgentsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                    var users = _userService.GetUserById(WebUser.Id);
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
-                    var returnData = new { Account = accounts, Agent = agents };
+                    var returnData = new { Account = accounts, Agent = users };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    var agents = _agentService.GetAllAgents();
+                    var agents = _userService.GetAllUsers();
                     var accounts = _accountService.GetAllAccounts();
                     var returnData = new { Account = accounts, Agent = agents };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
@@ -50,16 +52,16 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return Json("Account with same name already exist, try another name", JsonRequestBehavior.AllowGet);
             }
 
-            var communicationDetailModel = new CommunicationDetailModel
+            var personModel = new PersonModel
             {
                 Address = accountModel.Address,
                 Email = accountModel.Email,
-                Phone = accountModel.Phone,
+                PhoneNo = accountModel.Phone,
                 Website = accountModel.Website
             };
-            var communicationDetailId = _communicationDetailService.CreateCommunicationDetail(communicationDetailModel);
-            accountModel.CommunicationDetailId = communicationDetailId;
-            accountModel.CreatedBy = WebUser.Id;
+            var person = _personDetailService.CreatePerson(personModel);
+            accountModel.PersonId = person.Id;
+            accountModel.CreatedByUserId = WebUser.Id;
             _accountService.CreateAccount(accountModel);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -70,15 +72,16 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult UpdateAccount(AccountModel accountModel)
         {
-            var communicationDetailModel = new CommunicationDetailModel
+            var personModel = new PersonModel
             {
-                Id = accountModel.CommunicationDetailId,
+                Id = accountModel.PersonId,
                 Address = accountModel.Address,
                 Email = accountModel.Email,
-                Phone = accountModel.Phone,
+                PhoneNo = accountModel.Phone,
                 Website = accountModel.Website
+                
             };
-            _communicationDetailService.UpdateCommunicationDetail(communicationDetailModel);
+            _personDetailService.UpdatePerson(personModel);
             _accountService.UpdateAccount(accountModel);
             return Json(true, JsonRequestBehavior.AllowGet);
         }

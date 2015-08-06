@@ -9,14 +9,14 @@ namespace CRMLite.Data.Data
         {
             SettingsSeeder.Seed(context);
             //MenuSeeder.Seed(context);
-            CommunicationDetailSeeder.Seed(context);
+            //CommunicationDetailSeeder.Seed(context);
             UserSeeder.Seed(context);
-            AgentSeeder.Seed(context);
-            AccountSeeder.Seed(context);
+            //AgentSeeder.Seed(context);
+            //AccountSeeder.Seed(context);
             ContactSeeder.Seed(context);
-            CRMToDoSeeder.Seed(context);
-            LeadSeeder.Seed(context);
-            PropertyCategorySeeder.Seed(context);
+            //CRMToDoSeeder.Seed(context);
+            //LeadSeeder.Seed(context);
+            //PropertyCategorySeeder.Seed(context);
             RolePermissionSeeder.Seed(context);
             SalesStageSeeder.Seed(context);
         }

@@ -77,14 +77,8 @@
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DataContext.Entities.cs" />
     <Compile Include="Data\DataSeeder.cs" />
-    <Compile Include="Data\Seeders\AccountSeeder.cs" />
-    <Compile Include="Data\Seeders\AgentSeeder.cs" />
-    <Compile Include="Data\Seeders\CommunicationDetailSeeder.cs" />
     <Compile Include="Data\Seeders\ContactSeeder.cs" />
-    <Compile Include="Data\Seeders\CRMToDoSeeder.cs" />
-    <Compile Include="Data\Seeders\LeadSeeder.cs" />
     <Compile Include="Data\Seeders\MenuSeeder.cs" />
-    <Compile Include="Data\Seeders\PropertyCategorySeeder.cs" />
     <Compile Include="Data\Seeders\RolePermissionSeeder.cs" />
     <Compile Include="Data\Seeders\SalesStageSeeder.cs" />
     <Compile Include="Data\Seeders\SettingsSeeder.cs" />

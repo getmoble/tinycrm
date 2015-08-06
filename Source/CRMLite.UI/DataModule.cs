@@ -49,7 +49,7 @@ namespace CRMLite.UI
             container.RegisterType<DataContext>().As<ISettingsDataContext>().InstancePerLifetimeScope();
             container.RegisterType<DataContext>().As<IDynamicMenuDataContext>().InstancePerLifetimeScope();
             container.RegisterType<DataContext>().As<IDataContext>().InstancePerLifetimeScope();
-            container.RegisterType<DataContext>().As<ICRMDataContext>().InstancePerLifetimeScope();
+            container.RegisterType<DataContext>().As<ICRMLiteDataContext>().InstancePerLifetimeScope();
 
             RegisterCrmRepositories(container);
             RegisterCrmServices(container);
@@ -58,25 +58,18 @@ namespace CRMLite.UI
         static void RegisterCrmRepositories(ContainerBuilder container)
         {
             container.RegisterType<AccountRepository>().As<IAccountRepository>().InstancePerRequest();
-            container.RegisterType<AgentRepository>().As<IAgentRepository>().InstancePerRequest();
-            container.RegisterType<CommunicationDetailRepository>().As<ICommunicationDetailRepository>().InstancePerRequest();
             container.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerRequest();
             container.RegisterType<LeadRepository>().As<ILeadRepository>().InstancePerRequest();
             container.RegisterType<LeadSourceRepository>().As<ILeadSourceRepository>().InstancePerRequest();
             container.RegisterType<LeadStatusRepository>().As<ILeadStatusRepository>().InstancePerRequest();
-            container.RegisterType<LocationRepository>().As<ILocationRepository>().InstancePerRequest();
             container.RegisterType<PotentialRepository>().As<IPotentialRepository>().InstancePerRequest();
-            container.RegisterType<PropertyRepository>().As<IPropertyRepository>().InstancePerRequest();
             container.RegisterType<PropertyCategoryRepository>().As<IPropertyCategoryRepository>().InstancePerRequest();
             container.RegisterType<SalesStageRepository>().As<ISalesStageRepository>().InstancePerRequest();
-            container.RegisterType<StateRepository>().As<IStateRepository>().InstancePerRequest();
             container.RegisterType<ToDoRepository>().As<IToDoRepository>().InstancePerRequest();
             container.RegisterType<ToDoMapRepository>().As<IToDoMapRepository>().InstancePerRequest();
             container.RegisterType<PersonRepository>().As<IPersonRepository>().InstancePerRequest();
             container.RegisterType<AccessRuleRepository>().As<IAccessRuleRepository>().InstancePerRequest();
             container.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
-            container.RegisterType<RoleRepository>().As<IRoleRepository>().InstancePerRequest();
-            container.RegisterType<RoleMemberRepository>().As<IRoleMemberRepository>();
             container.RegisterType<PersonRepository>().As<IPersonRepository>().InstancePerRequest();
             container.RegisterType<EmailTemplateRepository>().As<IEmailTemplateRepository>().InstancePerRequest();
             container.RegisterType<SmtpEmailProvider>().As<IEmailProvider>().InstancePerRequest();
@@ -87,27 +80,21 @@ namespace CRMLite.UI
             container.RegisterType<RoleMemberRepository>().As<IRoleMemberRepository>().InstancePerRequest();
             container.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             container.RegisterType<AccessRuleRepository>().As<IAccessRuleRepository>().InstancePerRequest();
-            container.RegisterType<PersonRepository>().As<IPersonRepository>().InstancePerRequest();
             container.RegisterType<CountryRepository>().As<ICountryRepository>().InstancePerRequest();
-            container.RegisterType<StateRepository>().As<IStateRepository>().InstancePerRequest();
             container.RegisterType<CityRepository>().As<ICityRepository>().InstancePerRequest(); 
         }
         static void RegisterCrmServices(ContainerBuilder container)
         {
             container.RegisterType<AccountService>().As<IAccountService>().InstancePerRequest();
             container.RegisterType<Common.Auth.SingleTenant.Services.AccountService>().As<Common.Auth.SingleTenant.Interfaces.Services.IAccountService>().InstancePerRequest();
-            container.RegisterType<AgentService>().As<IAgentService>().InstancePerRequest();
-            container.RegisterType<CommunicationDetailService>().As<ICommunicationDetailService>().InstancePerRequest();
+            container.RegisterType<PersonService>().As<IPersonService>().InstancePerRequest();
             container.RegisterType<ContactService>().As<IContactService>().InstancePerRequest();
             container.RegisterType<LeadService>().As<ILeadService>().InstancePerRequest();
             container.RegisterType<LeadSourceService>().As<ILeadSourceService>().InstancePerRequest();
             container.RegisterType<LeadStatusService>().As<ILeadStatusService>().InstancePerRequest();
-            container.RegisterType<LocationService>().As<ILocationService>().InstancePerRequest();
             container.RegisterType<PotentialService>().As<IPotentialService>().InstancePerRequest();
-            container.RegisterType<PropertyService>().As<IPropertyService>().InstancePerRequest();
             container.RegisterType<PropertyCategoryService>().As<IPropertyCategoryService>().InstancePerRequest();
             container.RegisterType<SalesStageService>().As<ISalesStageService>().InstancePerRequest();
-            container.RegisterType<StateService>().As<IStateService>().InstancePerRequest();
             container.RegisterType<ToDoService>().As<IToDoService>().InstancePerRequest();
             container.RegisterType<ToDoMapService>().As<IToDoMapService>().InstancePerRequest();
             container.RegisterType<ElasticSearchSettings>().As<IElasticSearchSettings>().InstancePerRequest();

@@ -17,10 +17,5 @@ namespace CRMLite.Data.Data
             Database.Initialize(true);
             Configuration.ProxyCreationEnabled = false;
         }
-
-        public DbSet<ContactPropertyInfo> ContactPropertyInfos { get; set; }
-        public DbSet<PropertyContact> PropertyContacts { get; set; }
-        public DbSet<PotentialPropertyInfo> PotentialPropertyInfos { get; set; }
-        public DbSet<PropertyPotential> PropertyPotentials { get; set; }
     }
 }

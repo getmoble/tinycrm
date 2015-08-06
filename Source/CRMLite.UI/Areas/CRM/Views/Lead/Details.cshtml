@@ -5,20 +5,20 @@
 <div class="col-md-12">
 <h3 class="inline-b">
     Details</h3>
-    <div></div>
+    <div data-bind="loading:$root.isBusy()">
         <input type="hidden" id="hdnLeadId" value="@ViewBag.LeadId" />
         <div data-bind="with:selectedLead">
             <div class="clearfix">
                 <div class="col-lg-12 row">
-                    
-                        <i class="fa fa-envelope"></i> &nbsp;<span id="mailus"></span>
-                        <i class="fa fa-filter"></i>
-                        <a href="#" data-bind="click:$root.convertLead" data-toggle="modal" data-target="#ConvertLead">
-                            Convert To Potential
-                        </a>
-                        <i class="fa fa-calendar"></i>
-                        <a href="#" data-bind="click:$root.ToDo">ToDo</a>
-                   
+
+                    <i class="fa fa-envelope"></i> &nbsp;<span id="mailus"></span>
+                    <i class="fa fa-filter"></i>
+                    <a href="#" data-bind="click:$root.convertLead" data-toggle="modal" data-target="#ConvertLead">
+                        Convert To Potential
+                    </a>
+                    <i class="fa fa-calendar"></i>
+                    <a href="#" data-bind="click:$root.ToDo">ToDo</a>
+
                 </div>
                 <hr />
                 <div class="col-lg-6">
@@ -82,6 +82,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @section scripts{
         <script src="~/Content/js/emailinjector.js"></script>

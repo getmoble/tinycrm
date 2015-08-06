@@ -36,9 +36,10 @@
         window.location.href = ko.toJS(self.url.gotoLeaddetails) + item.Id();
     };
     self.leaddetail = function () {
-        var id = $("#hdnLeadId").val();
+        var id = $("#hdnLeadId").val(); self.isBusy(true);
         $.get(ko.toJS(self.url.leadapiGetLead) + id, function (data) {
             self.selectedLead(new Lead(data));
+            self.isBusy(false);
         });
     };
     self.leadedit = function (item) {
@@ -50,11 +51,11 @@
         self.isBusy(false);
     };
     self.convertLead = function (item) {
-        $('#ConvertLead').modal('show');
-        $('.datePickerPoint').datepicker({
-            autoclose: false
-        });
-        $('#datePickerPoint').datepicker();
+        //$('#ConvertLead').modal('show');
+        //$('.datePickerPoint').datepicker({
+        //    autoclose: false
+        //});
+        //$('#datePickerPoint').datepicker();
         $.get(ko.toJS(self.url.leadApiGetConvertLead) + item.Id(), function (response) {
             self.selectedConvertLead(new SelectConvertLead(response));
         });
@@ -83,12 +84,11 @@
     };
     self.convertSelectedLead = function () {
         var id = $("#hdnLeadId").val();
-        //$('.datePickerPoint').datepicker({
-        //    autoclose: false
-        //});
-        
+        self.isBusy(true);
         $.get(ko.toJS(self.url.leadApiGetConvertLead) + id, function (response) {
             self.selectedConvertLead(new SelectConvertLead(response));
+            self.isBusy(false);
+            $('#datetimepicker3').datetimepicker();
         });
 
     };

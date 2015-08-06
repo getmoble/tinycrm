@@ -25,17 +25,14 @@ namespace CRMLite.UI.Controllers
     {
         readonly IAccountService _accountService;
         readonly IUserService _userService;
-        readonly ICommunicationDetailService _communicationDetailService;
-        readonly IAgentService _agentService;
+        readonly IPersonService _personDetailService;
         static string _returnUrl = "";
-        public UserController(ICommunicationDetailService communicationDetailService,
-            IAgentService agentService,
+        public UserController(IPersonService personService,
             IUserService userService,
             IAccountService accountService)
         {
             _accountService = accountService;
-            _communicationDetailService = communicationDetailService;
-            _agentService = agentService;
+            _personDetailService = personService;
             _userService = userService;
         }
 
