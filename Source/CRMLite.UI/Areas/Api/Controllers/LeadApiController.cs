@@ -20,12 +20,12 @@ namespace CRMLite.UI.Areas.Api.Controllers
         readonly ILeadStatusService _leadStatusService;
         readonly ISalesStageService _salesStageService;
         readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
-        readonly IContactService _contactServise;
+        readonly ICRMLiteContactService _contactServise;
         readonly IPotentialService _potentialService;
         public LeadApiController(ILeadService leadService,
             IPersonService personDetailService, IUserService userService
             , ILeadSourceService leadSourceService, ILeadStatusService leadStatusService,
-            ISalesStageService salesStageService, PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService, IContactService contactService,
+            ISalesStageService salesStageService, PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService, ICRMLiteContactService contactService,
             IPotentialService potentialService)
         {
             _leadService = leadService;

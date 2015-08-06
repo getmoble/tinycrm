@@ -88,7 +88,7 @@ namespace CRMLite.UI
             container.RegisterType<AccountService>().As<IAccountService>().InstancePerRequest();
             container.RegisterType<Common.Auth.SingleTenant.Services.AccountService>().As<Common.Auth.SingleTenant.Interfaces.Services.IAccountService>().InstancePerRequest();
             container.RegisterType<PersonService>().As<IPersonService>().InstancePerRequest();
-            container.RegisterType<ContactService>().As<IContactService>().InstancePerRequest();
+            container.RegisterType<CRMLiteContactService>().As<ICRMLiteContactService>().InstancePerRequest();
             container.RegisterType<LeadService>().As<ILeadService>().InstancePerRequest();
             container.RegisterType<LeadSourceService>().As<ILeadSourceService>().InstancePerRequest();
             container.RegisterType<LeadStatusService>().As<ILeadStatusService>().InstancePerRequest();

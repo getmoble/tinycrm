@@ -22,7 +22,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         readonly ILeadSourceService _leadSourceService;
         readonly ILeadStatusService _leadStatusService;
         readonly ISalesStageService _salesStageService;
-        readonly IContactService _contactService;
+        readonly ICRMLiteContactService _contactService;
         readonly IUserService _userService;
         readonly ICountryService _countryService;
         readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
@@ -30,7 +30,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                                       ILeadSourceService leadSourceService,
                                       ILeadStatusService leadStatusService,
                                       ISalesStageService salesStageService,
-                                      IContactService contactService,
+                                      ICRMLiteContactService contactService,
                                       IUserService userService,
                                       ICountryService countryService,
                                       PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService)
