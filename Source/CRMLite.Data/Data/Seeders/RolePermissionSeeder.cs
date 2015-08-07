@@ -30,8 +30,8 @@ namespace CRMLite.Data.Data.Seeders
                 new Permission{PermissionCode = 205,Title = "manageContactAccountPermission",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
                 new Permission{PermissionCode = 206,Title = "ViewPotential",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
                 new Permission{PermissionCode = 207,Title = "ManagePotential",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
-                new Permission{PermissionCode = 208,Title = "ViewUser",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
-                new Permission{PermissionCode = 209,Title = "ManageUser",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
+                new Permission{PermissionCode = 208,Title = "ViewAgent",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
+                new Permission{PermissionCode = 209,Title = "ManageAgent",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
                 new Permission{PermissionCode = 210,Title = "ConvertLead",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
                 new Permission{PermissionCode = 211,Title = "Dashboard",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
                 new Permission{PermissionCode = 212,Title = "SettingsCrm",CreatedByUserId=1,CreatedOn=DateTime.UtcNow},
@@ -306,7 +306,7 @@ namespace CRMLite.Data.Data.Seeders
             context.RolePermissions.Add(managePotentialAccountPermission);
             context.SaveChanges();
 
-            var viewUserAccountPermission = new RolePermission
+            var viewAgentAccountPermission = new RolePermission
             {
                 PermissionId = 21,
                 RoleId = 1,
@@ -314,10 +314,10 @@ namespace CRMLite.Data.Data.Seeders
                 CreatedOn = DateTime.UtcNow
             };
 
-            context.RolePermissions.Add(viewUserAccountPermission);
+            context.RolePermissions.Add(viewAgentAccountPermission);
             context.SaveChanges();
 
-            var manageUserPermission = new RolePermission
+            var manageAgentPermission = new RolePermission
             {
                 PermissionId = 22,
                 RoleId = 1,
@@ -325,7 +325,7 @@ namespace CRMLite.Data.Data.Seeders
                 CreatedOn = DateTime.UtcNow
             };
 
-            context.RolePermissions.Add(manageUserPermission);
+            context.RolePermissions.Add(manageAgentPermission);
             context.SaveChanges();
 
             var convertLeadPermission = new RolePermission
@@ -405,7 +405,7 @@ namespace CRMLite.Data.Data.Seeders
                 CreatedByUserId = 1,
                 CreatedOn = DateTime.UtcNow,
             };
-            context.RoleMembers.Add(adminUserRoleMember);
+            context.RoleMembers.Add(adminAgentRoleMember);
             context.SaveChanges();
 
             var adminTenantRoleMember = new RoleMember

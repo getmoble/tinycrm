@@ -72,15 +72,22 @@ namespace CRMLite.Data.Data
            .WithMany()
            .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<RoleMember>()
-           .HasRequired(s => s.User)
-           .WithMany()
-           .WillCascadeOnDelete(false);
+           // modelBuilder.Entity<User>()
+           // .HasRequired(s => s.RoleMembers)
+           // .WithMany()
+           // .WillCascadeOnDelete(false);
+
+           // modelBuilder.Entity<RoleMember>()
+           //.HasRequired(s => s.User)
+           //.WithMany()
+           //.WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<RolePermission>()
            .HasRequired(s => s.Role)
            .WithMany()
            .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<RoleMember>()
            .HasRequired(s => s.Role)
            .WithMany()
@@ -105,7 +112,9 @@ namespace CRMLite.Data.Data
            .WithMany()
            .WillCascadeOnDelete(false);
 
+
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }

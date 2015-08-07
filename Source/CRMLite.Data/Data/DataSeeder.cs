@@ -1,4 +1,5 @@
-﻿using CRMLite.Data.Data.Seeders;
+﻿using Common.Data.Seeders;
+using CRMLite.Data.Data.Seeders;
 using System.Data.Entity;
 
 namespace CRMLite.Data.Data
@@ -19,6 +20,7 @@ namespace CRMLite.Data.Data
             //PropertyCategorySeeder.Seed(context);
             RolePermissionSeeder.Seed(context);
             SalesStageSeeder.Seed(context);
+            CountrySeeder.Seed(context);
         }
     }
 }

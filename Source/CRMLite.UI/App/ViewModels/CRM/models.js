@@ -322,20 +322,22 @@ function Contact(contact) {
     self.Individual = ko.observable();
     self.IsCompany = ko.observable('Individual');
     self.Id = ko.observable(contact.Id || 0);
-    self.FirstName = ko.observable(contact.FirstName || '').extend({ required: { params: true, message: "Please Enter First Name" } });
-    self.LastName = ko.observable(contact.LastName || '');
+    self.FirstName = ko.observable('').extend({ required: { params: true, message: "Please Enter First Name" } });
+    self.LastName = ko.observable('');
     self.RefId = ko.observable(contact.RefId || '');
-    self.Title = ko.observable(contact.Title || '').extend({ required: { params: true, message: "Please Enter Title" } });
-    self.Comapny = ko.observable(contact.Comapny || '').extend({ required: { params: true, message: "Please Enter Company Name" } });
-    self.Region = ko.observable();
-    self.Zip = ko.observable(contact.Zip);
+    self.Title = ko.observable('').extend({ required: { params: true, message: "Please Enter Title" } });
+    self.Comapny = ko.observable( '').extend({ required: { params: true, message: "Please Enter Company Name" } });
+    self.CountryId = ko.observable('');
+    self.State = ko.observable(contact.State || '');
+    self.City = ko.observable(contact.City || '');
+    self.Region = ko.observable(contact.Region || '');
+    self.Zip = ko.observable('');
     self.SecondaryEmail = ko.observable(contact.SecondaryEmail);
     self.OfficePhone = ko.observable(contact.OfficePhone);
 
-
     self.AccountId = ko.observable(contact.AccountId || 0).extend({ required: { params: true, message: "Please select Account" } });
     self.UserId = ko.observable(contact.UserId || 0).extend({ required: { params: true, message: "Please select User" } });
-    self.Comments = ko.observable(contact.Comments || '');
+    self.Comments = ko.observable(contact.Description || '');
     self.CommunicationDetailId = ko.observable(contact.CommunicationDetailId || 0);
     if (contact.Account) {
         self.AccountName = ko.observable(contact.Account.Name || '');
@@ -343,17 +345,34 @@ function Contact(contact) {
     else {
         self.AccountName = ko.observable('');
     }
-    if (contact.CommunicationDetail) {
-        self.Email = ko.observable(contact.CommunicationDetail.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
-        self.Website = ko.observable(contact.CommunicationDetail.Website || '');
-        self.Address = ko.observable(contact.CommunicationDetail.Address || '');
-        self.Phone = ko.observable(contact.CommunicationDetail.Phone || '').extend({ required: { params: true, message: "Please Enter Phone" } });
+    if (contact.Person) {
+        self.FirstName(contact.Person.FirstName);
+        self.LastName(contact.Person.LastName);
+        self.CountryId(contact.Person.CountryId);
+        self.Title(contact.Person.Title);
+        self.Comapny(contact.Person.Company);
+        self.Email = ko.observable(contact.Person.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
+        self.Website = ko.observable(contact.Person.Website || '');
+        self.Address = ko.observable(contact.Person.Address || '');
+        self.Zip = ko.observable(contact.Person.Zip);
+        self.State(contact.Person.State);
+        self.City(contact.Person.City);
+        self.Region(contact.Person.Region);
+        self.Phone = ko.observable(contact.Person.PhoneNo || '').extend({ required: { params: true, message: "Please Enter Phone" } });
     }
     else {
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Website = ko.observable('');
         self.Address = ko.observable('');
         self.Phone = ko.observable('').extend({ required: { params: true, message: "Please Enter Phone" } });
+    }
+    if (contact.ContactType)
+    {
+        if(ko.toJS(contact.ContactType)='1')
+        {
+            self.IsCompany('Company');
+        }
+
     }
     if (contact.User) {
         self.AssignedTo = ko.observable(contact.User.FirstName || '');

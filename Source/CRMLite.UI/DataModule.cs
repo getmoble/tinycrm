@@ -81,7 +81,8 @@ namespace CRMLite.UI
             container.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
             container.RegisterType<AccessRuleRepository>().As<IAccessRuleRepository>().InstancePerRequest();
             container.RegisterType<CountryRepository>().As<ICountryRepository>().InstancePerRequest();
-            container.RegisterType<CityRepository>().As<ICityRepository>().InstancePerRequest(); 
+            container.RegisterType<CityRepository>().As<ICityRepository>().InstancePerRequest();
+            container.RegisterType<CountryRepository>().As<ICountryRepository>().InstancePerRequest(); 
         }
         static void RegisterCrmServices(ContainerBuilder container)
         {
@@ -109,6 +110,7 @@ namespace CRMLite.UI
             container.RegisterType<RoleService>().As<IRoleService>().InstancePerRequest();
             container.RegisterType<Common.Auth.SingleTenant.Services.AccountService>().As<Common.Auth.SingleTenant.Interfaces.Services.IAccountService>().InstancePerRequest();
             container.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
+            container.RegisterType<CountryService>().As<ICountryService>().InstancePerRequest();
         }
     }
 }

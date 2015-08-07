@@ -11,19 +11,19 @@ namespace CRMLite.UI.Areas.Api.Controllers
 {
     public class ContactApiController : BaseApiController
     {
-        readonly IContactService _contactService;
+        readonly ICRMLiteContactService _contactService;
         readonly IPersonService _personService;
         readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
         readonly IUserService _userService;
-        //readonly ICountryService _locationService;
-        public ContactApiController(IContactService contactService, PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService, IUserService userService,
-            IPersonService personService)
+        readonly ICountryService _countryService;
+        public ContactApiController(ICRMLiteContactService contactService, PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService,
+            IUserService userService,ICountryService countryService,IPersonService personService)
         {
             _contactService = contactService;
             _accountService = accountService;
             _userService = userService;
             _personService = personService;
-            //_locationService = locationService;
+            _countryService = countryService;
         }
         public ActionResult GetAllContacts()
         {
@@ -31,7 +31,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 if (!RoleChecker.CheckRole(WebUser.RoleId, RoleIds.Admin))
                 {
-                    var contacts = _contactService.GetAllContactsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                    var contacts = _contactService.GetAllContacts();
                     var accounts = _accountService.GetAllAccounts();
                     var users = _userService.GetAllUsers();
                     var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
@@ -39,7 +39,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 }
                 else
                 {
-                    var contacts = _contactService.GetAllContactsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                    var contacts = _contactService.GetAllContactsByUserId(WebUser.Id,WebUser.PermissionCodes);
                     var accounts = _accountService.GetAllAccounts();
                     var users = _userService.GetAllUsers();
                     var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
@@ -56,11 +56,11 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             });
         }
-        //public ActionResult GetAllCountries()
-        //{
-        //    var countries = _locationService.GetAllCountries();
-        //    return Json(countries, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult GetAllCountries()
+        {
+            var countries = _countryService.GetAllCountries();
+            return Json(countries, JsonRequestBehavior.AllowGet);
+        }
         //public ActionResult GetAllStates(long id)
         //{
         //    var states = _locationService.GetAllStatesByCountry(id);
@@ -98,14 +98,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult UpdateContact(ContactModel contactModel)
         {
-            var person = new PersonModel
-            {
-                Id = contactModel.CommunicationDetailId,
-                Address = contactModel.Address,
-                Email = contactModel.Email,
-                PhoneNo = contactModel.Phone
-            };
-            _personService.UpdatePerson(person);
             _contactService.UpdateContact(contactModel);
             return Json(true, JsonRequestBehavior.AllowGet);
         }

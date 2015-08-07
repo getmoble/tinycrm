@@ -23,50 +23,50 @@
     self.SelectedContact = ko.observable(new Contact({}));
     self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
-    self.selectedCountry.subscribe(function (newValue) {
-        if (ko.toJS(self.selectedCountry) != null) {
-            self.isBusy(true);
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllStates) + ko.toJS(self.selectedCountry()));
-            result.done(function (data) {
-                self.States.removeAll();
-                self.Cities.removeAll();
-                $.each(data, function (k, v) {
-                    self.States.push(v);
-                });
-                if (self.initialStage()) {
-                    self.initialCityStage(true);
-                    self.selectedState(editedState);
-                }
-                else {
-                    self.selectedState('');
-                    self.SelectedContact().CityId('');
-                }
-                self.initialStage(false);
-                self.isBusy(false);
-            });
-        }
-    });
-    self.selectedState.subscribe(function () {
-        if (ko.toJS(self.selectedState)) {
-            self.isBusy(true);
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllCities) + ko.toJS(self.selectedState));
-            result.done(function (data) {
-                self.Cities.removeAll();
-                $.each(data, function (k, v) {
-                    self.Cities.push(v);
-                });
-                if (self.initialCityStage())
-                    self.SelectedContact().CityId(editedCity);
-                else {
+    //self.selectedCountry.subscribe(function (newValue) {
+    //    if (ko.toJS(self.selectedCountry) != null) {
+    //        self.isBusy(true);
+    //        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllStates) + ko.toJS(self.selectedCountry()));
+    //        result.done(function (data) {
+    //            self.States.removeAll();
+    //            self.Cities.removeAll();
+    //            $.each(data, function (k, v) {
+    //                self.States.push(v);
+    //            });
+    //            if (self.initialStage()) {
+    //                self.initialCityStage(true);
+    //                self.selectedState(editedState);
+    //            }
+    //            else {
+    //                self.selectedState('');
+    //                self.SelectedContact().CityId('');
+    //            }
+    //            self.initialStage(false);
+    //            self.isBusy(false);
+    //        });
+    //    }
+    //});
+    //self.selectedState.subscribe(function () {
+    //    if (ko.toJS(self.selectedState)) {
+    //        self.isBusy(true);
+    //        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllCities) + ko.toJS(self.selectedState));
+    //        result.done(function (data) {
+    //            self.Cities.removeAll();
+    //            $.each(data, function (k, v) {
+    //                self.Cities.push(v);
+    //            });
+    //            if (self.initialCityStage())
+    //                self.SelectedContact().CityId(editedCity);
+    //            else {
 
-                    self.SelectedContact().CityId('');
+    //                self.SelectedContact().CityId('');
 
-                }
-                self.initialCityStage(false);
-                self.isBusy(false);
-            });
-        }
-    });
+    //            }
+    //            self.initialCityStage(false);
+    //            self.isBusy(false);
+    //        });
+    //    }
+    //});
     self.contactdelete = function (item) {
         bootbox.confirm("Do you want to delete this Contact?", function (result) {
             if (result) {
@@ -108,9 +108,9 @@
         $.get(ko.toJS(self.url.contactapiGetContact) + contactIdValue, function (data) {
             self.initialStage(true);
             self.SelectedContact(new Contact(data));
-            self.selectedCountry(data.City.State.CountryId);
-            editedState = ko.toJS(self.SelectedContact().StateId);
-            editedCity = ko.toJS(data.CityId);
+            //self.selectedCountry(data.City.State.CountryId);
+            //editedState = ko.toJS(self.SelectedContact().StateId);
+            //editedCity = ko.toJS(data.CityId);
         });
     };
     self.gotoContactdetails = function (item) {

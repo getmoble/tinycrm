@@ -21,13 +21,13 @@
                 <input type="text" class="form-control" placeholder="Search by Title" data-bind="value:SearchTitle" />
             </div>
         </div>
-        <div class="col-md-3">
+        @*<div class="col-md-3">
             <select data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:SearchAccount, optionsCaption:'Select Account'" class="form-control"></select>
         </div>
         <div class="col-md-4">
             <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SearchUser, optionsCaption:'Assigned To'" class="form-control"></select>
-        </div>
-        <div class="pull-right">
+        </div>*@
+        <div class="col-md-3">
             <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
         </div>
     </div>

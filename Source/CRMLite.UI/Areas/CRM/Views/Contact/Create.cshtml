@@ -13,7 +13,7 @@
                     <div class="col-md-2 col-xs-12">
                         <div class="radio i-checks">
                             <label>
-                                <input type="radio" name='radioType' value="Individual" data-bind="checked: Individual">
+                                <input type="radio" name='radioType' value="Individual" data-bind="checked: IsCompany">
                                 <i></i> Individual
                             </label>
                         </div>
@@ -79,15 +79,15 @@
                             </div>
                             <div class=" form-group">
                                 <label>Country</label>
-                                <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:$parent.selectedCountry,optionsCaption:'Select Country'"></select>
+                                <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:CountryId,optionsCaption:'Select Country'"></select>
                             </div>
                             <div class=" form-group">
                                 <label>State</label>
-                                <select class="form-control" data-bind="options:$root.States,optionsText:'Name',optionsValue:'Id',value:$parent.selectedState,optionsCaption:'Select State'"></select>
-                            </div>
+                                <input type="text" data-bind="value:State" class="form-control" />
+                                </div>
                             <div class=" form-group">
                                 <label>City</label>
-                                <select class="form-control" data-bind="options:$root.Cities,optionsText:'Name',optionsValue:'Id',value:CityId,optionsCaption:'Select City'"></select>
+                                <input type="text" data-bind="value:City" class="form-control" />                               
                             </div>
                             <div class="clearfix"></div>
 
