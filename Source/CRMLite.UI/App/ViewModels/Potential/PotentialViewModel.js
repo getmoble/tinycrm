@@ -115,9 +115,9 @@ function PotentialViewModel() {
         $.get(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue, function (data) {
             self.initialStage(true);
             self.SelectedPotential(new Potential(data.Potential));
-            self.selectedCountry(data.Potential.Property.City.State.CountryId);
-            editedState = ko.toJS(self.SelectedPotential().StateId);
-            editedCity = ko.toJS(data.CityId);
+            //self.selectedCountry(data.Potential.Property.City.State.CountryId);
+            //editedState = ko.toJS(self.SelectedPotential().StateId);
+            //editedCity = ko.toJS(data.CityId);
             $("#AccountSelect").select2();
         });
 
@@ -218,18 +218,6 @@ PotentialViewModel.prototype.init = function () {
             $.each(response.Users, function (k, v) {
                 self.User.push(new SelectAssignedTo(v));
             });
-            $.each(response.Propertytype, function (k, v) {
-                self.propertytype.push(new PropertyType(v));
-            });
-            $.each(response.States, function (k, v) {
-                self.states.push(new State(v));
-            });
-            $.each(response.Category, function (k, v) {
-                self.propertycategories.push(new PropertyCategory(v));
-            });
-            $.each(response.Countries, function (k, v) {
-                self.Countries.push(new Country(v));
-            });
             
         }
         $("#AccountSelect").select2();
@@ -246,7 +234,7 @@ PotentialViewModel.prototype.savePotential = function () {
     self.SelectedPotential().resetValidation();
 
     self.SelectedPotential().ExpectedCloseDate($("#ExpectedDate").val());
-    self.SelectedPotential().ExpectedMoveInDate($("#ExpectedMoveInDate").val());
+    //self.SelectedPotential().ExpectedMoveInDate($("#ExpectedMoveInDate").val());
     if (self.SelectedPotential().modelState.isValid()) {
       
         self.busy(true);

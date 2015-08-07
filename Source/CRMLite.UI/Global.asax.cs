@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Newtonsoft.Json;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -15,6 +16,7 @@ namespace CRMLite.UI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleTable.EnableOptimizations = true;
+            System.Web.Http.GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }
 }

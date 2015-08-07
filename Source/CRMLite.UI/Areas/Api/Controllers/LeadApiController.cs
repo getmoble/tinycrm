@@ -107,7 +107,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult Search(LeadSearchFilter leadSearch)
         {
-            leadSearch.UserId = WebUser.Id;
+            //leadSearch.UserId = WebUser.Id;
             var searchresult = _leadService.SearchLeads(leadSearch, 0, 0);
             return Json(JsonConvert.SerializeObject(searchresult.Items));
         }

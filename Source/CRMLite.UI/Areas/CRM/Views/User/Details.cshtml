@@ -31,15 +31,9 @@
             <div class="form-group">
                 <label class="lblwidth">Address</label><span data-bind="text:selectedUser().address"></span>
             </div>
-            <div class="form-group">
-                <label class="lblwidth">DED License Number</label><span data-bind="text:selectedUser().DEDlicenseNumber"></span>
-            </div>
-            <div class="form-group">
-                <label class="lblwidth">RERA Registration Number</label><span data-bind="text:selectedUser().RERAregistrationNumber"></span>
-            </div>
             <div class="form-group m-l-md">
                 <label class="checkbox-inline i-checks">
-                    <input type="checkbox" data-bind="checked:selectedUser().islistingmember">
+                    <input type="checkbox" data-bind="checked:selectedUser().islistingmember" disabled="disabled">
                     <i></i>Listing Member
                 </label>
 

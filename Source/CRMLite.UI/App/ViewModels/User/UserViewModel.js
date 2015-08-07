@@ -25,6 +25,7 @@
     self.Useredit = function (item) {
         self.isCreate(false);
         self.isUpdate(true);
+        self.isBusy(true);
         self.DisplayTitle('Edit User');
 
         function changePic(strPath) {
@@ -63,6 +64,7 @@
         var path = null;
         $.get(ko.toJS(self.url.UserapiEditUser) + item.Id(), function (data) {
             self.selectedUser(new User(data));
+            self.isBusy(false);
         });
     };
     self.Userdelete = function (item) {
@@ -109,7 +111,7 @@
     self.gotoUserPage = function () {
         var self = this;
         self.DisplayTitle('Create User');
-        //window.location.href = ko.toJS(self.url.UserCreate);
+        window.location.href = ko.toJS(self.url.UserCreate);
     };
 };
 UserViewModel.prototype.init = function () {
@@ -193,7 +195,6 @@ UserViewModel.prototype.UserListing = function () {
                 bootbox.alert(response);
             }
         } else {
-            alert(ko.toJSON(response));
             $.each($.parseJSON(response), function (key, value) {             
                 self.UserLists.push(new User(value));
             });

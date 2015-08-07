@@ -437,6 +437,26 @@ namespace CRMLite.Data.Data.Seeders
             };
             context.RoleMembers.Add(userRoleMember);
             context.SaveChanges();
+
+            var userRoleMember1 = new RoleMember
+            {
+                RoleId = 2,
+                UserId = 3,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(userRoleMember1);
+            context.SaveChanges();
+
+            var userRoleMember11 = new RoleMember
+            {
+                RoleId = 2,
+                UserId = 3,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(userRoleMember11);
+            context.SaveChanges();
         }
     }
 }

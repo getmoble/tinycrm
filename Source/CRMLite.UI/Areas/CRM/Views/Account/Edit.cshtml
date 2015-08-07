@@ -58,12 +58,11 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <h4 class="text-primary">Other</h4>
                 </div>
                 <div class="col-lg-12 bdr">
 
                     <div class="form-group">
-                        <label>Comments</label>
+                        <label>Description</label>
                         <textarea data-bind="value:Comment" class=" form-control" rows="4"></textarea>
                     </div>
 
@@ -83,6 +82,7 @@
         $(document).ready(function () {
             var vm = new AccountViewModel();
             ko.applyBindings(vm);
+    
             vm.accountedit();
         });
     </script>

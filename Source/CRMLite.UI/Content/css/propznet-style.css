@@ -20,11 +20,19 @@ body {
     width:30%;
     
 }
-
+.inline-b {
+    color:#428bca;
+}
+.file-preview-image {
+    width:auto !important;
+    height:auto !important;
+}
 .table-bordered td a {
-    padding-left: 0px !important;
-    padding-right: 5px !important;
+    padding-left: 1px !important;
+    padding-right: 1px !important;
     text-align: center !important;
+    display: inline-table;
+       font-size:10px !important;
 }
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th{
     vertical-align:middle;

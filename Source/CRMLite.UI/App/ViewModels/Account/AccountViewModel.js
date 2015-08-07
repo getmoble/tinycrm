@@ -34,15 +34,16 @@
                     bootbox.alert(response);
                 }
             } else {
+            
                 $.each(response.User, function (key, value) {
                     self.Users.push(new SelectAssignedTo(value));
                 });
-                self.isBusy(false);
             }
         });
         var accountIdValue = $("#hdnAccountId").data('value');
         $.get(ko.toJS(self.CRMUrl.accountapiGetAccount) + accountIdValue, function (data) {
             self.SelectedAccount(new Account(data));
+            self.isBusy(false);
         });
     };
     self.accountdetail = function (item) {
@@ -77,9 +78,9 @@ AccountViewModel.prototype.init = function () {
             });
             var oTable = $('#pagination').dataTable();
             // oTable.fnSort([[6, 'desc']]);
-            //$.each(response.User, function (key, value) {
-            //    self.Users.push(new SelectAssignedTo(value));
-            //});
+            $.each(response.User, function (key, value) {
+                self.Users.push(new SelectAssignedTo(value));
+            });
         }
         self.isBusy(false);
     });

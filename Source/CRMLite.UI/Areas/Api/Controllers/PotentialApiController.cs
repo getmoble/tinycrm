@@ -119,7 +119,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                             PropertyType = propertyType,
                             Id = potential.Id,
                             AgentId = potential.AssignedToUserId,
-                            AgentName = potential.AssignedToUser.Person.FirstName,
+                            AgentName = potential.Person.FirstName,
                             SalesStageName = potential.SalesStage.Name,
                             RefId = potential.RefId,
                         };

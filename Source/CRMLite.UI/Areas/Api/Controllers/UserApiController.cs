@@ -45,14 +45,27 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
-                    var Userlist = _userService.GetUserById(WebUser.Id);
-                    var output = JsonConvert.SerializeObject(Userlist);
+
+                    var Userlist = _userService.GetAllUserByCreatedUserId(WebUser.Id);
+                    //var output = JsonConvert.SerializeObject(Userlist);
+                    //return Json(output, JsonRequestBehavior.AllowGet);
+
+                    var output = JsonConvert.SerializeObject(Userlist, Formatting.None, new JsonSerializerSettings()
+                    {
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    });
                     return Json(output, JsonRequestBehavior.AllowGet);
+
                 }
                 else
                 {
-                    var userlist = _userService.GetAllUsers();
-                    var output = JsonConvert.SerializeObject(userlist);
+                    var userlist = _userService.GetAllUserDetails();
+                    //var output = JsonConvert.SerializeObject(userlist);
+                    //return Json(output, JsonRequestBehavior.AllowGet);
+                    var output = JsonConvert.SerializeObject(userlist, Formatting.None, new JsonSerializerSettings()
+                    {
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    });
                     return Json(output, JsonRequestBehavior.AllowGet);
                 }
             },
@@ -96,21 +109,11 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult Create(PropznetCommon.Features.CRM.Model.User.UserModel userModel)
         {
-            //var personModel = new PersonModel
-            //{
-            //    Email = userModel.Email,
-            //    PhoneNo = userModel.Phone,
-            //    Address = userModel.Address
-            //};
             if (userModel.Image != null)
             {
                 userModel.Image = userModel.Image.Split('\\').Last();
             }
-            //var personId = _personService.CreatePerson(personModel);
-            //userModel.PersonId = personId.Id;
-            //userModel.CreatedBy = WebUser.Id;
-            var roleId=new long[] {3};
-                    //User CreateAccount(string firstName, string lastName, string userName, string password, long[] selectedRoleIds, string phoneNumber, string address, string avatar, bool isApproved);
+            var roleId=new long[] {3};          
             _accountService.CreateAccount(userModel.FirstName,userModel.LastName,userModel.Email,"123456",roleId,userModel.Phone,userModel.Address,userModel.Image,userModel.IsListingMember);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -129,7 +132,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         {
             var personModel = new PersonModel
             {
-                Id = userModel.PersonId,
+                Id = userModel.Id,
                 Address = userModel.Address,
                 Email = userModel.Email,
                 PhoneNo = userModel.Phone
@@ -147,7 +150,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             userModel.PersonId = person.Id;            
 
             var Userupdate = _accountService.UpdateAccount(userModel.FirstName,userModel.LastName,userModel.Email,userModel.Id,userModel.Phone,userModel.Address,userModel.Image,userModel.IsListingMember);
-            return Json(Userupdate, JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

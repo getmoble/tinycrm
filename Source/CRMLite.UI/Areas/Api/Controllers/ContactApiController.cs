@@ -36,6 +36,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     var users = _userService.GetAllUsers();
                     var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
+
                 }
                 else
                 {
@@ -61,16 +62,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var countries = _countryService.GetAllCountries();
             return Json(countries, JsonRequestBehavior.AllowGet);
         }
-        //public ActionResult GetAllStates(long id)
-        //{
-        //    var states = _locationService.GetAllStatesByCountry(id);
-        //    return Json(states, JsonRequestBehavior.AllowGet);
-        //}
-        //public ActionResult GetAllCities(long id)
-        //{
-        //    var cities = _locationService.GetAllCitiesByState(id);
-        //    return Json(cities, JsonRequestBehavior.AllowGet);
-        //}
         public ActionResult DeleteContact(long id)
         {
             var contactStatus = _contactService.DeleteContact(id);

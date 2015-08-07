@@ -88,7 +88,10 @@
         $.get(ko.toJS(self.url.leadApiGetConvertLead) + id, function (response) {
             self.selectedConvertLead(new SelectConvertLead(response));
             self.isBusy(false);
-            $('#datetimepicker3').datetimepicker();
+            $('#datetimepicker3').datetimepicker().on('changeDate', function (e) {
+                $(this).datetimepicker('hide');
+            });
+            //$('#datetimepicker3').datetimepicker();
         });
 
     };
@@ -230,7 +233,7 @@ LeadViewModel.prototype.convertingLead = function (item) {
     var self = this;
     // alert($('#ExpectedDate').val());
     self.busy(true);
-    self.selectedConvertLead().ExpectedDate($('#ExpectedDate').val());
+    self.selectedConvertLead().ExpectedDate($('#datePickerPoint').val());
     var jsonData = ko.toJS(self.selectedConvertLead());
     $.post(ko.toJS(self.url.leadapiConvertLead), ko.toJS(jsonData), function (response) {
         self.busy(false);

@@ -15,7 +15,7 @@
         
         <div class="clearfix"></div>
         <div class="bdr marB-md pad-sm clearfix">
-            <div class="col-md-2 m-b-md">
+            <div class="col-md-3 m-b-md">
                 <div class="row">
                     <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SearchSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
                 </div>
@@ -23,13 +23,10 @@
             <div class="col-md-3">
                 <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SearchLeadSource, optionsCaption:'Select LeadSource'" class="form-control"></select>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SearchUser, optionsCaption:'Assigned To'" class="form-control"></select>
             </div>
-            <div class="col-md-4">
-                <select data-bind="options: $root.propertytype ,optionsText: 'Name', optionsValue: 'Id', value:SearchPropertyType, optionsCaption:'Select Property Type'" class="form-control"></select>
-            </div>
-            <div class="pull-right">
+            <div class="col-md-2">
                 <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
             </div>
         </div>
@@ -42,7 +39,6 @@
                         <th class="text-center">Potential Name</th>
                         <th class="text-center">Related To</th>
                         <th class="text-center">Sales Stage</th>
-                        <th class="text-center">Property Type</th>
                         <th class="text-center">Expected Closing Date</th>
                         <th class="text-center">Lead Source</th>
                         <th class="text-center">Assigned To</th>
@@ -55,7 +51,6 @@
                         <td><span data-bind="text: PotentialName"> </span></td>
                         <td><span data-bind="text: AccountName"> </span></td>
                         <td><span data-bind="text: SalesStageName"> </span></td>
-                        <td><span data-bind="text: PropertyType"> </span></td>
                         <td><span data-bind="text: ShowingDate"> </span></td>
                         <td><span data-bind="text: LeadSourceName"> </span></td>
                         <td><span data-bind="text: UserName"> </span></td>

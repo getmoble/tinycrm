@@ -31,7 +31,7 @@
                                             <label><b>Email</b> </label>&nbsp;@item.Email<br />
                                             <label><b>Phone</b> </label>&nbsp;@item.Phone<br />
                                             <label><b>Website</b> </label>&nbsp;@item.Website<br />
-                                            <label><b>Comments</b> </label>&nbsp;@item.Comment
+                                            <label><b>Comments</b> </label>&nbsp;@item.Description
                                         </div>
                                     </div>
                                 }
@@ -85,16 +85,16 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                <span>Users(@Model.UserSearchResult.Count)</span>
+                                <span>Users(@Model.AgentSearchResult.Count)</span>
                             </a>
                             <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapseThree"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            @if (@Model.UserSearchResult.Count != 0)
+                            @if (@Model.AgentSearchResult.Count != 0)
                             {
-                                foreach (var item in @Model.UserSearchResult)
+                                foreach (var item in @Model.AgentSearchResult)
                                 {
                                     <div class="bdr bot">
                                         <div class="col-md-6">
@@ -140,20 +140,16 @@
                                         <div class="col-md-6">
                                             <label><b>Name </b></label> <a href="">&nbsp;@item.PotentialName</a><br />
                                             <label><b>Account </b></label>&nbsp;@item.Account<br />
-                                            <label><b>Area </b></label>&nbsp;@item.Area<br />
-                                            <label><b>Budget From </b></label>&nbsp;@item.BudgetFrom<br />
-                                            <label><b>Budget To </b></label>&nbsp;@item.BudgetTo
+                    
                                         </div>
                                         <div class="col-md-6">
                                             <label><b>Expected Close Date </b></label>&nbsp;@item.ExpectedCloseDate<br />
-                                            <label><b>Floor </b></label>&nbsp;@item.Floor<br />
+                          
                                             <label><b>Lead Source </b></label>&nbsp;@item.LeadSource<br />
                                             <label><b>Sale Stage </b></label>&nbsp;@item.SalesStage<br />
-                                            <label><b>User </b></label>&nbsp;@item.selectedUser<br />
+                          
                                             <label><b>Selected Contact </b></label>&nbsp;@item.SelectedContact<br />
-                                            <label><b>Selected Location </b></label>&nbsp;@item.selectedLocation<br />
-                                            <label><b>Property Category </b></label>&nbsp;@item.selectedPropertyCategory<br />
-                                            <label><b>Slelected Date </b></label>&nbsp;@item.selectedState<br />
+                             
                                             <label><b>Comments </b></label>&nbsp;@item.Comments
                                         </div>
                                     </div>

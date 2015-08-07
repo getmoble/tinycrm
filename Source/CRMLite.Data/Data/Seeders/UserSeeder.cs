@@ -48,7 +48,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Persons.Add(newPerson);
             context.SaveChanges();
 
-            var newuser = new User { Username = "mark@logiticks.com", Name = "Mark", Password = HashHelper.Hash("pass@123"), PersonId = newPerson.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            var newuser = new User { Username = "mark@logiticks.com", Name = "Mark", Password = HashHelper.Hash("pass@123"), PersonId = newPerson.Id, AccessRuleId = newAdminAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser);
             context.SaveChanges();
 
@@ -56,7 +56,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Persons.Add(newPerson2);
             context.SaveChanges();
 
-            var newuser1 = new User { Username = "dhanya@logiticks.com", Name = "Dhanya", Password = HashHelper.Hash("pass@123"), PersonId = newPerson2.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            var newuser1 = new User { Username = "dhanya@logiticks.com", Name = "Dhanya", Password = HashHelper.Hash("pass@123"), PersonId = newPerson2.Id, AccessRuleId = newAdminAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser1);
             context.SaveChanges();
 
@@ -64,7 +64,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Persons.Add(newPerson3);
             context.SaveChanges();
 
-            var newuser2 = new User { Username = "jithin@logiticks.com", Name = "Jithin", Password = HashHelper.Hash("pass@123"), PersonId = newPerson3.Id, AccessRuleId = newUserAccessRule.Id, CreatedByUserId = admin.Id };
+            var newuser2 = new User { Username = "jithin@logiticks.com", Name = "Jithin", Password = HashHelper.Hash("pass@123"), PersonId = newPerson3.Id, AccessRuleId = newAdminAccessRule.Id, CreatedByUserId = admin.Id };
             context.Users.Add(newuser2);
             context.SaveChanges();
         }
