@@ -1,0 +1,78 @@
+﻿@using CRMLite.Infrastructure
+@model Common.Auth.SingleTenant.ViewModels.SignInViewModel
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+    @*<form class="login" action="User/SignIn" method="post">
+        <div class="fieldset">
+            <legend class="legend">
+                <i class="fa fa-power-off"></i>
+                <img src=@StringTrimmer.QuotesRemover(ImageUrlResolver.ThumbNail(), ViewBag.Settings.LogoPath) alt="logo" class="resp" />
+            </legend>
+            <div class="input">
+                <input type="email" placeholder="Email" required />
+                @Html.TextBoxFor(model => model.Username, new {@placeholder = "Enter your email" })
+                <span><i class="fa fa-envelope-o"></i></span>
+            </div>
+            <div class="input">
+                <input type="password" placeholder="Password" required />
+                @Html.PasswordFor(model => model.Password, new {@placeholder = "Enter your password" })
+                <span><i class="fa fa-lock"></i></span>
+            </div>
+            <div class="clearfix"></div>
+                <input type="submit" class="submit"/>
+                <i class="fa fa-long-arrow-right"></i>
+               
+        </div>
+
+        <div class="feedback">
+            login successful <br />
+            redirecting...
+        </div>
+    </form>*@
+
+
+    @*<div class="login-form">*@
+            @*<div class="login-form-header">
+                <img src=@StringTrimmer.QuotesRemover(ImageUrlResolver.ThumbNail(), ViewBag.Settings.LogoPath) alt="logo" class="resp"/>
+            </div>*@
+            @*<div class="login-form-header-title">SIGN IN TO YOUR ACCOUNT</div>*@
+            <div class="login-wrap">
+
+
+                @using (Html.BeginForm("SignIn", "User", FormMethod.Post))
+                {
+                     <div class="input">
+                         <span><i class="fa fa-envelope-o"></i></span>
+                        
+                            @Html.TextBoxFor(model => model.Username, new { @placeholder = "Enter your email"})
+
+                       
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Username)
+                     <div class="input">
+                      
+                         <span><i class="fa fa-lock"></i></span>
+                            @Html.PasswordFor(model => model.Password, new { @placeholder = "Enter your password"})
+
+                        </div>
+                 
+                    <div class="clearfix"></div>
+                    <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+                     <div class="feedback">
+                    @Html.ValidationMessageFor(model => model.Password)
+                        
+                      </div>
+    @*<input type="submit" class="submit" value="" />*@
+                        <a href="/User/ForgotPassword" class="pull-right" style="color: #fff; padding-top: 7px;">Forgot password?</a>
+                   <div class="validation-summary-errors" style="background: white;">@ViewBag.Message</div>
+                   
+
+                }
+
+            </div>
+
+
+
+        @*</div>*@

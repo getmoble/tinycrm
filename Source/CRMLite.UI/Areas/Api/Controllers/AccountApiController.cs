@@ -26,14 +26,14 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 {
                     var users = _userService.GetUserById(WebUser.Id);
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
-                    var returnData = new { Account = accounts, Agent = users };
+                    var returnData = new { Account = accounts, User = users };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    var agents = _userService.GetAllUsers();
+                    var Users = _userService.GetAllUsers();
                     var accounts = _accountService.GetAllAccounts();
-                    var returnData = new { Account = accounts, Agent = agents };
+                    var returnData = new { Account = accounts, User = Users };
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
             },

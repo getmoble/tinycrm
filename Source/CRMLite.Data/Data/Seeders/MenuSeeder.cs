@@ -48,10 +48,10 @@ namespace CRMLite.Data.Data.Seeders
                 new MenuItem{Action="Index",Controller="Potential",Title="Manage",Area="CRM",ParentId=28,Permission=206,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"},
                 new MenuItem{Action="Create",Controller="Potential",Title="Create",Area="CRM",ParentId=28,Permission=207,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"},
 
-                new MenuItem{Action="",Controller="",Title="Agents",Area="CRM",ParentId=18,Permission=213,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-users\"> <b class=\"bg-info\"></b> </i> <span>@Title</span> </a>"},
+                new MenuItem{Action="",Controller="",Title="Users",Area="CRM",ParentId=18,Permission=213,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-users\"> <b class=\"bg-info\"></b> </i> <span>@Title</span> </a>"},
 
-                new MenuItem{Action="Index",Controller="Agent",Title="Manage",Area="CRM",ParentId=31,Permission=208,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"},
-                new MenuItem{Action="Create",Controller="Agent",Title="Create",Area="CRM",ParentId=31,Permission=209,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"}
+                new MenuItem{Action="Index",Controller="User",Title="Manage",Area="CRM",ParentId=31,Permission=208,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"},
+                new MenuItem{Action="Create",Controller="User",Title="Create",Area="CRM",ParentId=31,Permission=209,Template="<a href=\"/@Area/@Controller/@Action\"> <i class=\"fa fa-angle-right\"></i> <span>@Title</span> </a>"}
             };
             menu.ForEach(s => context.MenuItems.Add(s));
             context.SaveChanges();

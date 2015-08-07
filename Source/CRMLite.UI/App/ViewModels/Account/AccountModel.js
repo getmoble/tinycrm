@@ -5,7 +5,7 @@
     self.CommunicationDetailId = ko.observable(account.CommunicationDetailId || 0);
     self.AccountName = ko.observable(account.Name || '').extend({ required: { params: true, message: "Please select Account Name" } });
     self.Industry = ko.observable(account.Industry || '').extend({ required: { params: true, message: "Please select Industry" } });
-    self.SelectedAssignedto = ko.observable(account.AgentId || 0).extend({ required: { params: true, message: "Please select Agent" } });
+    self.SelectedAssignedto = ko.observable(account.UserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.Comment = ko.observable(account.Comments || '');
     if (account.CommunicationDetail) {
         self.Website = ko.observable(account.CommunicationDetail.Website || '');
@@ -19,8 +19,8 @@
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Address = ko.observable('').extend({ required: { params: true, message: "Please enter Address" } });
     }
-    if (account.Agent) {
-        self.Assignedto = ko.observable(account.Agent.FirstName || '');
+    if (account.User) {
+        self.Assignedto = ko.observable(account.User.FirstName || '');
     }
     else {
         self.Assignedto = ko.observable('');

@@ -4,7 +4,7 @@
     self.busy = ko.observable();
     self.DisplayTitle = ko.observable();
     self.AccountLists = ko.observableArray();
-    self.Agents = ko.observableArray();
+    self.Users = ko.observableArray();
     self.SearchAssignedTo = ko.observable();
     self.isBusy = ko.observable(false);
     self.SelectedAccount = ko.observable(new Account({}));
@@ -34,8 +34,8 @@
                     bootbox.alert(response);
                 }
             } else {
-                $.each(response.Agent, function (key, value) {
-                    self.Agents.push(new SelectAssignedTo(value));
+                $.each(response.User, function (key, value) {
+                    self.Users.push(new SelectAssignedTo(value));
                 });
                 self.isBusy(false);
             }
@@ -66,6 +66,7 @@ AccountViewModel.prototype.init = function () {
         } else {
             if (response) {
                 $.each(response.Account, function (key, value) {
+                    //alert(ko.toJSON(v));
                     self.AccountLists.push(new Account(value));
                     self.isBusy(false);
                 });
@@ -76,9 +77,9 @@ AccountViewModel.prototype.init = function () {
             });
             var oTable = $('#pagination').dataTable();
             // oTable.fnSort([[6, 'desc']]);
-            $.each(response.Agent, function (key, value) {
-                self.Agents.push(new SelectAssignedTo(value));
-            });
+            //$.each(response.User, function (key, value) {
+            //    self.Users.push(new SelectAssignedTo(value));
+            //});
         }
         self.isBusy(false);
     });
@@ -139,7 +140,7 @@ AccountViewModel.prototype.search = function () {
       .draw();
     oldTable.destroy();
     var jsonData = {
-        AgentId: ko.toJS(self.SearchAssignedTo)
+        UserId: ko.toJS(self.SearchAssignedTo)
     };
 
     $.get(ko.toJS(self.CRMUrl.accountapiSearch), jsonData, function (response) {

@@ -61,9 +61,19 @@ namespace CRMLite.Data.Data
            .HasRequired(s => s.AssignedToUser)
            .WithMany()
            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Account>()
+            .HasRequired(s => s.Person)
+            .WithMany()
+            .WillCascadeOnDelete(false);
             
             modelBuilder.Entity<User>()
            .HasRequired(s => s.Person)
+           .WithMany()
+           .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RoleMember>()
+           .HasRequired(s => s.User)
            .WithMany()
            .WillCascadeOnDelete(false);
 

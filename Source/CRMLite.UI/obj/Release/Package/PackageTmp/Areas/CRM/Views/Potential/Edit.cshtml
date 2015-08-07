@@ -1,0 +1,278 @@
+﻿
+﻿@{
+    ViewBag.Title = "Edit";
+}
+<div class="col-md-12">
+    <h3 class="inline-b">
+        Edit
+    </h3>
+
+<input type="hidden" id="hdnPotentialId" data-value="@ViewBag.PotentialId" />
+<div class="panel with-nav-tabs">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#addPotential" data-toggle="tab">Add Potential</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="addPotential">
+                <div id="potentialDiv" data-bind="with:SelectedPotential">
+                    <div>
+                            <h4 class="text-primary">Potential Information</h4>
+                            <div class="row">
+                                <div class="padTB-sm">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                            <label>Potential Name *</label>
+                                        <input type="text" class="form-control" data-bind="value:PotentialName" />
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Related To Account *</label>
+                                            <div class="col-md-11 row">
+                                        <select id="AccountSelect" data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account'" class="select2-drop-mask atagcolor form-control"></select>
+                                            </div><button class="btn btn-primary m-l-lg" data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact</label>
+                                        <select data-bind="options: $root.Contacts ,optionsText: 'FirstName', optionsValue: 'Id', value:SelectedContact, optionsCaption:'Select Contact'" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lead Source</label>
+                                        <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select Lead Source'" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-bind="visible:IsDropdownVisbility">Agent</label>
+                                        <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:selectedAgent, optionsCaption:'Select Agent',visible:IsDropdownVisbility" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Expected Amount</label>
+                                        <input type="text" class="form-control" data-bind="value:PotentialAmount,numericOnly:true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Expected Close Date</label>
+                                        <div id="datetimepicker2" class="input-append date">
+                                            <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar" data-time-icon="icon-time"></i>
+
+                                            </span>
+                                        </div>
+                                        @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Sales Stage *</label>
+                                        <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SelectedSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Assigned To *</label>
+                                        <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select Agent'" class="form-control"></select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div>
+                            <h4 class="text-primary">Property Information</h4>
+                            
+                                <div class="row">
+                                    <div class="padTB-sm">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Type of Property:</label>
+                                        <select data-bind="options: $root.propertycategories ,optionsText: 'Name', optionsValue: 'Id', value:selectedPropertyCategory, optionsCaption:'Select Category'" class="form-control"></select>
+                                    </div>
+                                    <div class=" form-group">
+                                        <label>Country</label>
+                                        <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:$parent.selectedCountry,optionsCaption:'Select Country'"></select>
+                                    </div>
+                                    <div class=" form-group">
+                                        <label>State</label>
+                                        <select class="form-control" data-bind="options:$root.States,optionsText:'Name',optionsValue:'Id',value:$parent.selectedState,optionsCaption:'Select State'"></select>
+                                    </div>
+                                    <div class=" form-group">
+                                        <label>City</label>
+                                        <select class="form-control" data-bind="options:$root.Cities,optionsText:'Name',optionsValue:'Id',value:CityId,optionsCaption:'Select City'"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Floor</label>
+                                        <input type="text" class="form-control" data-bind="value:Floor,numericOnly:true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Expected Move In Date</label>
+                                        <div id="datetimepicker3" class="input-append date">
+                                            <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedMoveInDate" id="ExpectedMoveInDate"></input>
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar" data-time-icon="icon-time"></i>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Area</label>
+                                        <input type="text" class="form-control" data-bind="value:Area,numericOnly:true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Requirement</label>
+                                        <select data-bind="options: $root.propertytype ,optionsText: 'Name', optionsValue: 'Id', value:selectedProperty, optionsCaption:'Select Property Type'" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Budget From</label>
+                                        <input type="text" class="form-control" data-bind="value:BudgetFrom,numericOnly:true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Budget To</label>
+                                        <input type="text" class="form-control" data-bind="value:BudgetTo,numericOnly:true" />
+                                    </div>
+                                            <div class="form-group col-lg-3 row">
+                                        <label>Beds</label>
+                                        <input type="text" class="form-control" data-bind="value:Beds,numericOnly:true" />
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label>Baths</label>
+                                        <input type="text" class="form-control" data-bind="value:Baths,numericOnly:true" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <div>
+                            <h4 class="text-primary">Descriptions </h4>
+                           
+                                <div class="padTB-sm">
+                                   
+                                    <label>Comments</label>
+                                    <textarea class="form-control" data-bind="value:Comments"></textarea>
+                                </div>
+                              
+                           
+                    </div>
+                </div>
+
+                <div>
+                        <div class="m-t-lg">
+                        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.updatePotential"><span class=" ladda-label">Update</span></button>
+                        
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-lg-12 m-t-sm">
+    
+        <div @*data-bind="loading:$root.isBusy"*@>
+            <button class="btn btn-dark m-l-sm ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:saveMorePotential" data-dismiss="modal" aria-hidden="true"><span class=" ladda-label">Save</span></button>
+            @*<button type="button" class="btn btn-primary" data-bind="click:saveMoreProperty" data-dismiss="modal" aria-hidden="true">
+                    Save Changes
+                </button>*@
+      
+    </div>
+</div>
+<div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <strong><span data-bind="text:DisplayTitle"></span></strong>
+            </div>
+            <div class="modal-body clearfix" data-bind="with:SelectedAccount">
+                <h4 class="text-primary">Account Details</h4>
+                <div class="col-lg-12 bdr">
+                    <div class="col-md-6">
+
+                        <div class="form-group ">
+                            <label>Account Name</label>
+                            <input type="text" data-bind="value:AccountName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Industry</label>
+                            <input type="text" data-bind="value:Industry" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="text" data-bind="value:Website" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" data-bind="value:Email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" data-bind="value:Phone,numericOnly:true" class=" form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Assigned To</label>
+                            <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:SelectedAssignedto" class="form-control"></select>
+                        </div>
+
+                    </div>
+                </div>
+                <h4 class="text-primary">Address Information</h4>
+                <div class="col-lg-12 bdr">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <textarea class="form-control" data-bind="value:Address" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="text-primary">Other</h4>
+                <div class="col-lg-12 bdr">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea data-bind="value:Comment" class=" form-control" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.updateAccount,visible:isUpdate"><span class=" ladda-label">Update</span></button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link href="~/Content/css/select2-bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="~/Content/js/select2.min.js"></script>
+    <script src="~/App/ViewModels/CRM/models.js"></script>
+    <script src="~/App/ViewModels/Amenity/AmenityModel.js"></script>
+<script src="~/App/ViewModels/Property/PropertyModel.js"></script>
+    <script src="~/App/ViewModels/Property/PropertyModel.js"></script>
+    <script src="~/App/ViewModels/Potential/PotentialViewModel.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var vm = new PotentialViewModel();
+            ko.applyBindings(vm);
+            vm.init();
+            vm.potentialedit();
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker2').datetimepicker();
+        });
+    </script>
+<script src="~/Content/js/script-ladda.js"></script>
+}

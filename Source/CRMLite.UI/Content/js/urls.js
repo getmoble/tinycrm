@@ -22,24 +22,24 @@ function Urls() {
     //Error Controllers
     self.errorNotAuthorized = '/CRM/Error/NotAuthorized';
 
-    //Agent Api
+    //User Api
 
-    self.CRM.agentapiGetAgent = '/Api/AgentApi/GetAgent?id=';
-    self.CRM.agentapiUploadImageFiles = "/AgentApi/UploadImageFiles";
-    self.CRM.uploadAgent = "/Upload/Avatar/";
-    self.CRM.agentapiEditAgent = '/Api/AgentApi/EditAgent?id=';
-    self.CRM.agentapiGetDelete = '/Api/AgentApi/GetDelete?id=';
-    self.CRM.agentapiCreate = '/Api/AgentApi/Create';
-    self.CRM.agentapiUpdate = '/Api/AgentApi/Update';
-    self.CRM.agentapiSearch = '/Api/AgentApi/Search';
-    self.CRM.agentapiList = '/Api/AgentApi/List';
+    self.CRM.UserapiGetUser = '/Api/UserApi/GetUser?id=';
+    self.CRM.UserapiUploadImageFiles = "/UserApi/UploadImageFiles";
+    self.CRM.uploadUser = "/Upload/Avatar/";
+    self.CRM.UserapiEditUser = '/Api/UserApi/EditUser?id=';
+    self.CRM.UserapiGetDelete = '/Api/UserApi/GetDelete?id=';
+    self.CRM.UserapiCreate = '/Api/UserApi/Create';
+    self.CRM.UserapiUpdate = '/Api/UserApi/Update';
+    self.CRM.UserapiSearch = '/Api/UserApi/Search';
+    self.CRM.UserapiList = '/Api/UserApi/List';
 
-    //Agent Controllers
-    self.CRM.agentIndex = "/CRM/Agent/Index";
-    self.CRM.agentList = "/CRM/Agent";
-    self.CRM.agentUpdate = "/CRM/Agent/Update?id=";
-    self.CRM.agentCreate = "/CRM/Agent/Create";
-    self.CRM.gotoAgentdetails = "/CRM/Agent/Details?id=";
+    //User Controllers
+    self.CRM.UserIndex = "/CRM/User/Index";
+    self.CRM.UserList = "/CRM/User";
+    self.CRM.UserUpdate = "/CRM/User/Update?id=";
+    self.CRM.UserCreate = "/CRM/User/Create";
+    self.CRM.gotoUserdetails = "/CRM/User/Details?id=";
     //Contact Api
     self.CRM.contactapiDeleteContact = '/Api/ContactApi/DeleteContact?id=';
     self.CRM.contactapiGetContact = '/Api/ContactApi/GetContact?id=';

@@ -1,3 +1,4 @@
+D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.DynamicMenu.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\CRMLite.UI.dll.config
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\CRMLite.UI.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\CRMLite.UI.pdb
@@ -6,7 +7,6 @@ D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Autofac.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Autofac.Integration.Mvc.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.Auth.SingleTenant.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.Data.dll
-D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.DynamicMenu.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.Providers.Email.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.Settings.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.UI\bin\Common.UI.Web.Infrastructure.dll

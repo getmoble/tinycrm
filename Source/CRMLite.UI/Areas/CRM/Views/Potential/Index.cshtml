@@ -24,7 +24,7 @@
                 <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SearchLeadSource, optionsCaption:'Select LeadSource'" class="form-control"></select>
             </div>
             <div class="col-md-2">
-                <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:SearchAgent, optionsCaption:'Assigned To'" class="form-control"></select>
+                <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SearchUser, optionsCaption:'Assigned To'" class="form-control"></select>
             </div>
             <div class="col-md-4">
                 <select data-bind="options: $root.propertytype ,optionsText: 'Name', optionsValue: 'Id', value:SearchPropertyType, optionsCaption:'Select Property Type'" class="form-control"></select>
@@ -58,7 +58,7 @@
                         <td><span data-bind="text: PropertyType"> </span></td>
                         <td><span data-bind="text: ShowingDate"> </span></td>
                         <td><span data-bind="text: LeadSourceName"> </span></td>
-                        <td><span data-bind="text: AgentName"> </span></td>
+                        <td><span data-bind="text: UserName"> </span></td>
                         <td>
                             <a href="#" data-bind="click:$root.gotoPotentialdetails" data-toggle="modal" data-target="#PotentialDetails"><i class="fa fa-lg fa-info-circle " data-toggle="tooltip" data-placement="top" title="Details" data-original-title="Details"></i></a>&nbsp;&nbsp;
                             @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManagePotential))

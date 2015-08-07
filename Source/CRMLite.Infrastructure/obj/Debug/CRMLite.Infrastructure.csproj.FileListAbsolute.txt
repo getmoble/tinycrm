@@ -15,6 +15,5 @@ D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\bin\Debug\PropznetCommon.
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\bin\Debug\EntityFramework.xml
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\bin\Debug\Newtonsoft.Json.xml
-D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\obj\Debug\CRMLite.Infrastructure.csprojResolveAssemblyReference.cache
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\obj\Debug\CRMLite.Infrastructure.dll
 D:\Git\Logiticks\CRMLite\Source\CRMLite.Infrastructure\obj\Debug\CRMLite.Infrastructure.pdb

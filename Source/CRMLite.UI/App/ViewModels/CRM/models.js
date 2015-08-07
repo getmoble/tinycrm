@@ -31,26 +31,26 @@
 
     return that;
 }
-function Agent(agent) {
+function User(user) {
     var self = this;
-    self.Id = ko.observable(agent.Id || 0);
-    self.firstname = ko.observable(agent.FirstName || '').extend({ required: { params: true, message: "Please enter First Name" } });
-    self.lastname = ko.observable(agent.LastName || '');
-    if (agent.CommunicationDetail) {
-        self.email = ko.observable(agent.CommunicationDetail.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
-        self.phoneNumber = ko.observable(agent.CommunicationDetail.Phone || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
-        self.address = ko.observable(agent.CommunicationDetail.Address || '').extend({ required: { params: true, message: "Please enter address" } });
+    self.Id = ko.observable(user.Id || 0);
+    self.firstname = ko.observable(user.FirstName || '').extend({ required: { params: true, message: "Please enter First Name" } });
+    self.lastname = ko.observable(user.LastName || '');
+    if (user.CommunicationDetail) {
+        self.email = ko.observable(user.CommunicationDetail.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
+        self.phoneNumber = ko.observable(user.CommunicationDetail.Phone || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
+        self.address = ko.observable(user.CommunicationDetail.Address || '').extend({ required: { params: true, message: "Please enter address" } });
     } else {
         self.email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.phoneNumber = ko.observable('').extend({ required: { params: true, message: "Please enter Phone Number" } });
         self.address = ko.observable('').extend({ required: { params: true, message: "Please enter address" } });
     }
-    self.image = ko.observable(agent.Image || '/Upload/Agent/Person-Dummy.jpg');
-    self.DEDlicenseNumber = ko.observable(agent.DEDLicenseNumber || '');
-    self.RERAregistrationNumber = ko.observable(agent.RERARegistrationNumber || '');
-    self.islistingmember = ko.observable(agent.IsListingMember || '');
-    self.refId = ko.observable(agent.RefId || '');
-    self.contactdetailId = ko.observable(agent.CommunicationDetailId || 0);
+    self.image = ko.observable(user.Image || '/Upload/User/Person-Dummy.jpg');
+    self.DEDlicenseNumber = ko.observable(user.DEDLicenseNumber || '');
+    self.RERAregistrationNumber = ko.observable(user.RERARegistrationNumber || '');
+    self.islistingmember = ko.observable(user.IsListingMember || '');
+    self.refId = ko.observable(user.RefId || '');
+    self.contactdetailId = ko.observable(user.CommunicationDetailId || 0);
     self.modelState = ko.validatedObservable(
    {
        firstname: self.firstname,
@@ -68,19 +68,21 @@ function Agent(agent) {
 function Lead(lead) {
     var self = this;
     self.Id = ko.observable(lead.Id || 0);
-    self.FirstName = ko.observable(lead.FirstName || '').extend({ required: { params: true, message: "Please enter First Name" } });
-    self.LastName = ko.observable(lead.LastName || '').extend({ required: { params: true, message: "Please enter Last Name" } });
-    if (lead.CommunicationDetail) {
-        self.Email = ko.observable(lead.CommunicationDetail.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
-        self.Phone = ko.observable(lead.CommunicationDetail.Phone || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
-        self.Website = ko.observable(lead.CommunicationDetail.Website || '').extend({ required: { params: true, message: "Please enter Website" } });
+    self.FirstName = ko.observable('').extend({ required: { params: true, message: "Please enter First Name" } });
+    self.LastName = ko.observable('').extend({ required: { params: true, message: "Please enter Last Name" } });
+    if (lead.Person) {
+        self.FirstName(lead.Person.FirstName);
+        self.LastName(lead.Person.LastName);
+        self.Email = ko.observable(lead.Person.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
+        self.Phone = ko.observable(lead.Person.Phone || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
+        self.Website = ko.observable(lead.Person.Website || '').extend({ required: { params: true, message: "Please enter Website" } });
     } else {
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Phone = ko.observable('').extend({ required: { params: true, message: "Please enter Phone Number" } });
         self.Website = ko.observable('').extend({ required: { params: true, message: "Please enter Website" } });
     }
     self.RefId = ko.observable(lead.RefId || '');
-    self.CommunicationDetailID = ko.observable(lead.CommunicationDetailId || 0);
+    self.CommunicationDetailID = ko.observable(lead.PersonId || 0);
     self.CreatedBy = ko.observable(lead.CreatedBy || 0);
     self.Company = ko.observable(lead.Company || '').extend({ required: { params: true, message: "Please enter Contact Name" } });
     self.Other = ko.observable(lead.LeadSourceName || '');
@@ -90,18 +92,18 @@ function Lead(lead) {
         self.LeadStatus = ko.observable('');
     if (lead.LeadSource) {
         self.LeadSource = ko.observable(lead.LeadSource.Name || '');
-        self.SelectedOptionalAgent = ko.observable(lead.LeadSource.Name || '');
+        self.SelectedOptionalUser = ko.observable(lead.LeadSource.Name || '');
     }
     else {
         self.LeadSource = ko.observable('');
-        self.SelectedOptionalAgent = ko.observable('');
+        self.SelectedOptionalUser = ko.observable('');
     }
-    if (lead.Agent)
-        self.Assignedto = ko.observable(lead.Agent.FirstName || '').extend({ required: { params: true, message: "Please select Agent" } });
+    if (lead.User)
+        self.Assignedto = ko.observable(lead.User.FirstName || '').extend({ required: { params: true, message: "Please select User" } });
     else
-        self.Assignedto = ko.observable('').extend({ required: { params: true, message: "Please select Agent" } });
-    self.Comment = ko.observable(lead.Comments);
-    self.SelectedAssignedTo = ko.observable(lead.AgentId).extend({ required: { params: true, message: "Please select Agent" } });
+        self.Assignedto = ko.observable('').extend({ required: { params: true, message: "Please select User" } });
+    self.Description = ko.observable(lead.Description);
+    self.SelectedAssignedTo = ko.observable(lead.AssignedToUserId).extend({ required: { params: true, message: "Please select User" } });
     self.SelectedLeadStatus = ko.observable(lead.LeadStatusId).extend({ required: { params: true, message: "Please select Lead Status" } });
     self.SelectedSalesStage = ko.observable(lead.SalesStageId).extend({ required: { params: true, message: "Please select Sales Stage" } });
     self.SelectedLeadSource = ko.observable(lead.LeadSourceId).extend({ required: { params: true, message: "Please select Lead Source" } });
@@ -157,10 +159,10 @@ function Lead(lead) {
         //self.Company.isModified(false);
     };
 }
-function SelectAssignedTo(agent) {
+function SelectAssignedTo(User) {
     var self = this;
-    self.Id = ko.observable(agent.Id);
-    self.Name = ko.observable(agent.FirstName);
+    self.Id = ko.observable(User.Id);
+    self.Name = ko.observable(User.Name);
 }
 function SelectLeadStatus(leadstatus) {
     var self = this;
@@ -185,8 +187,8 @@ function SelectConvertLead(convertlead) {
     self.PotentialName = ko.observable();
     self.PotentialAmount = ko.observable('');
     self.SelectedSalesStage = ko.observable(convertlead.SalesStageId || 0);
-    self.SelectedAssignedTo = ko.observable(convertlead.AgentId || 0);
-    self.ConvertAssignedTo = ko.observable(convertlead.AgentId || 0);
+    self.SelectedAssignedTo = ko.observable(convertlead.UserId || 0);
+    self.ConvertAssignedTo = ko.observable(convertlead.UserId || 0);
     self.SelectedLeadSource = ko.observable(convertlead.LeadSourceId || 0);
     self.FirstName = ko.observable(convertlead.FirstName || '');
     self.ExpectedDate = ko.observable(convertlead.ExpectedDate || '');
@@ -270,14 +272,14 @@ function Potential(potential) {
     self.PropertyCategory = ko.observable(potential.PropertyCategory || '');
     self.PropertyFloor = ko.observable(potential.PropertyFloor || '');
     self.SalesStageName = ko.observable(potential.SalesStageName || '');
-    self.AgentName = ko.observable(potential.AgentName || '');
+    self.UserName = ko.observable(potential.UserName || '');
     self.PropertyType = ko.observable(potential.PropertyType || '');
-    self.selectedAssignedTo = ko.observable(potential.AgentId || 0).extend({ required: { params: true, message: "Please select Agent" } });
+    self.selectedAssignedTo = ko.observable(potential.UserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.SelectedContact = ko.observable(potential.ContactId || 0).extend({ required: { params: true, message: "Please select Contact" } });
     self.SelectedLeadStatus = ko.observable(potential.LeadStatusId).extend({ required: { params: true, message: "Please select Lead Status" } });
     self.SelectedSalesStage = ko.observable(potential.SalesStageId).extend({ required: { params: true, message: "Please select Sales Stage" } });
     self.SelectedLeadSource = ko.observable(potential.LeadSourceId).extend({ required: { params: true, message: "Please select Lead source" } });
-    self.selectedAgent = ko.observable(potential.AgentId || 0);
+    self.selectedUser = ko.observable(potential.UserId || 0);
     self.IsDropdownVisbility = ko.observable(false);
     self.Comments = ko.observable(potential.Comments || '');
     self.SelectedLeadSource.subscribe(function (newValue) {
@@ -332,7 +334,7 @@ function Contact(contact) {
 
 
     self.AccountId = ko.observable(contact.AccountId || 0).extend({ required: { params: true, message: "Please select Account" } });
-    self.AgentId = ko.observable(contact.AgentId || 0).extend({ required: { params: true, message: "Please select Agent" } });
+    self.UserId = ko.observable(contact.UserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.Comments = ko.observable(contact.Comments || '');
     self.CommunicationDetailId = ko.observable(contact.CommunicationDetailId || 0);
     if (contact.Account) {
@@ -353,8 +355,8 @@ function Contact(contact) {
         self.Address = ko.observable('');
         self.Phone = ko.observable('').extend({ required: { params: true, message: "Please Enter Phone" } });
     }
-    if (contact.Agent) {
-        self.AssignedTo = ko.observable(contact.Agent.FirstName || '');
+    if (contact.User) {
+        self.AssignedTo = ko.observable(contact.User.FirstName || '');
     } else {
         self.AssignedTo = ko.observable('');
     }
@@ -364,7 +366,7 @@ function Contact(contact) {
       Title: self.Title,
       Email: self.Email,
       Phone: self.Phone,
-      AgentId: self.AgentId,
+      UserId: self.UserId,
       AccountId: self.AccountId
   });
     self.resetValidation = function () {
@@ -373,7 +375,7 @@ function Contact(contact) {
         self.Title.isModified(false);
         self.Email.isModified(false);
         self.Phone.isModified(false);
-        self.AgentId.isModified(false);
+        self.UserId.isModified(false);
         self.AccountId.isModified(false);
     };
 }
@@ -384,7 +386,7 @@ function Account(account) {
     self.CommunicationDetailId = ko.observable(account.CommunicationDetailId || 0);
     self.AccountName = ko.observable(account.Name || '').extend({ required: { params: true, message: "Please select Account Name" } });
     self.Industry = ko.observable(account.Industry || '').extend({ required: { params: true, message: "Please select Industry" } });
-    self.SelectedAssignedto = ko.observable(account.AgentId || 0).extend({ required: { params: true, message: "Please select Agent" } });
+    self.SelectedAssignedto = ko.observable(account.UserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.Comment = ko.observable(account.Comments || '');
     if (account.CommunicationDetail) {
         self.Website = ko.observable(account.CommunicationDetail.Website || '');
@@ -398,8 +400,8 @@ function Account(account) {
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Address = ko.observable('').extend({ required: { params: true, message: "Please enter Address" } });
     }
-    if (account.Agent) {
-        self.Assignedto = ko.observable(account.Agent.FirstName || '');
+    if (account.User) {
+        self.Assignedto = ko.observable(account.User.FirstName || '');
     }
     else {
         self.Assignedto = ko.observable('');

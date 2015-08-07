@@ -45,7 +45,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 _entityType = CRMEntityType.Lead;
             else if (entityType == "Account")
                 _entityType = CRMEntityType.Account;
-            else if (entityType == "Agent")
+            else if (entityType == "User")
                 _entityType = CRMEntityType.Agent;
             else if (entityType == "Contact")
                 _entityType = CRMEntityType.Contact;

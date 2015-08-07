@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace CRMLite.UI.Areas.CRM.Controllers
 {
-    public class AgentController : BaseUIController
+    public class UserController : BaseUIController
     {
         public ActionResult Index()
         {
@@ -18,9 +18,9 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(() =>
             {
-                if (PermissionChecker.CheckPermission(WebUser.PermissionCodes, PermissionCodes.ManageAgent) || RoleChecker.CheckRole(WebUser.RoleId,RoleIds.Agent))
+                if (PermissionChecker.CheckPermission(WebUser.PermissionCodes, PermissionCodes.ManageUser) || RoleChecker.CheckRole(WebUser.RoleId,RoleIds.User))
                 {
-                    ViewBag.AgentId = id;
+                    ViewBag.UserId = id;
                     return View();
                 }
                 else
@@ -34,7 +34,7 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(() =>
             {
-                ViewBag.AgentId = id;
+                ViewBag.UserId = id;
                 return View();
             });
         }
@@ -50,7 +50,7 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(() =>
             {
-                ViewBag.AgentId = id;
+                ViewBag.UserId = id;
                 return View();
             });
         }

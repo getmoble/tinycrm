@@ -25,8 +25,8 @@
         ManageContact = 205,
         ViewPotential = 206,
         ManagePotential = 207,
-        ViewAgent = 208,
-        ManageAgent = 209,
+        ViewUser = 208,
+        ManageUser = 209,
         ConvertLead = 210,
         DashBoard = 211,
         SettingsCrm = 212

@@ -11,9 +11,9 @@ using Common.Auth.SingleTenant.ViewModels;
 using Common.UI.Web.Infrastructure;
 using Hangfire;
 using PropznetCommon.Features.CRM.Interfaces.Services;
-using PropznetCommon.Features.CRM.Model.Agent;
+using PropznetCommon.Features.CRM.Model.User;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
-using PropznetCommon.Features.CRM.ViewModel.Agent;
+using PropznetCommon.Features.CRM.ViewModel.User;
 using PropznetCommon.Features.CRM.ViewModel.User;
 using CRMLite.Infrastructure;
 using ChangePasswordViewModel = Common.Auth.SingleTenant.ViewModels.ChangePasswordViewModel;
@@ -141,10 +141,10 @@ namespace CRMLite.UI.Controllers
                     roleId = new long[] { 1 };
                 }
                 _accountService.UpdateAccount(model.FirstName + "" + model.LastName, WebUser.Email, WebUser.Email, model.Address, model.Phone, roleId, user.PersonId, WebUser.Id, model.Image);
-                //var agent = _agentService.GetAgentByUserId(user.Id);
-                //var agentModel = new AgentModel
+                //var User = _UserService.GetUserByUserId(user.Id);
+                //var UserModel = new UserModel
                 //{
-                //    Id = agent.Id,
+                //    Id = User.Id,
                 //    FirstName = model.FirstName,
                 //    LastName = model.LastName,
                 //    Email = model.Email,
@@ -153,20 +153,20 @@ namespace CRMLite.UI.Controllers
                 //    DEDLicenseNumber = model.DEDlicenseNumber,
                 //    RERARegistrationNumber = model.RERAregistrationNumber,
                 //    UserId = user.Id,
-                //    CommunicationDetailID = agent.CommunicationDetailId,
-                //    IsListingMember = agent.IsListingMember,
+                //    CommunicationDetailID = User.CommunicationDetailId,
+                //    IsListingMember = User.IsListingMember,
                 //    Image = model.Image
                 //};
                 //var communicationDetailModel = new CommunicationDetailModel
                 //{
-                //    Id = agent.CommunicationDetailId,
+                //    Id = User.CommunicationDetailId,
                 //    Address = model.Address,
                 //    Phone = model.Phone,
                 //    Website = model.Website,
                 //    Email = model.Email
                 //};
                 //_communicationDetailService.UpdateCommunicationDetail(communicationDetailModel);
-                //_agentService.UpdateAgent(agentModel);
+                //_UserService.UpdateUser(UserModel);
                 ViewBag.Message = "Successfully updated your profile";
                 ViewBag.Image = model.Image;
                 WebUser.Image = model.Image;

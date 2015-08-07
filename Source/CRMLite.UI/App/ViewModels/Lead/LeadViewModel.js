@@ -98,7 +98,7 @@ LeadViewModel.prototype.init = function () {
     self.isBusy(true);
     $.get(ko.toJS(self.url.leadapiGetData), function (data) {
         self.selectedLead(new Lead({}));
-        $.each(data.Agent, function (k, v) {
+        $.each(data.User, function (k, v) {
             self.Assignto.push(new SelectAssignedTo(v));
         });
         $.each(data.LeadStatus, function (k, v) {
@@ -124,7 +124,7 @@ LeadViewModel.prototype.search = function () {
     oldTable.destroy();
     var jsonData = {
         LeadStatusId: ko.toJS(self.SelectedSearchLeadStatus),
-        LeadSourceId: ko.toJS(self.SelectedSearchLeadSource), AgentId: ko.toJS(self.SelectedSearchAssignedTo)
+        LeadSourceId: ko.toJS(self.SelectedSearchLeadSource), UserId: ko.toJS(self.SelectedSearchAssignedTo)
     };
 
     $.post(ko.toJS(self.url.leadapiSearch), jsonData, function (response) {
@@ -141,7 +141,7 @@ LeadViewModel.prototype.LeadListing = function () {
     self.isBusy(true);
     $.get(ko.toJS(self.url.leadapiGetData), function (data) {
         self.selectedLead(new Lead({}));
-        $.each(data.Agent, function (k, v) {
+        $.each(data.User, function (k, v) {
             self.Assignto.push(new SelectAssignedTo(v));
         });
         $.each(data.LeadStatus, function (k, v) {

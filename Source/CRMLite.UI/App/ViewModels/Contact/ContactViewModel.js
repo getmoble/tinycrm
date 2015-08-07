@@ -6,10 +6,10 @@
     self.DisplayTitle = ko.observable();
     self.busy = ko.observable();
     self.Account = ko.observableArray();
-    self.Agent = ko.observableArray();
+    self.User = ko.observableArray();
     self.ContactLists = ko.observableArray();
     self.SearchTitle = ko.observable();
-    self.SearchAgent = ko.observable();
+    self.SearchUser = ko.observable();
     self.SearchAccount = ko.observable();
     self.isCreate = ko.observable(false);
     self.isUpdate = ko.observable(false);
@@ -141,8 +141,8 @@ ContactViewModel.prototype.init = function () {
                 bootbox.alert(response);
             }
         } else {
-            $.each(response.Agents, function (key, value) {
-                self.Agent.push(new SelectAssignedTo(value));
+            $.each(response.Users, function (key, value) {
+                self.User.push(new SelectAssignedTo(value));
             });
             $.each(response.Accounts, function (key, value) {
                 self.Account.push(new SelectAccount(value));
@@ -233,7 +233,7 @@ ContactViewModel.prototype.search = function () {
       .draw();
     oldTable.destroy();
     var jsonData = {
-        AgentId: ko.toJS(self.SearchAgent), AccountId: ko.toJS(self.SearchAccount), Title: ko.toJS(self.SearchTitle)
+        UserId: ko.toJS(self.SearchUser), AccountId: ko.toJS(self.SearchAccount), Title: ko.toJS(self.SearchTitle)
     };
 
     $.get(ko.toJS(self.url.contactapiSearch), jsonData, function (response) {

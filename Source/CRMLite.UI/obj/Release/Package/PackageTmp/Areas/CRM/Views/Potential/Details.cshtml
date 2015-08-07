@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+<div class="col-md-12">
+    <h3 class="inline-b">
+        Details
+                 </h3>
+    </div>
+        <input type="hidden" id="hdnPotentialId" value="@ViewBag.PotentialId" />
+<div class="clearfix">
+    <div class="col-md-12">
+        <div class="panel">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#potential" data-toggle="tab">Potential</a></li>
+            <li><a href="#more" data-toggle="tab">More</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" data-bind="with:SelectedPotential">
+            <div class="tab-pane fade active in" id="potential">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Potential Name</b>&nbsp;</label>
+                        <label class="lblwidth" data-bind="text:PotentialName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Potential Amount</b>&nbsp;</label>
+                        <span data-bind="text:PotentialAmount"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Expected Close Date</b>&nbsp;</label>
+                        <span data-bind="text:ExpectedCloseDate"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Account</b>&nbsp;</label>
+                        <span data-bind="text:AccountName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Sales Stage</b>&nbsp;</label>
+                        <span data-bind="text:SalesStageName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Assigned To</b>&nbsp;</label>
+                        <span data-bind="text:AgentName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Lead Source</b>&nbsp;</label>
+                        <span data-bind="text:LeadSourceName"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="more">
+                <div class="panel-group" id="accordionAccount">
+                    <div class="panel panel-default">
+                        <div class="col-md-12 m-t-lg">
+                        <div class="panel-heading new-panel-head">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseAccount">
+                                    Account
+                                    <i class="fa fa-angle-down  pull-right"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseAccount" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Account No</th>
+                                            <th class="text-center">Account Name</th>
+                                            <th class="text-center">Industry</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center" data-bind="text:ContactName"></td>
+                                            <td class="text-center" data-bind="text:AccountName"></td>
+                                            <td class="text-center" data-bind="text:Industry"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-12 m-t-lg">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading new-panel-head">
+
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseContact">
+                                            Contact
+                                            <i class="fa fa-angle-down  pull-right"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseContact" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <table class="table table-responsive table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Contact No</th>
+                                                    <th class="text-center">Name</th>
+                                                    <th class="text-center">Title</th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" data-bind="text:ContactNo"></td>
+                                                    <td class="text-center" data-bind="text:ContactName"></td>
+                                                    <td class="text-center" data-bind="text:ContactTitle"></td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <div class="panel panel-default m-t-lg">
+                      
+                            <div class="panel-heading new-panel-head">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAccount" href="#collapseProperty">
+                                        Property
+                                        <i class="fa fa-angle-down pull-right"></i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseProperty" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="table table-responsive table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Type</th>
+                                                <th class="text-center">Category</th>
+                                                <th class="text-center">Area</th>
+                                                <th class="text-center">Floor</th>
+                                                <th class="text-center">Budget From</th>
+                                                <th class="text-center">Budget To</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-bind="text:PropertyType"></td>
+                                                <td class="text-center" data-bind="text:PropertyCategory"></td>
+                                                <td class="text-center" data-bind="text:PropertyArea"></td>
+                                                <td class="text-center" data-bind="text:PropertyFloor"></td>
+                                                <td class="text-center" data-bind="text:PropertyBudgetFrom"></td>
+                                                <td class="text-center" data-bind="text:PropertyBudgetTo"></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    
+@section scripts{
+    <link href="~/Content/css/select2-bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="~/Content/js/select2.min.js"></script>
+    <script src="~/App/ViewModels/CRM/models.js"></script>
+    <script src="~/App/ViewModels/Potential/PotentialViewModel.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var vm = new PotentialViewModel();
+            ko.applyBindings(vm);
+
+            vm.potentialdetail();
+        });
+    </script>
+
+}

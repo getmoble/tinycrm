@@ -42,8 +42,8 @@
                                         <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select Lead Source'" class="form-control"></select>
                                     </div>
                                     <div class="form-group">
-                                        <label data-bind="visible:IsDropdownVisbility">Agent</label>
-                                        <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:selectedAgent, optionsCaption:'Select Agent',visible:IsDropdownVisbility" class="form-control"></select>
+                                        <label data-bind="visible:IsDropdownVisbility">User</label>
+                                        <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedUser, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="form-group">
                                             <label>Assigned To *</label>
-                                        <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select Agent'" class="form-control"></select>
+                                        <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select User'" class="form-control"></select>
                                     </div>
                                 </div>
 
@@ -152,7 +152,7 @@
                         </div>
                         <div class="form-group">
                             <label>Assigned To</label>
-                            <select data-bind="options: $root.Agent ,optionsText: 'Name', optionsValue: 'Id', value:SelectedAssignedto" class="form-control"></select>
+                            <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SelectedAssignedto" class="form-control"></select>
                         </div>
 
                     </div>

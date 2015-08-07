@@ -11,11 +11,11 @@ namespace CRMLite.Data.Data
             //MenuSeeder.Seed(context);
             //CommunicationDetailSeeder.Seed(context);
             UserSeeder.Seed(context);
-            //AgentSeeder.Seed(context);
+            //UserSeeder.Seed(context);
             //AccountSeeder.Seed(context);
             ContactSeeder.Seed(context);
             //CRMToDoSeeder.Seed(context);
-            //LeadSeeder.Seed(context);
+            LeadSeeder.Seed(context);
             //PropertyCategorySeeder.Seed(context);
             RolePermissionSeeder.Seed(context);
             SalesStageSeeder.Seed(context);

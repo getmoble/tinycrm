@@ -85,16 +85,16 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                <span>Agents(@Model.AgentSearchResult.Count)</span>
+                                <span>Users(@Model.UserSearchResult.Count)</span>
                             </a>
                             <a data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" href="#collapseThree"><i class="indicator fa fa-chevron-down  pull-right"></i></a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            @if (@Model.AgentSearchResult.Count != 0)
+                            @if (@Model.UserSearchResult.Count != 0)
                             {
-                                foreach (var item in @Model.AgentSearchResult)
+                                foreach (var item in @Model.UserSearchResult)
                                 {
                                     <div class="bdr bot">
                                         <div class="col-md-6">
@@ -107,7 +107,7 @@
                                         <div class="col-md-6">
                                             <label><b>Email </b></label>&nbsp;@item.Email<br />
                                             <label><b>Phone </b></label>&nbsp;@item.Phone<br />
-                                            <label><b>Image </b></label>&nbsp;<img style="width: 20%" src=@Url.Content("~/Upload/Agent/" + @item.Image)> <br />
+                                            <label><b>Image </b></label>&nbsp;<img style="width: 20%" src=@Url.Content("~/Upload/User/" + @item.Image)> <br />
                                             <label><b>Is Listing Member </b></label>&nbsp;@item.IsListingMember<br />
                                             <label><b>RERA Registration Number </b></label>&nbsp;@item.RERARegistrationNumber<br />
                                         </div>
@@ -149,7 +149,7 @@
                                             <label><b>Floor </b></label>&nbsp;@item.Floor<br />
                                             <label><b>Lead Source </b></label>&nbsp;@item.LeadSource<br />
                                             <label><b>Sale Stage </b></label>&nbsp;@item.SalesStage<br />
-                                            <label><b>Agent </b></label>&nbsp;@item.selectedAgent<br />
+                                            <label><b>User </b></label>&nbsp;@item.selectedUser<br />
                                             <label><b>Selected Contact </b></label>&nbsp;@item.SelectedContact<br />
                                             <label><b>Selected Location </b></label>&nbsp;@item.selectedLocation<br />
                                             <label><b>Property Category </b></label>&nbsp;@item.selectedPropertyCategory<br />
@@ -191,7 +191,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label><b>Phone </b></label>&nbsp;@item.Phone<br />
-                                            <label><b>Agent </b></label>&nbsp;@item.SelectedAssignedTo<br />
+                                            <label><b>User </b></label>&nbsp;@item.SelectedAssignedTo<br />
                                             <label><b>Website </b></label>&nbsp;@item.Website<br />
                                             <label><b>Assigned To </b></label>&nbsp;@item.Assignedto<br />
                                             <label><b>Comment </b></label>&nbsp;@item.Comment<br />

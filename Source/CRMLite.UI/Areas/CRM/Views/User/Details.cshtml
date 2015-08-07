@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-md-12">
+    <h3 class="inline-b">Details</h3>
+</div>
+<input type="hidden" id="hdnUserId" value="@ViewBag.UserId" />
+<div>
+    <div data-bind="loading:$root.isBusy">
+        <div class="col-lg-3" col-xs-12>
+
+            <div class="form-group">
+                <img data-bind="attr:{src:selectedUser().image}" class="imgsize" />
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="form-group">
+                <label class="lblwidth">First Name</label><span data-bind="text:selectedUser().firstname"></span>
+            </div>
+            <div class="form-group">
+                <label class="lblwidth">Last Name</label><span data-bind="text:selectedUser().lastname"></span>
+            </div>
+            <div class="form-group">
+                <label class="lblwidth">Phone</label><span data-bind="text:selectedUser().phoneNumber"></span>
+            </div>
+            <div class="form-group">
+                <label class="lblwidth">Email</label><span data-bind="text:selectedUser().email"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="lblwidth">Address</label><span data-bind="text:selectedUser().address"></span>
+            </div>
+            <div class="form-group">
+                <label class="lblwidth">DED License Number</label><span data-bind="text:selectedUser().DEDlicenseNumber"></span>
+            </div>
+            <div class="form-group">
+                <label class="lblwidth">RERA Registration Number</label><span data-bind="text:selectedUser().RERAregistrationNumber"></span>
+            </div>
+            <div class="form-group m-l-md">
+                <label class="checkbox-inline i-checks">
+                    <input type="checkbox" data-bind="checked:selectedUser().islistingmember">
+                    <i></i>Listing Member
+                </label>
+
+                @*<input type="checkbox" data-bind="checked:selectedUser().islistingmember"/><label> Listing Member</label>*@
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+@section scripts{
+    <script src="~/App/ViewModels/CRM/models.js"></script>
+    <script src="~/App/ViewModels/User/UserViewModel.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var vm = new UserViewModel();
+            ko.applyBindings(vm);
+            vm.Userdetails();
+        });
+    </script>
+}

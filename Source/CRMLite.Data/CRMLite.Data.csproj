@@ -78,6 +78,9 @@
     <Compile Include="Data\DataContext.Entities.cs" />
     <Compile Include="Data\DataSeeder.cs" />
     <Compile Include="Data\Seeders\ContactSeeder.cs" />
+    <Compile Include="Data\Seeders\LeadSeeder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data\Seeders\MenuSeeder.cs" />
     <Compile Include="Data\Seeders\RolePermissionSeeder.cs" />
     <Compile Include="Data\Seeders\SalesStageSeeder.cs" />

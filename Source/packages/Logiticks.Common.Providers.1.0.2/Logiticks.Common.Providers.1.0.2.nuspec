@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Logiticks.Common.Providers</id>
+    <version>1.0.2</version>
+    <title>Logiticks.Common.Providers</title>
+    <authors>Moble Joseph</authors>
+    <owners>Moble Joseph</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Logiticks Common Providers provides the basic provider functions for Email, Security, Serialization etc.</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="RestSharp" version="105.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

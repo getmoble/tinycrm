@@ -40,11 +40,11 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetData()
         {
-            var agent = _userService.GetAllUsers();
+            var User = _userService.GetAllUsers();
             var leadsource = _leadSourceService.GetAllLeadSources();
             var leadstatus = _leadStatusService.GetAllLeadStatuses();
             var salesstage = _salesStageService.GetAllSalesStages();
-            var returnData = new { Agent = agent, LeadStatus = leadstatus, LeadSource = leadsource, SalesStage = salesstage };
+            var returnData = new { User = User, LeadStatus = leadstatus, LeadSource = leadsource, SalesStage = salesstage };
             return Json(returnData, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Index()
@@ -133,7 +133,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var contact = new ContactModel
             {
                 //AccountId = createAccount.Id,
-                //AgentId = convertLeadModel.selectedAssignedTo,
+                //UserId = convertLeadModel.selectedAssignedTo,
                 CommunicationDetailId = convertLeadModel.CommunicationDetailId,
                 FirstName = convertLeadModel.FirstName,
                 LastName = convertLeadModel.LastName

@@ -26,10 +26,10 @@ function PotentialViewModel() {
     self.Countries = ko.observableArray();
     self.Countries = ko.observableArray();
     self.states = ko.observableArray();
-    self.Agent = ko.observableArray();
+    self.User = ko.observableArray();
     self.Account = ko.observableArray();
     self.SearchPropertyType = ko.observable();
-    self.SearchAgent = ko.observable();
+    self.SearchUser = ko.observable();
     self.SearchLeadSource = ko.observable();
     self.SearchSalesStage = ko.observable();
     self.isBusy = ko.observable(false);
@@ -215,8 +215,8 @@ PotentialViewModel.prototype.init = function () {
             $.each(response.SalesStage, function (k, v) {
                 self.Salesstage.push(new SelectLeadStatus(v));
             });
-            $.each(response.Agents, function (k, v) {
-                self.Agent.push(new SelectAssignedTo(v));
+            $.each(response.Users, function (k, v) {
+                self.User.push(new SelectAssignedTo(v));
             });
             $.each(response.Propertytype, function (k, v) {
                 self.propertytype.push(new PropertyType(v));
@@ -327,7 +327,7 @@ PotentialViewModel.prototype.search = function () {
       .clear()
       .draw();
     oldTable.destroy();
-    var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), AgentId: ko.toJS(self.SearchAgent) };
+    var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), UserId: ko.toJS(self.SearchUser) };
     //alert(JSON.stringify(jsonData))
     $.get(ko.toJS(self.url.potentialapiSearch), jsonData, function (response) {
         self.PotentialLists.removeAll();

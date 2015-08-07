@@ -47,7 +47,7 @@
         <table class="table table-striped table-bordered table-responsive table-hover" data-toggle="table" id="pagination" data-url="data2.json" data-pagination="true" data-search="true">
             <thead class="bg-grey">
                 <tr>
-                    <th class="text-center">Agent Id </th>
+                    <th class="text-center">User Id </th>
                     <th class="text-center">First Name </th>
                     <th class="text-center">Last Name </th>
                     <th class="text-center">Company</th>
@@ -151,8 +151,8 @@
                             <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedAssignedTo" class="form-control"></select>
                         </div>
                         <div class="form-group">
-                            <label data-bind="visible:IsDropdownVisbility">Agent</label>
-                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedOptionalAgent, optionsCaption:'Select Agent',visible:IsDropdownVisbility" class="form-control"></select>
+                            <label data-bind="visible:IsDropdownVisbility">User</label>
+                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedOptionalUser, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
                             <label data-bind="visible:IsTextBox">Other</label>
                             <input type="text" data-bind="value:Other,visible:IsTextBox" class="form-control" />
                         </div>
