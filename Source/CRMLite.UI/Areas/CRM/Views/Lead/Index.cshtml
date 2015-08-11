@@ -11,8 +11,7 @@
         @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageLead))
 {
     <button type="button" class="btn btn-primary pull-right m-r-xs m-b-sm m-t-lg " data-bind="click:gotoCreatePage">
-        <i class="fa fa-plus"></i>
-    </button>
+        <i class="fa fa-plus"></i> Create</button>
 }
    
 
@@ -33,7 +32,7 @@
         <div class="pull-right">
             <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
             @*<div id="datetimepicker1" class="input-append date">
-                    <input data-format="dd/MM/yyyy" type="text" class="form-control" id="ExpectedDate"/>
+                    <input data-format="yyyy-MM-dd" type="text" class="form-control" id="ExpectedDate"/>
                     <span class="add-on">
                         <i class="fa fa-calendar" data-time-icon="icon-time"></i>
 

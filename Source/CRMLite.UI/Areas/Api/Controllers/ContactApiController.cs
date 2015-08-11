@@ -74,15 +74,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult CreateContact(ContactModel contactModel)
         {
-            var person = new PersonModel
-            {
-                Address = contactModel.Address,
-                Email = contactModel.Email,
-                PhoneNo = contactModel.Phone
-
-            };
-            var newPerson = _personService.CreatePerson(person);
-            contactModel.CommunicationDetailId = newPerson.Id;
             contactModel.CreatedBy = WebUser.Id;
             _contactService.CreateContact(contactModel);
             return Json(true, JsonRequestBehavior.AllowGet);

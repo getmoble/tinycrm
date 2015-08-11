@@ -192,6 +192,7 @@
     </section>
 </section>
 </div>
+  
     <script src="~/Content/js/jquery-2.1.1.min.js"></script>
            @*<script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>*@
            @Scripts.Render("~/Content/Js/BootstrapminJs")
@@ -208,9 +209,19 @@
             @Scripts.Render("~/Content/Js/CommonKnockoutJs")
             @*<script src="~/Content/js/select2.min.js"></script>*@
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/js/appticks.js"></script>
             @RenderSection("scripts", required: false)
 </body>
+
 </html>
+@*<footer class="bg-dark padTB-md text-grey ">
+    <div class="container small ">
+        <div class="row">
+            Powered by Logiticks
+
+        </div>
+    </div>
+</footer>*@
 <script type="text/javascript">
     $("#s").keypress(function (event) {
         if (event.which === 13) {

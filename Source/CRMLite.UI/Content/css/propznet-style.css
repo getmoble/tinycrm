@@ -2062,7 +2062,16 @@ transform:rotate(360deg)
     top: 100px;
   }
 }
-
+@media screen and (max-width: 767px) {.auto-height {
+    height: 100%;
+    position: fixed;
+    overflow-x: hidden !important;
+    width: 100%;
+}}
+#doNutChart{margin-left: -75px;
+    padding: 0px;
+}
+.ladda-label i{padding-right:5px;}
 /*login page css style*/
 
 

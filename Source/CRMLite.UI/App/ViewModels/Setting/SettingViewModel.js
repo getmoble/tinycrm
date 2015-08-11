@@ -7,7 +7,7 @@
         var result = $.post(ko.toJS(self.url.settingManageChangePagingSize) + self.pagingSize());
         result.done(function (response) {
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Settings saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.settingsList);
                 });
             }

@@ -34,8 +34,24 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpGet]
         public ActionResult GetUser(long id)
         {
-            var user = _userService.GetUserById(id);
-            user.Person.Avatar = ImageUrlResolver.ResolveUrl(user.Person.Avatar);
+            var getuser = _userService.GetUserById(id);
+            var user = new UserModel();
+            if (getuser.Person!=null)
+            {
+                user.Address = getuser.Person.Address;
+                //user.Email = getuser.Person.Email;
+                user.FirstName = getuser.Person.FirstName;
+                user.Image = ImageUrlResolver.ResolveUrl(getuser.Person.Avatar);
+                user.LastName = getuser.Person.LastName;
+                user.PersonId = getuser.PersonId;
+                user.Phone = getuser.Person.PhoneNo;
+                if(getuser.AccessRule != null)
+                {
+                    user.IsListingMember = getuser.AccessRule.IsApproved;
+                }
+            }
+            user.Id = getuser.Id;
+            user.Email = getuser.Username;
             return Json(user, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -114,7 +130,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 userModel.Image = userModel.Image.Split('\\').Last();
             }
             var roleId=new long[] {3};          
-            _accountService.CreateAccount(userModel.FirstName,userModel.LastName,userModel.Email,"123456",roleId,userModel.Phone,userModel.Address,userModel.Image,userModel.IsListingMember);
+            _accountService.CreateAccount(userModel.FirstName,userModel.LastName,userModel.Email,"123456",roleId,userModel.Phone,userModel.Address,userModel.Image,userModel.IsListingMember,WebUser.Id);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Search(UserSearchFilter userSearchFilter)

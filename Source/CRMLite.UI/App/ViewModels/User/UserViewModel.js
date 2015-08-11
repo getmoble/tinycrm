@@ -71,7 +71,7 @@
         bootbox.confirm("Do you want to delete this User?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.UserapiGetDelete) + item.Id());
-                bootbox.alert("Deleted Successfully..!!", function () {
+                bootbox.alert("User deleted successfully..!!", function () {
                     window.location.href = ko.toJS(self.url.UserIndex);
                 });
             }
@@ -94,7 +94,7 @@
             result.done(function (response) {
                 self.busy(false);
                 if (response === true) {
-                    bootbox.alert("Updated successfully...!!", function () {
+                    bootbox.alert("User profile updated successfully...!!", function () {
                         window.location.href = ko.toJS(self.url.UserIndex);
                     });
                 }
@@ -105,7 +105,7 @@
             });
         }
         else {
-            self.modelState.errors.showAllMessages();
+            self.selectedUser().modelState.errors.showAllMessages();
         }
     }
     self.gotoUserPage = function () {
@@ -134,7 +134,7 @@ UserViewModel.prototype.saveUser = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("User saved successfully...!!", function () {
 
                     window.location.href = ko.toJS(self.url.UserIndex);
                 });
@@ -168,7 +168,7 @@ UserViewModel.prototype.updateUser = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Updated successfully...!!", function () {
+                bootbox.alert("User updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.UserIndex);
                 });
             }
@@ -179,7 +179,7 @@ UserViewModel.prototype.updateUser = function () {
         });
     }
     else {
-        self.modelState.errors.showAllMessages();
+        self.selectedUser().modelState.errors.showAllMessages();
     }
 };
 UserViewModel.prototype.UserListing = function () {

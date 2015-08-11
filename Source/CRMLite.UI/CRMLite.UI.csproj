@@ -257,6 +257,7 @@
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\search.svg" />
     <Content Include="Content\images\user.png" />
+    <Content Include="Content\js\appticks.js" />
     <Content Include="Content\js\bootbox.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />

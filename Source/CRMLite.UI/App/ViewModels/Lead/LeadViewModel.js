@@ -26,7 +26,7 @@
         bootbox.confirm("Do you want to delete this Lead?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.leadapiDeleteLead) + item.Id());
-                bootbox.alert("Deleted Successfully..!!", function () {
+                bootbox.alert("Lead deleted successfully..!!", function () {
                     window.location.href = ko.toJS(self.url.leadIndex);
                 });
             }
@@ -190,7 +190,7 @@ LeadViewModel.prototype.saveLead = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Lead saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.leadIndex);
                 });
             }
@@ -214,7 +214,7 @@ LeadViewModel.prototype.updateLead = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Updated successfully...!!", function () {
+                bootbox.alert("Lead updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.leadIndex);
                 });
             }
@@ -238,7 +238,7 @@ LeadViewModel.prototype.convertingLead = function (item) {
     $.post(ko.toJS(self.url.leadapiConvertLead), ko.toJS(jsonData), function (response) {
         self.busy(false);
         if (response === true) {
-            bootbox.alert("Converted successfully...!!", function () {
+            bootbox.alert("Lead converted successfully...!!", function () {
                 window.location.href = ko.toJS(self.url.leadIndex);
             });
         }

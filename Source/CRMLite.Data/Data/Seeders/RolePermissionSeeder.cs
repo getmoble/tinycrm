@@ -428,35 +428,169 @@ namespace CRMLite.Data.Data.Seeders
             context.RoleMembers.Add(adminOwnerRoleMember);
             context.SaveChanges();
 
-            var userRoleMember = new RoleMember
+
+            var adminRoleMember2 = new RoleMember
+            {
+                RoleId = 1,
+                UserId = 2,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminRoleMember2);
+            context.SaveChanges();
+
+            var adminUserRoleMember2 = new RoleMember
             {
                 RoleId = 2,
                 UserId = 2,
                 CreatedByUserId = 1,
                 CreatedOn = DateTime.UtcNow,
             };
-            context.RoleMembers.Add(userRoleMember);
+            context.RoleMembers.Add(adminUserRoleMember2);
             context.SaveChanges();
 
-            var userRoleMember1 = new RoleMember
+            var adminAgentRoleMember2 = new RoleMember
+            {
+                RoleId = 3,
+                UserId = 2,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminAgentRoleMember2);
+            context.SaveChanges();
+
+            var adminTenantRoleMember2 = new RoleMember
+            {
+                RoleId = 4,
+                UserId = 2,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminTenantRoleMember2);
+            context.SaveChanges();
+
+            var adminOwnerRoleMember2 = new RoleMember
+            {
+                RoleId = 5,
+                UserId = 2,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminOwnerRoleMember2);
+            context.SaveChanges();
+
+
+
+
+
+
+            var adminRoleMember3 = new RoleMember
+            {
+                RoleId = 1,
+                UserId = 3,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminRoleMember3);
+            context.SaveChanges();
+
+            var adminUserRoleMember3 = new RoleMember
             {
                 RoleId = 2,
                 UserId = 3,
                 CreatedByUserId = 1,
                 CreatedOn = DateTime.UtcNow,
             };
-            context.RoleMembers.Add(userRoleMember1);
+            context.RoleMembers.Add(adminUserRoleMember3);
             context.SaveChanges();
 
-            var userRoleMember11 = new RoleMember
+            var adminAgentRoleMember3 = new RoleMember
             {
-                RoleId = 2,
+                RoleId = 3,
                 UserId = 3,
                 CreatedByUserId = 1,
                 CreatedOn = DateTime.UtcNow,
             };
-            context.RoleMembers.Add(userRoleMember11);
+            context.RoleMembers.Add(adminAgentRoleMember3);
             context.SaveChanges();
+
+            var adminTenantRoleMember3 = new RoleMember
+            {
+                RoleId = 4,
+                UserId = 3,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminTenantRoleMember3);
+            context.SaveChanges();
+
+            var adminOwnerRoleMember3 = new RoleMember
+            {
+                RoleId = 5,
+                UserId = 3,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminOwnerRoleMember3);
+            context.SaveChanges();
+
+
+
+
+
+
+            var adminRoleMember4 = new RoleMember
+            {
+                RoleId = 1,
+                UserId = 4,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminRoleMember4);
+            context.SaveChanges();
+
+            var adminUserRoleMember4 = new RoleMember
+            {
+                RoleId = 2,
+                UserId = 4,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminUserRoleMember4);
+            context.SaveChanges();
+
+            var adminAgentRoleMember4 = new RoleMember
+            {
+                RoleId = 3,
+                UserId = 4,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminAgentRoleMember4);
+            context.SaveChanges();
+
+            var adminTenantRoleMember4 = new RoleMember
+            {
+                RoleId = 4,
+                UserId = 4,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminTenantRoleMember4);
+            context.SaveChanges();
+
+            var adminOwnerRoleMember4 = new RoleMember
+            {
+                RoleId = 5,
+                UserId = 4,
+                CreatedByUserId = 1,
+                CreatedOn = DateTime.UtcNow,
+            };
+            context.RoleMembers.Add(adminOwnerRoleMember4);
+            context.SaveChanges();
+
+
+
         }
     }
 }

@@ -4,7 +4,7 @@
 }
 <div class="col-md-12">
     <h3 class="inline-b">
-        Edit
+        Edit Potential
     </h3>
 
 <input type="hidden" id="hdnPotentialId" data-value="@ViewBag.PotentialId" />
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label>Expected Close Date</label>
                                         <div id="datetimepicker2" class="input-append date">
-                                            <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
+                                            <input data-format="yyyy-MM-dd" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
                                             <span class="add-on">
                                                 <i class="fa fa-calendar" data-time-icon="icon-time"></i>
 
@@ -167,7 +167,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-md-12">
-                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.updateAccount,visible:isUpdate"><span class=" ladda-label">Update</span></button>
+                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.updateAccount,visible:isUpdate"><span class=" ladda-label"><span class=" ladda-label"><i class="fa fa-check"></i> Update</span></button>
                     
                 </div>
             </div>

@@ -1,1 +1,1 @@
-﻿$("#mailus").append(mail2("info", "PropznetCRM", 0, "", "Mail us"));
+﻿$("#mailus").append(mail2("info", "CRM Lite", 0, "", "Mail us"));

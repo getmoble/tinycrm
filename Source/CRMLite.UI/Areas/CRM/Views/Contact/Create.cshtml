@@ -4,7 +4,7 @@
 <div class="col-md-12">
 
     <h3 class="inline-b">
-        Create
+        Create Contact
     </h3>
     <div data-bind="loading:$root.isBusy">
         <div>
@@ -100,7 +100,6 @@
                     </div>
                 </div>
                 <div class="col-md-12 row">
-                    <h4 class="text-primary">Other</h4>
                 </div>
                 <div class="bdr">
 
@@ -113,7 +112,7 @@
             </div>
         </div>
         @*<button type="button" class="btn btn-primary" data-bind="click:$root.saveContact">Save</button>*@
-        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label">Save</span></button>
+        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
     </div>
     </div>
 @section scripts{

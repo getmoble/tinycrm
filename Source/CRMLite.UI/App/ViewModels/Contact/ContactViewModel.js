@@ -71,7 +71,7 @@
         bootbox.confirm("Do you want to delete this Contact?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.contactapiDeleteContact) + item.Id());
-                bootbox.alert("Deleted Successfully..!!", function () {
+                bootbox.alert("Contact deleted Successfully..!!", function () {
                     window.location.href = ko.toJS(self.url.contactIndex);
                 });
             }
@@ -181,7 +181,7 @@ ContactViewModel.prototype.saveContact = function () {
             self.busy(false);
             if (response === true) {
                 self.isBusy(true);
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Contact saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.contactIndex);
                 });
             }
@@ -208,7 +208,7 @@ ContactViewModel.prototype.updateContact = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Updated successfully...!!", function () {
+                bootbox.alert("Contact updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.contactIndex);
                 });
             }
@@ -277,7 +277,7 @@ function SettingsViewModel() {
         var result = $.post(ko.toJS(self.url.settingsapiChangePagingSize) + self.pagingSize());
         result.done(function (response) {
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Settings saved successfully...!!", function () {
                 });
             }
             else {

@@ -4,6 +4,7 @@ using Common.DynamicMenu.Entities;
 using Common.Providers.Email.Entities;
 using Common.Settings.Entities;
 using PropznetCommon.Features.CRM.Entities;
+using System;
 using System.Data.Entity;
 
 namespace CRMLite.Data.Data
@@ -111,7 +112,8 @@ namespace CRMLite.Data.Data
            .HasRequired(s => s.SalesStage)
            .WithMany()
            .WillCascadeOnDelete(false);
-
+            modelBuilder.Properties<DateTime>()
+            .Configure(c => c.HasColumnType("datetime2"));
 
             base.OnModelCreating(modelBuilder);
 
