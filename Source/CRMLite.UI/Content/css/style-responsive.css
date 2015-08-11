@@ -29,6 +29,9 @@
     .inbox-wrapper .inbox-right {
         width: 70%;
     }
+    .form-control {
+    margin-bottom: 10px;
+}
 
 }
 
@@ -253,6 +256,13 @@
         width:100%;
         display:block;
     }
+    .dataTables_length label,.dataTables_filter label,.dataTables_filter {
+        width:100%;
+    }
+    .f-w-9 {
+        width: 88%;
+        vertical-align: super;
+    }
 }
 
 @media (max-width: 480px) {
@@ -343,6 +353,10 @@
     .chart-position {
         margin-top: 0px;
     }
+    .f-w-9 {
+    width: 83%;
+    vertical-align: super;
+}
 
 }
 
