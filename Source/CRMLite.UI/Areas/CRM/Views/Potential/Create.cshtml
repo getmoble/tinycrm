@@ -4,7 +4,7 @@
 }
 <div class="col-md-12">
     <h3 class="inline-b">
-       Potential Create
+        Create
     </h3>
 </div>
 <div data-bind="loading:$root.isBusy()">
@@ -22,10 +22,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Related To Account *</label>@*<span class="mandatory">*</span>*@
-                                <div class="form-group">
+                                <div class="col-md-11 row">
                                     <select id="AccountSelect" data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account'" class="select2-drop-mask atagcolor form-control"></select>
-                                </div>
-                                @*<button class="btn btn-primary m-l-lg " data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>*@
+                                </div><button class="btn btn-primary m-l-lg " data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>
                             </div>
                             <div class="form-group">
                                 <label>Contact</label>
@@ -49,7 +48,7 @@
                             <div class="form-group">
                                 <label>Expected Close Date</label>
                                 <div id="datetimepicker2" class="input-append date">
-                                    <input data-format="yyyy-MM-dd" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
+                                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
                                     <span class="add-on">
                                         <i class="fa fa-calendar" data-time-icon="icon-time"></i>
                                     </span>
@@ -87,7 +86,7 @@
 </div>
     <div>
         <div class="col-md-12">
-            <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><span class=" ladda-label"><i class="fa fa-save"></i>Save</span></button>
+            <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
         </div>
     </div>
 
