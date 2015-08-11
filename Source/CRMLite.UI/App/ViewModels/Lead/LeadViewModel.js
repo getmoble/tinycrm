@@ -23,7 +23,7 @@
     self.selectedConvertLead = ko.observable(new SelectConvertLead({}));
 
     self.leaddelete = function (item) {
-        bootbox.confirm("Do you want to delete this Lead?", function (result) {
+        bootbox.confirm("Do you want to delete the Lead"+" '" + item.Name() +"' "+ " ?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.leadapiDeleteLead) + item.Id());
                 bootbox.alert("Lead deleted successfully..!!", function () {

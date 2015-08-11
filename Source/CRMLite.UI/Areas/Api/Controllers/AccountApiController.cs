@@ -63,8 +63,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
             var person = _personDetailService.CreatePerson(personModel);
             accountModel.PersonId = person.Id;
             accountModel.CreatedByUserId = WebUser.Id;
-            _accountService.CreateAccount(accountModel);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            var account=_accountService.CreateAccount(accountModel);
+            return Json(account, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetAccount(long id)
         {

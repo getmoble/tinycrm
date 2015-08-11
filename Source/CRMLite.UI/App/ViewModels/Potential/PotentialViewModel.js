@@ -39,7 +39,7 @@ function PotentialViewModel() {
     self.SelectedPotential = ko.observable(new Potential({}));
     self.SelectedAccount = ko.observable(new Account({}));
     self.potentialdelete = function (item) {
-        bootbox.confirm("Do you want to delete this Potential?", function (result) {
+        bootbox.confirm("Do you want to delete the Potential" + " '" + item.PotentialName() + "' " + " ?", function (result) {
             if (result) {
                 $.post(ko.toJS(self.url.potentialapiDeletePotential) + item.Id(), function (response) {
                     if (response) {
@@ -55,44 +55,6 @@ function PotentialViewModel() {
         });
     };
  
-    self.addProperties = function () {
-        self.assignProperty.removeAll();
-        self.propertyId.removeAll();
-        $.each(self.propertyLists(), function (k, v) {
-            if (v.IsSelect() === true) {
-                self.assignProperty.push(v);
-                self.propertyId.push(v.Id());
-            }
-        });
-    };
-    self.removeAssignProperty = function (item) {
-        bootbox.confirm("Warning! Are You Sure You Want to delete this Property " + item.PropertyName(), function (result) {
-            if (result) {
-                self.assignProperty.remove(item);
-                self.propertyId.remove(item.Id());
-            }
-        });
-
-    };
-    self.saveMorePotential = function () {
-        if (self.modelState.isValid()) {
-            self.busy(true);
-            $.each(self.aminityList(), function (k, v) {
-                if (v.IsSelectAmenity()) {
-                    self.aminityId.push(v.Id);
-                }
-            });
-            var id = $("#hdnPotentialId").val();
-            var potentialJson = {
-                PotentialId: id, PropertiesId: ko.toJS(self.propertyId), AminityId: ko.toJS(self.aminityId)
-            };
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialCreateMorePotential), potentialJson);
-            result.done(function (data) {
-
-                self.busy(false);
-            });
-        }
-    };
     self.getEditPage = function (item) {
         var self = this;
         self.CRMUrl = urls.CRM;
@@ -115,9 +77,6 @@ function PotentialViewModel() {
         $.get(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue, function (data) {
             self.initialStage(true);
             self.SelectedPotential(new Potential(data.Potential));
-            //self.selectedCountry(data.Potential.Property.City.State.CountryId);
-            //editedState = ko.toJS(self.SelectedPotential().StateId);
-            //editedCity = ko.toJS(data.CityId);
             $("#AccountSelect").select2();
         });
 
@@ -132,7 +91,6 @@ function PotentialViewModel() {
         });
     };
     self.selectedCountry.subscribe(function (newValue) {
-        // self.resetValidation();
         if (ko.toJS(self.selectedCountry) != null) {
             var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllStates) + ko.toJS(self.selectedCountry()));
             result.done(function (data) {
@@ -154,7 +112,6 @@ function PotentialViewModel() {
         }
     });
     self.selectedState.subscribe(function () {
-        //self.resetValidation();
         if (ko.toJS(self.selectedState)) {
             var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllCities) + ko.toJS(self.selectedState));
             result.done(function (data) {
@@ -234,7 +191,6 @@ PotentialViewModel.prototype.savePotential = function () {
     self.SelectedPotential().resetValidation();
 
     self.SelectedPotential().ExpectedCloseDate($("#ExpectedDate").val());
-    //self.SelectedPotential().ExpectedMoveInDate($("#ExpectedMoveInDate").val());
     if (self.SelectedPotential().modelState.isValid()) {
       
         self.busy(true);
@@ -291,10 +247,9 @@ PotentialViewModel.prototype.CreateAccount = function () {
         var result = $.post(ko.toJS(self.url.accountapiCreateAccount), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
-                //bootbox.alert("Saved successfully...!!", function () {
-                //    //window.location.href = "/Potential/Index";
-                //});
+            if (response) {
+                self.Account.push(new SelectAccount(response));
+                self.SelectedAccount(new Account({}));
                 bootbox.alert("Account saved successfully...!!");
             }
             else {

@@ -68,7 +68,7 @@
     //    }
     //});
     self.contactdelete = function (item) {
-        bootbox.confirm("Do you want to delete this Contact?", function (result) {
+        bootbox.confirm("Do you want to delete the Contact" + " '" + item.Name() + "' " + " ?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.contactapiDeleteContact) + item.Id());
                 bootbox.alert("Contact deleted Successfully..!!", function () {

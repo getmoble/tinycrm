@@ -9,7 +9,7 @@
     self.isBusy = ko.observable(false);
     self.SelectedAccount = ko.observable(new Account({}));
     self.accountdelete = function (item) {
-        bootbox.confirm("Do you want to delete this Account?", function (result) {
+            bootbox.confirm("Do you want to delete the Account"+" '" + item.AccountName() +"' "+ " ?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.CRMUrl.accountapiDeleteAccount) + item.Id());
                 bootbox.alert("Account deleted successfully..!!", function () {
@@ -96,7 +96,7 @@ AccountViewModel.prototype.saveAccount = function () {
         var result = $.post(ko.toJS(self.CRMUrl.accountapiCreateAccount), jsonData);
         result.done(function (response) {
                 self.busy(false);
-            if (response === true) {
+            if (response) {
                 bootbox.alert("Account saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.CRMUrl.accountIndex);
                 });
