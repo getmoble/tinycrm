@@ -7,8 +7,9 @@
     self.AccountName = ko.observable('').extend({ required: { params: true, message: "Please select Account Name" } });
     self.Industry = ko.observable(account.Industry || '').extend({ required: { params: true, message: "Please select Industry" } });
     self.SelectedAssignedto = ko.observable(account.AssignedToUserId || 0).extend({ required: { params: true, message: "Please select User" } });
-    self.Assignedto = ko.observable('');
+    self.Assignedto = ko.observable(''); 
     self.Description = ko.observable(account.Description || '');
+    self.Comment = ko.observable(account.Description || '');
     if (account.Person) {
         self.AccountName(account.Person.FirstName);
         self.Website = ko.observable(account.Person.Website || '');

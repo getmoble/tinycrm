@@ -53,7 +53,7 @@
                         <td><span data-bind="text: SalesStageName"> </span></td>
                         <td><span data-bind="text: ShowingDate"> </span></td>
                         <td><span data-bind="text: LeadSourceName"> </span></td>
-                        <td><span data-bind="text: UserName"> </span></td>
+                        <td><span data-bind="text: AssignedTo"> </span></td>
                         <td>
                             <a href="#" data-bind="click:$root.gotoPotentialdetails" data-toggle="modal" data-target="#PotentialDetails"><i class="fa fa-lg fa-info-circle " data-toggle="tooltip" data-placement="top" title="Details" data-original-title="Details"></i></a>&nbsp;&nbsp;
                             @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManagePotential))
@@ -75,7 +75,7 @@
 <link href="~/Content/css/select2.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="~/Content/js/select2.min.js"></script>
-<script src="~/App/ViewModels/Amenity/AmenityModel.js"></script>
+<script src="~/App/ViewModels/Account/AccountModel.js"></script>
 <script src="~/App/ViewModels/CRM/models.js"></script>
 <script src="~/App/ViewModels/Potential/PotentialViewModel.js"></script>
     <script type="text/javascript">

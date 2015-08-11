@@ -127,7 +127,8 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="PropznetCommon.Features.CRM">
+    <Reference Include="PropznetCommon.Features.CRM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\PropznetCommon.Features.CRM.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />

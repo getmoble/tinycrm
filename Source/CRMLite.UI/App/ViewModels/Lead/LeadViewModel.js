@@ -23,7 +23,7 @@
     self.selectedConvertLead = ko.observable(new SelectConvertLead({}));
 
     self.leaddelete = function (item) {
-        bootbox.confirm("Do you want to delete the Lead"+" '" + item.Name() +"' "+ " ?", function (result) {
+        bootbox.confirm("Do you want to delete this Lead?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.url.leadapiDeleteLead) + item.Id());
                 bootbox.alert("Lead deleted successfully..!!", function () {
@@ -51,18 +51,12 @@
         self.isBusy(false);
     };
     self.convertLead = function (item) {
-        //$('#ConvertLead').modal('show');
-        //$('.datePickerPoint').datepicker({
-        //    autoclose: false
-        //});
-        //$('#datePickerPoint').datepicker();
         $.get(ko.toJS(self.url.leadApiGetConvertLead) + item.Id(), function (response) {
             self.selectedConvertLead(new SelectConvertLead(response));
         });
 
     };
-    self.getLead=function()
-    {
+    self.getLead = function () {
         var self = this;
         var id = $("#hdnLeadId").val();
         self.isBusy(true);
@@ -80,7 +74,7 @@
         window.location.href = ko.toJS(self.url.gotoLeadCreate);
     }
     self.convert = function (item) {
-        window.location.href=ko.toJS(self.url.convertLead) + item.Id();
+        window.location.href = ko.toJS(self.url.convertLead) + item.Id();
     };
     self.convertSelectedLead = function () {
         var id = $("#hdnLeadId").val();
@@ -115,7 +109,7 @@ LeadViewModel.prototype.init = function () {
         });
         self.isBusy(false);
     });
-    
+
 };
 LeadViewModel.prototype.search = function () {
     var self = this;
