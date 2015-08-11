@@ -34,6 +34,9 @@ body {
     display: inline-table;
        font-size:10px !important;
 }
+.ladda-label i {
+    padding-right: 5px;
+}
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th{
     vertical-align:middle;
 }
@@ -993,6 +996,12 @@ background-color: #78828b;
 
     display:block !important;
 }
+.auto-height {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden !important;
+    width: 100%;
+}
 	
 
 }
@@ -1666,6 +1675,15 @@ background-color: #78828b;
   margin: 0 auto;
   width: 30%;
 }
+.copyright {
+    text-align: center;
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    background-color: #1b1919;
+    padding: 6px;
+    border-right: 2px solid #222;
+}
 .fc-button-inner {
 
       background-color: #2ecc71;
@@ -1684,6 +1702,10 @@ background-color: #78828b;
     .dataTables_filter {
         float:right;
     }
+    .ladda-button {
+    position: relative;
+    margin-bottom: 30px;
+}
 /*loading style*/
 
 #preloader {
