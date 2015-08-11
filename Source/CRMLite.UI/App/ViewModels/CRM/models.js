@@ -38,7 +38,6 @@ function User(user) {
     self.name = ko.observable('');
     self.firstname = ko.observable(user.FirstName||'').extend({ required: { params: true, message: "Please enter First Name" } });
     self.lastname = ko.observable(user.LastName || '');
-    //alert(ko.toJS(user.Person));
     if (user.Person) {
         self.firstname(user.Person.FirstName);
         self.lastname(user.Person.LastName);
@@ -115,24 +114,14 @@ function Lead(lead) {
         self.Assignedto = ko.observable(lead.AssignedToUser.Name || '').extend({ required: { params: true, message: "Please select User" } });
     else
         self.Assignedto = ko.observable('').extend({ required: { params: true, message: "Please select User" } });
-    self.Comment = ko.observable(lead.Description);
+    self.Comments = ko.observable(lead.Description);
     self.SelectedAssignedTo = ko.observable(lead.AssignedToUserId).extend({ required: { params: true, message: "Please select User" } });
     self.SelectedLeadStatus = ko.observable(lead.LeadStatusId).extend({ required: { params: true, message: "Please select Lead Status" } });
     self.SelectedSalesStage = ko.observable(lead.SalesStageId).extend({ required: { params: true, message: "Please select Sales Stage" } });
     self.SelectedLeadSource = ko.observable(lead.LeadSourceId).extend({ required: { params: true, message: "Please select Lead Source" } });
     self.IsDropdownVisbility = ko.observable(false);
     self.IsTextBox = ko.observable(false);
-    //if (lead.LeadSourceId == 1) {
-    //    self.IsDropdownVisbility = ko.observable(true);
-    //    alert('In')
-    //    self.IsTextBox = ko.observable(false);
-    //} else if (lead.LeadSourceId == 5) {
-    //    self.IsDropdownVisbility = ko.observable(false);
-    //    self.IsTextBox = ko.observable(true);
-    //} else {
-    //    self.IsDropdownVisbility = ko.observable(false);
-    //    self.IsTextBox = ko.observable(false);
-    //}
+
     self.SelectedLeadSource.subscribe(function (newValue) {
         if (newValue == 1) {
             self.IsDropdownVisbility(true);
@@ -152,24 +141,14 @@ function Lead(lead) {
        FirstName: self.FirstName,
        SelectedAssignedTo: self.SelectedAssignedTo,
        SelectedLeadStatus: self.SelectedLeadStatus,
-       //SelectedSalesStage: self.SelectedSalesStage,
        SelectedLeadSource: self.SelectedLeadSource
-       //LastName: self.LastName,
-       //Email: self.Email,
-       //Phone: self.Phone,
-       //Company: self.Company
 
    });
     self.resetValidation = function () {
         self.FirstName.isModified(false);
         self.SelectedAssignedTo.isModified(false);
         self.SelectedLeadStatus.isModified(false);
-        //self.SelectedSalesStage.isModified(false);
         self.SelectedLeadSource.isModified(false);
-        //self.LastName.isModified(false);
-        //self.Email.isModified(false);
-        //self.Phone.isModified(false);
-        //self.Company.isModified(false);
     };
 }
 function SelectAssignedTo(User) {
