@@ -59,6 +59,7 @@
  margin:10px 5%;
  display:block;
   border-radius:30px;
+      z-index: 99999999;
 }
   span{
     position: absolute;
@@ -110,8 +111,8 @@
   position: absolute;
   bottom: -70px;
   width: 100%;
-  text-align: center;
-  color: #fff;
+  text-align: center !important;
+  color: #fff !important;
   background: #2ecc71;
   padding: 10px 0;
   font-size: 12px;
