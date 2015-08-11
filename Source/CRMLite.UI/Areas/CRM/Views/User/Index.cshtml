@@ -13,7 +13,7 @@
        
             @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageUser))
 {
-    <button type="button" class="btn btn-primary pull-right m-r-xs m-t-lg m-bottom10 " data-bind="click:gotoUserPage"><i class="fa fa-plus"></i> Create</button>
+    <button type="button" class="btn btn-primary pull-right m-t-lg m-bottom10 " data-bind="click:gotoUserPage"><i class="fa fa-plus"></i> Create</button>
 }
         
   
@@ -28,7 +28,7 @@
         <div class="col-md-4">
             <input type="text" class="form-control" data-bind="value:SearchPhone,numericOnly:true" placeholder="Phone" />
         </div>
-        <div class="pull-right">
+        <div class="pull-right f-width">
             <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
         </div>
     </div>

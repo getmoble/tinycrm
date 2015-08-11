@@ -20,6 +20,13 @@ body {
     width:30%;
     
 }
+.f-w-9{
+
+    width: 91%;
+    display: inline-block;
+    /* float: left; */
+    margin-right: 2%;
+}
 .inline-b {
     color:#428bca;
 }
@@ -125,7 +132,10 @@ body {
 	opacity:1;}
 	
 
-
+@-moz-document url-prefix() 
+{ 
+.copyright { bottom: 80px !important; position:relative;} 
+} 
 
 
 .transit{
@@ -996,13 +1006,19 @@ background-color: #78828b;
 
     display:block !important;
 }
-.auto-height {
+.auto-height,.scroll-y {
     height: 100%;
     position: relative;
     overflow-x: hidden !important;
     width: 100%;
 }
-	
+.f-width {
+    width:96%;
+    margin-right:0px;
+}
+.m-t-lg {
+    margin-right:15px;  
+}	
 
 }
 
@@ -2089,7 +2105,9 @@ transform:rotate(360deg)
     position: relative;
     overflow-x: hidden !important;
     width: 100%;
-}}
+}
+                                      
+}
 #doNutChart{margin-left: -75px;
     padding: 0px;
 }
