@@ -12,7 +12,7 @@
         bootbox.confirm("Do you want to delete this Account?", function (result) {
             if (result) {
                 $.get(ko.toJS(self.CRMUrl.accountapiDeleteAccount) + item.Id());
-                bootbox.alert("Deleted Successfully..!!", function () {
+                bootbox.alert("Account deleted successfully..!!", function () {
                     window.location.href = ko.toJS(self.CRMUrl.accountIndex);
                 });
             }
@@ -97,7 +97,7 @@ AccountViewModel.prototype.saveAccount = function () {
         result.done(function (response) {
                 self.busy(false);
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Account saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.CRMUrl.accountIndex);
                 });
             }
@@ -120,7 +120,7 @@ AccountViewModel.prototype.updateAccount = function () {
     result.done(function (response) {
         self.busy(false);
         if (response === true) {
-            bootbox.alert("Updated successfully...!!", function () {
+            bootbox.alert("Account updated successfully...!!", function () {
                 window.location.href = ko.toJS(self.CRMUrl.accountIndex);
             });
         }

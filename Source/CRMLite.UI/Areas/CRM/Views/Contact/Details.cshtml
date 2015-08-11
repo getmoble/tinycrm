@@ -4,7 +4,7 @@
 }
 <div class="col-md-12">
 <h3 class="inline-b">
-    Details</h3>
+    Contact Details</h3>
     <div></div>
         <input type="hidden" id="hdnContactId" value="@ViewBag.ContactId" />
         <div class=" clearfix" data-bind="with:SelectedContact">
@@ -23,8 +23,16 @@
                         <span data-bind="text:Title"></span>
                     </div>
                     <div class="form-group">
+                        <label class="lblwidth"><b>Comapny</b>&nbsp;</label>
+                        <span data-bind="text:Comapny"></span>
+                    </div>
+                    <div class="form-group">
                         <label class="lblwidth"><b>Email</b>&nbsp;</label>
                         <span data-bind="text:Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="lblwidth"><b>Secondary Email</b>&nbsp;</label>
+                        <span data-bind="text:SecondaryEmail"></span>
                     </div>
                 </div>
             </div>
@@ -34,17 +42,26 @@
                         <label class="lblwidth"><b>Phone</b>&nbsp;</label>
                         <span data-bind="text:Phone"></span>
                     </div>
-                    <div class="form-group">
-                        <label class="lblwidth"><b>Assigned To</b>&nbsp;</label>
-                        <span data-bind="text:AssignedTo"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="lblwidth"><b>Related To</b>&nbsp;</label>
-                        <span data-bind="text:AccountName"></span>
-                    </div>
+                   
                     <div class="form-group">
                         <label class="lblwidth"><b>Addess</b>&nbsp;</label>
                         <span data-bind="text:Address"></span>
+                    </div>
+                    <div class=" form-group">
+                        <label class="lblwidth"><b>State</b>&nbsp;</label>
+                        <span data-bind="text:State"></span>
+                    </div>
+                    <div class=" form-group">
+                        <label class="lblwidth"><b>City</b>&nbsp;</label>
+                        <span data-bind="text:City"></span>
+                    </div>
+                    <div class=" form-group">
+                        <label class="lblwidth"><b>Region</b>&nbsp;</label>
+                        <span data-bind="text:Region"></span>
+                    </div>
+                    <div class=" form-group">
+                        <label class="lblwidth"><b>Description</b>&nbsp;</label>
+                        <span data-bind="text:Comments"></span>
                     </div>
                 </div>
             </div>

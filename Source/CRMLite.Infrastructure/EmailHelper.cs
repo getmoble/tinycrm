@@ -20,7 +20,7 @@ namespace CRMLite.Infrastructure
 
         public static bool SendEmailForRegistration(string name, string emailtext,string fromaddress,string appname, string phone,string password)
         {
-            var emailbody = "<html><body><h4>Hello " + name + ",</h4><p>We're so glad you decided to sign up for a propoznetERP account. We're sure that you will love it.</p><p><b>For login:</b></p>To login, please click the link below or copy & paste it into your browser's address box.Use your email id as User name and your Password is "+ password+"<p/><a href=http://" + AppConfigaration.GetAppName() + ".com</a>http://" + AppConfigaration.GetAppName() + ".com<p/>Thanks again.<br/>Ma Salaam,<br/>PropznetCRM</body></html>";
+            var emailbody = "<html><body><h4>Hello " + name + ",</h4><p>We're so glad you decided to sign up for a propoznetERP account. We're sure that you will love it.</p><p><b>For login:</b></p>To login, please click the link below or copy & paste it into your browser's address box.Use your email id as User name and your Password is "+ password+"<p/><a href=http://" + AppConfigaration.GetAppName() + ".com</a>http://" + AppConfigaration.GetAppName() + ".com<p/>Thanks again.<br/>Ma Salaam,<br/>CRM Lite</body></html>";
             var smtpconfig = SmptpConfiguration();
             var email = new Email
             {
@@ -38,7 +38,7 @@ namespace CRMLite.Infrastructure
 
         public static bool SendEmailForForgotPassword(string emailId, string fromaddress, string appname, string name, string newPassword)
         {
-            var emailbody = "<html><body><h4>Hello " + name + ",</h4><p>You're receiving this e­mail because you requested a password reset for your PropznetCRM account.</p><p>Please find the password below, login with this temporary password and change your password immediately after login</p><br/><b>New Password:</b>"+newPassword+"<br/><br/>Thanks,<br>The Propznet Team</body></html>";
+            var emailbody = "<html><body><h4>Hello " + name + ",</h4><p>You're receiving this e­mail because you requested a password reset for your CRM Lite account.</p><p>Please find the password below, login with this temporary password and change your password immediately after login</p><br/><b>New Password:</b>"+newPassword+"<br/><br/>Thanks,<br>The Propznet Team</body></html>";
                 var smtpconfig = SmptpConfiguration();
                 var email = new Email
                 {

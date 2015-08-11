@@ -52,7 +52,11 @@ namespace CRMLite.UI.Areas.Api.Controllers
             return ExecuteIfValid(() =>
             {
                 var leadlist = _leadService.GetAllLeadsByUserId(WebUser.Id, WebUser.PermissionCodes);
-                var output = JsonConvert.SerializeObject(leadlist);
+
+                var output = JsonConvert.SerializeObject(leadlist, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                });
                 return Json(output, JsonRequestBehavior.AllowGet);
             },
            () =>
@@ -87,7 +91,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             leadModel.CommunicationDetailID = communicationDetailId.Id;
             leadModel.CreatedBy = WebUser.Id;
             var lead = _leadService.CreateLead(leadModel);
-            return Json(lead);
+            return Json(true);
         }
         [HttpPost]
         public ActionResult Update(LeadModel leadModel)

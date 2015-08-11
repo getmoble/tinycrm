@@ -243,7 +243,7 @@ PotentialViewModel.prototype.savePotential = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Saved successfully...!!", function () {
+                bootbox.alert("Potential saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.potentialIndex);
                 });
             }
@@ -268,7 +268,7 @@ PotentialViewModel.prototype.updatePotential = function () {
         result.done(function (response) {
             self.busy(false);
             if (response === true) {
-                bootbox.alert("Updated successfully...!!", function () {
+                bootbox.alert("Potential updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.potentialIndex);
                 });
             }
@@ -295,7 +295,7 @@ PotentialViewModel.prototype.CreateAccount = function () {
                 //bootbox.alert("Saved successfully...!!", function () {
                 //    //window.location.href = "/Potential/Index";
                 //});
-                bootbox.alert("Saved successfully...!!");
+                bootbox.alert("Account saved successfully...!!");
             }
             else {
 
