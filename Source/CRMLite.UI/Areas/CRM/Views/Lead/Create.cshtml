@@ -60,6 +60,13 @@
                             <label>Website</label>
                             <input type="text" data-bind="value:Website" class=" form-control" />
                         </div>
+                       
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea data-bind="value:Comments" class=" form-control"
+                                          rows="2"></textarea>
+                            </div>
+                        
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -67,16 +74,11 @@
                             <input type="text" data-bind="value:Phone,numericOnly:true" class=" form-control" />
                         </div>
                     </div>
+                  
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea data-bind="value:Comments" class=" form-control"
-                              rows="2"></textarea>
-                </div>
-            </div>
+            
         </div>
         <div class="col-md-12">
             <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveLead"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>

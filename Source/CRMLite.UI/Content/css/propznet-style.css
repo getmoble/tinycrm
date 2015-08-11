@@ -714,7 +714,7 @@ background-color: #78828b;
 
     .field-validation-error {
         position:relative;
-        text-align:center;
+        text-align:left;
         font-size:14px;
         color:red;
         top:0px;
@@ -2086,7 +2086,7 @@ transform:rotate(360deg)
 }
 @media screen and (max-width: 767px) {.auto-height {
     height: 100%;
-    position: fixed;
+    position: relative;
     overflow-x: hidden !important;
     width: 100%;
 }}
