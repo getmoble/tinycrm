@@ -198,7 +198,7 @@ input#searchSubmit {
 	  font-size:24px;
 	  font-family:'FontAwesome';
 	  color:#000;
-   background:url(../images/search.png) no-repeat;
+   background:url(../Content/images/search.png) no-repeat;
     border:0;
     position:absolute;
     top:20px; left:10px;
@@ -1203,7 +1203,7 @@ input#searchSubmit {
 	  font-size:24px;
 	  font-family:'FontAwesome';
 	  color:#000;
-   background:url(../images/search.png) no-repeat;
+   background:url(../Content/images/search.png) no-repeat;
     border:0;
     position:absolute;
     top:20px; left:10px;

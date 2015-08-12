@@ -10,12 +10,20 @@
     self.SelectedAccount = ko.observable(new Account({}));
     self.accountdelete = function (item) {
             bootbox.confirm("Do you want to delete the Account"+" '" + item.AccountName() +"' "+ " ?", function (result) {
-            if (result) {
-                $.get(ko.toJS(self.CRMUrl.accountapiDeleteAccount) + item.Id());
-                bootbox.alert("Account deleted successfully..!!", function () {
-                    window.location.href = ko.toJS(self.CRMUrl.accountIndex);
-                });
-            }
+                if (result) {
+                    var result = CRMLite.dataManager.postData(ko.toJS(self.CRMUrl.accountapiDeleteAccount) + item.Id());
+                    result.done(function (response) {
+                        if (response.Status) {
+                            bootbox.alert("Account deleted successfully..!!", function () {
+                                window.location.href = ko.toJS(self.CRMUrl.accountIndex);
+                            });
+                        }
+                        else
+                        {
+                            toastr["error"](response.Message, "Notification");
+                        }
+                    });
+                }
         });
     };
     self.getEditPage = function (item) {
@@ -26,29 +34,31 @@
     self.accountedit = function () {
         self.isBusy(true);
         $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
-            if (response.Status === false) {
-                if (response.Code === 401) {
-                    window.location.href = ko.toJS(self.CRMUrl.errorNotAuthorized);
-                }
-                else {
-                    bootbox.alert(response);
-                }
-            } else {
-            
+            if (response.Status) {
                 $.each(response.Result.User, function (key, value) {
                     self.Users.push(new SelectAssignedTo(value));
                 });
+            } else {            
+          
+                toastr["error"](response.Message, "Notification");
             }
         });
         var accountIdValue = $("#hdnAccountId").data('value');
-        $.get(ko.toJS(self.CRMUrl.accountapiGetAccount) + accountIdValue, function (data) {
-            self.SelectedAccount(new Account(data.Result));
-            self.isBusy(false);
+        var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiGetAccount) + accountIdValue);
+        result.done(function (response) {
+            if (response.Status) {
+                self.SelectedAccount(new Account(response.Result));
+                self.isBusy(false);
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
     };
     self.accountdetail = function (item) {
-        $.get(ko.toJS(self.CRMUrl.accountapiGetAccount) + item.Id(), function (data) {
-            self.SelectedAccount(new Account(data));
+        var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiGetAccount) + item.Id());
+        result.done(function (response) {
+            self.SelectedAccount(new Account(data.Result));
         });
     };
 };
@@ -66,22 +76,27 @@ AccountViewModel.prototype.init = function () {
         //        bootbox.alert(response);
         //    }
         //} else {
-            if (response) {
+        if (response.Status === true) {
                 $.each(response.Result.Account, function (key, value) {
                     //alert(ko.toJSON(v));
                     self.AccountLists.push(new Account(value));
                     self.isBusy(false);
                 });
-            }
-            $("#pagination").DataTable({
-                responsive: true,
-                "order": [[3, "desc"]]
-            });
-            var oTable = $('#pagination').dataTable();
+                $("#pagination").DataTable({
+                    responsive: true,
+                    "order": [[3, "desc"]]
+                });
+                var oTable = $('#pagination').dataTable();
             // oTable.fnSort([[6, 'desc']]);
-            $.each(response.Result.User, function (key, value) {
-                self.Users.push(new SelectAssignedTo(value));
-            });
+                $.each(response.Result.User, function (key, value) {
+                    self.Users.push(new SelectAssignedTo(value));
+                });
+        }
+        else
+        {
+            toastr["error"](response.Message, "Notification");
+        }
+           
         //}
         self.isBusy(false);
     });
@@ -103,8 +118,7 @@ AccountViewModel.prototype.saveAccount = function () {
                 });
             }
             else {
-
-                bootbox.alert(response.Message);
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -126,8 +140,7 @@ AccountViewModel.prototype.updateAccount = function () {
             });
         }
         else {
-            bootbox.alert(response.Message);
-
+            toastr["error"](response.Message, "Notification");
         }
 
         self.isBusy(false);
@@ -147,7 +160,7 @@ AccountViewModel.prototype.search = function () {
     var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiSearch));
     result.done(function (response) {     
         self.AccountLists.removeAll();
-        $.each(response>Result, function (key, value) {
+        $.each(response.Result, function (key, value) {
             self.AccountLists.push(new Account(value));
         });
 

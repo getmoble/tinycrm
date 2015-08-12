@@ -27,11 +27,13 @@ function DataManager() {
                 500: function () {
                     // notificationManager.error("Bad Server, something has gone wrong");
                     bootbox.alert("Bad Server, something has gone wrong...!!", function () {
+                        window.location.href = ko.toJS(urls.CRM.errorNotAuthorized);
                     });
                 },
                 403: function () {
                     //notificationManager.error("Session Expired, Login again");
                     bootbox.alert("Session Expired, Login again...!!", function () {
+                        window.location.href = ko.toJS(urls.CRM.userSignin);
                     });
                 }
             },

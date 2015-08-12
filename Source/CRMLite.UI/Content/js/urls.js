@@ -20,7 +20,9 @@ function Urls() {
     self.CRM.accountEdit = '/CRM/Account/Edit?id=';
 
     //Error Controllers
-    self.errorNotAuthorized = '/CRM/Error/NotAuthorized';
+    self.CRM.errorNotAuthorized = '/CRM/Error/NotAuthorized';
+    self.CRM.errorFound = '/CRM/Error/Index';
+    self.CRM.userSignin = '/User/SignIn';
 
     //User Api
 

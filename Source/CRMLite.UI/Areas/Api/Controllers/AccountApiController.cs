@@ -21,6 +21,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _userService = userService;
             _personDetailService = personService;
         }
+        [HttpGet]
         public ActionResult GetAllAccounts()
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
@@ -43,6 +44,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
 
         }
+        [HttpPost]
         public ActionResult CreateAccount(AccountModel accountModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
@@ -56,6 +58,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return result;
             }));
         }
+          [HttpGet]
         public ActionResult GetAccount(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
@@ -64,6 +67,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return result;
             }));
         }
+          [HttpPost]
         public ActionResult UpdateAccount(AccountModel accountModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
@@ -72,6 +76,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return result;
             }));
         }
+        [HttpGet]
         public ActionResult Search(AccountSearchFilter accountSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
@@ -81,6 +86,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                return result.Items ;
            }));
         }
+        [HttpPost]
         public ActionResult DeleteAccount(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
