@@ -57,7 +57,6 @@ AccountViewModel.prototype.init = function () {
     self.isBusy(true);
     self.SelectedAccount().resetValidation();
     $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
-        alert(ko.toJSON(response));
         if (response.Status === false) {
             if (response.Code === 401) {
                 window.location.href = ko.toJS(self.CRMUrl.errorNotAuthorized);
