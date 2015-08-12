@@ -2,12 +2,10 @@
     ViewBag.Title = "Create";
 }
 <div class="col-md-12">
-
     <h3 class="inline-b">
         Create
     </h3>
     <input type="hidden" id="hdnContactId" data-value="@ViewBag.ContactId" />
-
     <div data-bind="loading:$root.isBusy">
         <div>
             <div data-bind="with:SelectedContact">
@@ -29,8 +27,7 @@
                         </div>
                     </div>
                     @*<input type="radio" name='radioType' value="Individual" data-bind="checked: Individual" /> <label> Individual</label>
-                    <input type="radio" name='radioType' value="Company" data-bind="checked: IsCompany" /> <label>Company</label>*@
-
+                        <input type="radio" name='radioType' value="Company" data-bind="checked: IsCompany" /> <label>Company</label>*@
                 </div>
                 <div class="clearfix"></div>
                 <div class="bdr">
@@ -60,7 +57,6 @@
                                 <label>Zip</label>
                                 <input type="text" data-bind="value:Zip,numericOnly:true" class="form-control" />
                             </div>
-
                         </div>
                         <div class="col-md-6 ">
                             <div class="form-group">
@@ -96,7 +92,6 @@
                                 <input type="text" data-bind="value:Region" class="form-control" />
                             </div>
                             <div class="clearfix"></div>
-
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -104,22 +99,18 @@
                 <div class="col-md-12 row">
                 </div>
                 <div class="bdr">
-
                     <div class="form-group">
                         <label>Description</label>
                         <textarea data-bind="value:Comments" class=" form-control" rows="6"></textarea>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     @*<button type="button" class="btn btn-primary" data-bind="click:$root.saveContact">Save</button>*@
     <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.updateContact"><span class=" ladda-label"><i class="fa fa-file-text"></i> Update</span></button>
-
 </div>
 @section scripts{
-
     <script src="~/App/ViewModels/CRM/models.js"></script>
     <script src="~/App/ViewModels/Contact/ContactViewModel.js"></script>
     <script type="text/javascript">

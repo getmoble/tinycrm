@@ -2,7 +2,6 @@
     ViewBag.Title = "Create";
 }
 <div class="col-md-12">
-
     <h3 class="inline-b">
         Create
     </h3>
@@ -28,7 +27,6 @@
                     </div>
                     @*<input type="radio" name='radioType' value="Individual" data-bind="checked: Individual" /> <label> Individual</label>
                         <input type="radio" name='radioType' value="Company" data-bind="checked: IsCompany" /> <label>Company</label>*@
-
                 </div>
                 <div class="clearfix"></div>
                 <div class="bdr">
@@ -103,20 +101,19 @@
                                 <textarea data-bind="value:Comments" class=" form-control" rows="6"></textarea>
                             </div>
                         </div>
-                  
+                        <div class="col-md-12">
+                            <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
+                        </div>
                     </div>
                 </div>
-              
+
             </div>
         </div>
-        <div class="col-md-12">
-            <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
-        </div>
-        
-    </div>
-    </div>
-@section scripts{
+        @*<button type="button" class="btn btn-primary" data-bind="click:$root.saveContact">Save</button>*@
 
+    </div>
+</div>
+@section scripts{
     <script src="~/App/ViewModels/CRM/models.js"></script>
     <script src="~/App/ViewModels/Contact/ContactViewModel.js"></script>
     <script type="text/javascript">
