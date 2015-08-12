@@ -1150,6 +1150,7 @@ body {
 
 .nav-primary .nav>li {
 	border-bottom:1px solid #3a3a3a;
+        z-index: 999;
 }
 
 
