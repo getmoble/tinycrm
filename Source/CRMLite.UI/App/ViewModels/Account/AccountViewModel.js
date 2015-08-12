@@ -56,15 +56,16 @@ AccountViewModel.prototype.init = function () {
     var self = this;
     self.isBusy(true);
     self.SelectedAccount().resetValidation();
-    $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
-        if (response.Status === false) {
-            if (response.Code === 401) {
-                window.location.href = ko.toJS(self.CRMUrl.errorNotAuthorized);
-            }
-            else {
-                bootbox.alert(response);
-            }
-        } else {
+    var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiGetAllAccount));
+    result.done(function (response) {     
+        //if (response.Status === false) {
+        //    if (response.Code === 401) {
+        //        window.location.href = ko.toJS(self.CRMUrl.errorNotAuthorized);
+        //    }
+        //    else {
+        //        bootbox.alert(response);
+        //    }
+        //} else {
             if (response) {
                 $.each(response.Result.Account, function (key, value) {
                     //alert(ko.toJSON(v));
@@ -81,7 +82,7 @@ AccountViewModel.prototype.init = function () {
             $.each(response.Result.User, function (key, value) {
                 self.Users.push(new SelectAssignedTo(value));
             });
-        }
+        //}
         self.isBusy(false);
     });
 
@@ -92,8 +93,8 @@ AccountViewModel.prototype.saveAccount = function () {
     self.SelectedAccount().resetValidation();
     if (self.SelectedAccount().modelState.isValid()) {
     self.busy(true);
-        var jsonData = ko.toJS(self.SelectedAccount());
-        var result = $.post(ko.toJS(self.CRMUrl.accountapiCreateAccount), jsonData);
+    var jsonData = ko.toJS(self.SelectedAccount());
+    var result = CRMLite.dataManager.postData(ko.toJS(self.CRMUrl.accountapiCreateAccount), jsonData);
         result.done(function (response) {
                 self.busy(false);
             if (response.Status) {
@@ -116,7 +117,7 @@ AccountViewModel.prototype.updateAccount = function () {
     var self = this;
     self.busy(true);
     var jsonData = ko.toJS(self.SelectedAccount());
-    var result = $.post(ko.toJS(self.CRMUrl.accountapiUpdateAccount), jsonData);
+    var result = CRMLite.dataManager.postData(ko.toJS(self.CRMUrl.accountapiUpdateAccount), jsonData);
     result.done(function (response) {
         self.busy(false);
         if (response.Status === true) {
@@ -125,7 +126,7 @@ AccountViewModel.prototype.updateAccount = function () {
             });
         }
         else {
-            bootbox.alert("Error occured");
+            bootbox.alert(response.Message);
 
         }
 
@@ -143,10 +144,10 @@ AccountViewModel.prototype.search = function () {
     var jsonData = {
         UserId: ko.toJS(self.SearchAssignedTo)
     };
-
-    $.get(ko.toJS(self.CRMUrl.accountapiSearch), jsonData, function (response) {
+    var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiSearch));
+    result.done(function (response) {     
         self.AccountLists.removeAll();
-        $.each(response, function (key, value) {
+        $.each(response>Result, function (key, value) {
             self.AccountLists.push(new Account(value));
         });
 
