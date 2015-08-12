@@ -68,15 +68,6 @@ namespace CRMLite.UI.Areas.Api.Controllers
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
-                var personModel = new PersonModel
-                {
-                    Id = accountModel.PersonId,
-                    Address = accountModel.Address,
-                    Email = accountModel.Email,
-                    PhoneNo = accountModel.Phone,
-                    Website = accountModel.Website
-                };
-                _personDetailService.UpdatePerson(personModel);
                 var result = _accountService.UpdateAccount(accountModel);
                 return result;
             }));
