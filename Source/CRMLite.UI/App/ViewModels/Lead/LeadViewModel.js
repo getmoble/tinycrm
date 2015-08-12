@@ -168,7 +168,6 @@ LeadViewModel.prototype.LeadListing = function () {
                 "order": [[3, "desc"]]
             });
             var oTable = $('#pagination').dataTable();
-            oTable.response = true;
             // oTable.fnSort([[6, 'desc']]);
         }
         self.isBusy(false);

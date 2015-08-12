@@ -76,7 +76,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return result;
             }));
         }
-        [HttpGet]
+        [HttpPost]
         public ActionResult Search(AccountSearchFilter accountSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>

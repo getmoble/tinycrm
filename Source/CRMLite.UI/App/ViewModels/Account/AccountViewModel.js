@@ -33,7 +33,8 @@
     };
     self.accountedit = function () {
         self.isBusy(true);
-        $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
+        var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiGetAllAccount));
+        result.done(function (response) {
             if (response.Status) {
                 $.each(response.Result.User, function (key, value) {
                     self.Users.push(new SelectAssignedTo(value));
@@ -155,9 +156,9 @@ AccountViewModel.prototype.search = function () {
       .draw();
     oldTable.destroy();
     var jsonData = {
-        UserId: ko.toJS(self.SearchAssignedTo)
+        AgentId: ko.toJS(self.SearchAssignedTo)
     };
-    var result = CRMLite.dataManager.getData(ko.toJS(self.CRMUrl.accountapiSearch));
+    var result = CRMLite.dataManager.postData(ko.toJS(self.CRMUrl.accountapiSearch) ,jsonData);
     result.done(function (response) {     
         self.AccountLists.removeAll();
         $.each(response.Result, function (key, value) {

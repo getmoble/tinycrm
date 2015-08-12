@@ -65,7 +65,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
            },
             error =>
             {
-                return Json(false, JsonRequestBehavior.AllowGet);                    
+                return Json(false, JsonRequestBehavior.AllowGet);
             });
         }
         public ActionResult DeleteLead(long id)
