@@ -33,6 +33,16 @@
     margin-bottom: 10px;
 }
 }
+@media (min-width: 768px) and (max-width: 1000px) {
+    .f-width{
+        width: 100%;
+        margin-bottom:10px;
+    }
+    .m-r  {
+      
+        margin-bottom:10px !important;
+    }
+}
 
 @media (max-width: 768px) {
 
@@ -262,10 +272,19 @@
         width: 88%;
         vertical-align: super;
     }
+    .modal-dialog {
+   
+    margin: 45% 0 0 0;
+}
 }
 
 @media (max-width: 480px) {
-
+    .m-b-sm,.cd-as {
+    width:93%;
+}
+    .m-r {
+        width: 87%;
+    }
     .notification-row,.task_notificatoin_bar, .search-row,.knob-charts, .dont-show , .inbox-head .sr-input, .inbox-head .sr-btn{
         display: none;
     }
@@ -305,8 +324,32 @@
     .chart-position {
        margin-top: 0px;
      }
+    .hbox>aside, .hbox>section {
+    padding-top: 50px !important;
 }
+     
+}
+@media (min-width: 320px) and (max-width: 479px) {
 
+.m-r {
+    width: 81%;
+}
+.m-b-sm, .cd-as {
+    width: 90%;
+}
+.scroll-horrizontal{
+        width: 288px;
+    height: 100%;
+    overflow-y: hidden;
+    margin-bottom:20px;
+    overflow-x: scroll;
+}
+.table-bordered td a{
+    text-align: left !important;
+    font-size: 10px !important;
+    padding: 0px;
+}
+}
 @media (max-width:320px) {
     .login-social-link a {
         padding: 15px 17px !important;
@@ -356,6 +399,7 @@
     width: 83%;
     vertical-align: super;
 }
+
 
 }
 

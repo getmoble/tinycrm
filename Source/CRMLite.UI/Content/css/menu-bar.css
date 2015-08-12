@@ -756,6 +756,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 .navbar-toggle {
 	display: none;
 }
+
 }
 .navbar-nav {
 	margin: 7.5px -15px;
@@ -1942,7 +1943,7 @@ button.close {
 @media (min-width: 768px) {
 .modal-dialog {
 	width: 600px;
-	margin: 30px auto;
+	margin: 60px auto;
 }
 .modal-content {
 	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -3271,9 +3272,33 @@ html, body {
 }
 .navbar+section .nav-off-screen {
 	top: 105px;
+    padding-top: 37px !important;
 }
-.navbar+section .nav-off-screen+* {
-	top: 105px;
+.m-b-sm{
+    width:95%;
+}
+.f-width,.btn-file {
+    width:100%;
+}
+.m-r {
+    
+    width: 90%;
+    float: none !important;
+    margin: 0 auto 20px auto !important;
+    display: block;
+}
+    .navbar + section .nav-off-screen + * {
+        top: 105px;
+    }
+    .cd-as{
+        width: 95%;
+    display: block;
+    margin: 0 auto;
+    }
+    
+    .hbox>aside, .hbox>section {
+    padding-top: 50px !important;
+}
 }
 .slimScrollDiv, .slim-scroll {
 	overflow: visible !important;
