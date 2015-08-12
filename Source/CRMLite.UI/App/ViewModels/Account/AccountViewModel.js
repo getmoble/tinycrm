@@ -35,14 +35,14 @@
                 }
             } else {
             
-                $.each(response.User, function (key, value) {
+                $.each(response.Result.User, function (key, value) {
                     self.Users.push(new SelectAssignedTo(value));
                 });
             }
         });
         var accountIdValue = $("#hdnAccountId").data('value');
         $.get(ko.toJS(self.CRMUrl.accountapiGetAccount) + accountIdValue, function (data) {
-            self.SelectedAccount(new Account(data));
+            self.SelectedAccount(new Account(data.Result));
             self.isBusy(false);
         });
     };
@@ -57,6 +57,7 @@ AccountViewModel.prototype.init = function () {
     self.isBusy(true);
     self.SelectedAccount().resetValidation();
     $.get(ko.toJS(self.CRMUrl.accountapiGetAllAccount), function (response) {
+        alert(ko.toJSON(response));
         if (response.Status === false) {
             if (response.Code === 401) {
                 window.location.href = ko.toJS(self.CRMUrl.errorNotAuthorized);
@@ -66,7 +67,7 @@ AccountViewModel.prototype.init = function () {
             }
         } else {
             if (response) {
-                $.each(response.Account, function (key, value) {
+                $.each(response.Result.Account, function (key, value) {
                     //alert(ko.toJSON(v));
                     self.AccountLists.push(new Account(value));
                     self.isBusy(false);
@@ -78,7 +79,7 @@ AccountViewModel.prototype.init = function () {
             });
             var oTable = $('#pagination').dataTable();
             // oTable.fnSort([[6, 'desc']]);
-            $.each(response.User, function (key, value) {
+            $.each(response.Result.User, function (key, value) {
                 self.Users.push(new SelectAssignedTo(value));
             });
         }
@@ -96,14 +97,14 @@ AccountViewModel.prototype.saveAccount = function () {
         var result = $.post(ko.toJS(self.CRMUrl.accountapiCreateAccount), jsonData);
         result.done(function (response) {
                 self.busy(false);
-            if (response) {
+            if (response.Status) {
                 bootbox.alert("Account saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.CRMUrl.accountIndex);
                 });
             }
             else {
 
-                bootbox.alert(response);
+                bootbox.alert(response.Message);
             }
         });
     }
@@ -119,7 +120,7 @@ AccountViewModel.prototype.updateAccount = function () {
     var result = $.post(ko.toJS(self.CRMUrl.accountapiUpdateAccount), jsonData);
     result.done(function (response) {
         self.busy(false);
-        if (response === true) {
+        if (response.Status === true) {
             bootbox.alert("Account updated successfully...!!", function () {
                 window.location.href = ko.toJS(self.CRMUrl.accountIndex);
             });
