@@ -209,7 +209,6 @@ function SelectConvertLead(convertlead) {
 
 }
 function SelectAccount(account) {
-    alert(ko.toJSON(account));
     var self = this;
     self.Id = ko.observable(account.Id || 0);
 
@@ -278,7 +277,8 @@ function Potential(potential) {
     self.PropertyFloor = ko.observable(potential.PropertyFloor || '');
     self.SalesStageName = ko.observable(potential.SalesStageName || '');
     self.UserName = ko.observable(potential.UserName || '');
-    self.PropertyType = ko.observable(potential.PropertyType || '');
+    self.AssignedTo = ko.observable(potential.AssignedTo||'');
+    self.PropertyType = ko.observable(potential.PropertyType || ''); 
     self.selectedAssignedTo = ko.observable(potential.AssignedToUserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.SelectedContact = ko.observable(potential.ContactId || 0).extend({ required: { params: true, message: "Please select Contact" } });
     self.SelectedLeadStatus = ko.observable(potential.LeadStatusId).extend({ required: { params: true, message: "Please select Lead Status" } });

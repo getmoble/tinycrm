@@ -71,6 +71,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                             ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                             LeadSourceName = potential.LeadSource.Name,
                             AccountName = potential.Account.Person.FirstName,
+                            AssignedTo = potential.AssignedToUser.Person.FirstName,
                             PropertyType = propertyType,
                             Id = potential.Id,
                             AgentId = potential.AssignedToUserId,
@@ -114,7 +115,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                             ExpectedCloseDate = potential.ExpectedCloseDate.ToString(),
                             ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                             LeadSourceName = potential.LeadSource.Name,
-
+                            AssignedTo=potential.AssignedToUser.Person.FirstName,
                             AccountName = potential.Account.Person.FirstName,
                             PropertyType = propertyType,
                             Id = potential.Id,
@@ -200,7 +201,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 ContactNo = potential.Contact.RefId,
                 AccountNo = potential.Account.RefId,
                 Industry = potential.Account.Industry,
-                ContactTitle = potential.Contact.Person.Title
+                ContactTitle = potential.Contact.Person.Title,
+                AssignedTo = potential.AssignedToUser.Person.FirstName
             };
             return Json(potentialvm, JsonRequestBehavior.AllowGet);
         }
@@ -228,7 +230,8 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     AgentId = potential.AssignedToUserId,
                     AgentName = potential.Person.FirstName,
                     SalesStageName = potential.SalesStage.Name,
-                    RefId = potential.RefId
+                    RefId = potential.RefId,
+                    AssignedTo = potential.AssignedToUser.Person.FirstName
                 };
                 potentialvm.Add(model);
             }

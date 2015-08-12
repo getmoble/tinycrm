@@ -4,6 +4,9 @@ using PropznetCommon.Features.CRM.Model.Account;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
 using Common.Auth.SingleTenant.Interfaces.Services;
 using Common.Auth.SingleTenant.Models;
+using CRMLite.Core.Models;
+using System.Linq;
+using System;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {
@@ -20,82 +23,71 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
         public ActionResult GetAllAccounts()
         {
-            return ExecuteIfValid(() =>
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
                     var users = _userService.GetAllUserByCreatedUserId(WebUser.Id);
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
 
-                    var returnData = new { Account = accounts, User = users };
-                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                    var result = new AccountResult { Account = accounts, User = users };
+                    return result;
                 }
                 else
                 {
-                    var Users = _userService.GetAllUsers();
+                    var Users = _userService.GetAllUsers().ToList();
                     var accounts = _accountService.GetAllAccounts();
-                    var returnData = new { Account = accounts, User = Users };
-                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                    var result = new AccountResult { Account = accounts, User = Users };
+                    return result;
                 }
-            },
-             () =>
-             {
-                 return Json(false, JsonRequestBehavior.AllowGet);
-             },
-             error => {
-                 return Json(false, JsonRequestBehavior.AllowGet);
-             });
+            }));
+
         }
         public ActionResult CreateAccount(AccountModel accountModel)
         {
-            if (_accountService.CheckAccountExist(accountModel.AccountName))
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
-                return Json("Account with same name already exist, try another name", JsonRequestBehavior.AllowGet);
-            }
-
-            var personModel = new PersonModel
-            {
-                Address = accountModel.Address,
-                Email = accountModel.Email,
-                PhoneNo = accountModel.Phone,
-                Website = accountModel.Website
-            };
-            var person = _personDetailService.CreatePerson(personModel);
-            accountModel.PersonId = person.Id;
-            accountModel.CreatedByUserId = WebUser.Id;
-            var account=_accountService.CreateAccount(accountModel);
-            return Json(account, JsonRequestBehavior.AllowGet);
+                if (_accountService.CheckAccountExist(accountModel.AccountName))
+                {
+                    throw new Exception("Account with same name already exist, try another name");
+                }
+                accountModel.CreatedByUserId = WebUser.Id;
+                var result = _accountService.CreateAccount(accountModel);
+                return result;
+            }));
         }
         public ActionResult GetAccount(long id)
         {
-            var account = _accountService.GetAccount(id);
-            return Json(account, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            {
+                var result = _accountService.GetAccount(id);
+                return result;
+            }));
         }
         public ActionResult UpdateAccount(AccountModel accountModel)
         {
-            var personModel = new PersonModel
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
-                Id = accountModel.PersonId,
-                Address = accountModel.Address,
-                Email = accountModel.Email,
-                PhoneNo = accountModel.Phone,
-                Website = accountModel.Website
-                
-            };
-            _personDetailService.UpdatePerson(personModel);
-            _accountService.UpdateAccount(accountModel);
-            return Json(true, JsonRequestBehavior.AllowGet);
+                var result = _accountService.UpdateAccount(accountModel);
+                return result;
+            }));
         }
         public ActionResult Search(AccountSearchFilter accountSearchFilter)
         {
-            accountSearchFilter.UserId = WebUser.Id;
-            var searchAccount = _accountService.Search(accountSearchFilter, 0, 0);
-            return Json(searchAccount.Items, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+           {
+               accountSearchFilter.UserId = WebUser.Id;
+               var result = _accountService.Search(accountSearchFilter, 0, 0);
+               return result.Items ;
+           }));
         }
         public ActionResult DeleteAccount(long id)
         {
-            var deleteStatus = _accountService.DeleteAccount(id);
-            return Json(deleteStatus, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            {
+                var deleteStatus = _accountService.DeleteAccount(id);
+                return deleteStatus ;
+            }));
         }
     }
 }
