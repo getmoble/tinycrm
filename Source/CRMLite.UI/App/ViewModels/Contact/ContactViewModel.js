@@ -23,57 +23,21 @@
     self.SelectedContact = ko.observable(new Contact({}));
     self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
-    //self.selectedCountry.subscribe(function (newValue) {
-    //    if (ko.toJS(self.selectedCountry) != null) {
-    //        self.isBusy(true);
-    //        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllStates) + ko.toJS(self.selectedCountry()));
-    //        result.done(function (data) {
-    //            self.States.removeAll();
-    //            self.Cities.removeAll();
-    //            $.each(data, function (k, v) {
-    //                self.States.push(v);
-    //            });
-    //            if (self.initialStage()) {
-    //                self.initialCityStage(true);
-    //                self.selectedState(editedState);
-    //            }
-    //            else {
-    //                self.selectedState('');
-    //                self.SelectedContact().CityId('');
-    //            }
-    //            self.initialStage(false);
-    //            self.isBusy(false);
-    //        });
-    //    }
-    //});
-    //self.selectedState.subscribe(function () {
-    //    if (ko.toJS(self.selectedState)) {
-    //        self.isBusy(true);
-    //        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiGetAllCities) + ko.toJS(self.selectedState));
-    //        result.done(function (data) {
-    //            self.Cities.removeAll();
-    //            $.each(data, function (k, v) {
-    //                self.Cities.push(v);
-    //            });
-    //            if (self.initialCityStage())
-    //                self.SelectedContact().CityId(editedCity);
-    //            else {
 
-    //                self.SelectedContact().CityId('');
-
-    //            }
-    //            self.initialCityStage(false);
-    //            self.isBusy(false);
-    //        });
-    //    }
-    //});
     self.contactdelete = function (item) {
         bootbox.confirm("Do you want to delete the Contact" + " '" + item.Name() + "' " + " ?", function (result) {
             if (result) {
-                $.get(ko.toJS(self.url.contactapiDeleteContact) + item.Id());
-                bootbox.alert("Contact deleted Successfully..!!", function () {
-                    window.location.href = ko.toJS(self.url.contactIndex);
-                });
+                var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiDeleteContact) + item.Id());
+                result.done(function (response) {
+                    if (response.Status == true) {
+                        bootbox.alert("Contact deleted Successfully..!!", function () {
+                            window.location.href = ko.toJS(self.url.contactIndex);
+                        });
+                    }
+                    else {
+                        toastr["error"](response.Message, "Notification");
+                    }
+            });
             }
         });
     };
@@ -86,31 +50,22 @@
         self.isCreate(false);
         self.isUpdate(true);
         self.isBusy(true);
-        $.get(ko.toJS(self.url.contactapiGetAllCountries), function (response) {
-            if (response.Status === false) {
-                if (response.Code === 401) {
-                    window.location.href = ko.toJS(self.url.errorNotAuthorized);
-                }
-                else {
-                    bootbox.alert(response);
-                }
-            } else {
-
-                $.each(response, function (key, value) {
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.contactapiGetAllCountries));
+        result.done(function (response) {
+            if (response.Status === true) {
+                $.each(response.Result, function (key, value) {
                     self.Countries.push(new Country(value));
                 });
                 self.isBusy(false);
             }
-
-            
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
         var contactIdValue = $("#hdnContactId").data('value');
-        $.get(ko.toJS(self.url.contactapiGetContact) + contactIdValue, function (data) {
-            self.initialStage(true);
-            self.SelectedContact(new Contact(data));
-            //self.selectedCountry(data.City.State.CountryId);
-            //editedState = ko.toJS(self.SelectedContact().StateId);
-            //editedCity = ko.toJS(data.CityId);
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.contactapiGetContact) + contactIdValue);
+        result.done(function (data) {
+            self.SelectedContact(new Contact(data.Result));
         });
     };
     self.gotoContactdetails = function (item) {
@@ -119,10 +74,16 @@
     self.contactdetails = function (item) {
         self.isBusy(true);
         var id = $("#hdnContactId").val();
-        $.get(ko.toJS(self.url.contactapiGetContact) + id, function (data) {
-            self.SelectedContact(new Contact(data));
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.contactapiGetContact) + id);
+        result.done(function (response) {
+            if (response.Status === true) {
+                self.SelectedContact(new Contact(response.Result));
+                self.isBusy(false);
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
-        self.isBusy(false);
     };
 };
 ContactViewModel.prototype.init = function () {
@@ -132,23 +93,18 @@ ContactViewModel.prototype.init = function () {
     self.isBusy(true);
     self.DisplayTitle('Create Contact');
     self.SelectedContact().resetValidation();
-    $.get(ko.toJS(self.url.contactapiGetAllContacts), function (response) {
-        if (response.Status === false) {
-            if (response.Code === 401) {
-                window.location.href = ko.toJS(self.url.errorNotAuthorized);
-            }
-            else {
-                bootbox.alert(response);
-            }
-        } else {
-            $.each(response.Users, function (key, value) {
+    var result = CRMLite.dataManager.getData(ko.toJS(self.url.contactapiGetAllContacts));
+    result.done(function (response) {
+        if (response.Status === true) {
+
+            $.each(response.Result.Users, function (key, value) {
                 self.User.push(new SelectAssignedTo(value));
             });
-            $.each(response.Accounts, function (key, value) {
+            $.each(response.Result.Accounts, function (key, value) {
                 self.Account.push(new SelectAccount(value));
             });
 
-            $.each(response.Contacts, function (key, value) {
+            $.each(response.Result.Contacts, function (key, value) {
                 self.ContactLists.push(new Contact(value));
             });
             $("#pagination").DataTable({
@@ -158,16 +114,25 @@ ContactViewModel.prototype.init = function () {
             var oTable = $('#pagination').dataTable();
             self.isBusy(false);
         }
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 };
 ContactViewModel.prototype.createPage = function () {
     var self = this;
     self.isBusy(true);
-    var result = $.get(ko.toJS(self.url.contactapiGetAllCountries), function (response) {
-        $.each(response, function (k, v) {
-            self.Countries.push(new Country(v));
-        });
-        self.isBusy(false);
+    var result = CRMLite.dataManager.getData(ko.toJS(self.url.contactapiGetAllCountries));
+    result.done(function (response) {
+        if (response.Status === true) {
+            $.each(response.Result, function (k, v) {
+                self.Countries.push(new Country(v));
+            });
+            self.isBusy(false);
+        }
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 };
 ContactViewModel.prototype.saveContact = function () {
@@ -176,19 +141,18 @@ ContactViewModel.prototype.saveContact = function () {
     if (self.SelectedContact().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedContact());
-        var result = $.post(ko.toJS(self.url.contactapiCreateContact), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiCreateContact), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Status === true) {
                 self.isBusy(true);
                 bootbox.alert("Contact saved successfully...!!", function () {
+                    self.isBusy(false);
                     window.location.href = ko.toJS(self.url.contactIndex);
                 });
             }
-            else {
-                self.isBusy(true);
-
-                bootbox.alert("Error occured");
+            else {         
+                toastr["error"](response.Message, "Notification");
             }
 
         });
@@ -204,18 +168,16 @@ ContactViewModel.prototype.updateContact = function () {
     if (self.SelectedContact().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedContact());
-        var result = $.get(ko.toJS(self.url.contactapiUpdateContact), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiUpdateContact), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Result === true) {
                 bootbox.alert("Contact updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.contactIndex);
                 });
             }
             else {
-
-                bootbox.alert("Error occured");
-
+                toastr["error"](response.Message, "Notification");
             }
         });
         self.isBusy(false);
@@ -235,15 +197,20 @@ ContactViewModel.prototype.search = function () {
     var jsonData = {
         UserId: ko.toJS(self.SearchUser), AccountId: ko.toJS(self.SearchAccount), Title: ko.toJS(self.SearchTitle)
     };
+    var result = CRMLite.dataManager.postData(ko.toJS(self.url.contactapiSearch), jsonData);
+    result.done(function (response) {
+        if (response.Status == true) {
+            self.ContactLists.removeAll();
+            $.each(response.Result, function (key, value) {
+                self.ContactLists.push(new Contact(value));
+            });
 
-    $.get(ko.toJS(self.url.contactapiSearch), jsonData, function (response) {
-        self.ContactLists.removeAll();
-        $.each(response, function (key, value) {
-            self.ContactLists.push(new Contact(value));
-        });
-
-        $("#pagination").DataTable({ responsive: true });
-        self.isBusy(false);
+            $("#pagination").DataTable({ responsive: true });
+            self.isBusy(false);
+        }
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 
 };
@@ -274,14 +241,14 @@ function SettingsViewModel() {
     self.url = urls.CRM;
 
     self.Change = function () {
-        var result = $.post(ko.toJS(self.url.settingsapiChangePagingSize) + self.pagingSize());
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.settingsapiChangePagingSize), jsonData);
         result.done(function (response) {
-            if (response === true) {
+            if (response.Status === true) {
                 bootbox.alert("Settings saved successfully...!!", function () {
                 });
             }
             else {
-                bootbox.alert("Error occured");
+                toastr["error"](response.Message, "Notification");
             }
         });
     };

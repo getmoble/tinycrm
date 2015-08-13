@@ -26,9 +26,10 @@ function DataManager() {
             statusCode: {
                 500: function () {
                     // notificationManager.error("Bad Server, something has gone wrong");
-                    bootbox.alert("Bad Server, something has gone wrong...!!", function () {
-                        window.location.href = ko.toJS(urls.CRM.errorNotAuthorized);
-                    });
+                    toastr["error"]("Bad Server, something has gone wrong...!!", "Notification");
+                    //bootbox.alert("Bad Server, something has gone wrong...!!", function () {
+                    //    window.location.href = ko.toJS(urls.CRM.errorNotAuthorized);
+                    //});
                 },
                 403: function () {
                     //notificationManager.error("Session Expired, Login again");
