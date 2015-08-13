@@ -256,15 +256,28 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         ExpectedAmount = potential.ExpectedAmount,
                         ExpectedCloseDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
                         ShowingDate = potential.ExpectedCloseDate.Value.Date.ToShortDateString(),
-                        LeadSourceName = potential.LeadSource.Name,
-                        AccountName = potential.Account.Person.FirstName,
+                        //LeadSourceName = potential.LeadSource.Name,
+                        //AccountName = potential.Account.Person.FirstName,
                         Id = potential.Id,
                         AgentId = potential.AssignedToUserId,
-                        AgentName = potential.Person.FirstName,
-                        SalesStageName = potential.SalesStage.Name,
+                        //AgentName = potential.Person.FirstName,
+                        //SalesStageName = potential.SalesStage.Name,
                         RefId = potential.RefId,
-                        AssignedTo = potential.AssignedToUser.Person.FirstName
+                        //AssignedTo = potential.AssignedToUser.Person.FirstName
                     };
+                    if (potential.LeadSource != null)
+                        model.LeadSourceName = potential.LeadSource.Name;
+                    if (potential.AssignedToUser != null)
+                        if (potential.AssignedToUser.Person != null)
+                            model.AssignedTo = potential.AssignedToUser.Person.FirstName;
+                    if (potential.Account != null)
+                        if (potential.Account.Person != null)
+                            model.AccountName = potential.Account.Person.FirstName;
+                    if (potential.Person != null)
+                        model.AgentName = potential.Person.FirstName;
+                    if (potential.SalesStage != null)
+                        model.SalesStageName = potential.SalesStage.Name;
+
                     potentialvm.Add(model);
                 }
                 return JsonConvert.SerializeObject(potentialvm);
