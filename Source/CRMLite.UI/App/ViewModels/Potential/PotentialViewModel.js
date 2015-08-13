@@ -41,11 +41,17 @@ function PotentialViewModel() {
     self.potentialdelete = function (item) {
         bootbox.confirm("Do you want to delete the Potential" + " '" + item.PotentialName() + "' " + " ?", function (result) {
             if (result) {
-                $.post(ko.toJS(self.url.potentialapiDeletePotential) + item.Id(), function (response) {
+                var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiDeletePotential) + item.Id());
+                result.done(function (response) {
                     if (response) {
-                        bootbox.alert("Deleted Successfully..!!", function () {
-                            window.location.href = ko.toJS(self.url.potentialIndex);
-                        });
+                        if (response.Status == true) {
+                            bootbox.alert("Deleted Successfully..!!", function () {
+                                window.location.href = ko.toJS(self.url.potentialIndex);
+                            });
+                        }
+                        else {
+                            toastr["error"](response.Message, "Notification");
+                        }
                     }
                     else {
                         bootbox.alert("Error Please Try Again Later ..!!");
@@ -73,11 +79,15 @@ function PotentialViewModel() {
         self.isCreate(false);
         self.isUpdate(true);
         var potentialIdValue = $("#hdnPotentialId").data('value');    
-
-        $.get(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue, function (data) {
-            self.initialStage(true);
-            self.SelectedPotential(new Potential(data.Potential));
-            $("#AccountSelect").select2();
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue);
+        result.done(function (data) {
+            if (data.Status == true) {
+                self.SelectedPotential(new Potential(data.Result));
+                $("#AccountSelect").select2();
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
 
     };
@@ -86,50 +96,16 @@ function PotentialViewModel() {
     };
     self.potentialdetail = function () {
         var id = $("#hdnPotentialId").val();
-        $.get(ko.toJS(self.url.potentialapiDetails) + id, function (data) {
-            self.SelectedPotential(new Potential(data));
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiDetails) + id);
+        result.done(function (data) {
+            if (data.Status == true) {
+                self.SelectedPotential(new Potential(data.Result));
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
     };
-    self.selectedCountry.subscribe(function (newValue) {
-        if (ko.toJS(self.selectedCountry) != null) {
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllStates) + ko.toJS(self.selectedCountry()));
-            result.done(function (data) {
-                self.States.removeAll();
-                self.Cities.removeAll();
-                $.each(data, function (k, v) {
-                    self.States.push(v);
-                });
-                if (self.initialStage()) {
-                    self.initialCityStage(true);
-                    self.selectedState(editedState);
-                }
-                else {
-                    self.selectedState('');
-                    self.SelectedPotential().CityId('');
-                }
-                self.initialStage(false);
-            });
-        }
-    });
-    self.selectedState.subscribe(function () {
-        if (ko.toJS(self.selectedState)) {
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiGetAllCities) + ko.toJS(self.selectedState));
-            result.done(function (data) {
-                self.Cities.removeAll();
-                $.each(data, function (k, v) {
-                    self.Cities.push(v);
-                });
-                if (self.initialCityStage())
-                    self.SelectedPotential().CityId(editedCity);
-                else {
-
-                    self.SelectedPotential().CityId('');
-
-                }
-                self.initialCityStage(false);
-            });
-        }
-    });
 };
 PotentialViewModel.prototype.init = function () {
     var self = this;
@@ -137,48 +113,44 @@ PotentialViewModel.prototype.init = function () {
     self.isUpdate(false);
     self.isBusy(true);
     self.SelectedPotential().resetValidation();
-    $.get(ko.toJS(self.url.potentialapiGetAllPotential), function (response) {
-
-        if (response.Status === false) {
-            if (response.Code === 401) {
-                window.location.href = ko.toJS(self.url.errorNotAuthorized);
-            }
-            else {
-                bootbox.alert(response);
-            }
-        } else {
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiGetAllPotential));
+        result.done(function (response) {
             if (response) {
-
-                $.each($.parseJSON(response.Potential), function (key, value) {
-                    self.PotentialLists.push(new Potential(value));
-
-                });
-            }
+                if (response.Status == true) {
+                    $.each($.parseJSON(response.Result.Potential), function (key, value) {
+                        self.PotentialLists.push(new Potential(value));
+                    });
+  
             $("#pagination").DataTable({
                 responsive: true,
                 "order": [[3, "desc"]]
             });
             var oTable = $('#pagination').dataTable();
             //oTable.fnSort([[6, 'desc']]);
-            $.each(response.Contacts, function (k, v) {
+            $.each(response.Result.Contacts, function (k, v) {
                 self.Contacts.push(new Contact(v));
             });
-            $.each(response.LeadSource, function (k, v) {
+            $.each(response.Result.LeadSource, function (k, v) {
                 self.Leadsource.push(new SelectLeadSource(v));
             });
-            $.each(response.Accounts, function (k, v) {
+            $.each(response.Result.Accounts, function (k, v) {
                 self.Account.push(new SelectAccount(v));
             });
-            $.each(response.SalesStage, function (k, v) {
+            $.each(response.Result.SalesStage, function (k, v) {
                 self.Salesstage.push(new SelectLeadStatus(v));
             });
-            $.each(response.Users, function (k, v) {
+            $.each(response.Result.Users, function (k, v) {
                 self.User.push(new SelectAssignedTo(v));
             });
             
+        
+            $("#AccountSelect").select2();
+            self.isBusy(false);
+                }
+            else {
+                    toastr["error"](response.Message, "Notification");
+            }
         }
-        $("#AccountSelect").select2();
-        self.isBusy(false);
     });
 };
 PotentialViewModel.prototype.gotoPotentialPage = function () {
@@ -195,17 +167,16 @@ PotentialViewModel.prototype.savePotential = function () {
       
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedPotential());
-        var result = $.post(ko.toJS(self.url.potentialapiCreatePotential), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiCreatePotential), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Status === true) {
                 bootbox.alert("Potential saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.potentialIndex);
                 });
             }
             else {
-
-                bootbox.alert("Error occured");
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -220,17 +191,16 @@ PotentialViewModel.prototype.updatePotential = function () {
     if (self.SelectedPotential().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedPotential());
-        var result = $.post(ko.toJS(self.url.potentialapiUpdatePotential), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiUpdatePotential), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Status === true) {
                 bootbox.alert("Potential updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.potentialIndex);
                 });
             }
             else {
-
-                bootbox.alert("Error occured");
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -244,17 +214,16 @@ PotentialViewModel.prototype.CreateAccount = function () {
     if (self.SelectedAccount().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedAccount());
-        var result = $.post(ko.toJS(self.url.accountapiCreateAccount), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.accountapiCreateAccount), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response) {
+            if (response.Status==true) {
                 self.Account.push(new SelectAccount(response));
                 self.SelectedAccount(new Account({}));
                 bootbox.alert("Account saved successfully...!!");
             }
             else {
-
-                bootbox.alert(response);
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -271,13 +240,18 @@ PotentialViewModel.prototype.search = function () {
       .draw();
     oldTable.destroy();
     var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), UserId: ko.toJS(self.SearchUser) };
-    //alert(JSON.stringify(jsonData))
-    $.get(ko.toJS(self.url.potentialapiSearch), jsonData, function (response) {
-        self.PotentialLists.removeAll();
-        $.each($.parseJSON(response), function (key, value) {
-            self.PotentialLists.push(new Potential(value));
-        });
-        $("#pagination").DataTable({ responsive: true });
+    var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiSearch),jsonData);
+    result.done(function (response) {
+        if (response.Status == true) {
+            self.PotentialLists.removeAll();
+            $.each($.parseJSON(response.Result), function (key, value) {
+                self.PotentialLists.push(new Potential(value));
+            });
+            $("#pagination").DataTable({ responsive: true });
+        }
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 };
 PotentialViewModel.prototype.clear = function () {
