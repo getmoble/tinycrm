@@ -11544,6 +11544,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 	margin-left: 30px;
     margin-right:0px !important;
 }
+.m-l-lg-5{
+    margin-left:50px;
+}
 .m-l-xl {
 	margin-left: 40px;
 }

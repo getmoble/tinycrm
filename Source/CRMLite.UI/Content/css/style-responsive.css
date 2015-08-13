@@ -274,7 +274,7 @@
     }
     .modal-dialog {
    
-    margin: 45% 0 0 0;
+    margin: 50% 0 0 0;
 }
 }
 
@@ -325,7 +325,7 @@
        margin-top: 0px;
      }
     .hbox>aside, .hbox>section {
-    padding-top: 50px !important;
+    padding-top: 0px !important;
 }
      
 }

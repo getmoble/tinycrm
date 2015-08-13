@@ -2792,7 +2792,7 @@ img{
     width:100%;
 }
 .header, .footer {
-    min-height: 60px;
+    min-height: 50px;
     padding: 0 15px;
 }
 
@@ -2882,7 +2882,7 @@ html, body, .hbox, .vbox {
 }
 .navbar-header .navbar-brand+.btn {
 	right: 0;
-	top: 15px;
+	top: 10px;
 	left: auto;
 }
 .navbar-brand {
@@ -3126,6 +3126,9 @@ html, body, .hbox, .vbox {
     margin-bottom:10px;
 
 }
+.m-l-lg-5 {
+    margin-left: 0px;
+}
 .row{
     margin-right:0px;
     margin-left:0px;
@@ -3190,7 +3193,7 @@ html, body {
 	padding-bottom: 10px;
 }
 .nav-user .avatar {
-	width: 160px !important;
+	width: 80px !important;
 	float: none !important;
 	display: block;
 	margin: 20px auto;
@@ -3271,7 +3274,7 @@ html, body {
 	z-index: 1950;
 }
 .navbar+section .nav-off-screen {
-	top: 105px;
+	top: 15px;
     padding-top: 37px !important;
 }
 .m-b-sm{
@@ -3297,7 +3300,7 @@ html, body {
     }
     
     .hbox>aside, .hbox>section {
-    padding-top: 50px !important;
+    padding-top: 0px !important;
 }
 }
 .slimScrollDiv, .slim-scroll {
@@ -3556,11 +3559,26 @@ html, body {
 	font-weight: 500;
 	border-radius: 2px;
 }
+#settings {
+    width:100%;
+    text-align:right;
+    top:0px;
+}
+#collapse {
+    z-index:99999999;
+}
 .btn-icon {
 	padding-left: 0;
 	padding-right: 0;
-	width: 34px;
+	width: 43px;
+    background:#2ecc71;
+    border-radius:0px;
+    color:#fff !important;
+    margin:0 15px 0 0;
 	text-align: center;
+}
+.navbar-header a.active {
+    width:60px !important;
 }
 .btn-icon.btn-sm {
 	width: 30px;
@@ -4425,7 +4443,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 }
 
 @media (max-width: 767px) {
-.shift {
+.shift,.search-icon {
 	display: none !important;
 }
 .shift.in {
