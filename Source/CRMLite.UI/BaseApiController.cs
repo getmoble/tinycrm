@@ -175,7 +175,7 @@ namespace CRMLite.UI
             }
         }
 
-        public virtual ActionResult TryExecute<T>(Func<T> operation, JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
+        public virtual ActionResult TryExecuteWrapAndReturn<T>(Func<T> operation, JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
         {
             try
             {
@@ -197,6 +197,19 @@ namespace CRMLite.UI
                     Message = "Oops... Something bad has happened...",
                 };
                 return Json(apiResult, behavior);
+            }
+        }
+
+        public virtual T TryExecute<T>(Func<T> operation, Func<Exception, T> onError)
+        {
+            try
+            {
+                return operation();
+                
+            }
+            catch (Exception ex)
+            {
+                return onError(ex);
             }
         }
       

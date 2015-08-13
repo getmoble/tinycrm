@@ -24,7 +24,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpGet]
         public ActionResult GetAllAccounts()
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
@@ -47,7 +47,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult CreateAccount(AccountModel accountModel)
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 if (_accountService.CheckAccountExist(accountModel.AccountName))
                 {
@@ -61,7 +61,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           [HttpGet]
         public ActionResult GetAccount(long id)
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 var result = _accountService.GetAccount(id);
                 return result;
@@ -70,7 +70,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           [HttpPost]
         public ActionResult UpdateAccount(AccountModel accountModel)
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 var result = _accountService.UpdateAccount(accountModel);
                 return result;
@@ -79,7 +79,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult Search(AccountSearchFilter accountSearchFilter)
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
            {
                accountSearchFilter.UserId = WebUser.Id;
                var result = _accountService.Search(accountSearchFilter, 0, 0);
@@ -89,7 +89,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public ActionResult DeleteAccount(long id)
         {
-            return ThrowIfNotLoggedIn(() => TryExecute(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 var deleteStatus = _accountService.DeleteAccount(id);
                 return deleteStatus ;

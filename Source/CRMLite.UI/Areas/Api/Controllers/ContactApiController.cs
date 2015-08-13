@@ -25,69 +25,85 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _personService = personService;
             _countryService = countryService;
         }
+        [HttpGet]
         public ActionResult GetAllContacts()
         {
-            return ExecuteIfValid(() =>
-            {
-                if (!RoleChecker.CheckRole(WebUser.RoleId, RoleIds.Admin))
-                {
-                    var contacts = _contactService.GetAllContacts();
-                    var accounts = _accountService.GetAllAccounts();
-                    var users = _userService.GetAllUsers();
-                    var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
-                    return Json(returnData, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+          {
+                  if (!RoleChecker.CheckRole(WebUser.RoleId, RoleIds.Admin))
+                  {
+                      var contacts = _contactService.GetAllContacts();
+                      var accounts = _accountService.GetAllAccounts();
+                      var users = _userService.GetAllUsers();
+                      var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
+                      return returnData;
 
-                }
-                else
-                {
-                    var contacts = _contactService.GetAllContactsByUserId(WebUser.Id,WebUser.PermissionCodes);
-                    var accounts = _accountService.GetAllAccounts();
-                    var users = _userService.GetAllUsers();
-                    var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
-                    return Json(returnData, JsonRequestBehavior.AllowGet);
-
-                }
-            },
-            () =>
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            },
-            error =>
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            });
+                  }
+                  else
+                  {
+                      var contacts = _contactService.GetAllContactsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                      var accounts = _accountService.GetAllAccounts();
+                      var users = _userService.GetAllUsers();
+                      var returnData = new { Contacts = contacts, Accounts = accounts, Users = users };
+                      return returnData;
+                  }
+          }));
         }
+        [HttpGet]
         public ActionResult GetAllCountries()
         {
-            var countries = _countryService.GetAllCountries();
-            return Json(countries, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+          {
+              var result = _countryService.GetAllCountries();
+              return result;
+          }));
         }
+        [HttpPost]
         public ActionResult DeleteContact(long id)
         {
-            var contactStatus = _contactService.DeleteContact(id);
-            return Json(contactStatus, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                var contactStatus = _contactService.DeleteContact(id);
+                return contactStatus;
+            }));
         }
+        [HttpGet]
         public ActionResult GetContact(long id)
         {
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+          {
             var contact = _contactService.GetContact(id);
-            return Json(contact, JsonRequestBehavior.AllowGet);
+            return contact;
+          }));
         }
+        [HttpPost]
         public ActionResult CreateContact(ContactModel contactModel)
         {
-            contactModel.CreatedBy = WebUser.Id;
-            _contactService.CreateContact(contactModel);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                contactModel.CreatedBy = WebUser.Id;
+               var result= _contactService.CreateContact(contactModel);
+               return result;
+            }));
         }
+        [HttpPost]
         public ActionResult UpdateContact(ContactModel contactModel)
         {
-            _contactService.UpdateContact(contactModel);
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+           {
+               var result = _contactService.UpdateContact(contactModel);
+               return result;
+           }));
         }
+        [HttpPost]
         public ActionResult Search(ContactSearchFilter contactSearchFilter)
         {
-            contactSearchFilter.UserId = WebUser.Id;
-            var searchContact = _contactService.Search(contactSearchFilter, 0, 0);
-            return Json(searchContact.Items, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+         {
+             contactSearchFilter.UserId = WebUser.Id;
+             var searchContact = _contactService.Search(contactSearchFilter, 0, 0);
+             return searchContact.Items;
+         }));
         }
     }
 }

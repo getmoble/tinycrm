@@ -8,6 +8,9 @@ using PropznetCommon.Features.CRM.Model.Lead;
 using PropznetCommon.Features.CRM.Model.Potential;
 using Common.Auth.SingleTenant.Interfaces.Services;
 using Common.Auth.SingleTenant.Models;
+using CRMLite.Core.Models;
+using System.Linq;
+using System;
 
 namespace CRMLite.UI.Areas.Api.Controllers
 {
@@ -38,128 +41,149 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _contactServise = contactService;
             _potentialService = potentialService;
         }
+        [HttpGet]
         public ActionResult GetData()
         {
-            var User = _userService.GetAllUsers();
-            var leadsource = _leadSourceService.GetAllLeadSources();
-            var leadstatus = _leadStatusService.GetAllLeadStatuses();
-            var salesstage = _salesStageService.GetAllSalesStages();
-            var returnData = new { User = User, LeadStatus = leadstatus, LeadSource = leadsource, SalesStage = salesstage };
-            return Json(returnData, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+           {
+               var User = _userService.GetAllUsers().ToList();
+               var leadsource = _leadSourceService.GetAllLeadSources();
+               var leadstatus = _leadStatusService.GetAllLeadStatuses();
+               var salesstage = _salesStageService.GetAllSalesStages();
+               var result = new LeadResult { User = User, LeadStatus = leadstatus, LeadSource = leadsource, SalesStage = salesstage };
+               return result;
+           }));
         }
+        [HttpGet]
         public ActionResult Index()
         {
-            return ExecuteIfValid(() =>
+            return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
-                var leadlist = _leadService.GetAllLeadsByUserId(WebUser.Id, WebUser.PermissionCodes);
-
-                var output = JsonConvert.SerializeObject(leadlist, Formatting.None, new JsonSerializerSettings()
+                 var leadlist = _leadService.GetAllLeadsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                 var output = JsonConvert.SerializeObject(leadlist, Formatting.None, new JsonSerializerSettings()
+                 {
+                     ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                 });
+     
+                var apiResult = new ApiResult<string>
                 {
-                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                });
-                return Json(output, JsonRequestBehavior.AllowGet);
+                    Status = true,
+                    Message = "Success",
+                    Result = output
+                };
+                return Json(apiResult, JsonRequestBehavior.AllowGet);
+
             },
-           () =>
-           {
-               return Json(false, JsonRequestBehavior.AllowGet);
-           },
-            error =>
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            });
+            error =>{
+                
+                var apiResult = new ApiResult<string>
+                {
+                    Status = false,
+                    Message = "Fail",
+                    Result = ""
+                };
+                return Json(apiResult);
+
+            }));
         }
+        [HttpPost]
         public ActionResult DeleteLead(long id)
         {
-            var deletelead = _leadService.DeleteLead(id);
-            return Json(deletelead, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                var result = _leadService.DeleteLead(id);
+                return result;
+            }));
         }
+        [HttpGet]
         public ActionResult GetLead(long id)
         {
-            var lead = _leadService.GetLead(id);
-            return Json(lead, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                var lead = _leadService.GetLead(id);
+                return lead;
+            }));
         }
         [HttpPost]
         public ActionResult Create(LeadModel leadModel)
         {
-            var personModel = new PersonModel
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
-                Email = leadModel.Email,
-                PhoneNo = leadModel.Phone,
-                Website = leadModel.Website
-            };
-            var communicationDetailId = _personDetailService.CreatePerson(personModel);
-            leadModel.CommunicationDetailID = communicationDetailId.Id;
-            leadModel.CreatedBy = WebUser.Id;
-            var lead = _leadService.CreateLead(leadModel);
-            return Json(true);
+                leadModel.CreatedBy = WebUser.Id;
+                var lead = _leadService.CreateLead(leadModel);
+                return lead;
+            }));
         }
         [HttpPost]
         public ActionResult Update(LeadModel leadModel)
         {
-            var personModel = new PersonModel
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
-                Id = leadModel.CommunicationDetailID,
-                Email = leadModel.Email,
-                PhoneNo = leadModel.Phone,
-                Website = leadModel.Website
-            };
-            var person = _personDetailService.UpdatePerson(personModel);
-            leadModel.CommunicationDetailID = person.Id;
-            _leadService.UpdateLead(leadModel);
-            return Json(true);
+                _leadService.UpdateLead(leadModel);
+                return Json(true);
+            }));
         }
         [HttpPost]
         public ActionResult Search(LeadSearchFilter leadSearch)
         {
-            //leadSearch.UserId = WebUser.Id;
-            var searchresult = _leadService.SearchLeads(leadSearch, 0, 0);
-            return Json(JsonConvert.SerializeObject(searchresult.Items));
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                var searchresult = _leadService.SearchLeads(leadSearch, 0, 0);
+                return searchresult.Items;
+            }));
         }
+        [HttpGet]
         public ActionResult GetConvertLead(long id)
         {
-            var leaddetail = _leadService.GetLead(id);
-            return Json(leaddetail, JsonRequestBehavior.AllowGet);
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            {
+                var leaddetail = _leadService.GetLead(id);
+                return leaddetail;
+            }));
         }
         [HttpPost]
         public ActionResult ConvertLead(ConvertLeadModel convertLeadModel)
         {
-            if (_accountService.CheckAccountExist(convertLeadModel.AccountName))
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
-                return Json("Account with same name already exist, try another name", JsonRequestBehavior.AllowGet);
-            }
-            var account = new AccountModel
-            {
-                SelectedAssignedto = convertLeadModel.selectedAssignedTo,
-                PersonId = convertLeadModel.CommunicationDetailId,
-                AccountName = convertLeadModel.AccountName
-            };
-            var createAccount = _accountService.CreateAccount(account);
-            var contact = new ContactModel
-            {
-                //AccountId = createAccount.Id,
-                //UserId = convertLeadModel.selectedAssignedTo,
-                CommunicationDetailId = convertLeadModel.CommunicationDetailId,
-                FirstName = convertLeadModel.FirstName,
-                LastName = convertLeadModel.LastName
-            };
-            var createContact = _contactServise.CreateContact(contact);
-            if (!convertLeadModel.IsChecked)
-            {
-                var potential = new PotentialModel
+                if (_accountService.CheckAccountExist(convertLeadModel.AccountName))
                 {
-                    PotentialName = convertLeadModel.PotentialName,
-                    AccountId = createAccount.Id,
-                    selectedAssignedTo = convertLeadModel.selectedAssignedTo,
-                    ExpectedCloseDate = convertLeadModel.ExpectedDate,
-                    PotentialAmount = convertLeadModel.PotentialAmount,
-                    SelectedSalesStage = convertLeadModel.SelectedSalesStage,
-                    SelectedContact = createContact.Id,
-                    SelectedLeadSource = convertLeadModel.SelectedLeadSource
+                    throw new Exception("Account with same name already exist, try another name");
+                }
+                var account = new AccountModel
+                {
+                    SelectedAssignedto = convertLeadModel.selectedAssignedTo,
+                    PersonId = convertLeadModel.CommunicationDetailId,
+                    AccountName = convertLeadModel.AccountName
                 };
-                _potentialService.CreatePotential(potential, SiteSettings.Leadprefix);
-            }
-            _leadService.DeleteLead(convertLeadModel.Id);
-            return Json(true);
+                var createAccount = _accountService.CreateAccount(account);
+                var contact = new ContactModel
+                {
+                    //AccountId = createAccount.Id,
+                    //UserId = convertLeadModel.selectedAssignedTo,
+                    CommunicationDetailId = convertLeadModel.CommunicationDetailId,
+                    FirstName = convertLeadModel.FirstName,
+                    LastName = convertLeadModel.LastName
+                };
+                var createContact = _contactServise.CreateContact(contact);
+                if (!convertLeadModel.IsChecked)
+                {
+                    var potential = new PotentialModel
+                    {
+                        PotentialName = convertLeadModel.PotentialName,
+                        AccountId = createAccount.Id,
+                        selectedAssignedTo = convertLeadModel.selectedAssignedTo,
+                        ExpectedCloseDate = convertLeadModel.ExpectedDate,
+                        PotentialAmount = convertLeadModel.PotentialAmount,
+                        SelectedSalesStage = convertLeadModel.SelectedSalesStage,
+                        SelectedContact = createContact.Id,
+                        SelectedLeadSource = convertLeadModel.SelectedLeadSource
+                    };
+                    _potentialService.CreatePotential(potential, SiteSettings.Leadprefix);
+                }
+                var result=_leadService.DeleteLead(convertLeadModel.Id);
+                return result;
+            }));
         }
     }
 }

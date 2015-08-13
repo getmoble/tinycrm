@@ -23,11 +23,18 @@
     self.selectedConvertLead = ko.observable(new SelectConvertLead({}));
 
     self.leaddelete = function (item) {
-        bootbox.confirm("Do you want to delete this Lead?", function (result) {
+        bootbox.confirm("Do you want to delete the Lead" + " '" + item.Name() + "' " + " ?", function (result) {
             if (result) {
-                $.get(ko.toJS(self.url.leadapiDeleteLead) + item.Id());
-                bootbox.alert("Lead deleted successfully..!!", function () {
-                    window.location.href = ko.toJS(self.url.leadIndex);
+                var result = CRMLite.dataManager.postData(ko.toJS(self.url.leadapiDeleteLead) + item.Id());
+                result.done(function (response) {
+                    if (response.Status == true) {
+                        bootbox.alert("Lead deleted successfully..!!", function () {
+                            window.location.href = ko.toJS(self.url.leadIndex);
+                        });
+                    }
+                    else {
+                        toastr["error"](response.Message, "Notification");
+                    }
                 });
             }
         });
@@ -37,22 +44,42 @@
     };
     self.leaddetail = function () {
         var id = $("#hdnLeadId").val(); self.isBusy(true);
-        $.get(ko.toJS(self.url.leadapiGetLead) + id, function (data) {
-            self.selectedLead(new Lead(data));
-            self.isBusy(false);
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiGetLead) + id);
+        result.done(function (data) {
+            if (data.Status == true)
+            {
+                self.selectedLead(new Lead(data.Result));
+                self.isBusy(false);
+            }
+            else {
+                toastr["error"](data.Message, "Notification");
+            }
         });
     };
     self.leadedit = function (item) {
         self.DisplayTitle('Edit Lead');
         self.isBusy(true);
-        $.get(ko.toJS(self.url.leadapiGetLead) + item.Id(), function (data) {
-            self.selectedLead(new Lead(data));
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiGetLead) + id);
+        result.done(function (data) {
+            if (data.Status == true) {
+                self.selectedLead(new Lead(data.Result));
+                self.isBusy(false);
+            }
+            else {
+                toastr["error"](data.Message, "Notification");
+            }
         });
-        self.isBusy(false);
+       
     };
     self.convertLead = function (item) {
-        $.get(ko.toJS(self.url.leadApiGetConvertLead) + item.Id(), function (response) {
-            self.selectedConvertLead(new SelectConvertLead(response));
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadApiGetConvertLead) + item.Id());
+        result.done(function (response) {
+            if (response.Status == true) {
+                self.selectedConvertLead(new SelectConvertLead(response.Result));
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
 
     };
@@ -60,9 +87,15 @@
         var self = this;
         var id = $("#hdnLeadId").val();
         self.isBusy(true);
-        $.get(ko.toJS(self.url.leadapiGetLead) + id, function (data) {
-            self.selectedLead(new Lead(data));
-            self.isBusy(false);
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiGetLead) + id);
+        result.done(function (data) {
+            if (data.Status == true) {
+                self.selectedLead(new Lead(data.Result));
+                self.isBusy(false);
+            }
+            else {
+                toastr["error"](data.Message, "Notification");
+            }
         });
     }
     self.update = function (item) {
@@ -79,13 +112,19 @@
     self.convertSelectedLead = function () {
         var id = $("#hdnLeadId").val();
         self.isBusy(true);
-        $.get(ko.toJS(self.url.leadApiGetConvertLead) + id, function (response) {
-            self.selectedConvertLead(new SelectConvertLead(response));
-            self.isBusy(false);
-            $('#datetimepicker3').datetimepicker().on('changeDate', function (e) {
-                $(this).datetimepicker('hide');
-            });
-            //$('#datetimepicker3').datetimepicker();
+        var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadApiGetConvertLead) + id);
+        result.done(function (response) {
+            if (response.Status == true) {
+                self.selectedConvertLead(new SelectConvertLead(response.Result));
+                self.isBusy(false);
+                $('#datetimepicker3').datetimepicker().on('changeDate', function (e) {
+                    $(this).datetimepicker('hide');
+                });
+                //$('#datetimepicker3').datetimepicker();
+            }
+            else {
+                toastr["error"](response.Message, "Notification");
+            }
         });
 
     };
@@ -93,22 +132,30 @@
 LeadViewModel.prototype.init = function () {
     var self = this;
     self.isBusy(true);
-    $.get(ko.toJS(self.url.leadapiGetData), function (data) {
-        self.selectedLead(new Lead({}));
-        $.each(data.User, function (k, v) {
-            self.Assignto.push(new SelectAssignedTo(v));
-        });
-        $.each(data.LeadStatus, function (k, v) {
-            self.Leadstatus.push(new SelectLeadStatus(v));
-        });
-        $.each(data.LeadSource, function (k, v) {
-            self.Leadsource.push(new SelectLeadSource(v));
-        });
-        $.each(data.SalesStage, function (k, v) {
-            self.salesStage.push(new SelectSalesStage(v));
-        });
-        self.isBusy(false);
+    var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiGetData));
+    result.done(function (data) {
+        if (data.Status == true) {
+            self.selectedLead(new Lead({}));
+            $.each(data.Result.User, function (k, v) {
+                self.Assignto.push(new SelectAssignedTo(v));
+            });
+            $.each(data.Result.LeadStatus, function (k, v) {
+                self.Leadstatus.push(new SelectLeadStatus(v));
+            });
+            $.each(data.Result.LeadSource, function (k, v) {
+                self.Leadsource.push(new SelectLeadSource(v));
+            });
+            $.each(data.Result.SalesStage, function (k, v) {
+                self.salesStage.push(new SelectSalesStage(v));
+            });
+            self.isBusy(false);
+        }
+    
+    else {
+            toastr["error"](data.Message, "Notification");
+        }
     });
+
 
 };
 LeadViewModel.prototype.search = function () {
@@ -123,44 +170,49 @@ LeadViewModel.prototype.search = function () {
         LeadStatusId: ko.toJS(self.SelectedSearchLeadStatus),
         LeadSourceId: ko.toJS(self.SelectedSearchLeadSource), UserId: ko.toJS(self.SelectedSearchAssignedTo)
     };
-
-    $.post(ko.toJS(self.url.leadapiSearch), jsonData, function (response) {
-        self.LeadLists.removeAll();
-        $.each($.parseJSON(response), function (key, value) {
-            self.LeadLists.push(new Lead(value));
-        });
-        $("#pagination").DataTable({ responsive: true });
-        self.isBusy(false);
+    var result = CRMLite.dataManager.postData(ko.toJS(self.url.leadapiSearch), jsonData);
+    result.done(function (response) {
+        if (response.Status == true) {
+            self.LeadLists.removeAll();
+            $.each(response.Result, function (key, value) {
+                self.LeadLists.push(new Lead(value));
+            });
+            $("#pagination").DataTable({ responsive: true });
+            self.isBusy(false);
+        }
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 };
 LeadViewModel.prototype.LeadListing = function () {
     var self = this;
     self.isBusy(true);
-    $.get(ko.toJS(self.url.leadapiGetData), function (data) {
+    var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiGetData));
+    result.done(function (data) {
+        if (data.Status == true) {
         self.selectedLead(new Lead({}));
-        $.each(data.User, function (k, v) {
+        $.each(data.Result.User, function (k, v) {
             self.Assignto.push(new SelectAssignedTo(v));
         });
-        $.each(data.LeadStatus, function (k, v) {
+        $.each(data.Result.LeadStatus, function (k, v) {
             self.Leadstatus.push(new SelectLeadStatus(v));
         });
-        $.each(data.LeadSource, function (k, v) {
+        $.each(data.Result.LeadSource, function (k, v) {
             self.Leadsource.push(new SelectLeadSource(v));
         });
-        $.each(data.SalesStage, function (k, v) {
+        $.each(data.Result.SalesStage, function (k, v) {
             self.salesStage.push(new SelectSalesStage(v));
         });
+        }
+        else {
+            toastr["error"](data.Message, "Notification");
+        }
     });
-    $.getJSON(ko.toJS(self.url.leadapiIndex), function (response) {
-        if (response.Status === false) {
-            if (response.Code === 401) {
-                window.location.href = errorNotAuthorized;
-            }
-            else {
-                bootbox.alert(response);
-            }
-        } else {
-            $.each($.parseJSON(response), function (key, value) {
+    var result = CRMLite.dataManager.getData(ko.toJS(self.url.leadapiIndex));
+    result.done(function (response) {
+        if (response.Status == true) {
+            $.each($.parseJSON(response.Result), function (key, value) {
                 self.LeadLists.push(new Lead(value));
             });
             $("#pagination").DataTable({
@@ -168,9 +220,12 @@ LeadViewModel.prototype.LeadListing = function () {
                 "order": [[3, "desc"]]
             });
             var oTable = $('#pagination').dataTable();
-            // oTable.fnSort([[6, 'desc']]);
+            // oTable.fnSort([[6, 'desc']]);        
+            self.isBusy(false);
         }
-        self.isBusy(false);
+        else {
+            toastr["error"](response.Message, "Notification");
+        }
     });
 
 };
@@ -180,17 +235,17 @@ LeadViewModel.prototype.saveLead = function () {
     if (self.selectedLead().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.selectedLead());
-        var result = $.post(ko.toJS(self.url.leadapiCreate), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.leadapiCreate), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Status === true) {
                 bootbox.alert("Lead saved successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.leadIndex);
                 });
             }
             else {
 
-                bootbox.alert("Error occured");
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -204,18 +259,17 @@ LeadViewModel.prototype.updateLead = function () {
     if (self.selectedLead().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.selectedLead());
-        var result = $.post(ko.toJS(self.url.leadapiUpdate), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(self.url.leadapiUpdate), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response === true) {
+            if (response.Status === true) {
                 bootbox.alert("Lead updated successfully...!!", function () {
                     window.location.href = ko.toJS(self.url.leadIndex);
                 });
             }
             else {
 
-                bootbox.alert("Error occured");
-
+                toastr["error"](response.Message, "Notification");
             }
         });
     }
@@ -229,15 +283,16 @@ LeadViewModel.prototype.convertingLead = function (item) {
     self.busy(true);
     self.selectedConvertLead().ExpectedDate($('#datePickerPoint').val());
     var jsonData = ko.toJS(self.selectedConvertLead());
-    $.post(ko.toJS(self.url.leadapiConvertLead), ko.toJS(jsonData), function (response) {
+    var result = CRMLite.dataManager.postData(ko.toJS(self.url.leadapiConvertLead), ko.toJS(jsonData));
+    result.done(function (response) {
         self.busy(false);
-        if (response === true) {
+        if (response.Status === true) {
             bootbox.alert("Lead converted successfully...!!", function () {
                 window.location.href = ko.toJS(self.url.leadIndex);
             });
         }
         else {
-            bootbox.alert(response);
+            toastr["error"](response.Message, "Notification");
         }
     });
 };
