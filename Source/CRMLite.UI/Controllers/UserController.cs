@@ -14,7 +14,6 @@ using PropznetCommon.Features.CRM.Interfaces.Services;
 using PropznetCommon.Features.CRM.Model.User;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
 using PropznetCommon.Features.CRM.ViewModel.User;
-using PropznetCommon.Features.CRM.ViewModel.User;
 using CRMLite.Infrastructure;
 using ChangePasswordViewModel = Common.Auth.SingleTenant.ViewModels.ChangePasswordViewModel;
 using IAccountService = Common.Auth.SingleTenant.Interfaces.Services.IAccountService;
@@ -179,7 +178,8 @@ namespace CRMLite.UI.Controllers
                 var expirationTime = SiteSettings.CoockieTimeOut;
                 var userInfo = new UserInfo { Id = user.Id, Name = user.Name, RefId = user.RefId, Email = user.Username, PermissionCodes = rolePermissions, Image = user.Person.Avatar,RoleId=roleIds };
                 HttpSessionWrapper.SetInSession(userInfo.RefId, userInfo);
-                var serializeModel = new CRMLitePrincipal { Key = userInfo.RefId, PermissionCodes = rolePermissions, Image = user.Person.Avatar, RoleId = roleIds };
+                var serializeModel = new UserCoockieData { Key = userInfo.RefId };
+                //var serializeModel = new CRMLitePrincipal { Key = userInfo.RefId, PermissionCodes = rolePermissions, Image = user.Person.Avatar, RoleId = roleIds };
                 var serializer = new JavaScriptSerializer();
                 var userData = serializer.Serialize(serializeModel);
                 var authTicket = new FormsAuthenticationTicket(1, userInfo.Email, DateTime.Now, DateTime.Now.AddMinutes(expirationTime), false, userData);

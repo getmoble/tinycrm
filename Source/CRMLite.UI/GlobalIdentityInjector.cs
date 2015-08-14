@@ -21,12 +21,12 @@ namespace CRMLite.UI
                 var serializer = new JavaScriptSerializer();
                 if (authTicket != null)
                 {
-                    var sm = serializer.Deserialize<CRMLitePrincipal>(authTicket.UserData);
+                    var sm = serializer.Deserialize<UserCoockieData>(authTicket.UserData);
                     var userInfo = HttpSessionWrapper.GetFromSession<UserInfo>(sm.Key);
                     if (userInfo == null)
                     {
                         var userService = DependencyResolver.Current.GetService<IUserService>();
-                        var user = userService.GetUserByUsername(sm.Key);
+                        var user = userService.GetUserBykey(sm.Key);
                         if (user != null)
                         {
                             userInfo = UserInfo.GetInstance(user);
