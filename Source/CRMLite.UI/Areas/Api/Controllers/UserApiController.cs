@@ -76,7 +76,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 }
                 else
                 {
-                    var userlist = _userService.GetAllUserDetails();
+                    var userlist = _userService.GetAllUsers();
                     //var output = JsonConvert.SerializeObject(userlist);
                     //return Json(output, JsonRequestBehavior.AllowGet);
                     var output = JsonConvert.SerializeObject(userlist, Formatting.None, new JsonSerializerSettings()

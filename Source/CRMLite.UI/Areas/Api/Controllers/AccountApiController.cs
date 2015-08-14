@@ -28,7 +28,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
-                    var users = _userService.GetAllUserByCreatedUserId(WebUser.Id);
+                    var users = _userService.GetAllUserByCreatedUserId(WebUser.Id).ToList();
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
 
                     var result = new AccountResult { Account = accounts, User = users };
