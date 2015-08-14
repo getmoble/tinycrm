@@ -1,6 +1,5 @@
 ﻿function FullCalendarViewModel() {
     var self = this;
-    self.url = urls.CRM;
     self.Id = ko.observable();
     self.PersonId = ko.observable();
     self.eventTitle = ko.observable('');
@@ -14,7 +13,7 @@
     self.fetchEvents = function () {
 
         $.ajax({
-            url: ko.toJS(self.url.fullCalenderapiGetEvents),
+            url: ko.toJS(CRMLite.CRM.fullCalenderapiGetEvents),
             data: {
                 //start: start,
                 //end: end
@@ -31,7 +30,7 @@
         self.PersonId(id);
         self.isCreate(true);
         self.isUpdate(false);
-        $.get(ko.toJS(self.url.fullCalenderapiGetEventsentityType) + item, function (response) {
+        $.get(ko.toJS(CRMLite.CRM.fullCalenderapiGetEventsentityType) + item, function (response) {
             $.each(response, function (key, value) {
                 self.events.push(new Schedule(value));
             });
@@ -76,12 +75,12 @@
             NewEventTime: ko.toJS(self.eventTime), NewEventDuration: ko.toJS(self.eventDuration),
             EventForId: ko.toJS(self.PersonId), EntityType: ko.toJS(self.EntityType)
         };
-        $.get(ko.toJS(self.url.fullCalenderapiSaveEvent), jsonData, function (data) {
+        $.get(ko.toJS(CRMLite.CRM.fullCalenderapiSaveEvent), jsonData, function (data) {
             if (data) {
                 //$('#calendar').fullCalendar('refetchEvents');
-                bootbox.alert('New event saved!');
+                bootbox.alert('New event saved.');
                 // $('#calendar').fullCalendar('refresh');
-                window.location.href = ko.toJS(self.url.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId);
+                CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId));
             }
         });
     };
@@ -90,17 +89,17 @@
         $('#popupEventForm').modal('show');
     };
     self.eventdelete = function () {
-        $.get(ko.toJS(self.url.fullCalenderapiDeleteEvent) + ko.toJS(self.Id), function (data) {
+        $.get(ko.toJS(CRMLite.CRM.fullCalenderapiDeleteEvent) + ko.toJS(self.Id), function (data) {
             if (data) {
                 //$('#calendar').fullCalendar('refetchEvents');
-                bootbox.alert('Event Deleted!');
+                bootbox.alert('Event Deleted.');
                 // $('#calendar').fullCalendar('refresh');
-                window.location.href = ko.toJS(self.url.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId);
+                CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId));
             }
         });
     };
     self.btnDetails = function () {
-        $.get(ko.toJS(self.url.fullCalenderapiDetailEvent) + ko.toJS(self.Id), function (data) {
+        $.get(ko.toJS(CRMLite.CRM.fullCalenderapiDetailEvent) + ko.toJS(self.Id), function (data) {
             if (data) {
                 ////$('#calendar').fullCalendar('refetchEvents');
                 //bootbox.alert('Event Deleted!');
@@ -115,12 +114,12 @@
             newEventTime: ko.toJS(self.eventTime), NewEventDuration: ko.toJS(self.eventDuration),
             EventForId: ko.toJS(self.PersonId), EntityType: ko.toJS(self.EntityType)
         };
-        $.get(ko.toJS(self.url.fullCalenderapiUpdateEvent), jsonData, function (data) {
+        $.get(ko.toJS(CRMLite.CRM.fullCalenderapiUpdateEvent), jsonData, function (data) {
             if (data) {
                 //$('#calendar').fullCalendar('refetchEvents');
-                bootbox.alert('Event Updated!');
+                bootbox.alert('Event Updated.');
                 // $('#calendar').fullCalendar('refresh');
-                window.location.href = ko.toJS(self.url.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId);
+                CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.fullCalenderIndexentityType) + ko.toJS(self.EntityType) + '&id=' + ko.toJS(self.PersonId));
             }
         });
     };

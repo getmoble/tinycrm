@@ -29,7 +29,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUser(long id)
+        public JsonResult GetUser(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
           {
@@ -55,7 +55,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           }));
         }
         [HttpGet]
-        public ActionResult List()
+        public JsonResult List()
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
@@ -106,7 +106,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 }));
         }
         [HttpGet]
-        public ActionResult EditUser(long id)
+        public JsonResult EditUser(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -115,7 +115,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                 return user;
             }));
         }
-        public ActionResult UploadImageFiles()
+        public JsonResult UploadImageFiles()
         {
             var r = new List<UploadFileContentViewModel>();
 
@@ -141,7 +141,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             return Json(vm);
         }
         [HttpPost]
-        public ActionResult Create(PropznetCommon.Features.CRM.Model.User.UserModel userModel)
+        public JsonResult Create(PropznetCommon.Features.CRM.Model.User.UserModel userModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
@@ -179,7 +179,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(UserSearchFilter userSearchFilter)
+        public JsonResult Search(UserSearchFilter userSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -189,7 +189,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult GetDelete(long id)
+        public JsonResult GetDelete(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -198,7 +198,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Update(PropznetCommon.Features.CRM.Model.User.UserModel userModel)
+        public JsonResult Update(PropznetCommon.Features.CRM.Model.User.UserModel userModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {

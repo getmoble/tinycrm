@@ -440,23 +440,23 @@ ko.bindingHandlers.bootstrapSwitch = {
         $(element).bootstrapSwitch("state", value);
     }
 };
-ko.bindingHandlers.ladda = {
-    init: function (element, valueAccessor) {
-        var l = Ladda.create(element);
+//ko.bindingHandlers.ladda = {
+//    init: function (element, valueAccessor) {
+//        var l = Ladda.create(element);
 
-        ko.computed({
-            read: function () {
-                var state = ko.unwrap(valueAccessor());
-                if (state) {
-                    l.start();
-                }
-                else
-                    l.stop();
-            },
-            disposeWhenNodeIsRemoved: element
-        });
-    }
-};
+//        ko.computed({
+//            read: function () {
+//                var state = ko.unwrap(valueAccessor());
+//                if (state) {
+//                    l.start();
+//                }
+//                else
+//                    l.stop();
+//            },
+//            disposeWhenNodeIsRemoved: element
+//        });
+//    }
+//};
 // its use for subscribe function change stop(infinite function call stop)
 ko.observable.fn.withPausing = function() {
     this.notifySubscribers = function() {

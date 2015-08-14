@@ -20,13 +20,13 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _settingsService = settingsService;
         }
         [HttpPost]
-        public ActionResult ChangePagingSize(int pagingsize)
+        public JsonResult ChangePagingSize(int pagingsize)
         {
             _settingsService.UpdateSetting("pagingsize", pagingsize.ToString());
             return Json(true);
         }
          [HttpPost]
-        public ActionResult ChangeLogo()
+        public JsonResult ChangeLogo()
         {
                 var hpf = Request.Files[0] as HttpPostedFileBase;
                 if (hpf != null && hpf.ContentLength != 0)
