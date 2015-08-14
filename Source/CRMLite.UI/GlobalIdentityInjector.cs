@@ -27,16 +27,25 @@ namespace CRMLite.UI
                     {
                         var userService = DependencyResolver.Current.GetService<IUserService>();
                         var user = userService.GetUserBykey(sm.Key);
-                        if (user != null)
+                        var permissionCodes = userService.GetAllUserPermissions(user.Id);
+
+                        if (user != null&&permissionCodes!=null)
                         {
                             userInfo = UserInfo.GetInstance(user);
+                            userInfo.PermissionCodes = permissionCodes;
                             HttpSessionWrapper.SetInSession(user.RefId, userInfo);
+                            var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image, RoleId = userInfo.RoleId };
+                            HttpContext.Current.User = newUser;
+                        }
+                        else
+                        {
+                        //we don't have to handle if we don't set the principal throwifnotlogin will redirect to login page.
                         }
                     }
                     else
                     {
-                        var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image,RoleId=userInfo.RoleId };
-                        HttpSessionWrapper.SetInSession(newUser.Key, userInfo);
+                        var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image, RoleId = userInfo.RoleId };
+                        //HttpSessionWrapper.SetInSession(newUser.Key, userInfo);
                         HttpContext.Current.User = newUser;
                     }
                 }
