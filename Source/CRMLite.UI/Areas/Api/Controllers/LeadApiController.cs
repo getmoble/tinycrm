@@ -42,7 +42,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _potentialService = potentialService;
         }
         [HttpGet]
-        public ActionResult GetData()
+        public JsonResult GetData()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
            {
@@ -55,7 +55,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
            }));
         }
         [HttpGet]
-        public ActionResult Index()
+        public JsonResult Index()
         {
             return ThrowIfNotLoggedIn(() => TryExecute(() =>
             {
@@ -87,7 +87,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult DeleteLead(long id)
+        public JsonResult DeleteLead(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -96,7 +96,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult GetLead(long id)
+        public JsonResult GetLead(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -105,7 +105,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Create(LeadModel leadModel)
+        public JsonResult Create(LeadModel leadModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -115,7 +115,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Update(LeadModel leadModel)
+        public JsonResult Update(LeadModel leadModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -124,7 +124,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Search(LeadSearchFilter leadSearch)
+        public JsonResult Search(LeadSearchFilter leadSearch)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -133,7 +133,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult GetConvertLead(long id)
+        public JsonResult GetConvertLead(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -142,7 +142,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult ConvertLead(ConvertLeadModel convertLeadModel)
+        public JsonResult ConvertLead(ConvertLeadModel convertLeadModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {

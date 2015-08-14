@@ -157,7 +157,7 @@ namespace CRMLite.UI
             Success,
             Info
         }
-        public virtual ActionResult ThrowIfNotLoggedIn(Func<ActionResult> action)
+        public virtual JsonResult ThrowIfNotLoggedIn(Func<JsonResult> action)
         {
             var loggedIn = User.Identity.IsAuthenticated;
             if (loggedIn)
@@ -175,7 +175,7 @@ namespace CRMLite.UI
             }
         }
 
-        public virtual ActionResult TryExecuteWrapAndReturn<T>(Func<T> operation, JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
+        public virtual JsonResult TryExecuteWrapAndReturn<T>(Func<T> operation, JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
         {
             try
             {
@@ -191,12 +191,24 @@ namespace CRMLite.UI
             }
             catch (Exception ex)
             {
-                var apiResult = new ApiResult<T>
+                if(AppConfigaration.GetExceptionMode()=="debug")
                 {
-                    Status = false,
-                    Message = "Oops... Something bad has happened...",
-                };
-                return Json(apiResult, behavior);
+                    var apiResult = new ApiResult<T>
+                    {
+                        Status = false,
+                        Message = ex.Message
+                    };
+                    return Json(apiResult, behavior);
+                }
+                else
+                {
+                    var apiResult = new ApiResult<T>
+                    {
+                        Status = false,
+                        Message = "Oops... Something bad has happened..."
+                    };
+                    return Json(apiResult, behavior);
+                }
             }
         }
 

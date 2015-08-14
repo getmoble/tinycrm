@@ -1,4 +1,6 @@
-﻿function NotificationManager() {
+﻿CRMLite = {};
+CRMLite.CRM = new Urls().CRM;
+function NotificationManager() {
     var self = this;
     self.success = function (message) {
         alert(message);
@@ -26,15 +28,15 @@ function DataManager() {
             statusCode: {
                 500: function () {
                     // notificationManager.error("Bad Server, something has gone wrong");
-                    toastr["error"]("Bad Server, something has gone wrong...!!", "Notification");
+                    toastr["error"]("Bad Server, something has gone wrong.", "Error");
                     //bootbox.alert("Bad Server, something has gone wrong...!!", function () {
                     //    window.location.href = ko.toJS(urls.CRM.errorNotAuthorized);
                     //});
                 },
                 403: function () {
                     //notificationManager.error("Session Expired, Login again");
-                    bootbox.alert("Session Expired, Login again...!!", function () {
-                        window.location.href = ko.toJS(urls.CRM.userSignin);
+                    bootbox.alert("Session Expired,Please Login again.", function () {
+                        window.location.href = ko.toJS(CRMLite.CRM.userSignin);
                     });
                 }
             },
@@ -67,5 +69,35 @@ function DataManager() {
         return self.ajaxTransport(url, { type: 'POST', data: JSON.stringify(data) });
     };
 };
-CRMLite = {};
+function ShowMessage( ) {
+    var self = this;
+    self.error = function (message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["error"](message, type);
+    };
+};
+function WindowManager() {
+    var self = this;
+    self.Redirect = function (path) {
+        window.location.href = path;
+    };
+};
 CRMLite.dataManager = new DataManager();
+CRMLite.showMesssage = new ShowMessage();
+CRMLite.windowManager = new WindowManager();

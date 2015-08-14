@@ -26,7 +26,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _countryService = countryService;
         }
         [HttpGet]
-        public ActionResult GetAllContacts()
+        public JsonResult GetAllContacts()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
           {
@@ -50,7 +50,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           }));
         }
         [HttpGet]
-        public ActionResult GetAllCountries()
+        public JsonResult GetAllCountries()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
           {
@@ -59,7 +59,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           }));
         }
         [HttpPost]
-        public ActionResult DeleteContact(long id)
+        public JsonResult DeleteContact(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -68,7 +68,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult GetContact(long id)
+        public JsonResult GetContact(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
           {
@@ -77,7 +77,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
           }));
         }
         [HttpPost]
-        public ActionResult CreateContact(ContactModel contactModel)
+        public JsonResult CreateContact(ContactModel contactModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -87,7 +87,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult UpdateContact(ContactModel contactModel)
+        public JsonResult UpdateContact(ContactModel contactModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
            {
@@ -96,7 +96,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
            }));
         }
         [HttpPost]
-        public ActionResult Search(ContactSearchFilter contactSearchFilter)
+        public JsonResult Search(ContactSearchFilter contactSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
          {

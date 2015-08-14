@@ -212,6 +212,3 @@ function Urls() {
     self.ERP.chargeIndex = '/ERP/Charge/Index';
 
 };
-urls = {};
-urls.CRM = new Urls().CRM;
-urls.ERP = new Urls().ERP;

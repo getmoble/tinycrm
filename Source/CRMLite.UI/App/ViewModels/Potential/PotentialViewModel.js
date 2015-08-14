@@ -1,6 +1,5 @@
 function PotentialViewModel() {
     var self = this;
-    self.url = urls.CRM;
     var editedState = '';
     var editedCity = '';
     self.DisplayTitle = ko.observable();
@@ -41,20 +40,20 @@ function PotentialViewModel() {
     self.potentialdelete = function (item) {
         bootbox.confirm("Do you want to delete the Potential" + " '" + item.PotentialName() + "' " + " ?", function (result) {
             if (result) {
-                var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiDeletePotential) + item.Id());
+                var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.potentialapiDeletePotential) + item.Id());
                 result.done(function (response) {
                     if (response) {
                         if (response.Status == true) {
-                            bootbox.alert("Deleted Successfully..!!", function () {
-                                window.location.href = ko.toJS(self.url.potentialIndex);
+                            bootbox.alert("Deleted Successfully.", function () {
+                                CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.potentialIndex));
                             });
                         }
                         else {
-                            toastr["error"](response.Message, "Notification");
+                            CRMLite.showMesssage.error(response.Message, "Error");
                         }
                     }
                     else {
-                        bootbox.alert("Error Please Try Again Later ..!!");
+                        bootbox.alert("Error Please Try Again Later .");
                     }
                 });
             }
@@ -63,8 +62,7 @@ function PotentialViewModel() {
  
     self.getEditPage = function (item) {
         var self = this;
-        self.CRMUrl = urls.CRM;
-        window.location.href = ko.toJS(self.CRMUrl.potentialEdit) + item.Id();
+        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.potentialEdit) + item.Id());
     };
     self.potentialedit = function (item) {
 
@@ -79,30 +77,31 @@ function PotentialViewModel() {
         self.isCreate(false);
         self.isUpdate(true);
         var potentialIdValue = $("#hdnPotentialId").data('value');    
-        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiGetPotential) + potentialIdValue);
+        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.potentialapiGetPotential) + potentialIdValue);
         result.done(function (data) {
             if (data.Status == true) {
                 self.SelectedPotential(new Potential(data.Result));
                 $("#AccountSelect").select2();
             }
             else {
-                toastr["error"](response.Message, "Notification");
+                CRMLite.showMesssage.error(response.Message, "Error");
             }
         });
 
     };
     self.gotoPotentialdetails = function (item) {
-        window.location.href = ko.toJS(self.url.gotoPotentialdetails) + item.Id();
+
+        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.gotoPotentialdetails) + item.Id());
     };
     self.potentialdetail = function () {
         var id = $("#hdnPotentialId").val();
-        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiDetails) + id);
+        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.potentialapiDetails) + id);
         result.done(function (data) {
             if (data.Status == true) {
                 self.SelectedPotential(new Potential(data.Result));
             }
             else {
-                toastr["error"](response.Message, "Notification");
+                CRMLite.showMesssage.error(response.Message, "Error");
             }
         });
     };
@@ -113,7 +112,7 @@ PotentialViewModel.prototype.init = function () {
     self.isUpdate(false);
     self.isBusy(true);
     self.SelectedPotential().resetValidation();
-        var result = CRMLite.dataManager.getData(ko.toJS(self.url.potentialapiGetAllPotential));
+        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.potentialapiGetAllPotential));
         result.done(function (response) {
             if (response) {
                 if (response.Status == true) {
@@ -148,15 +147,14 @@ PotentialViewModel.prototype.init = function () {
             self.isBusy(false);
                 }
             else {
-                    toastr["error"](response.Message, "Notification");
+                    CRMLite.showMesssage.error(response.Message, "Error");
             }
         }
     });
 };
 PotentialViewModel.prototype.gotoPotentialPage = function () {
     var self = this;
-    self.CRMUrl = urls.CRM;
-    window.location.href = ko.toJS(self.CRMUrl.potentialCreate);
+    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.potentialCreate));
 };
 PotentialViewModel.prototype.savePotential = function () {
     var self = this;
@@ -167,16 +165,16 @@ PotentialViewModel.prototype.savePotential = function () {
       
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedPotential());
-        var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiCreatePotential), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.potentialapiCreatePotential), jsonData);
         result.done(function (response) {
             self.busy(false);
             if (response.Status === true) {
-                bootbox.alert("Potential saved successfully...!!", function () {
-                    window.location.href = ko.toJS(self.url.potentialIndex);
+                bootbox.alert("Potential saved successfully.", function () {
+                    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.potentialIndex));
                 });
             }
             else {
-                toastr["error"](response.Message, "Notification");
+                CRMLite.showMesssage.error(response.Message, "Error");
             }
         });
     }
@@ -191,16 +189,16 @@ PotentialViewModel.prototype.updatePotential = function () {
     if (self.SelectedPotential().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedPotential());
-        var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiUpdatePotential), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.potentialapiUpdatePotential), jsonData);
         result.done(function (response) {
             self.busy(false);
             if (response.Status === true) {
-                bootbox.alert("Potential updated successfully...!!", function () {
-                    window.location.href = ko.toJS(self.url.potentialIndex);
+                bootbox.alert("Potential updated successfully.", function () {
+                    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.potentialIndex));
                 });
             }
             else {
-                toastr["error"](response.Message, "Notification");
+                CRMLite.showMesssage.error(response.Message, "Error");
             }
         });
     }
@@ -214,16 +212,16 @@ PotentialViewModel.prototype.CreateAccount = function () {
     if (self.SelectedAccount().modelState.isValid()) {
         self.busy(true);
         var jsonData = ko.toJS(self.SelectedAccount());
-        var result = CRMLite.dataManager.postData(ko.toJS(self.url.accountapiCreateAccount), jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.accountapiCreateAccount), jsonData);
         result.done(function (response) {
             self.busy(false);
             if (response.Status==true) {
                 self.Account.push(new SelectAccount(response));
                 self.SelectedAccount(new Account({}));
-                bootbox.alert("Account saved successfully...!!");
+                bootbox.alert("Account saved successfully.");
             }
             else {
-                toastr["error"](response.Message, "Notification");
+                CRMLite.showMesssage.error(response.Message, "Error");
             }
         });
     }
@@ -240,7 +238,7 @@ PotentialViewModel.prototype.search = function () {
       .draw();
     oldTable.destroy();
     var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), UserId: ko.toJS(self.SearchUser) };
-    var result = CRMLite.dataManager.postData(ko.toJS(self.url.potentialapiSearch),jsonData);
+    var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.potentialapiSearch),jsonData);
     result.done(function (response) {
         if (response.Status == true) {
             self.PotentialLists.removeAll();
@@ -250,7 +248,7 @@ PotentialViewModel.prototype.search = function () {
             $("#pagination").DataTable({ responsive: true });
         }
         else {
-            toastr["error"](response.Message, "Notification");
+            CRMLite.showMesssage.error(response.Message, "Error");
         }
     });
 };
@@ -273,7 +271,6 @@ PotentialViewModel.prototype.clear = function () {
 };
 PotentialViewModel.prototype.ToDo = function (item) {
     var self = this;
-    self.url = urls.CRM;
-    window.location.href = ko.toJS(self.url.fullCalenderIndexentityTypePotential) + ko.toJS(item.Id);
+    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.fullCalenderIndexentityTypePotential) + ko.toJS(item.Id));
 }
 

@@ -93,8 +93,8 @@ namespace CRMLite.UI
             bundles.Add(new ScriptBundle("~/Content/js/CommonKnockoutJs").Include(
                 "~/Content/js/knockout.validation.js",
                 "~/Content/js/knockout.custom.js",
-                "~/App/utils.js",
-                "~/Content/js/urls.js"
+                "~/Content/js/urls.js",
+                "~/App/utils.js"            
                 ));
         }
     }

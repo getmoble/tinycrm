@@ -1,6 +1,5 @@
 ﻿function UserViewModel() {
     var self = this;
-    self.url = urls.CRM;
     self.DisplayTitle = ko.observable();
     self.busy = ko.observable();
     self.isCreate = ko.observable(false);
@@ -12,12 +11,12 @@
     self.UserLists = ko.observableArray();
     self.selectedUser = ko.observable(new User({}));
     self.gotoUserdetails = function (item) {
-        window.location.href = ko.toJS(self.url.gotoUserdetails) + item.Id();
+        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.gotoUserdetails) + item.Id());
     };
     self.Userdetails = function () {
         self.isBusy(true);
         var id = $("#hdnUserId").val();
-        var result = CRMLite.dataManager.getData(ko.toJS(self.url.UserapiGetUser) + id);
+        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.UserapiGetUser) + id);
         result.done(function (data) {
             if (data.Status == true) {
                 self.selectedUser(new User(data.Result));
@@ -38,10 +37,10 @@
             // var that = {};
             var vm = ko.toJS(strPath);
             var o = document.getElementById("ThumbnailImageS");
-            var imagPath = new String(ko.toJS(self.url.uploadUser));
+            var imagPath = new String(ko.toJS(CRMLite.CRM.uploadUser));
             imagPath = imagPath.concat(strPath);
             o.src = imagPath;
-            path = ko.toJS(self.url.uploadUser)+ko.toJS(strPath);
+            path = ko.toJS(CRMLite.CRM.uploadUser)+ko.toJS(strPath);
             self.selectedUser().image(path);
             //return that;
         }
@@ -53,7 +52,7 @@
                 formData.append("file", fileData);
                 formData.append("user_id", 123);
                 $.ajax({
-                    url: ko.toJS(self.url.UserapiUploadImageFiles),
+                    url: ko.toJS(CRMLite.CRM.UserapiUploadImageFiles),
                     dataType: 'json',
                     cache: false,
                     contentType: false,
@@ -68,7 +67,7 @@
             });
         }, 3000);
         var path = null;
-        var result = CRMLite.dataManager.getData(ko.toJS(self.url.UserapiEditUser) + item.Id());
+        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.UserapiEditUser) + item.Id());
         result.done(function (data) {
             if (data.Status == true) {
                 self.selectedUser(new User(data.Result));
@@ -82,11 +81,11 @@
     self.Userdelete = function (item) {
         bootbox.confirm("Do you want to delete the User" + " '" + item.name() + "' " + " ?", function (result) {
             if (result) {
-                var result = CRMLite.dataManager.postData(ko.toJS(self.url.UserapiGetDelete) + item.Id());
+                var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.UserapiGetDelete) + item.Id());
                 result.done(function (response) {
                     if (response.Status == true) {
-                        bootbox.alert("User deleted successfully..!!", function () {
-                            window.location.href = ko.toJS(self.url.UserIndex);
+                        bootbox.alert("User deleted successfully.", function () {
+                            CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserIndex));
                         });
                     }
                     else {
@@ -97,7 +96,7 @@
         });
     };
     self.updateUserProfile = function (item) {
-        window.location.href = ko.toJS(self.url.UserUpdate) + item.Id();
+        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserUpdate) + item.Id());
     };
     self.saveUserProfile = function () {
         self.selectedUser().resetValidation();
@@ -109,12 +108,12 @@
                 DEDlicenseNumber: ko.toJS(self.selectedUser().DEDlicenseNumber), RERAregistrationNumber: ko.toJS(self.selectedUser().RERAregistrationNumber),
                 IsListingMember: ko.toJS(self.selectedUser().islistingmember), Id: ko.toJS(self.selectedUser().Id), CommunicationDetailID: ko.toJS(self.selectedUser().contactdetailId)
             };
-            var result = CRMLite.dataManager.postData(ko.toJS(self.url.UserapiUpdate) ,jsonData);
+            var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.UserapiUpdate) ,jsonData);
             result.done(function (response) {
                 self.busy(false);
                 if (response.Status === true) {
-                    bootbox.alert("User profile updated successfully...!!", function () {
-                        window.location.href = ko.toJS(self.url.UserIndex);
+                    bootbox.alert("User profile updated successfully.", function () {
+                        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserIndex));
                     });
                 }
                 else {
@@ -129,7 +128,7 @@
     self.gotoUserPage = function () {
         var self = this;
         self.DisplayTitle('Create User');
-        window.location.href = ko.toJS(self.url.UserCreate);
+        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserCreate));
     };
 };
 UserViewModel.prototype.init = function () {
@@ -148,12 +147,12 @@ UserViewModel.prototype.saveUser = function () {
             RERAregistrationNumber: ko.toJS(self.selectedUser().RERAregistrationNumber),
             IsListingMember: ko.toJS(self.selectedUser().islistingmember), Id: ko.toJS(self.selectedUser().id), Image: ko.toJS($('#avatar').val())
         };
-        var result = CRMLite.dataManager.postData(ko.toJS(self.url.UserapiCreate) ,jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.UserapiCreate) ,jsonData);
         result.done(function (response) {
             self.busy(false);
             if (response.Status === true) {
-                bootbox.alert("User saved successfully...!!", function () {
-                    window.location.href = ko.toJS(self.url.UserIndex);
+                bootbox.alert("User saved successfully.", function () {
+                    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserIndex));
                 });
             }
             else {
@@ -167,7 +166,7 @@ UserViewModel.prototype.saveUser = function () {
 
 };
 UserViewModel.prototype.AddUser = function () {
-    window.location.href = ko.toJS(self.url.UserList);
+    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserList));
 };
 UserViewModel.prototype.updateUser = function () {
     var self = this;
@@ -180,12 +179,12 @@ UserViewModel.prototype.updateUser = function () {
             DEDlicenseNumber: ko.toJS(self.selectedUser().DEDlicenseNumber), RERAregistrationNumber: ko.toJS(self.selectedUser().RERAregistrationNumber),
             IsListingMember: ko.toJS(self.selectedUser().islistingmember), Id: ko.toJS(self.selectedUser().Id), CommunicationDetailID: ko.toJS(self.selectedUser().contactdetailId)
         };
-        var result = CRMLite.dataManager.postData(ko.toJS(self.url.UserapiUpdate) ,jsonData);
+        var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.UserapiUpdate) ,jsonData);
         result.done(function (response) {  
             self.busy(false);
             if (response.Status === true) {
-                bootbox.alert("User updated successfully...!!", function () {
-                    window.location.href = ko.toJS(self.url.UserIndex);
+                bootbox.alert("User updated successfully.", function () {
+                    CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.UserIndex));
                 });
             }
             else {
@@ -201,7 +200,7 @@ UserViewModel.prototype.UserListing = function () {
     var self = this;
     self.isBusy(true);
     self.isCreate(true);
-    var result = CRMLite.dataManager.getData(ko.toJS(self.url.UserapiList));
+    var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.UserapiList));
     result.done(function (response) {
         if (response.Status == true) {
             $.each($.parseJSON(response.Result), function (key, value) {
@@ -216,7 +215,7 @@ UserViewModel.prototype.UserListing = function () {
             self.isBusy(false);
         }
         else {
-            toastr["error"](response.Message, "Notification");
+            CRMLite.showMesssage.error(response.Message, "Error");
         }
     });
 };
@@ -231,7 +230,7 @@ UserViewModel.prototype.search = function () {
         FirstName: ko.toJS(self.SearchName),
         Phone: ko.toJS(self.SearchPhone), Email: ko.toJS(self.SearchEmail)
     };
-    var result = CRMLite.dataManager.postData(ko.toJS(self.url.UserapiSearch) ,jsonData);
+    var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.UserapiSearch) ,jsonData);
     result.done(function (response) {
         if (response.Status == true) {
             self.UserLists.removeAll();
@@ -241,7 +240,7 @@ UserViewModel.prototype.search = function () {
             $("#pagination").DataTable({ responsive: true });
         }
         else {
-            toastr["error"](response.Message, "Notification");
+            CRMLite.showMesssage.error(response.Message, "Error");
         }
     });
 };
@@ -258,7 +257,7 @@ UserViewModel.prototype.clear = function () {
         form_data.append("file", file_data);
         form_data.append("user_id", 123);
         $.ajax({
-            url: ko.toJS(self.url.UserapiUploadImageFiles),
+            url: ko.toJS(CRMLite.CRM.UserapiUploadImageFiles),
             dataType: 'json',
             cache: false,
             contentType: false,
@@ -275,7 +274,7 @@ UserViewModel.prototype.clear = function () {
         var that = {};
         var vm = ko.toJS(strPath);
         var o = document.getElementById("ThumbnailImageS");
-        var imagPath = new String(ko.toJS(self.url.uploadUser));
+        var imagPath = new String(ko.toJS(CRMLite.CRM.uploadUser));
         imagPath = imagPath.concat(strPath);
 
         o.src = imagPath;;
@@ -290,10 +289,10 @@ UserViewModel.prototype.getUser = function () {
         // var that = {};
         var vm = ko.toJS(strPath);
         var o = document.getElementById("ThumbnailImageS");
-        var imagPath = new String(ko.toJS(self.url.uploadUser));
+        var imagPath = new String(ko.toJS(CRMLite.CRM.uploadUser));
         imagPath = imagPath.concat(strPath);
         o.src = imagPath;
-        path = ko.toJS(self.url.uploadUser) + ko.toJS(strPath);
+        path = ko.toJS(CRMLite.CRM.uploadUser) + ko.toJS(strPath);
         self.selectedUser().image(path);
         //return that;
     }
@@ -305,7 +304,7 @@ UserViewModel.prototype.getUser = function () {
             formData.append("file", fileData);
             formData.append("user_id", 123);
             $.ajax({
-                url: ko.toJS(self.url.UserapiUploadImageFiles),
+                url: ko.toJS(CRMLite.CRM.UserapiUploadImageFiles),
                 dataType: 'json',
                 cache: false,
                 contentType: false,
@@ -320,14 +319,14 @@ UserViewModel.prototype.getUser = function () {
         });
     }, 3000);
     var path = null;
-    var result = CRMLite.dataManager.getData(ko.toJS(self.url.UserapiGetUser)+ id);
+    var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.UserapiGetUser)+ id);
     result.done(function (data) {
         if (data.Status == true) {
             self.selectedUser(new User(data.Result));
             self.isBusy(false);
         }
         else {
-            toastr["error"](response.Message, "Notification");
+            CRMLite.showMesssage.error(response.Message, "Error");
         }
     }); 
 };
