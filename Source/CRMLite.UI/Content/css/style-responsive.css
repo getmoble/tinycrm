@@ -276,6 +276,9 @@
    
     margin: 50% 0 0 0;
 }
+    .add-on{
+        margin-top:-44px;
+    }
 }
 
 @media (max-width: 480px) {
