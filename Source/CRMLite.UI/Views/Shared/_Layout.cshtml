@@ -15,6 +15,10 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="~/Content/css/ladda-themeless.min.css" rel="stylesheet" />
 
+    <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" />
+    
+    <link href="http://cdn.datatables.net/responsive/1.0.6/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+
     @*<link href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css" rel="stylesheet" />*@
 </head>
 <body>
@@ -49,7 +53,7 @@
                      <div class="input-group"> 
                          <input type="text" name="s" id="s"  class="form-control" placeholder="Search"> 
                      <span class="input-group-btn"> 
-                         <button type="submit" id="searchSubmit" value="" class="btn btn-info btn-icon"><i class="fa fa-search"></i></button> 
+                         <button type="submit" id="searchSubmit" value="" class="btn btn-info"><i class="fa fa-search"></i></button> 
                          </span> </div> </div> </form>
                   </section> </section> </li> 
         
@@ -118,9 +122,9 @@
                                                     @DynamicMenuRenderingHelper.BuildMenu(ViewBag.MenuItems);
                                                     }*@
 
-                            <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Dashboard</span> </a> </li>
+                            <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-success"></b> </i> <span>Dashboard</span> </a> </li>
                             <li class="">
-                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
+                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-info"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
                                 <ul class="nav lt">
                                     <li>
                                         <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Leads</span> </a>
@@ -262,6 +266,14 @@
            <script src="~/Content/js/ladda.min.js"></script>*@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.min.js"></script>
+    <script src="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
            <script src="~/Content/js/script-ladda.js"></script>
             @*@Scripts.Render("~/Content/Js/KnockoutJS")*@
            <script src="https://cdn.jsdelivr.net/knockout/3.3.0/knockout.js"></script>
