@@ -48,13 +48,18 @@
                                 <label>Company</label>
                                 <input type="text" data-bind="value:Comapny" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea data-bind="value:Address" class=" form-control"></textarea>
+                           
+                            <div class=" form-group">
+                                <label>State</label>
+                                <input type="text" data-bind="value:State" class="form-control" />
                             </div>
                             <div class=" form-group">
                                 <label>Zip</label>
                                 <input type="text" data-bind="value:Zip,numericOnly:true" class="form-control" />
+                            </div>
+                            <div class=" form-group">
+                                <label>Region</label>
+                                <input type="text" data-bind="value:Region" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-6 ">
@@ -74,28 +79,30 @@
                                 <label>Office Phone</label>
                                 <input type="text" data-bind="value:OfficePhone,numericOnly:true" class="form-control" />
                             </div>
-                            <div class=" form-group">
+                            <div class="form-group">
                                 <label>Country</label>
                                 <select class="form-control" data-bind="options:$root.Countries,optionsText:'Name',optionsValue:'Id',value:CountryId,optionsCaption:'Select Country'"></select>
                             </div>
-                            <div class=" form-group">
-                                <label>State</label>
-                                <input type="text" data-bind="value:State" class="form-control" />
-                            </div>
-                            <div class=" form-group">
+                           
+                            <div class="form-group">
                                 <label>City</label>
                                 <input type="text" data-bind="value:City" class="form-control" />
                             </div>
-                            <div class=" form-group">
-                                <label>Region</label>
-                                <input type="text" data-bind="value:Region" class="form-control" />
-                            </div>
+                           
+                           
                             <div class="clearfix"></div>
                         </div>
+                       <div class="col-md-12">
+
+                           <div class="form-group">
+                               <label>Address</label>
+                               <textarea data-bind="value:Address" rows="3" class=" form-control"></textarea>
+                           </div>
+                       </div>
                         <div class="col-md-12 bdr">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea data-bind="value:Comments" class=" form-control" rows="6"></textarea>
+                                <textarea data-bind="value:Comments" class=" form-control" rows="3"></textarea>
                             </div>
                         </div>
          
@@ -104,7 +111,9 @@
 
             </div>
             <div class="col-md-12">
-                <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
+                <div class="row">
+                    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveContact"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
+                </div>
             </div>
         </div>
         @*<button type="button" class="btn btn-primary" data-bind="click:$root.saveContact">Save</button>*@

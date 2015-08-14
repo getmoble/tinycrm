@@ -11,7 +11,7 @@
     <div id="potentialDiv" data-bind="with:SelectedPotential">
         <div class="col-md-12">
             <h4 class="text-primary">Potential Information</h4>
-            <div>
+           
                 <div class="padTB-sm">
                     <div class="row">
                         <div class="col-lg-6">
@@ -67,23 +67,24 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Descriptions</label>
-                                <textarea class="form-control" data-bind="value:Comments"></textarea>
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" data-bind="value:Comments"></textarea>
                             </div>
                            
                         </div>
 
                     </div>
-                </div>
-                <div class="clearfix"></div>
+               
+               
             </div>
         </div>
 
        
         
     </div>
-    <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
-
+    <div class="col-md-12">
+        <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
+    </div>
 </div>
     
        
