@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using CRMLite.UI;
 
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
 [assembly: OwinStartup(typeof(Startup))]
 namespace CRMLite.UI
 {
