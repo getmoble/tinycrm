@@ -21,22 +21,31 @@ namespace CRMLite.UI
                 var serializer = new JavaScriptSerializer();
                 if (authTicket != null)
                 {
-                    var sm = serializer.Deserialize<CRMLitePrincipal>(authTicket.UserData);
+                    var sm = serializer.Deserialize<UserCoockieData>(authTicket.UserData);
                     var userInfo = HttpSessionWrapper.GetFromSession<UserInfo>(sm.Key);
                     if (userInfo == null)
                     {
                         var userService = DependencyResolver.Current.GetService<IUserService>();
-                        var user = userService.GetUserByUsername(sm.Key);
-                        if (user != null)
+                        var user = userService.GetUserBykey(sm.Key);
+                        var permissionCodes = userService.GetAllUserPermissions(user.Id);
+
+                        if (user != null&&permissionCodes!=null)
                         {
                             userInfo = UserInfo.GetInstance(user);
+                            userInfo.PermissionCodes = permissionCodes;
                             HttpSessionWrapper.SetInSession(user.RefId, userInfo);
+                            var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image, RoleId = userInfo.RoleId };
+                            HttpContext.Current.User = newUser;
+                        }
+                        else
+                        {
+                        //we don't have to handle if we don't set the principal throwifnotlogin will redirect to login page.
                         }
                     }
                     else
                     {
-                        var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image,RoleId=userInfo.RoleId };
-                        HttpSessionWrapper.SetInSession(newUser.Key, userInfo);
+                        var newUser = new CRMLitePrincipal(userInfo.Name) { Name = userInfo.Name, Id = userInfo.Id, Role = userInfo.Role, Email = userInfo.Email, PermissionCodes = userInfo.PermissionCodes, Image = userInfo.Image, RoleId = userInfo.RoleId };
+                        //HttpSessionWrapper.SetInSession(newUser.Key, userInfo);
                         HttpContext.Current.User = newUser;
                     }
                 }

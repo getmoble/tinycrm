@@ -276,6 +276,9 @@
    
     margin: 50% 0 0 0;
 }
+    .add-on{
+        margin-top:-44px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -330,7 +333,10 @@
      
 }
 @media (min-width: 320px) and (max-width: 479px) {
-
+    .open, .open body {
+        height: 100%;
+        overflow:auto;
+    }
 .m-r {
     width: 81%;
 }
@@ -338,11 +344,11 @@
     width: 89%;
 }
 .scroll-horrizontal{
-        width: 288px;
+        width: 100%;
     height: 100%;
     overflow-y: hidden;
     margin-bottom:20px;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 .table-bordered td a{
     text-align: left !important;

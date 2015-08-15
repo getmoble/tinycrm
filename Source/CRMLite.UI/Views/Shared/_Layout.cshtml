@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>CRM Lite</title>
     <!--css here-->
-    @Styles.Render("~/Content/BootstrapminCss")
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     @*<link href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />*@
     @Styles.Render("~/Content/BootstrapCommonCss")
     @Styles.Render("~/Content/FontAndIconCommonCss")
@@ -14,6 +14,9 @@
             @Styles.Render("~/Content/CustomCommonCss")
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="~/Content/css/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <link href="http://cdn.datatables.net/responsive/1.0.6/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
 
     @*<link href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css" rel="stylesheet" />*@
 </head>
@@ -24,9 +27,7 @@
     </div>
 <div class="vbox">
 
-
 @* edited latest version *@
-
     <header class="bg-white dk header navbar navbar-fixed-top-xs">
         <div class="navbar-header aside-md">
             <a class="btn btn-link visible-xs" id="collapse" data-toggle="class:nav-off-screen,open" data-target="#nav,html"> <i class="fa fa-bars"></i> </a>
@@ -41,15 +42,16 @@
         </div> 
         <ul class="nav navbar-nav hidden-xs">   </ul> 
         <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">  
-        <li class="dropdown"> <a href="#" class="dropdown-toggle dker search-icon" data-toggle="dropdown"><i class="fa fa-fw fa-search"></i></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle dker search-icon" data-toggle="dropdown"><i class="fa fa-fw fa-search"></i></a>
              <section class="dropdown-menu aside-xl animated fadeInUp"> 
             <section class="panel bg-white"> 
                  <form role="search">
                  <div class="form-group wrapper m-b-none"> 
                      <div class="input-group"> 
-                         <input type="text" name="s" id="s"  class="form-control" placeholder="Search"> 
+                                        <input type="text" name="s" id="s" class="form-control" placeholder="Search">
                      <span class="input-group-btn"> 
-                         <button type="submit" id="searchSubmit" value="" class="btn btn-info btn-icon"><i class="fa fa-search"></i></button> 
+                         <button type="submit" id="searchSubmit" value="" class="btn btn-info"><i class="fa fa-search"></i></button> 
                          </span> </div> </div> </form>
                   </section> </section> </li> 
         
@@ -66,12 +68,7 @@
          </ul>
     </header>
 
-
 @* end latest version *@
-
-
-
-
 
 
 
@@ -110,7 +107,6 @@
         <section class="vbox">
             <section class="w-f scrollable">
                 <div class="slim-scroll" data-height="100%" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railopacity="0.2">
-
                     <nav class="nav-primary hidden-xs">
                         <ul class="nav">
                             @*@if (User != null)
@@ -118,9 +114,9 @@
                                                     @DynamicMenuRenderingHelper.BuildMenu(ViewBag.MenuItems);
                                                     }*@
 
-                            <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Dashboard</span> </a> </li>
+                            <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-success"></b> </i> <span>Dashboard</span> </a> </li>
                             <li class="">
-                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
+                                <a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-info"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>CRM</span> </a>
                                 <ul class="nav lt">
                                     <li>
                                         <a href="#"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> <span>Leads</span> </a>
@@ -135,7 +131,6 @@
                                             <li> <a href="@Url.Action("index", "Account", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
                                             <li> <a href="@Url.Action("create", "Account", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                         </ul>
-
 
                                     </li>
                                     <li>
@@ -159,13 +154,10 @@
                                             <li> <a href="@Url.Action("create", "User", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                         </ul>
                                     </li>
-
                                 </ul>
                             </li>
-
                         </ul>
                     </nav>
-
                     <!-- / nav -->
                 </div>
             </section>
@@ -185,7 +177,8 @@
                 <aside class="aside-md bg-black hide" id="sidebar">
                     <section class="vbox animated fadeInRight">
                         <section class="scrollable">
-                            <div class="wrapper"><strong>Live feed</strong>
+                                    <div class="wrapper">
+                                        <strong>Live feed</strong>
                             </div>
                             <ul class="list-group no-bg no-borders auto">
                                 <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-success"></i> <i class="fa fa-reply fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Goody@gmail.com</a> sent your email <small class="icon-muted">13 minutes ago</small> </span> </li>
@@ -193,14 +186,16 @@
                                 <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-info"></i> <i class="fa fa-map-marker fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#">Geoge@yahoo.com</a> is online <small class="icon-muted">1 hour ago</small> </span> </li>
                                 <li class="list-group-item"> <span class="fa-stack pull-left m-r-sm"> <i class="fa fa-circle fa-stack-2x text-primary"></i> <i class="fa fa-info fa-stack-1x text-white"></i> </span> <span class="clear"> <a href="#"><strong>Admin</strong></a> post a info <small class="icon-muted">1 day ago</small> </span> </li>
                             </ul>
-                            <div class="wrapper"><strong>Friends</strong>
+                                    <div class="wrapper">
+                                        <strong>Friends</strong>
                             </div>
                             <ul class="list-group no-bg no-borders auto">
                                 <li class="list-group-item">
                                     <div class="media">
                                         <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..." class="img-circle"> <i class="on b-black bottom"></i> </span>
                                         <div class="media-body">
-                                            <div><a href="#">Chris Fox</a>
+                                                    <div>
+                                                        <a href="#">Chris Fox</a>
                                             </div>
                                             <small class="text-muted">about 2 minutes ago</small>
                                         </div>
@@ -210,7 +205,8 @@
                                     <div class="media">
                                         <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="on b-black bottom"></i> </span>
                                         <div class="media-body">
-                                            <div><a href="#">Amanda Conlan</a>
+                                                    <div>
+                                                        <a href="#">Amanda Conlan</a>
                                             </div>
                                             <small class="text-muted">about 2 hours ago</small>
                                         </div>
@@ -220,7 +216,8 @@
                                     <div class="media">
                                         <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="busy b-black bottom"></i> </span>
                                         <div class="media-body">
-                                            <div><a href="#">Dan Doorack</a>
+                                                    <div>
+                                                        <a href="#">Dan Doorack</a>
                                             </div>
                                             <small class="text-muted">3 days ago</small>
                                         </div>
@@ -230,7 +227,8 @@
                                     <div class="media">
                                         <span class="pull-left thumb-sm avatar"> <img src="~/Content/images/logo.png" alt="..."> <i class="away b-black bottom"></i> </span>
                                         <div class="media-body">
-                                            <div><a href="#">Lauren Taylor</a>
+                                                    <div>
+                                                        <a href="#">Lauren Taylor</a>
                                             </div>
                                             <small class="text-muted">about 2 minutes ago</small>
                                         </div>
@@ -254,7 +252,7 @@
     
     <script src="~/Content/js/jquery-2.1.1.min.js"></script>
            @*<script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>*@
-           @Scripts.Render("~/Content/Js/BootstrapminJs")
+    <script src="~/Content/js/bootstrap.min.js"></script>
             @Scripts.Render("~/Content/Js/JqueryScripts")
             @Scripts.Render("~/Content/Js/BlueimpfileuploadJs")
             @Scripts.Render("~/Content/Js/CustomCommonJs")
@@ -262,6 +260,14 @@
            <script src="~/Content/js/ladda.min.js"></script>*@
            <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
            <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.min.js"></script>
+    <script src="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
            <script src="~/Content/js/script-ladda.js"></script>
             @*@Scripts.Render("~/Content/Js/KnockoutJS")*@
            <script src="https://cdn.jsdelivr.net/knockout/3.3.0/knockout.js"></script>
@@ -281,14 +287,23 @@
             window.location.href = "/CRM/Search/Index?searchvalue=" + serchvalue;
         }
     });
+    $('#searchSubmit').click(function () {
+            var serchvalue = document.getElementById("s").value;
+            //alert(serchvalue);
+            window.location.href = "/CRM/Search/Index?searchvalue=" + serchvalue;
+    });
+
 
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();
     });
-
+    //$(document).ready(function () {
+    //    $("#s").click(function () {
+    //        alert("button");
+    //    });
+    //});
 
 </script>
-
 <script type="text/javascript">
     //<![CDATA[
     jQuery(window).load(function () { // makes sure the whole site is loaded

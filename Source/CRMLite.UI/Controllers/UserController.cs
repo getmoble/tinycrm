@@ -14,7 +14,6 @@ using PropznetCommon.Features.CRM.Interfaces.Services;
 using PropznetCommon.Features.CRM.Model.User;
 using PropznetCommon.Features.CRM.Model.CommunicationDetail;
 using PropznetCommon.Features.CRM.ViewModel.User;
-using PropznetCommon.Features.CRM.ViewModel.User;
 using CRMLite.Infrastructure;
 using ChangePasswordViewModel = Common.Auth.SingleTenant.ViewModels.ChangePasswordViewModel;
 using IAccountService = Common.Auth.SingleTenant.Interfaces.Services.IAccountService;
@@ -45,7 +44,7 @@ namespace CRMLite.UI.Controllers
                     if (!string.IsNullOrEmpty(returnurl))
                         return Redirect(_returnUrl);
                     _returnUrl = returnurl;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "CRM" });
                 }
 
                 return View();
@@ -67,7 +66,7 @@ namespace CRMLite.UI.Controllers
                         var user = _userService.GetUserByUsername(signInViewModel.Username);
                         LogInUser(user, _returnUrl);
                         if (string.IsNullOrEmpty(_returnUrl))
-                            _returnUrl = "/Home/Index";
+                            _returnUrl = "/CRM/Home/Index";
                         return Redirect(_returnUrl);
                     }
 
@@ -141,32 +140,6 @@ namespace CRMLite.UI.Controllers
                     roleId = new long[] { 1 };
                 }
                 _accountService.UpdateAccount(model.FirstName + "" + model.LastName, WebUser.Email, WebUser.Email, model.Address, model.Phone, roleId, user.PersonId, WebUser.Id, model.Image);
-                //var User = _UserService.GetUserByUserId(user.Id);
-                //var UserModel = new UserModel
-                //{
-                //    Id = User.Id,
-                //    FirstName = model.FirstName,
-                //    LastName = model.LastName,
-                //    Email = model.Email,
-                //    Address = model.Address,
-                //    Phone = model.Phone,
-                //    DEDLicenseNumber = model.DEDlicenseNumber,
-                //    RERARegistrationNumber = model.RERAregistrationNumber,
-                //    UserId = user.Id,
-                //    CommunicationDetailID = User.CommunicationDetailId,
-                //    IsListingMember = User.IsListingMember,
-                //    Image = model.Image
-                //};
-                //var communicationDetailModel = new CommunicationDetailModel
-                //{
-                //    Id = User.CommunicationDetailId,
-                //    Address = model.Address,
-                //    Phone = model.Phone,
-                //    Website = model.Website,
-                //    Email = model.Email
-                //};
-                //_communicationDetailService.UpdateCommunicationDetail(communicationDetailModel);
-                //_UserService.UpdateUser(UserModel);
                 ViewBag.Message = "Successfully updated your profile";
                 ViewBag.Image = model.Image;
                 WebUser.Image = model.Image;
@@ -205,7 +178,8 @@ namespace CRMLite.UI.Controllers
                 var expirationTime = SiteSettings.CoockieTimeOut;
                 var userInfo = new UserInfo { Id = user.Id, Name = user.Name, RefId = user.RefId, Email = user.Username, PermissionCodes = rolePermissions, Image = user.Person.Avatar,RoleId=roleIds };
                 HttpSessionWrapper.SetInSession(userInfo.RefId, userInfo);
-                var serializeModel = new CRMLitePrincipal { Key = userInfo.RefId, PermissionCodes = rolePermissions, Image = user.Person.Avatar, RoleId = roleIds };
+                var serializeModel = new UserCoockieData { Key = userInfo.RefId };
+                //var serializeModel = new CRMLitePrincipal { Key = userInfo.RefId, PermissionCodes = rolePermissions, Image = user.Person.Avatar, RoleId = roleIds };
                 var serializer = new JavaScriptSerializer();
                 var userData = serializer.Serialize(serializeModel);
                 var authTicket = new FormsAuthenticationTicket(1, userInfo.Email, DateTime.Now, DateTime.Now.AddMinutes(expirationTime), false, userData);
@@ -218,9 +192,6 @@ namespace CRMLite.UI.Controllers
                 if (Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
             }
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
-            //Response.Cache.SetNoStore();
             return RedirectToAction("Index", "Home");
         }
         public ActionResult SignOut()

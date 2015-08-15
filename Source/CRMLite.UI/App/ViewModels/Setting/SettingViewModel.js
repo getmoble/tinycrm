@@ -7,12 +7,12 @@
         var result = $.post(ko.toJS(self.url.settingManageChangePagingSize) + self.pagingSize());
         result.done(function (response) {
             if (response === true) {
-                bootbox.alert("Settings saved successfully...!!", function () {
-                    window.location.href = ko.toJS(self.url.settingsList);
+                bootbox.alert("Settings saved successfully.", function () {
+                    CRMLite.windowManager.Redirect(ko.toJS(self.url.settingsList));
                 });
             }
             else {
-                bootbox.alert("Error occured");
+                toastr["error"]("Bad Server, something has gone wrong.", "Error");
             }
         });
     };

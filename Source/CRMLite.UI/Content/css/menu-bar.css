@@ -1,6 +1,8 @@
 
 
-
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after{
+        font-family: FontAwesome !important;
+}
 
 .fade {
 	opacity: 0;
@@ -2987,6 +2989,7 @@ html, body, .hbox, .vbox {
 }
 .nav-primary ul.nav>li.active>ul {
 	display: block;
+    z-index: 9999999999;
 }
 .nav-primary ul.nav ul {
 	display: none;
@@ -3141,7 +3144,7 @@ html, body, .hbox, .vbox {
     
 }
 .inline-b {
-    margin-top: 60px;
+    margin-top: 0px;
 }
 .fixed-right {
   position: static;
@@ -3156,6 +3159,8 @@ html, body {
 }
 .open, .open body {
 	height: 100%;
+        overflow-y: scroll;
+    height: 280px;
 }
 .nav-primary .dropdown-menu {
 	position: relative;
@@ -3217,7 +3222,7 @@ html, body {
 	left: 0;
 	top: 0;
 	bottom: 0;
-	width: 75%;
+	width: 50%;
 	visibility: visible;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -3291,7 +3296,8 @@ html, body {
     display: block;
 }
     .navbar + section .nav-off-screen + * {
-        top: 105px;
+        top: 50px;
+            left: -70px;
     }
     .cd-as{
         width: 95%;
@@ -3571,9 +3577,9 @@ html, body {
 	padding-left: 0;
 	padding-right: 0;
 	width: 43px;
-    background:#2ecc71;
+    background:#f5f5f5;
     border-radius:0px;
-    color:#fff !important;
+    color:#222 !important;
     margin:0 15px 0 0;
 	text-align: center;
 }

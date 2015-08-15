@@ -22,13 +22,13 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _personDetailService = personService;
         }
         [HttpGet]
-        public ActionResult GetAllAccounts()
+        public JsonResult GetAllAccounts()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
                 if (!WebUser.IsInRole("Admin"))
                 {
-                    var users = _userService.GetAllUserByCreatedUserId(WebUser.Id);
+                    var users = _userService.GetAllUserByCreatedUserId(WebUser.Id).ToList();
                     var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
 
                     var result = new AccountResult { Account = accounts, User = users };
@@ -45,7 +45,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
 
         }
         [HttpPost]
-        public ActionResult CreateAccount(AccountModel accountModel)
+        public JsonResult CreateAccount(AccountModel accountModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -59,7 +59,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
           [HttpGet]
-        public ActionResult GetAccount(long id)
+        public JsonResult GetAccount(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -68,7 +68,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
           [HttpPost]
-        public ActionResult UpdateAccount(AccountModel accountModel)
+          public JsonResult UpdateAccount(AccountModel accountModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -77,7 +77,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Search(AccountSearchFilter accountSearchFilter)
+          public JsonResult Search(AccountSearchFilter accountSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
            {
@@ -87,7 +87,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
            }));
         }
         [HttpPost]
-        public ActionResult DeleteAccount(long id)
+        public JsonResult DeleteAccount(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {

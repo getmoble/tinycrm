@@ -40,5 +40,10 @@ namespace CRMLite.Infrastructure
             var appname = ConfigurationManager.AppSettings["AppName"];
             return appname;
         }
+        public static string GetExceptionMode()
+        {
+            var appname = ConfigurationManager.AppSettings["ExceptionMode"];
+            return appname;
+        }
     }
 }

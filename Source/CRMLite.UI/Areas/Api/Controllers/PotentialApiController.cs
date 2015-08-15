@@ -46,7 +46,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             _accountService = accountService;
         }
         [HttpGet]
-        public ActionResult GetAllPotential()
+        public JsonResult GetAllPotential()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -164,7 +164,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult GetAllCountries()
+        public JsonResult GetAllCountries()
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -173,7 +173,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult DeletePotential(long id)
+        public JsonResult DeletePotential(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -182,7 +182,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult CreatePotential(PotentialModel potentialModel)
+        public JsonResult CreatePotential(PotentialModel potentialModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -192,7 +192,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult GetPotential(long id)
+        public JsonResult GetPotential(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -201,7 +201,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpGet]
-        public ActionResult Details(long id)
+        public JsonResult Details(long id)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -232,7 +232,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         }));
         }
         [HttpPost]
-        public ActionResult UpdatePotential(PotentialModel potentialModel)
+        public JsonResult UpdatePotential(PotentialModel potentialModel)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
@@ -241,7 +241,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             }));
         }
         [HttpPost]
-        public ActionResult Search(PotentialSearchFilter potentialSearchFilter)
+        public JsonResult Search(PotentialSearchFilter potentialSearchFilter)
         {
             return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
             {
