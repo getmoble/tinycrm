@@ -42,20 +42,21 @@ function User(user) {
         self.lastname(user.Person.LastName);
     }
     self.name = ko.pureComputed(function () {
-        if (ko.toJS(self.firstname()) != "" && ko.toJS(self.lastname()) != "") {
-                return self.firstname() + " " + self.lastname();
-            }
-        else if (ko.toJS(self.firstname()) != "" && ko.toJS(self.lastname()) == "") {
-                return self.firstname();
-            }
-        else if (ko.toJS(self.firstname()) == "" && ko.toJS(self.lastname()) != "") {
-                return self.lastname();
-            }
-       
-            else if (ko.toJS(self.firstname()) == "" && ko.toJS(self.lastname()) == "") {
-                return 'No name provided';
-            }
-        }, this);
+        if ((ko.toJS(self.firstname()) != "" && ko.toJS(self.firstname()) != null) && ((ko.toJS(self.lastname()) != "") && (ko.toJS(self.lastname()) != null))) {
+            return self.firstname() + " " + self.lastname();
+        }
+        else if ((ko.toJS(self.firstname()) != "" && ko.toJS(self.firstname()) != null) && ((ko.toJS(self.lastname()) == "") || (ko.toJS(self.lastname()) == null))) {
+            return self.firstname();
+        }
+        else if ((ko.toJS(self.firstname()) == "" || ko.toJS(self.firstname()) == null) && ((ko.toJS(self.lastname()) != "") || (ko.toJS(self.lastname()) != null))) {
+            return self.lastname();
+        }
+
+        else {
+            return 'No name provided';
+        }
+    }, this);
+ 
     if (user.Person) {
         self.email = ko.observable(user.Username || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.phoneNumber = ko.observable(user.Person.PhoneNo || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
@@ -100,17 +101,17 @@ function Lead(lead) {
     self.FirstName = ko.observable('').extend({ required: { params: true, message: "Please enter First Name" } });
     self.LastName = ko.observable('');
     self.Name = ko.pureComputed(function () {
-        if (ko.toJS(self.FirstName()) != "" && ko.toJS(self.LastName()) != "") {
+        if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.FirstName()) != null) && ((ko.toJS(self.LastName()) != "") && (ko.toJS(self.LastName()) != null))) {
             return self.FirstName() + " " + self.LastName();
         }
-        else if (ko.toJS(self.FirstName()) != "" && ko.toJS(self.LastName()) == "") {
+        else if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.FirstName()) != null) && ((ko.toJS(self.LastName()) == "") || (ko.toJS(self.LastName()) == null))) {
             return self.FirstName();
         }
-        else if (ko.toJS(self.FirstName()) == "" && ko.toJS(self.LastName()) != "") {
+        else if ((ko.toJS(self.FirstName()) == "" || ko.toJS(self.FirstName()) == null) && ((ko.toJS(self.LastName()) != "") || (ko.toJS(self.LastName()) != null))) {
             return self.LastName();
         }
 
-        else if (ko.toJS(self.FirstName()) == "" && ko.toJS(self.LastName()) == "") {
+        else {
             return 'No name provided';
         }
     }, this);
@@ -361,17 +362,17 @@ function Contact(contact) {
         self.LastName(contact.Person.LastName);
     }
     self.Name = ko.pureComputed(function () {
-        if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.LastName()) != "")||(ko.toJS(self.FirstName()) != null && ko.toJS(self.LastName()) != null)) {
+        if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.FirstName()) != null) && ((ko.toJS(self.LastName()) != "") && (ko.toJS(self.LastName()) != null))) {
             return self.FirstName() + " " + self.LastName();
         }
-        else if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.LastName()) == "")||(ko.toJS(self.FirstName()) != null && ko.toJS(self.LastName()) == null)) {
+        else if ((ko.toJS(self.FirstName()) != "" && ko.toJS(self.FirstName()) != null) && ((ko.toJS(self.LastName()) == "") || (ko.toJS(self.LastName()) == null))) {
             return self.FirstName();
         }
-        else if ((ko.toJS(self.FirstName()) == "" && ko.toJS(self.LastName()) != "") ||( ko.toJS(self.FirstName()) == null && ko.toJS(self.LastName()) != null)) {
+        else if ((ko.toJS(self.FirstName()) == "" || ko.toJS(self.FirstName()) == null) && ((ko.toJS(self.LastName()) != "") || (ko.toJS(self.LastName()) != null))) {
             return self.LastName();
         }
 
-        else if ((ko.toJS(self.FirstName()) == "" && ko.toJS(self.LastName()) == "") ||( ko.toJS(self.FirstName()) == null && ko.toJS(self.LastName()) == null)) {
+        else {
             return 'No name provided';
         }
     }, this);
@@ -420,7 +421,6 @@ function Contact(contact) {
         }
 
     }
-    ////alert(ko.toJS(contact.AssignedToUser.Person.FirstName));
     if (contact.AssignedToUser) {
         if (contact.AssignedToUser.Person) {
             self.AssignedTo = ko.observable(contact.AssignedToUser.Person.FirstName || '');
@@ -501,5 +501,4 @@ function Schedule(events) {
         self.end = ParseDate(events.EndTime) || '';
     else
         self.end = new Date();
-    //self.IsUpdated = ko.observable(false);
 }

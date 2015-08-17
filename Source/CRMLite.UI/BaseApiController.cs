@@ -208,7 +208,7 @@ namespace CRMLite.UI
                         Status = false,
                         Message = "Oops... Something bad has happened..."
                     };
-                    logger.Error(ex.Message);
+                    logger.Error(ex.Message,ex);
                     return Json(apiResult, behavior);
                 }
             }
@@ -223,7 +223,7 @@ namespace CRMLite.UI
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.Error(ex.Message,ex);
                 return onError(ex);
             }
         }
