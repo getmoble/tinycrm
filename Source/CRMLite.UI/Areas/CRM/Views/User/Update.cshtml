@@ -14,6 +14,10 @@
             <div class="pad0 padB0" data-bind="with:selectedUser">
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" data-bind="value:username" disabled="disabled" class="form-control" />
+                    </div>
+                    <div class="form-group">
                         <label>First Name</label>
                         <input type="text" data-bind="value:firstname" class="form-control" />
                     </div>
@@ -23,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" data-bind="value:email" disabled="disabled" class="form-control" />
+                        <input type="text" data-bind="value:email"  class="form-control" />
                     </div>
 
                     <div class="form-group">

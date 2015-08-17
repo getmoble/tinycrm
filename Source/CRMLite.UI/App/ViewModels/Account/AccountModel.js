@@ -27,8 +27,6 @@
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Address = ko.observable('').extend({ required: { params: true, message: "Please enter Address" } });
     }
-
-    //alert(ko.toJS(account.AssignedtoUser.Person.FirstName));
     if (account.AssignedToUser) {
         if (account.AssignedToUser.Person) {
             self.Assignedto = ko.observable(account.AssignedToUser.Person.FirstName || '');

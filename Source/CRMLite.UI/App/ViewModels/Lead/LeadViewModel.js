@@ -177,7 +177,13 @@ LeadViewModel.prototype.search = function () {
             $.each(response.Result, function (key, value) {
                 self.LeadLists.push(new Lead(value));
             });
-            $("#pagination").DataTable({ responsive: true });
+            $("#pagination").DataTable({
+                responsive: true,
+                "order": [[3, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Filter: "
+                }
+            });
             self.isBusy(false);
         }
         else {
@@ -217,7 +223,10 @@ LeadViewModel.prototype.LeadListing = function () {
             });
             $("#pagination").DataTable({
                 responsive: true,
-                "order": [[3, "desc"]]
+                "order": [[3, "desc"]],
+                 "oLanguage": {
+                "sSearch": "Filter: "
+            }
             });
             var oTable = $('#pagination').dataTable();
             // oTable.fnSort([[6, 'desc']]);        

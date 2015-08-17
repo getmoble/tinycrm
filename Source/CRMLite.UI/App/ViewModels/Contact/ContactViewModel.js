@@ -107,7 +107,10 @@ ContactViewModel.prototype.init = function () {
             });
             $("#pagination").DataTable({
                 responsive: true,
-                "order": [[3, "desc"]]
+                "order": [[3, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Filter: "
+                }
             });
             var oTable = $('#pagination').dataTable();
             self.isBusy(false);
@@ -203,7 +206,13 @@ ContactViewModel.prototype.search = function () {
                 self.ContactLists.push(new Contact(value));
             });
 
-            $("#pagination").DataTable({ responsive: true });
+            $("#pagination").DataTable({
+                responsive: true,
+                "order": [[3, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Filter: "
+                }
+            });
             self.isBusy(false);
         }
         else {
