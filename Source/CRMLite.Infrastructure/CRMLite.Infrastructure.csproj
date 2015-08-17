@@ -93,6 +93,7 @@
     <Compile Include="Enum\PermissionCodes.cs" />
     <Compile Include="PropznetSuitePrincipal.cs" />
     <Compile Include="PermissionChecker.cs" />
+    <Compile Include="UserCoockieData.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

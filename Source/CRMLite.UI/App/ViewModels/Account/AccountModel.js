@@ -9,16 +9,20 @@
     self.SelectedAssignedto = ko.observable(account.AssignedToUserId || 0).extend({ required: { params: true, message: "Please select User" } });
     self.Assignedto = ko.observable(''); 
     self.Description = ko.observable(account.Description || '');
+    self.Website = ko.observable('').extend({ url: true });
     self.Comment = ko.observable(account.Description || '');
     if (account.Person) {
         self.AccountName(account.Person.FirstName);
-        self.Website = ko.observable(account.Person.Website || '');
+        self.Website(account.Person.Website || '');
         self.Phone = ko.observable(account.Person.PhoneNo || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
         self.Email = ko.observable(account.Person.Email || '').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Address = ko.observable(account.Person.Address || '').extend({ required: { params: true, message: "Please enter Address" } });
+        if (self.Email() != null)
+            self.Email(ko.toJS(self.Email).toLowerCase());
+        if (self.Website() != null)
+            self.Website(ko.toJS(self.Website).toLowerCase());
     }
     else {
-        self.Website = ko.observable('');
         self.Phone = ko.observable('').extend({ required: { params: true, message: "Please enter Phone Number" } });
         self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
         self.Address = ko.observable('').extend({ required: { params: true, message: "Please enter Address" } });

@@ -59,6 +59,7 @@
         self.DisplayTitle('Edit Lead');
         self.isBusy(true);
         var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.leadapiGetLead) + id);
+
         result.done(function (data) {
             if (data.Status == true) {
                 self.selectedLead(new Lead(data.Result));

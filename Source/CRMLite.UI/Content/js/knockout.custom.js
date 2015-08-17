@@ -440,23 +440,34 @@ ko.bindingHandlers.bootstrapSwitch = {
         $(element).bootstrapSwitch("state", value);
     }
 };
-//ko.bindingHandlers.ladda = {
-//    init: function (element, valueAccessor) {
-//        var l = Ladda.create(element);
+ko.bindingHandlers.ladda = {
+    init: function (element, valueAccessor) {
+        var l = Ladda.create(element);
 
-//        ko.computed({
-//            read: function () {
-//                var state = ko.unwrap(valueAccessor());
-//                if (state) {
-//                    l.start();
-//                }
-//                else
-//                    l.stop();
-//            },
-//            disposeWhenNodeIsRemoved: element
-//        });
-//    }
-//};
+        ko.computed({
+            read: function () {
+                var state = ko.unwrap(valueAccessor());
+                if (state) {
+                    l.start();
+                }
+                else
+                    l.stop();
+            },
+            disposeWhenNodeIsRemoved: element
+        });
+    }
+};
+ko.validation.rules['url'] = {
+    validator: function (val, required) {
+        if (!val) {
+            return !required
+        }
+        val = val.replace(/^\s+|\s+$/, ''); 
+        return val.match(/((http|https|ftp)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\.\/\?\:@\-_=#])*/);
+    },
+    message: 'Please Enter valid URL'
+};
+ko.validation.registerExtenders();
 // its use for subscribe function change stop(infinite function call stop)
 ko.observable.fn.withPausing = function() {
     this.notifySubscribers = function() {

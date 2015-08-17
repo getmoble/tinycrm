@@ -83,7 +83,7 @@ namespace CRMLite.UI
                 else
                     ViewBag.Image = "Dummy.jpg";
                 ViewBag.UserId = WebUser.Id;
-                GenerateMenu();
+                //GenerateMenu();
             }            
             base.OnActionExecuting(filterContext);      
         }
