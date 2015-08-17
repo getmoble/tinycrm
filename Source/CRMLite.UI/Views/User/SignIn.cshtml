@@ -38,6 +38,8 @@
                 <img src=@StringTrimmer.QuotesRemover(ImageUrlResolver.ThumbNail(), ViewBag.Settings.LogoPath) alt="logo" class="resp"/>
             </div>*@
             @*<div class="login-form-header-title">SIGN IN TO YOUR ACCOUNT</div>*@
+
+
             <div class="login-wrap">
 
 
@@ -64,13 +66,13 @@
                     @Html.ValidationMessageFor(model => model.Password)
                         
                       </div>
+                   
     @*<input type="submit" class="submit" value="" />*@
-                        <a href="/User/ForgotPassword" class="pull-right" style="color: #fff; padding-top: 7px;">Forgot password?</a>
                    
-                   
-
+                       
+                 <a href="/User/ForgotPassword" class="pull-right f-t-b">Forgot password?</a>  
                 }
-
+                
             </div>
 
 

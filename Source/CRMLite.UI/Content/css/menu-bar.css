@@ -4452,6 +4452,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 .shift,.search-icon {
 	display: none !important;
 }
+.nav{
+    z-index:99999999999 !important;
+}
 .shift.in {
 	display: block !important;
 }
