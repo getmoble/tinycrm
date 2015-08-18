@@ -1058,7 +1058,8 @@ body {
 }
 .nav-primary .nav>li {
 	border-bottom: 1px solid #3a3a3a;
-	z-index: 999;
+	z-index: 99999999999999 !important;
+	position:relative;
 }
 #searchForm fieldset {
 	/* width:240px;*/
