@@ -337,6 +337,7 @@
     <Content Include="Content\js\toggleChevron.js" />
     <Content Include="Content\js\uisearch.js" />
     <Content Include="Content\js\urls.js" />
+    <Content Include="Content\js\viewportchecker.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="copyifnewer.bat" />
