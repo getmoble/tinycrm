@@ -208,7 +208,10 @@ UserViewModel.prototype.UserListing = function () {
             });
             $("#pagination").DataTable({
                 responsive: true,
-                "order": [[3, "desc"]]
+                "order": [[3, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Filter: "
+                }
             });
             oTable = $('#pagination').dataTable();
 
@@ -237,7 +240,13 @@ UserViewModel.prototype.search = function () {
             $.each(response.Result, function (key, value) {
                 self.UserLists.push(new User(value));
             });
-            $("#pagination").DataTable({ responsive: true });
+            $("#pagination").DataTable({
+                responsive: true,
+                "order": [[3, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Filter: "
+                }
+            });
         }
         else {
             CRMLite.showMesssage.error(response.Message, "Error");

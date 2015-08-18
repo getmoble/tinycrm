@@ -51,7 +51,7 @@
                      <div class="input-group"> 
                                         <input type="text" name="s" id="s" class="form-control" placeholder="Search">
                      <span class="input-group-btn"> 
-                         <button type="submit" id="searchSubmit" value="" class="btn btn-info"><i class="fa fa-search"></i></button> 
+                         <button type="button" id="searchSubmit" value="" class="btn btn-info"><i class="fa fa-search"></i></button> 
                          </span> </div> </div> </form>
                   </section> </section> </li> 
         
@@ -270,9 +270,9 @@
     </script>
            <script src="~/Content/js/script-ladda.js"></script>
             @*@Scripts.Render("~/Content/Js/KnockoutJS")*@
-           <script src="https://cdn.jsdelivr.net/knockout/3.3.0/knockout.js"></script>
-                @Scripts.Render("~/Content/Js/CommonKnockoutJs")
-    <script src="~/Content/js/toastr.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/knockout/3.3.0/knockout.js"></script>
+            @Scripts.Render("~/Content/Js/CommonKnockoutJs")
+           <script src="~/Content/js/toastr.min.js"></script>
             @*<script src="~/Content/js/select2.min.js"></script>*@
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
             @RenderSection("scripts", required: false)
@@ -283,26 +283,16 @@
         if (event.which === 13) {
             event.preventDefault();
             var serchvalue = document.getElementById("s").value;
-             //alert(serchvalue);
             window.location.href = "/CRM/Search/Index?searchvalue=" + serchvalue;
         }
     });
     $('#searchSubmit').click(function () {
             var serchvalue = document.getElementById("s").value;
-            //alert(serchvalue);
             window.location.href = "/CRM/Search/Index?searchvalue=" + serchvalue;
     });
-
-
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();
     });
-    //$(document).ready(function () {
-    //    $("#s").click(function () {
-    //        alert("button");
-    //    });
-    //});
-
 </script>
 <script type="text/javascript">
     //<![CDATA[

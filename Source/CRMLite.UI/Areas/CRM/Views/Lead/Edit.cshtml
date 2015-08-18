@@ -37,14 +37,14 @@
                             <select data-bind="options: $root.Leadsource ,optionsText: 'Name',optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select LeadSource'" class="form-control"></select>
                         </div>
                         <div class="form-group">
-                            <label>Assign To</label>
-                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedAssignedTo" class="form-control"></select>
-                        </div>
-                        <div class="form-group">
                             <label data-bind="visible:IsDropdownVisbility">User</label>
                             <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedOptionalUser, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
                             <label data-bind="visible:IsTextBox">Other</label>
                             <input type="text" data-bind="value:Other,visible:IsTextBox" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Assign To</label>
+                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedAssignedTo" class="form-control"></select>
                         </div>
                     </div>
                 </div>
