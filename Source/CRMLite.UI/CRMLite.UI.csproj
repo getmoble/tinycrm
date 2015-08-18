@@ -199,6 +199,10 @@
     <Content Include="App\utils.js" />
     <Content Include="App\ViewModels\Account\AccountModel.js" />
     <Content Include="App\ViewModels\Account\AccountViewModel.js" />
+    <Content Include="App\ViewModels\User\AddEditUserViewModel.js" />
+    <Content Include="App\ViewModels\User\SearchUserViewModel.js" />
+    <Content Include="App\ViewModels\User\UserDetailsViewModel.js" />
+    <Content Include="App\ViewModels\User\UserModel.js" />
     <Content Include="App\ViewModels\User\UserViewModel.js" />
     <Content Include="App\ViewModels\Contact\ContactViewModel.js" />
     <Content Include="App\ViewModels\CRMHome\HomeViewModel.js" />
@@ -415,9 +419,7 @@
     <Content Include="packages.config" />
     <Content Include="Areas\CRM\Views\web.config" />
     <Content Include="Areas\CRM\Views\Account\Index.cshtml" />
-    <Content Include="Areas\CRM\Views\User\Edit.cshtml" />
     <Content Include="Areas\CRM\Views\User\Index.cshtml" />
-    <Content Include="Areas\CRM\Views\User\List.cshtml" />
     <Content Include="Areas\CRM\Views\Contact\DataTableIndex.cshtml" />
     <Content Include="Areas\CRM\Views\Contact\Index.cshtml" />
     <Content Include="Areas\CRM\Views\Error\Index.cshtml" />

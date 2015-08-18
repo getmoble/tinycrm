@@ -27,7 +27,7 @@
     };
     self.getEditPage = function (item) {
         var self = this;
-        CRMLite.windowManager.Redirect(ko.toJS(CRMLite.CRM.accountEdit) + item.Id());
+        CRMLite.windowManager.Redirect(CRMLite.CRM.accountEdit + item.Id());
     };
     self.accountedit = function () {
         self.isBusy(true);
@@ -65,7 +65,7 @@ AccountViewModel.prototype.init = function () {
     var self = this;
     self.isBusy(true);
     self.SelectedAccount().resetValidation();
-    var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.accountapiGetAllAccount));
+    var result = CRMLite.dataManager.getData(CRMLite.CRM.accountapiGetAllAccount);
     result.done(function (response) {     
         if (response.Status === true) {
                 $.each(response.Result.Account, function (key, value) {

@@ -135,13 +135,13 @@ PotentialViewModel.prototype.init = function () {
             $.each(response.Result.LeadSource, function (k, v) {
                 self.Leadsource.push(new SelectLeadSource(v));
             });
-            $.each(response.Result.Accounts, function (k, v) {
+            $.each($.parseJSON(response.Result.Accounts), function (k, v) {
                 self.Account.push(new SelectAccount(v));
             });
             $.each(response.Result.SalesStage, function (k, v) {
                 self.Salesstage.push(new SelectLeadStatus(v));
             });
-            $.each(response.Result.Users, function (k, v) {
+            $.each($.parseJSON(response.Result.Users), function (k, v) {
                 self.User.push(new SelectAssignedTo(v));
             });
             

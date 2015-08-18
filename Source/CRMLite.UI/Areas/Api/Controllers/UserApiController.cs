@@ -38,7 +38,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
               if (getuser.Person != null)
               {
                   user.Address = getuser.Person.Address;
-                  //user.Email = getuser.Person.Email;
+                  user.Email = getuser.Person.Email;
                   user.FirstName = getuser.Person.FirstName;
                   user.Image = ImageUrlResolver.ResolveUrl(getuser.Person.Avatar);
                   user.LastName = getuser.Person.LastName;
@@ -50,7 +50,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                   }
               }
               user.Id = getuser.Id;
-              user.Email = getuser.Username;
+              user.UserName = getuser.Username;
               return user;
           }));
         }
@@ -147,7 +147,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
             {
                 if (userModel.Image != null)
                 {
-                    userModel.Image = userModel.Image.Split('\\').Last();
+                    userModel.Image = userModel.Image.Split('/').Last();
                 }
                 var roleId = new long[] { 3 };
                 var result = _accountService.CreateAccount(userModel.FirstName, userModel.LastName, userModel.Email, "123456", roleId, userModel.Phone, userModel.Address, userModel.Image, userModel.IsListingMember, WebUser.Id);

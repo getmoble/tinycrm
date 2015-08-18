@@ -16,8 +16,8 @@ namespace CRMLite.Core.Models
         public IList<LeadSource> LeadSource { get; set; }
         public IList<SalesStage> SalesStage { get; set; }
         public IList<Contact> Contacts { get; set; }
-        public IList<User> Users { get; set; }
+        public string Users { get; set; }
         public IList<Country> Countries { get; set; }
-        public IList<Account> Accounts { get; set; }
+        public string Accounts { get; set; }
     }
 }

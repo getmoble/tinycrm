@@ -98,6 +98,13 @@ function WindowManager() {
         window.location.href = path;
     };
 };
+
+function ViewModelBase(child) {
+    var self = child;
+    self.IsBusy = ko.observable(false);
+    self.IsButtonBusy = ko.observable(false);
+    return self;
+};
 CRMLite.dataManager = new DataManager();
 CRMLite.showMesssage = new ShowMessage();
 CRMLite.windowManager = new WindowManager();

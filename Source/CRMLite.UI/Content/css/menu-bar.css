@@ -2986,6 +2986,7 @@ html, body, .hbox, .vbox {
 	font-weight: normal;
 	text-transform: none;
 	font-size: 13px;
+    z-index:999999999999 !important;
 }
 .nav-primary ul.nav>li.active>ul {
 	display: block;
@@ -5384,4 +5385,4 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 	padding: 15px;
 }
 }
->>>>>>> b5049e9de954182fe5025ac943cb0dd27b52c888
+

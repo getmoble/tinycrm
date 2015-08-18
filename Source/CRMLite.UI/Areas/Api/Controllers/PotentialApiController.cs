@@ -95,15 +95,27 @@ namespace CRMLite.UI.Areas.Api.Controllers
                                 model.SalesStageName = potential.SalesStage.Name;
                             potentialvm.Add(model);
                         }
+                        var output = JsonConvert.SerializeObject(accounts, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
+                        var potentialvmoutput = JsonConvert.SerializeObject(potentialvm, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
+                        var getusersoutput = JsonConvert.SerializeObject(users, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
                         var returnData = new PotentialResult
                         {
-                            Potential = JsonConvert.SerializeObject(potentialvm),
+                            Potential = potentialvmoutput,
                             LeadStatus = leadstatus,
                             LeadSource = leadsource,
                             SalesStage = salesstage,
                             Contacts = contacts,
-                            Users = users,
-                            Accounts = accounts,
+                            Users = getusersoutput,
+                            Accounts = output,
                             Countries = countries
                         };
                         return returnData;
@@ -148,16 +160,28 @@ namespace CRMLite.UI.Areas.Api.Controllers
 
                             potentialvm.Add(model);
                         }
+                        var output = JsonConvert.SerializeObject(accounts, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
+                        var potentialvmoutput = JsonConvert.SerializeObject(potentialvm, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
+                        var getusersoutput = JsonConvert.SerializeObject(getusers, Formatting.None, new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                        });
                         var returnData = new PotentialResult
                         {
-                            Potential = JsonConvert.SerializeObject(potentialvm),
+                            Potential = potentialvmoutput,
                             LeadStatus = leadstatus,
                             LeadSource = leadsource,
                             SalesStage = salesstage,
                             Contacts = contacts,
-                            Users = getusers,
+                            Users = getusersoutput,
                             Countries = countries,
-                            Accounts = accounts
+                            Accounts = getusersoutput
                         };
                         return returnData;
                     }                         

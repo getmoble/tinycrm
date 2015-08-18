@@ -214,6 +214,31 @@ namespace CRMLite.UI
             }
         }
 
+        public virtual JsonResult TryExecuteWrapExeptionAndReturn<T>(Func<T> operation, JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
+        {
+            try
+            {
+                var result = operation();
+                var apiResult = new ApiResult<T>
+                {
+                    Status = true,
+                    Message = "Success",
+                    Result = result
+                };
+
+                return Json(apiResult, behavior);
+            }
+            catch (Exception ex)
+            {
+                var apiResult = new ApiResult<T>
+                {
+                    Status = false,
+                    Message = ex.Message
+                };
+                return Json(apiResult, behavior);
+            }
+        }
+
         public virtual T TryExecute<T>(Func<T> operation, Func<Exception, T> onError)
         {
             try

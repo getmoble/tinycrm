@@ -26,8 +26,6 @@
     <div id="preloader">
     </div>
 <div class="vbox">
-
-@* edited latest version *@
     <header class="bg-white dk header navbar navbar-fixed-top-xs">
         <div class="navbar-header aside-md">
             <a class="btn btn-link visible-xs" id="collapse" data-toggle="class:nav-off-screen,open" data-target="#nav,html"> <i class="fa fa-bars"></i> </a>
@@ -67,40 +65,6 @@
             </li>
          </ul>
     </header>
-
-@* end latest version *@
-
-
-
-
-@*<header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
-    <div class="navbar-header aside-md dk"> <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html"> <i class="fa fa-bars"></i> </a> <a href="/CRM/Home" class="navbar-brand"> <img src="~/Content/images/crm-lite-logo.png" class="m-r-sm" alt="scale"> <span class="hidden-nav-xs"></span> </a> <a href="#nav" id="btntoggle" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs"> <i class="fa fa-reorder text"></i> <i class="fa fa-arrow-left text-active"></i> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user"> <i class="fa fa-cog"></i> </a>
-    </div>
-
-    <div class="form-divider">
-        <form id="searchForm">
-            <fieldset>
-                <div class="input">
-                    <input type="text" name="s" id="s" value="search"/>
-                </div>
-                <input type="submit" id="searchSubmit" value=""/>
-            </fieldset>
-        </form>
-    </div>
-    <ul class="nav navbar-nav navbar-right m-n">
- 
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Hello  @User.Identity.GetUserName() <b class="caret"></b> </a>
-            <ul class="dropdown-menu animated fadeInRight">
-                <li> <span class="arrow top"></span> <a href="@Url.Action("Index", "Settings", new {area = "CRM"})">Settings</a> </li>
-                <li> <a href="@Url.Action("UpdateProfile", "User", new {area = ""})">Profile</a> </li>
-                <li> <a href="@Url.Action("ChangePassword", "User", new {area = ""})">Change Password</a> </li>
-                <li class="divider"></li>
-                <li> <a href="@Url.Action("SignOut", "User", new {area = ""})">Logout</a> </li>
-            </ul>
-        </li>
-    </ul>
-</header>*@
 <section class="hbox stretch fixed-right">
     <!-- .aside -->
     <aside class="bg-black aside-md hidden-print hidden-xs" id="nav">
@@ -258,11 +222,12 @@
             @Scripts.Render("~/Content/Js/CustomCommonJs")
             @*<script src="~/Content/js/spin.min.js"></script>
            <script src="~/Content/js/ladda.min.js"></script>*@
-           <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
-           <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
     <script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.min.js"></script>
     <script src="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    @*<script src="~/Content/js/appticks.js"></script>*@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();

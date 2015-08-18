@@ -47,7 +47,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         [HttpPost]
         public JsonResult CreateAccount(AccountModel accountModel)
         {
-            return ThrowIfNotLoggedIn(() => TryExecuteWrapAndReturn(() =>
+            return ThrowIfNotLoggedIn(() => TryExecuteWrapExeptionAndReturn(() =>
             {
                 if (_accountService.CheckAccountExist(accountModel.AccountName))
                 {

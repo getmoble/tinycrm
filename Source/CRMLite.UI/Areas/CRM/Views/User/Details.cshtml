@@ -7,31 +7,31 @@
 </div>
 <input type="hidden" id="hdnUserId" value="@ViewBag.UserId" />
 <div>
-    <div data-bind="loading:$root.isBusy">
+    <div data-bind="loading:IsBusy">
         <div class="col-lg-3 col-xs-12">
             <div class="form-group">
-                <img data-bind="attr:{src:selectedUser().image}" class="imgsize" />
+                <img data-bind="attr:{src:SelectedUser().Image}" class="imgsize" />
             </div>
         </div>
         <div class="col-lg-9">
             <div class="form-group">
-                <label class="lblwidth">First Name</label><span data-bind="text:selectedUser().firstname"></span>
+                <label class="lblwidth">First Name</label><span data-bind="text:SelectedUser().FirstName"></span>
             </div>
             <div class="form-group">
-                <label class="lblwidth">Last Name</label><span data-bind="text:selectedUser().lastname"></span>
+                <label class="lblwidth">Last Name</label><span data-bind="text:SelectedUser().LastName"></span>
             </div>
             <div class="form-group">
-                <label class="lblwidth">Phone</label><span data-bind="text:selectedUser().phoneNumber"></span>
+                <label class="lblwidth">Phone</label><span data-bind="text:SelectedUser().PhoneNumber"></span>
             </div>
             <div class="form-group">
-                <label class="lblwidth">Email</label><span data-bind="text:selectedUser().email"></span>
+                <label class="lblwidth">Email</label><span data-bind="text:SelectedUser().Email"></span>
             </div>
 
             <div class="form-group">
-                <label class="lblwidth">Address</label><span data-bind="text:selectedUser().address"></span>
+                <label class="lblwidth">Address</label><span data-bind="text:SelectedUser().Address"></span>
             </div>
             <div class="form-group">
-                <label class="lblwidth">Listing Member</label><span data-bind="text:selectedUser().islistingmemberdetail"></span>
+                <label class="lblwidth">Listing Member</label><span data-bind="text:SelectedUser().IsListingMemberDetail"></span>
             </div>
      
 
@@ -40,11 +40,11 @@
     <div class="clearfix"></div>
 </div>
 @section scripts{
-    <script src="~/App/ViewModels/CRM/models.js"></script>
-    <script src="~/App/ViewModels/User/UserViewModel.js"></script>
+<script src="~/App/ViewModels/User/UserModel.js"></script>
+<script src="~/App/ViewModels/User/UserDetailsViewModel.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var vm = new UserViewModel();
+            var vm = new UserDetailsViewModel();
             ko.applyBindings(vm);
             vm.Userdetails();
         });
