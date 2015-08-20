@@ -4400,6 +4400,72 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', end
 .bg-info .icon-muted {
 	color: #5fc7c8 !important;
 }
+
+
+
+
+.bg-blue {
+	background-color: #019add;
+	color: #d1efef;
+}
+.bg-blue.lt, .bg-blue .lt {
+	background-color: #019add;
+}
+.bg-blue.lter, .bg-blue .lter {
+	background-color: #019add;
+}
+.bg-blue.dk, .bg-blue .dk {
+	background-color: #019add;
+}
+.bg-blue.dker, .bg-blue .dker {
+	background-color: #019add;
+}
+.bg-blue .bg {
+	background-color: #019add;
+}
+.bg-blue a {
+	color: #ffffff;
+}
+.bg-blue a:hover {
+	color: #fff;
+}
+.bg-blue a.list-group-item:hover, .bg-blue a.list-group-item:focus {
+	background-color: inherit;
+}
+.bg-blue .nav .caret {
+	border-top-color: #d1efef;
+	border-bottom-color: #d1efef;
+}
+.bg-blue .nav>li>a {
+	color: #ffffff;
+}
+.bg-blue .nav>li>a:hover, .bg-blue .nav>li>a:focus {
+	color: #fff;
+	background-color: #019add;
+}
+.bg-blue .nav>li>a:hover .caret, .bg-blue .nav>li>a:focus .caret {
+	border-top-color: #fff;
+	border-bottom-color: #fff;
+}
+.bg-blue .nav .open>a {
+	background-color: #019add;
+}
+.bg-blue.navbar .nav>li.active>a {
+	color: #fff;
+	background-color: #019add;
+}
+.bg-blue .open>a, .bg-blue .open>a:hover, .bg-blue .open>a:focus {
+	color: #fff;
+}
+.bg-blue .text-muted {
+	color: #bee8e8 !important;
+}
+.bg-blue .icon-muted {
+	color: #5fc7c8 !important;
+}
+
+
+
 .bg-warning {
 	background-color: #ffc333;
 	color: #fff8e6;

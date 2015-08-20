@@ -27,7 +27,7 @@ body {
 	color: #428bca;
 }
 .file-preview-image {
-	width: auto !important;
+	width: 220px !important;
 	height: auto !important;
 }
 .table-bordered td a {
@@ -653,9 +653,7 @@ label.small {
 	color: red;
 	top: 0px;
 }
-.file-preview-image {
-	width: auto !important;
-}
+
 #PortfolioOwner {
 	border: 1px solid #f1f1f1;
 	width: 100%;
