@@ -23,6 +23,10 @@
                             <input type="text" data-bind="value:LastName" class="form-control" />
                         </div>
                         <div class="form-group">
+                            <label>Designation</label>
+                            <input type="text" data-bind="value:Designation" class="form-control" />
+                        </div>
+                        <div class="form-group">
                             <label>Company/Family</label>
                             <input type="text" data-bind="value:Company" class="form-control" />
                         </div>
@@ -38,9 +42,16 @@
                         </div>
                         <div class="form-group">
                             <label data-bind="visible:IsDropdownVisbility">User</label>
-                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:SelectedOptionalUser, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
+                            <select data-bind="options: $root.Assignto ,optionsText: 'Name',optionsValue: 'Id', value:LeadSourceUserId, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
                             <label data-bind="visible:IsTextBox">Other</label>
                             <input type="text" data-bind="value:Other,visible:IsTextBox" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Recieved On</label>
+                            <div class="input-group">
+                                <input type="text" placeholder="Click here to Add Time" id="RecievedOn" data-bind="value:RecievedOn" class="form-control datepicker">
+                                <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Assign To</label>
@@ -96,7 +107,6 @@
             var vm = new LeadViewModel();
             ko.applyBindings(vm);
             vm.init();
-            vm.getLead();
         });
     </script>
 }

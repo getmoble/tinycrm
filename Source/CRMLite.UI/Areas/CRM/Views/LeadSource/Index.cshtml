@@ -3,11 +3,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container marT-lg">
-    <div class="row col-md-8 col-md-offset-1">
-        <button class="btn btn-primary pull-right" data-bind="click:add">Add</button><br />
+<div class="col-md-12">
+    <div class="col-md-6 row">
+        <div class="m-top20">
+            <h3 class="inline-b">Manage Lead Sources</h3>
+        </div>
     </div>
-    <div class="row col-md-8 col-md-offset-1">
+    <div class="row col-md-8 col-md-offset-3">
+        <button class="btn btn-primary pull-right" data-bind="click:add"><i class="fa fa-plus"></i>Create</button>
+    </div>
+
+    <br />
+    <div class="clearfix"></div>
+
+    <div class="bdr marB-md pad-sm clearfix m-b-md">
         <div data-bind="loading:isBusy">
             <table class="table table-responsive marT-lg">
                 <thead>

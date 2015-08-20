@@ -52,8 +52,21 @@ function Lead(lead) {
             return 'No name provided';
         }
     }, this);
+    if (lead.CreatedOn != null && lead.CreatedOn !== 'undefined') {
+        self.CreatedOn = ko.observable(moment(lead.CreatedOn).format('DD/MM/YYYY'));
+    }
+    else {
+        self.CreatedOn = ko.observable('');
+    }
+    if (lead.RecievedOn != null && lead.RecievedOn !== 'undefined') {
+        self.RecievedOn = ko.observable(moment(lead.RecievedOn).format('DD/MM/YYYY'));
+    }
+    else {
+        self.RecievedOn = ko.observable('');
+    }
     self.Website = ko.observable('').extend({ url: true })
     self.Company = ko.observable('');
+    self.Designation = ko.observable(lead.Designation ||'');
     if (lead.Person) {
         self.FirstName(lead.Person.FirstName);
         self.LastName(lead.Person.LastName);
@@ -79,12 +92,19 @@ function Lead(lead) {
         self.LeadStatus = ko.observable('');
     if (lead.LeadSource) {
         self.LeadSource = ko.observable(lead.LeadSource.Name || '');
-        self.SelectedOptionalUser = ko.observable(lead.LeadSource.Name || '');
+        self.LeadSourceUserId = ko.observable(lead.LeadSourceUserId || '');
     }
     else {
         self.LeadSource = ko.observable('');
-        self.SelectedOptionalUser = ko.observable('');
+        self.LeadSourceUserId = ko.observable('');
     }
+    self.LeadSourceName = ko.observable();
+    self.LeadSourceNameVisible = ko.observable(false);
+    if (lead.LeadSourceUser) {
+        self.LeadSourceName(lead.LeadSourceUser.Name || '');
+        self.LeadSourceNameVisible(true);
+    }
+
     if (lead.AssignedToUser)
         self.Assignedto = ko.observable(lead.AssignedToUser.Name || '').extend({ required: { params: true, message: "Please select User" } });
     else
@@ -204,7 +224,7 @@ function Potential(potential) {
     self.ShowingDate = ko.observable(potential.ShowingDate || '');
     self.RefId = ko.observable(potential.RefId || '');
     self.PropertyId = ko.observable(potential.PropertyId || 0);
-    self.PotentialName = ko.observable(potential.Name||'').extend({ required: { params: true, message: "Please enter Name" } });
+    self.PotentialName = ko.observable(potential.Name || '').extend({ required: { params: true, message: "Please enter Name" } });
     if(potential.Person)
     {   
         self.PotentialName(potential.Person.FirstName);
@@ -222,6 +242,14 @@ function Potential(potential) {
     }
     else {
         self.ExpectedCloseDate = ko.observable('');
+    }
+    if (potential.EnquiredOn != null && potential.EnquiredOn !== 'undefined') {
+
+        self.EnquiredOn = ko.observable(moment(potential.EnquiredOn).format('DD/MM/YYYY'));
+
+    }
+    else {
+        self.EnquiredOn = ko.observable('');
     }
     self.LeadSourceName = ko.observable(potential.LeadSourceName || '');
     self.ContactNo = ko.observable(potential.ContactNo || '');
@@ -288,7 +316,7 @@ function Contact(contact) {
     self.LastName = ko.observable('');
     self.RefId = ko.observable(contact.RefId || '');
     self.Title = ko.observable('').extend({ required: { params: true, message: "Please Enter Title" } });
-    self.Comapny = ko.observable( '').extend({ required: { params: true, message: "Please Enter Company Name" } });
+    self.Comapny = ko.observable( '');
     self.CountryId = ko.observable('');
     self.State = ko.observable(contact.State || '');
     self.City = ko.observable(contact.City || '');
@@ -313,6 +341,14 @@ function Contact(contact) {
             return 'No name provided';
         }
     }, this);
+    if (contact.CreatedOn != null && contact.CreatedOn !== 'undefined') {
+
+        self.CreatedOn = ko.observable(moment(contact.CreatedOn).format('DD/MM/YYYY'));
+
+    }
+    else {
+        self.CreatedOn = ko.observable('');
+    }
     self.SecondaryEmail = ko.observable(contact.SecondaryEmail);
     if (self.SecondaryEmail() != null)
         self.SecondaryEmail(ko.toJS(self.SecondaryEmail).toLowerCase());
@@ -372,7 +408,8 @@ function Contact(contact) {
       Email: self.Email,
       Phone: self.Phone,
       UserId: self.UserId,
-      AccountId: self.AccountId
+      AccountId: self.AccountId,
+      CountryId:self.CountryId
   });
     self.resetValidation = function () {
 
@@ -382,9 +419,9 @@ function Contact(contact) {
         self.Phone.isModified(false);
         self.UserId.isModified(false);
         self.AccountId.isModified(false);
+        self.CountryId.isModified(false);
     };
 }
-
 function Country(country) {
     var self = this;
     self.Id = ko.observable(country.Id);

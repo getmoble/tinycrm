@@ -81,7 +81,14 @@ function PotentialViewModel() {
         result.done(function (data) {
             if (data.Status == true) {
                 self.SelectedPotential(new Potential(data.Result));
-                $("#AccountSelect").select2();
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    $('#ExpectedDate').datepicker({
+                        format: 'dd/mm/yyyy',
+                        clearBtn: true,
+                        todayHighlight: date,
+                        autoclose: true,
+                    });
             }
             else {
                 CRMLite.showMesssage.error(response.Message, "Error");
@@ -95,13 +102,13 @@ function PotentialViewModel() {
     };
     self.potentialdetail = function () {
         var id = $("#hdnPotentialId").val();
-        var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.potentialapiDetails) + id);
+        var result = CRMLite.dataManager.getData((CRMLite.CRM.potentialapiDetails) + id);
         result.done(function (data) {
             if (data.Status == true) {
                 self.SelectedPotential(new Potential(data.Result));
             }
             else {
-                CRMLite.showMesssage.error(response.Message, "Error");
+                CRMLite.showMesssage.error(data.Message, "Error");
             }
         });
     };
@@ -145,8 +152,6 @@ PotentialViewModel.prototype.init = function () {
                 self.User.push(new SelectAssignedTo(v));
             });
             
-        
-            $("#AccountSelect").select2();
             self.isBusy(false);
                 }
             else {
@@ -218,10 +223,11 @@ PotentialViewModel.prototype.CreateAccount = function () {
         var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.accountapiCreateAccount), jsonData);
         result.done(function (response) {
             self.busy(false);
-            if (response.Status==true) {
-                self.Account.push(new SelectAccount(response));
+            if (response.Status == true) {
+                $('#createAccount').modal('hide');
+                self.Account.push(new SelectAccount(response.Result));
                 self.SelectedAccount(new Account({}));
-                bootbox.alert("Account saved successfully.");
+                CRMLite.showMesssage.info("Account saved successfully.", "Info");
             }
             else {
                 CRMLite.showMesssage.error(response.Message, "Error");

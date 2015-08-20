@@ -115,100 +115,12 @@ function Urls() {
     self.CRM.potentialCreate = "/CRM/Potential/Create";
     self.CRM.potentialEdit = "/CRM/Potential/Edit?id=";
     self.CRM.gotoPotentialdetails = "/CRM/Potential/Details?id=";
+
+    //LeadSource Api
+    self.CRM.leadSourceApiCreate = '/Api/LeadSourceApi/CreateLeadSource';
+    self.CRM.leadSourceApiUpdate = '/Api/LeadSourceApi/UpdateLeadSource';
+    self.CRM.leadSourceApiDelete = '/Api/LeadSourceApi/DeleteLeadSource';
+    self.CRM.leadSourceApiGetAll = '/Api/LeadSourceApi/GetAllLeadSource';
     //..................................................................................................
-
-    //ERP Urls
-
-    //Manager Api
-    self.ERP.managerManageInit = '/Api/ManagerManage/Init';
-    self.ERP.managerManageGetAllManagers = '/Api/ManagerManage/GetAllManagers';
-    self.ERP.managerManageCreateManager = '/Api/ManagerManage/CreateManager';
-    self.ERP.managerManageEditManager = '/Api/ManagerManage/EditManager?id=';
-    self.ERP.managerManageUpdateManager = '/Api/ManagerManage/UpdateManager';
-    self.ERP.managerManageDeleteManager = '/Api/ManagerManage/DeleteManager?id=';
-    self.ERP.managerManageGetAllStatesByCountry = '/Api/ManagerManage/GetAllStatesByCountry?countryId=';
-    self.ERP.managerManageGetAllCitiesByState = '/Api/ManagerManage/GetAllCitiesByState?stateId=';
-
-    //Manager Controllers
-    self.ERP.managerList = "/ERP/Manager";
-    self.ERP.managerCreate = "/ERP/Manager/Create";
-    self.ERP.managerEdit = '/ERP/Manager/Edit?id=';
-
-    //Owner Api
-    self.ERP.ownerManageInit = '/Api/OwnerManage/Init';
-    self.ERP.ownerManageEditOwner = '/Api/OwnerManage/EditOwner?id=';
-    self.ERP.OwnerManageGetAllStatesByCountry = '/Api/OwnerManage/GetAllStatesByCountry?countryId=';
-    self.ERP.ownerManageGetAllCitiesByState = '/Api/OwnerManage/GetAllCitiesByState?stateId=';
-    self.ERP.ownerManageGetAllOwners = '/Api/OwnerManage/GetAllOwners';
-    self.ERP.ownerManageCreateOwner = '/Api/OwnerManage/CreateOwner';
-    self.ERP.ownerManageUpdateOwner = '/Api/OwnerManage/UpdateOwner';
-    self.ERP.ownerManageDeleteOwner = '/Api/OwnerManage/DeleteOwner?id=';
-
-    //Owner Controllers
-    self.ERP.ownerCreate = "/ERP/Owner/Create";
-    self.ERP.ownerList = "/ERP/Owner/";
-    self.ERP.ownerEdit = '/ERP/Owner/Edit?id=';
-
-    //Portfolio Api
-    self.ERP.portfolioManageInit = '/Api/PortfolioManage/Init';
-    self.ERP.portfolioManageGetAllPortfolios = '/Api/PortfolioManage/GetAllPortfolios';
-    self.ERP.portfolioManageCreatePortfolio = '/Api/PortfolioManage/CreatePortfolio';
-    self.ERP.portfolioManageEditPortfolio = '/Api/PortfolioManage/EditPortfolio?id=';
-    self.ERP.portfolioManageUpdatePortfolio = '/Api/PortfolioManage/UpdatePortfolio';
-    self.ERP.portfolioManageDeletePortfolio = '/Api/PortfolioManage/DeletePortfolio?id=';
-
-    //Portfolio Controllers
-    self.ERP.portfolioList = "/ERP/Portfolio";
-    self.ERP.portfolioCreate = "/ERP/Portfolio/Create";
-    self.ERP.portfolioEdit = '/ERP/Portfolio/Edit?id=';
-
-    //Property Api
-    self.ERP.propertyManageInit = '/Api/PropertyManage/Init';
-    self.ERP.propertyManageGetAllStatesByCountry = '/Api/PropertyManage/GetAllStatesByCountry?countryId=';
-    self.ERP.propertyManageGetAllCitiesByState = '/Api/PropertyManage/GetAllCitiesByState?stateId=';
-    self.ERP.propertyManageCreateProperty = '/Api/PropertyManage/CreateProperty';
-    self.ERP.propertyManageCreateAminity = '/Api/PropertyManage/CreateAminity';
-    self.ERP.propertyManageCreateMoreProperty = '/Api/PropertyManage/CreateMoreProperty';
-    self.ERP.propertyManageGetAllProperties = '/Api/PropertyManage/GetAllProperties';
-    self.ERP.propertyManageEditPrperty = '/Api/PropertyManage/EditPrperty?id=';
-    self.ERP.propertyManageUpdateProperty = '/Api/PropertyManage/UpdateProperty';
-    self.ERP.propertyManageDeleteProperty = '/Api/PropertyManage/DeleteProperty?id=';
-
-
-    //Property Controllers
-    self.ERP.propertyEdit = '/ERP/Property/Edit?id=';
-    self.ERP.propertyCreate = "/ERP/property/create";
-
-    //Setting Api
-    self.ERP.settingManageChangePagingSize = '/Api/SettingManage/ChangePagingSize?pagingsize=';
-
-    //Setting Controllers
-    self.ERP.settingsList = "/ERP/Settings";
-
-    //Unit Api
-    self.ERP.unitManageGetAllUnits = '/Api/UnitManage/GetAllUnits';
-    self.ERP.unitManageInit = '/Api/UnitManage/Init';
-    self.ERP.unitManageGetAllStatesByCountry = '/Api/UnitManage/GetAllStatesByCountry?countryId=';
-    self.ERP.unitManageGetAllCitiesByState = '/Api/UnitManage/GetAllCitiesByState?stateId=';
-    self.ERP.unitManageCreateUnit = '/Api/UnitManage/CreateUnit';
-    self.ERP.unitManageCreateMoreUnit = '/Api/unitManage/CreateMoreUnit';
-    self.ERP.unitManageEditUnit = '/Api/UnitManage/EditUnit?id=';
-    self.ERP.unitManageUpdateUnit = '/Api/UnitManage/UpdateUnit';
-    self.ERP.unitManageDeleteUnit = '/Api/UnitManage/DeleteUnit?id=';
-
-    //Unit Controllers
-    self.ERP.unitEdit = '/ERP/Unit/Edit?id=';
-    self.ERP.unitList = '/ERP/unit';
-
-    //Charge Api
-    self.ERP.ChargeManageInit = '/Api/ChargeManage';
-    self.ERP.ChargeManageCreate = '/Api/ChargeManage/CreateCharge';
-    self.ERP.chargeManageGetAllCharges = '/Api/ChargeManage/GetCharges';
-    self.ERP.chargeManageDeleteCharge = '/Api/ChargeManage/DeleteCharge?id=';
-
-    //Charge Controllers
-
-    self.ERP.chargeCreate = '/ERP/Charge/Create';
-    self.ERP.chargeIndex = '/ERP/Charge/Index';
 
 };

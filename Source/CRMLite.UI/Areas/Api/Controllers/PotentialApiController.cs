@@ -250,7 +250,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                     AccountNo = potential.Account.RefId,
                     Industry = potential.Account.Industry,
                     ContactTitle = potential.Contact.Person.Title,
-                    AssignedTo = potential.AssignedToUser.Person.FirstName
+                    AssignedTo = potential.AssignedToUser.Name
                 };
             return potentialvm;
         }));

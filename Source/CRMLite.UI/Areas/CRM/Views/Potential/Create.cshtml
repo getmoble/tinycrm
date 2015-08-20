@@ -17,13 +17,13 @@
                         <div class="col-lg-6">
 
                             <div class="form-group">
-                                <label>Potential Name *</label> @*<span class="mandatory"></span>*@
+                                <label>Potential Name *</label>
                                 <input type="text" class="form-control" data-bind="value:PotentialName" />
                             </div>
                             <div class="form-group">
                                 <label>Related To Account *</label>@*<span class="mandatory">*</span>*@
                                 <div class="f-w-9">
-                                    <select id="AccountSelect" data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account'" class="select2-drop-mask atagcolor form-control"></select>
+                                    <select data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account',select2: { width: '100%' }" class="select2-drop-mask atagcolor form-control"></select>
                                 </div><button class="btn btn-primary" data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>
                             </div>
                             <div class="form-group">
@@ -33,6 +33,13 @@
                             <div class="form-group">
                                 <label>Lead Source</label>
                                 <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select Lead Source'" class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Enquired On</label> 
+                                <div class="input-group">
+                                    <input type="text" placeholder="Click here to Add Time" id="EnquiredOn" data-bind="value:EnquiredOn" class="form-control datepicker">
+                                    <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label data-bind="visible:IsDropdownVisbility">User</label>
@@ -45,17 +52,7 @@
                                 <input type="text" class="form-control" data-bind="value:PotentialAmount,numericOnly:true" />
                             </div>
 
-                            <div class="form-group">
-                                <label>Expected Close Date</label>
-                                <div id="datetimepicker2" class="input-append date">
-                                    <input data-format="dd/MM/yyyy" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
-                                    <span class="add-on">
-                                        <i class="fa fa-calendar" data-time-icon="icon-time"></i>
-                                    </span>
-                                </div>
-
-                                @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
-                            </div>
+                  
                             <div class="form-group">
                                 <label>Sales Stage *</label>
                                 <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SelectedSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
@@ -64,17 +61,22 @@
                                 <label>Assigned To *</label>
                                 <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select User'" class="form-control"></select>
                             </div>
+                            <div class="form-group">
+                                <label>Expected Close Date</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Click here to Add Time" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control datepicker">
+                                    <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+                                </div>
+                           
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" rows="3" data-bind="value:Comments"></textarea>
-                            </div>
-                           
+                            </div>                           
                         </div>
-
-                    </div>
-               
+                    </div>             
                
             </div>
         </div>
@@ -85,11 +87,7 @@
     <div class="col-md-12">
         <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
     </div>
-</div>
-    
-       
-    
-
+</div> 
     <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -145,8 +143,7 @@
                                 <textarea data-bind="value:Comment" class=" form-control" rows="4"></textarea>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
                 <div class="modal-footer">
 
@@ -161,7 +158,6 @@
     @section scripts{
         <link href="~/Content/css/select2-bootstrap.css" rel="stylesheet" />
         <link href="~/Content/css/select2.css" rel="stylesheet" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="~/Content/js/select2.min.js"></script>
         <script src="~/App/ViewModels/Account/AccountModel.js"></script>
         <script src="~/App/ViewModels/CRM/models.js"></script>
@@ -173,11 +169,19 @@
                 vm.init();
             });
         </script>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker();
-                $('#datetimepicker3').datetimepicker();
-            });
-        </script>
+   <script type="text/javascript">
+    $(function () {
+        var date = new Date();
+        date.setDate(date.getDate());
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            clearBtn: true,
+            todayHighlight: date,
+            autoclose: true,
+        });
+    });
+</script>
+
+
 
     }

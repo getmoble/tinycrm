@@ -1,4 +1,6 @@
 ﻿@using System.Web.Optimization
+@using CRMLite.Infrastructure
+@using CRMLite.Infrastructure.Enum
 <!doctype html>
 <html>
 <head>
@@ -15,7 +17,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="~/Content/css/ladda-themeless.min.css" rel="stylesheet" />
     <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" />
-   
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" rel="stylesheet" />
     <link href="http://cdn.datatables.net/responsive/1.0.6/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
 
     @*<link href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css" rel="stylesheet" />*@
@@ -54,7 +57,7 @@
                   </section> </section> </li> 
         
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Hello  @User.Identity.GetUserName() <b class="caret"></b> </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="~/Content/images/logo.png" alt="..."> </span>Hello  @User.Identity.Name<b class="caret"></b> </a>
                 <ul class="dropdown-menu animated fadeInRight">
                     <li> <span class="arrow top"></span> <a href="@Url.Action("Index", "Settings", new {area = "CRM"})">Settings</a> </li>
                     <li> <a href="@Url.Action("UpdateProfile", "User", new {area = ""})">Profile</a> </li>
@@ -73,11 +76,6 @@
                 <div class="slim-scroll" data-height="100%" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railopacity="0.2">
                     <nav class="nav-primary hidden-xs">
                         <ul class="nav">
-                            @*@if (User != null)
-                                {
-                                    @DynamicMenuRenderingHelper.BuildMenu(ViewBag.MenuItems);
-                                    }*@
-
                             <li class="active"> <a href="@Url.Action("index", "Home", new {area = "CRM"})"> <i class="fa fa-dashboard icon"> <b class="bg-success"></b> </i> <span>Dashboard</span> </a> </li>
                             <li class="">
                                 <a href="@Url.Action("index", "Lead", new {area = "CRM"})"> <i class="fa fa-columns icon"> <b class="bg-info"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>Leads</span> </a>
@@ -119,6 +117,16 @@
                                     <li> <a href="@Url.Action("create", "User", new {area = "CRM"})"> <i class="fa fa-angle-right"></i> <span>Create</span> </a> </li>
                                 </ul>
                             </li>
+                            @if(RoleChecker.CheckRole(ViewBag.RoleId, RoleIds.Admin))
+                            {
+                            <li class="">
+                                <a href="@Url.Action("index", "LeadSource", new { area = "CRM" })"> <i class="fa fa-leaf icon"> <b class="bg-primary"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>Lead Source</span> </a>
+                                <ul class="nav bg" style="display: none;">
+                                    <li> <a href="@Url.Action("index", "LeadSource", new { area = "CRM" })"> <i class="fa fa-angle-right"></i> <span>Manage</span> </a> </li>
+                                   
+                                </ul>
+                            </li>     
+                            }
 
 
                         </ul>
@@ -206,15 +214,15 @@
                 <!-- / side content -->
             </section>
             <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
-            
+
         </div>
-       
+
     </section>
-    
+
 </section>
-    
+
 </div>
-    
+
     <script src="~/Content/js/jquery-2.1.1.min.js"></script>
            @*<script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>*@
     <script src="~/Content/js/bootstrap.min.js"></script>
@@ -228,7 +236,8 @@
     <script src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script src="http://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.min.js"></script>
     <script src="http://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-    @*<script src="~/Content/js/appticks.js"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+     @*<script src="~/Content/js/appticks.js"></script>*@
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
@@ -242,7 +251,7 @@
             @Scripts.Render("~/Content/Js/CommonKnockoutJs")
            <script src="~/Content/js/toastr.min.js"></script>
             @*<script src="~/Content/js/select2.min.js"></script>*@
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+            @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>*@
             @RenderSection("scripts", required: false)
 </body>
 </html>

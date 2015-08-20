@@ -590,3 +590,32 @@ ko.observable.fn.withPausing = function() {
 
 
 
+ko.bindingHandlers.select2 = {
+    init: function (el, valueAccessor, allBindingsAccessor, viewModel) {
+
+        ko.utils.domNodeDisposal.addDisposeCallback(el, function () {
+            $(el).select2('destroy');
+        });
+
+        var allBindings = allBindingsAccessor(),
+            select2 = ko.utils.unwrapObservable(valueAccessor());
+
+        $(el).select2(select2);
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+
+        var selectedOptions = ko.unwrap(allBindingsAccessor.get("selectedOptions")),
+            val = ko.unwrap(allBindingsAccessor.get("value")),
+            options = ko.unwrap(allBindingsAccessor.get("options"));
+
+        if ($(element).prop('multiple')) {
+            $(element).select2('val', selectedOptions, true);
+        }
+        else {
+            $(element).select2("val", val);
+        }
+
+        $(element).trigger('change');
+    }
+};

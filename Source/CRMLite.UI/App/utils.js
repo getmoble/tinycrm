@@ -69,7 +69,7 @@ function DataManager() {
         return self.ajaxTransport(url, { type: 'POST', data: JSON.stringify(data) });
     };
 };
-function ShowMessage( ) {
+function ShowMessage() {
     var self = this;
     self.error = function (message, type) {
         toastr.options = {
@@ -90,6 +90,46 @@ function ShowMessage( ) {
             "hideMethod": "fadeOut"
         }
         toastr["error"](message, type);
+    };
+    self.warning = function (message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["warning"](message, type);
+    };
+    self.info = function (message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["info"](message, type);
     };
 };
 function WindowManager() {

@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                             <label>Related To Account *</label>
                                             <div class="col-md-11 row">
-                                        <select id="AccountSelect" data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account'" class="select2-drop-mask atagcolor form-control"></select>
+                                                <select data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account',select2: { width: '100%' }" class="select2-drop-mask atagcolor form-control"></select>
                                             </div><button class="btn btn-primary m-l-lg" data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>
                                     </div>
                                     <div class="form-group">
@@ -42,6 +42,10 @@
                                         <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select Lead Source'" class="form-control"></select>
                                     </div>
                                     <div class="form-group">
+                                        <label>Enquired On</label>
+                                        <input type="text" class="form-control" data-bind="value:EnquiredOn" />
+                                    </div>
+                                    <div class="form-group">
                                         <label data-bind="visible:IsDropdownVisbility">User</label>
                                         <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedUser, optionsCaption:'Select User',visible:IsDropdownVisbility" class="form-control"></select>
                                     </div>
@@ -51,17 +55,7 @@
                                         <label>Expected Amount</label>
                                         <input type="text" class="form-control" data-bind="value:PotentialAmount,numericOnly:true" />
                                     </div>
-                                    <div class="form-group">
-                                        <label>Expected Close Date</label>
-                                        <div id="datetimepicker2" class="input-append date">
-                                            <input data-format="yyyy-MM-dd" type="text" class="form-control" data-bind="value:ExpectedCloseDate" id="ExpectedDate"></input>
-                                            <span class="add-on">
-                                                <i class="fa fa-calendar" data-time-icon="icon-time"></i>
-
-                                            </span>
-                                        </div>
-                                        @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
-                                    </div>
+                            
                                     <div class="form-group">
                                             <label>Sales Stage *</label>
                                         <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SelectedSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
@@ -69,6 +63,14 @@
                                     <div class="form-group">
                                             <label>Assigned To *</label>
                                         <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select User'" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Expected Close Date</label>
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Click here to Add Time" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control timepicker">
+                                            <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+                                        </div>
+                                        @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
                                     </div>
                                 </div>
 
@@ -192,11 +194,6 @@
             ko.applyBindings(vm);
             vm.init();
             vm.potentialedit();
-        });
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker2').datetimepicker();
         });
     </script>
 }
