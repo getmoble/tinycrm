@@ -11,6 +11,7 @@
             Email: ko.toJS(self.SelectedUser().Email), Phone: ko.toJS(self.SelectedUser().PhoneNumber),
             Address: ko.toJS(self.SelectedUser().Address), IsListingMember: ko.toJS(self.SelectedUser().IsListingMember), Id: ko.toJS(self.SelectedUser().Id), Image: ko.toJS(self.SelectedUser().Image)
         };
+        alert(ko.toJSON(jsonData));
         var result = CRMLite.dataManager.postData((CRMLite.CRM.UserapiCreate), jsonData);
         result.done(function (response) {
             self.IsButtonBusy(false);
@@ -82,7 +83,7 @@
         imagPath = imagPath.concat(strPath);
         o.src = imagPath;
         path = ko.toJS(CRMLite.CRM.uploadUser) + ko.toJS(strPath);
-        self.SelectedUser().image(path);
+        self.SelectedUser().Image(path);
     }
     setTimeout(function () {
         $("#avatar").change(function () {
@@ -126,6 +127,7 @@
             Email: ko.toJS(self.SelectedUser().Email), Phone: ko.toJS(self.SelectedUser().PhoneNumber), Image: ko.toJS(self.SelectedUser().Image), Address: ko.toJS(self.SelectedUser().Address),
             IsListingMember: ko.toJS(self.SelectedUser().IsListingMember), Id: ko.toJS(self.SelectedUser().Id)
         };
+        alert(ko.toJSON(jsonData));
         var result = CRMLite.dataManager.postData((CRMLite.CRM.UserapiUpdate), jsonData);
         result.done(function (response) {
             self.IsButtonBusy(false);
@@ -171,6 +173,9 @@
             var o = document.getElementById("ThumbnailImageS");
             var imagPath = new String(ko.toJS(CRMLite.CRM.uploadUser));
             imagPath = imagPath.concat(strPath);
+            o.src = imagPath;
+            path = ko.toJS(CRMLite.CRM.uploadUser) + ko.toJS(strPath);
+            self.SelectedUser().Image(path);
 
             o.src = imagPath;;
             path = ko.toJS(strPath);

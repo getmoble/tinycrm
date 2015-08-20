@@ -6,17 +6,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\newpub10</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\newpub11</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App/utils.js">
-      <publishTime>08/14/2015 14:39:36</publishTime>
+      <publishTime>08/18/2015 16:55:33</publishTime>
     </File>
     <File Include="App/ViewModels/Account/AccountModel.js">
-      <publishTime>08/17/2015 18:19:41</publishTime>
+      <publishTime>08/17/2015 19:30:43</publishTime>
     </File>
     <File Include="App/ViewModels/Account/AccountViewModel.js">
-      <publishTime>08/17/2015 13:27:04</publishTime>
+      <publishTime>08/18/2015 10:57:31</publishTime>
     </File>
     <File Include="App/ViewModels/Agent/AgentViewModel.js">
       <publishTime>07/28/2015 19:53:59</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2015 13:31:04</publishTime>
     </File>
     <File Include="App/ViewModels/CRM/models.js">
-      <publishTime>08/17/2015 16:43:16</publishTime>
+      <publishTime>08/18/2015 16:56:24</publishTime>
     </File>
     <File Include="App/ViewModels/CRMHome/HomeViewModel.js">
       <publishTime>07/28/2015 19:53:59</publishTime>
@@ -58,7 +58,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2015 19:53:59</publishTime>
     </File>
     <File Include="App/ViewModels/Potential/PotentialViewModel.js">
-      <publishTime>08/17/2015 13:33:14</publishTime>
+      <publishTime>08/18/2015 19:07:39</publishTime>
     </File>
     <File Include="App/ViewModels/Property/PropertyModel.js">
       <publishTime>07/28/2015 23:52:37</publishTime>
@@ -78,8 +78,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="App/ViewModels/Unit/UnitViewModel.js">
       <publishTime>07/29/2015 04:52:58</publishTime>
     </File>
+    <File Include="App/ViewModels/User/AddEditUserViewModel.js">
+      <publishTime>08/18/2015 19:46:14</publishTime>
+    </File>
+    <File Include="App/ViewModels/User/SearchUserViewModel.js">
+      <publishTime>08/18/2015 16:54:10</publishTime>
+    </File>
+    <File Include="App/ViewModels/User/UserDetailsViewModel.js">
+      <publishTime>08/18/2015 16:56:24</publishTime>
+    </File>
+    <File Include="App/ViewModels/User/UserModel.js">
+      <publishTime>08/18/2015 19:22:49</publishTime>
+    </File>
     <File Include="App/ViewModels/User/UserViewModel.js">
-      <publishTime>08/17/2015 14:03:08</publishTime>
+      <publishTime>08/18/2015 13:15:51</publishTime>
     </File>
     <File Include="Areas/Api/Views/web.config">
       <publishTime>07/30/2015 14:55:12</publishTime>
@@ -166,7 +178,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2015 19:53:59</publishTime>
     </File>
     <File Include="Areas/CRM/Views/Lead/Index.cshtml">
-      <publishTime>08/17/2015 14:04:57</publishTime>
+      <publishTime>08/18/2015 19:20:35</publishTime>
     </File>
     <File Include="Areas/CRM/Views/Potential/Create.cshtml">
       <publishTime>08/14/2015 17:44:07</publishTime>
@@ -187,22 +199,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/12/2015 17:17:58</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/Create.cshtml">
-      <publishTime>08/17/2015 16:41:47</publishTime>
+      <publishTime>08/18/2015 17:12:51</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/Details.cshtml">
-      <publishTime>08/17/2015 16:41:47</publishTime>
+      <publishTime>08/18/2015 17:18:57</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/Edit.cshtml">
       <publishTime>08/17/2015 16:41:47</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/Index.cshtml">
-      <publishTime>08/12/2015 17:17:58</publishTime>
+      <publishTime>08/18/2015 16:47:02</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/List.cshtml">
       <publishTime>08/11/2015 11:32:30</publishTime>
     </File>
     <File Include="Areas/CRM/Views/User/Update.cshtml">
-      <publishTime>08/17/2015 16:41:48</publishTime>
+      <publishTime>08/18/2015 19:41:44</publishTime>
     </File>
     <File Include="Areas/CRM/Views/web.config">
       <publishTime>07/30/2015 14:55:13</publishTime>
@@ -280,7 +292,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2015 19:53:56</publishTime>
     </File>
     <File Include="bin/Common.Auth.SingleTenant.dll">
-      <publishTime>08/14/2015 18:02:23</publishTime>
+      <publishTime>08/18/2015 17:34:34</publishTime>
     </File>
     <File Include="bin/Common.Data.dll">
       <publishTime>07/28/2015 19:53:57</publishTime>
@@ -304,16 +316,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2015 19:53:57</publishTime>
     </File>
     <File Include="bin/CRMLite.Core.dll">
-      <publishTime>08/14/2015 18:47:31</publishTime>
+      <publishTime>08/18/2015 19:49:04</publishTime>
     </File>
     <File Include="bin/CRMLite.Data.dll">
-      <publishTime>08/14/2015 18:47:31</publishTime>
+      <publishTime>08/18/2015 19:49:04</publishTime>
     </File>
     <File Include="bin/CRMLite.Infrastructure.dll">
-      <publishTime>08/17/2015 16:54:19</publishTime>
+      <publishTime>08/18/2015 19:49:04</publishTime>
     </File>
     <File Include="bin/CRMLite.UI.dll">
-      <publishTime>08/17/2015 18:31:31</publishTime>
+      <publishTime>08/18/2015 19:49:05</publishTime>
     </File>
     <File Include="bin/Elasticsearch.Net.dll">
       <publishTime>07/28/2015 19:53:56</publishTime>
@@ -373,7 +385,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/29/2015 05:33:49</publishTime>
     </File>
     <File Include="bin/PropznetCommon.Features.CRM.dll">
-      <publishTime>08/13/2015 18:39:55</publishTime>
+      <publishTime>08/18/2015 19:27:50</publishTime>
     </File>
     <File Include="bin/PropznetCommon.Features.ERP.dll">
       <publishTime>07/29/2015 06:37:54</publishTime>
@@ -502,7 +514,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2015 16:41:47</publishTime>
     </File>
     <File Include="Content/css/menu-bar.css">
-      <publishTime>08/17/2015 18:18:17</publishTime>
+      <publishTime>08/18/2015 19:20:52</publishTime>
     </File>
     <File Include="Content/css/new-style - Copy.css">
       <publishTime>08/07/2015 10:13:09</publishTime>
@@ -520,7 +532,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/07/2015 10:13:09</publishTime>
     </File>
     <File Include="Content/css/propznet-style.css">
-      <publishTime>08/17/2015 16:41:47</publishTime>
+      <publishTime>08/18/2015 19:20:35</publishTime>
     </File>
     <File Include="Content/css/responsive.css">
       <publishTime>08/07/2015 10:13:09</publishTime>
@@ -538,7 +550,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/07/2015 10:13:09</publishTime>
     </File>
     <File Include="Content/css/style-responsive.css">
-      <publishTime>08/14/2015 17:07:09</publishTime>
+      <publishTime>08/18/2015 19:20:35</publishTime>
     </File>
     <File Include="Content/css/style.css">
       <publishTime>08/07/2015 10:13:09</publishTime>
@@ -865,7 +877,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2015 19:54:01</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/17/2015 16:53:55</publishTime>
+      <publishTime>08/18/2015 19:20:35</publishTime>
     </File>
     <File Include="Views/Shared/_LoginLayout.cshtml">
       <publishTime>08/08/2015 21:15:11</publishTime>

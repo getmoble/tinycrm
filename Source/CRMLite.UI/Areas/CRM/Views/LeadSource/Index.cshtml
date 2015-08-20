@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container marT-lg">
+    <div class="row col-md-8 col-md-offset-1">
+        <button class="btn btn-primary pull-right" data-bind="click:add">Add</button><br />
+    </div>
+    <div class="row col-md-8 col-md-offset-1">
+        <div data-bind="loading:isBusy">
+            <table class="table table-responsive marT-lg">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template:{name:'item-view-template',foreach:leadSources}"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="LeadSource" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Driver</h4>
+            </div>
+            <div class="modal-body" data-bind="template:{name:'item-lead-template',data:selectedLeadSource}">
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary ladda-button" data-bind="click:saveLeadSource,ladda:isLadda" data-color="blue" data-size="s" data-style="zoom-in">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="LeadSourceEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Driver</h4>
+            </div>
+            <div class="modal-body" data-bind="template:{name:'item-lead-template',data:selectedLeadSource}">
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div data-bind="loading:isBusy">
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary ladda-button" data-bind="click:updateLeadSource,ladda:isLadda" data-color="blue" data-size="s" data-style="zoom-in">Update</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="item-view-template">
+    <tr>
+        <td data-bind="text: ($index() + 1)"></td>
+        <td data-bind="text:Name"></td>
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-success" data-bind="click:$parent.edit"><i class="fa fa-edit"></i></button>
+                <button class="btn btn-danger" data-bind="click:$parent.remove"><i class="fa fa-trash"></i></button>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/html" id="item-lead-template">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" data-bind="value:Name" class="form-control" />
+    </div>
+</script>
+
+@section scripts{
+    <script src="~/App/ViewModels/LeadSource/LeadSourceScript.js"></script>
+}

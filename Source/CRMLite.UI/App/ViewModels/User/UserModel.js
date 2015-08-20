@@ -9,7 +9,7 @@
     self.IsListingMemberDetail = ko.observable('');
     self.FirstName = ko.observable(user.FirstName || '').extend({ required: { params: true, message: "Please enter First Name" } });
     self.Email = ko.observable('').extend({ email: { params: true, message: "Invalid email" }, required: { params: true, message: "Please enter Email" } });
-    self.PhoneNumber = ko.observable(user.Phone || '').extend({ required: { params: true, message: "Please enter Phone Number" } });
+    self.PhoneNumber = ko.observable(user.Phone || '');
     self.Address = ko.observable(user.Address || '').extend({ required: { params: true, message: "Please enter address" } });
     self.Name = ko.pureComputed(function () {
         if ((self.FirstName() != "" && self.FirstName() != null) && (self.LastName() != "" && self.LastName() != null)) {

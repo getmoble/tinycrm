@@ -199,6 +199,7 @@
     <Content Include="App\utils.js" />
     <Content Include="App\ViewModels\Account\AccountModel.js" />
     <Content Include="App\ViewModels\Account\AccountViewModel.js" />
+    <Content Include="App\ViewModels\LeadSource\LeadSourceScript.js" />
     <Content Include="App\ViewModels\User\AddEditUserViewModel.js" />
     <Content Include="App\ViewModels\User\SearchUserViewModel.js" />
     <Content Include="App\ViewModels\User\UserDetailsViewModel.js" />
@@ -362,6 +363,7 @@
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
+    <Content Include="Areas\CRM\Views\LeadSource\Index.cshtml" />
     <None Include="Properties\PublishProfiles\jinesh.pubxml" />
     <None Include="Properties\PublishProfiles\suite.pubxml" />
     <None Include="Scripts\_references.js" />
@@ -378,6 +380,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AccountApiController.cs" />
+    <Compile Include="Areas\Api\Controllers\LeadSourceApiController.cs" />
     <Compile Include="Areas\Api\Controllers\UserApiController.cs" />
     <Compile Include="Areas\Api\Controllers\ContactApiController.cs" />
     <Compile Include="Areas\Api\Controllers\FullCalenderApiController.cs" />
@@ -386,6 +389,7 @@
     <Compile Include="Areas\Api\Controllers\PotentialApiController.cs" />
     <Compile Include="Areas\Api\Controllers\SettingManageController.cs" />
     <Compile Include="Areas\Api\Controllers\SettingsApiController.cs" />
+    <Compile Include="Areas\CRM\Controllers\LeadSourceController.cs" />
     <Compile Include="BaseApiController.cs" />
     <Compile Include="BaseUIController.cs" />
     <Compile Include="Areas\CRM\Controllers\AccountController.cs" />

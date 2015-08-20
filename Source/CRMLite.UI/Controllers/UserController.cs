@@ -143,6 +143,7 @@ namespace CRMLite.UI.Controllers
                 ViewBag.Message = "Successfully updated your profile";
                 ViewBag.Image = model.Image;
                 WebUser.Image = model.Image;
+                WebUser.Name = model.FirstName;
             }
             return View();
         }
