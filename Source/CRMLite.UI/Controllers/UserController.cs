@@ -133,12 +133,12 @@ namespace CRMLite.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                long[] roleId = null;
+                long[] roleId = WebUser.RoleId;
                 var user = _userService.GetUserByUsername(WebUser.Email);
-                if (WebUser.IsInRole("Admin"))
-                {
-                    roleId = new long[] { 1 };
-                }
+                //if (WebUser.IsInRole("Admin"))
+                //{
+                //    roleId = new long[] { 1 };
+                //}
                 _accountService.UpdateAccount(model.FirstName + "" + model.LastName, WebUser.Email, WebUser.Email, model.Address, model.Phone, roleId, user.PersonId, WebUser.Id, model.Image);
                 ViewBag.Message = "Successfully updated your profile";
                 ViewBag.Image = model.Image;
