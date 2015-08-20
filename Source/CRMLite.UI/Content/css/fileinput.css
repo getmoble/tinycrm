@@ -123,6 +123,7 @@
     padding: 6px;
     float: left;
     text-align: center;
+    width:220px !important;
     vertical-align: middle;
 }
 
