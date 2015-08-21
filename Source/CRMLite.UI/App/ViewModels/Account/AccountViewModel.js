@@ -3,6 +3,8 @@
     self.busy = ko.observable();
     self.DisplayTitle = ko.observable();
     self.AccountLists = ko.observableArray();
+    self.TempAccountLists = ko.observableArray();
+    self.TempUsers = ko.observableArray();
     self.Users = ko.observableArray();
     self.SearchAssignedTo = ko.observable();
     self.isBusy = ko.observable(false);
@@ -69,9 +71,10 @@ AccountViewModel.prototype.init = function (userId) {
     result.done(function (response) {     
         if (response.Status === true) {
                 $.each(response.Result.Account, function (key, value) {
-                    self.AccountLists.push(new Account(value));
+                    self.TempAccountLists.push(new Account(value));
                     self.isBusy(false);
                 });
+                ko.utils.arrayPushAll(self.AccountLists, self.TempAccountLists());
                 $("#pagination").DataTable({
                     responsive: true,
                     "order": [[3, "desc"]],
@@ -81,8 +84,9 @@ AccountViewModel.prototype.init = function (userId) {
                 });
                 var oTable = $('#pagination').dataTable();
                 $.each(response.Result.User, function (key, value) {
-                    self.Users.push(new SelectedItem(value));
+                    self.TempUsers.push(new SelectedItem(value));
                 });
+                ko.utils.arrayPushAll(self.Users, self.TempUsers());
                 if(userId)
                 {
                     self.SelectedAccount().SelectedAssignedto(userId);
@@ -153,9 +157,11 @@ AccountViewModel.prototype.search = function () {
     var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.accountapiSearch) ,jsonData);
     result.done(function (response) {     
         self.AccountLists.removeAll();
+        self.TempAccountLists.removeAll();
         $.each(response.Result, function (key, value) {
-            self.AccountLists.push(new Account(value));
+            self.TempAccountLists.push(new Account(value));
         });
+        ko.utils.arrayPushAll(self.AccountLists, self.TempAccountLists());
         $("#pagination").DataTable({
             responsive: true,
             "order": [[3, "desc"]],

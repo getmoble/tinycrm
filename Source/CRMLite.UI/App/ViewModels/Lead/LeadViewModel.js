@@ -5,6 +5,7 @@ function LeadViewModel() {
     self.LeadLists = ko.observableArray();
     self.Assignto = ko.observableArray();
     self.salesStage = ko.observableArray();
+    self.TempLeadLists = ko.observableArray();
     self.SelectedAssignedTo = ko.observable();
     self.SelectedLeadStatus = ko.observable();
     self.SelectedLeadSource = ko.observable();
@@ -206,9 +207,11 @@ LeadViewModel.prototype.search = function () {
     result.done(function (response) {
         if (response.Status == true) {
             self.LeadLists.removeAll();
+            self.TempLeadLists.removeAll();
             $.each(response.Result, function (key, value) {
-                self.LeadLists.push(new Lead(value));
+                self.TempLeadLists.push(new Lead(value));
             });
+            ko.utils.arrayPushAll(self.LeadLists, self.TempLeadLists());
             $("#pagination").DataTable({
                 responsive: true,
                 "order": [[3, "desc"]],
@@ -251,8 +254,9 @@ LeadViewModel.prototype.LeadListing = function () {
     result.done(function (response) {
         if (response.Status == true) {
             $.each($.parseJSON(response.Result), function (key, value) {
-                self.LeadLists.push(new Lead(value));
+                self.TempLeadLists.push(new Lead(value));
             });
+            ko.utils.arrayPushAll(self.LeadLists, self.TempLeadLists());
             $("#pagination").DataTable({
                 responsive: true,
                 "order": [[3, "desc"]],

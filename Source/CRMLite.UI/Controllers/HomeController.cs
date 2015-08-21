@@ -2,6 +2,8 @@
 
 namespace CRMLite.UI.Controllers
 {
+    [RoutePrefix("home")]
+    [Route("{action=index}")]
     public class HomeController : BaseUIController
     {
         public ActionResult Index()

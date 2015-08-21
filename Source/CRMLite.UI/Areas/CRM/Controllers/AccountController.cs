@@ -5,6 +5,8 @@ using PropznetCommon.Features.CRM.ViewModel.User;
 
 namespace CRMLite.UI.Areas.CRM.Controllers
 {
+    [RoutePrefix("account")]
+    [Route("{action=index}")]
     public class AccountController : BaseUIController
     {
         public ActionResult Index()

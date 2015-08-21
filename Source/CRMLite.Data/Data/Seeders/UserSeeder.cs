@@ -36,7 +36,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Roles.Add(ownerRole);
             context.SaveChanges();
 
-            var person = new Person { FirstName = "Sreenath", LastName = "Kezhakkedath", PhoneNo = "+4253014269", RefId = new Guid().ToString("N") };
+            var person = new Person { FirstName = "Sreenath", LastName = "Kezhakkedath", PhoneNo = "+4253014269", RefId = new Guid().ToString("N"), Email = "sreenath@logiticks.com" };
             context.Persons.Add(person);
             context.SaveChanges();
 
@@ -44,7 +44,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Users.Add(admin);
             context.SaveChanges();
 
-            var newPerson = new Person { FirstName = "Mark", LastName = " ", PhoneNo = "", RefId = new Guid().ToString("N") };
+            var newPerson = new Person { FirstName = "Mark", LastName = " ", PhoneNo = "", RefId = new Guid().ToString("N"), Email = "mark@logiticks.com" };
             context.Persons.Add(newPerson);
             context.SaveChanges();
 
@@ -52,7 +52,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Users.Add(newuser);
             context.SaveChanges();
 
-            var newPerson2 = new Person { FirstName = "Dhanya", LastName = "Viswanadh ", PhoneNo = "", RefId = new Guid().ToString("N") };
+            var newPerson2 = new Person { FirstName = "Dhanya", LastName = "Viswanadh ", PhoneNo = "", RefId = new Guid().ToString("N"), Email = "dhanya@logiticks.com" };
             context.Persons.Add(newPerson2);
             context.SaveChanges();
 
@@ -60,7 +60,7 @@ namespace CRMLite.Data.Data.Seeders
             context.Users.Add(newuser1);
             context.SaveChanges();
 
-            var newPerson3 = new Person { FirstName = "Jithin", LastName = "Sreedhar ", PhoneNo = "9895981814", RefId = new Guid().ToString("N") };
+            var newPerson3 = new Person { FirstName = "Jithin", LastName = "Sreedhar ", PhoneNo = "9895981814", RefId = new Guid().ToString("N"), Email = "jithin@logiticks.com" };
             context.Persons.Add(newPerson3);
             context.SaveChanges();
 

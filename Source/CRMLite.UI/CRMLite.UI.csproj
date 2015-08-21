@@ -348,6 +348,7 @@
     <Content Include="Content\js\uisearch.js" />
     <Content Include="Content\js\urls.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Docs\Release Checklist.txt" />
     <Content Include="Global.asax" />
     <Content Include="copyifnewer.bat" />
     <Content Include="Areas\CRM\Views\User\Update.cshtml" />

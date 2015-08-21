@@ -1,0 +1,34 @@
+#	Module	Task
+1	Login	 Login with incorrect credential
+2		Login with Correct credential
+3		Check validation messages.
+4	"Lead
+"	Create lead
+5		List lead
+6		Edit lead
+7		"Delete lead
+"
+8	Account	Create account
+9		List account
+10		Edit account
+11		Delete account.
+12	Contact	Create contact
+13		List contact
+14		Edit contact
+15		Delete contact
+16		"Contact details
+"
+17	Potential	"Create potential
+
+"
+18		Edit potential
+19		List potential
+20		Delete potential
+21		Potential details
+22	User	Create user
+23		List users
+24		Edit user
+25		Delete user
+26		User details.
+27	General	Check connection string
+28		Set mode as published in web config key settings

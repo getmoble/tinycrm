@@ -5,6 +5,7 @@ function PotentialViewModel() {
     self.DisplayTitle = ko.observable();
     self.busy = ko.observable();
     self.PotentialLists = ko.observableArray();
+    self.TempPotentialLists = ko.observableArray();
     self.Contacts = ko.observableArray();
     self.Leadsource = ko.observableArray();
     self.Leadstatus = ko.observableArray();
@@ -123,9 +124,9 @@ PotentialViewModel.prototype.init = function (userId) {
             if (response) {
                 if (response.Status == true) {
                     $.each($.parseJSON(response.Result.Potential), function (key, value) {
-                        self.PotentialLists.push(new Potential(value));
+                        self.TempPotentialLists.push(new Potential(value));
                     });
-  
+                    ko.utils.arrayPushAll(self.PotentialLists, self.TempPotentialLists());
             $("#pagination").DataTable({
                 responsive: true,
                 "order": [[3, "desc"]],
@@ -247,14 +248,16 @@ PotentialViewModel.prototype.search = function () {
       .clear()
       .draw();
     oldTable.destroy();
-    var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), UserId: ko.toJS(self.SearchUser) };
+    var jsonData = { SalesStageId: ko.toJS(self.SearchSalesStage), PropertyTypeId: ko.toJS(self.SearchPropertyType), LeadSourceId: ko.toJS(self.SearchLeadSource), AssignedToUserId: ko.toJS(self.SearchUser) };
     var result = CRMLite.dataManager.postData(ko.toJS(CRMLite.CRM.potentialapiSearch),jsonData);
     result.done(function (response) {
         if (response.Status == true) {
             self.PotentialLists.removeAll();
+            self.TempPotentialLists.removeAll();
             $.each($.parseJSON(response.Result), function (key, value) {
-                self.PotentialLists.push(new Potential(value));
+                self.TempPotentialLists.push(new Potential(value));
             });
+            ko.utils.arrayPushAll(self.PotentialLists, self.TempPotentialLists());
             $("#pagination").DataTable({
                 responsive: true,
                 "order": [[3, "desc"]],
