@@ -199,7 +199,12 @@
     <Content Include="App\utils.js" />
     <Content Include="App\ViewModels\Account\AccountModel.js" />
     <Content Include="App\ViewModels\Account\AccountViewModel.js" />
+    <Content Include="App\ViewModels\Contact\ContactModel.js" />
+    <Content Include="App\ViewModels\LeadSource\LeadSource.js" />
     <Content Include="App\ViewModels\LeadSource\LeadSourceScript.js" />
+    <Content Include="App\ViewModels\Lead\ConvertLead.js" />
+    <Content Include="App\ViewModels\Lead\LeadModel.js" />
+    <Content Include="App\ViewModels\Potential\PotentialModel.js" />
     <Content Include="App\ViewModels\User\AddEditUserViewModel.js" />
     <Content Include="App\ViewModels\User\SearchUserViewModel.js" />
     <Content Include="App\ViewModels\User\UserDetailsViewModel.js" />

@@ -20,7 +20,7 @@
     self.States = ko.observableArray();
     self.Countries = ko.observableArray();
     self.SelectedContact = ko.observable(new Contact({}));
-    self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
+    self.selectedSelectedItem = ko.observable().extend({ required: { params: true, message: "Please Select SelectedItem" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
 
     self.contactdelete = function (item) {
@@ -52,7 +52,7 @@
         result.done(function (response) {
             if (response.Status === true) {
                 $.each(response.Result, function (key, value) {
-                    self.Countries.push(new Country(value));
+                    self.Countries.push(new SelectedItem(value));
                 });
                 self.isBusy(false);
             }
@@ -96,7 +96,7 @@ ContactViewModel.prototype.init = function () {
         if (response.Status === true) {
 
             $.each(response.Result.Users, function (key, value) {
-                self.User.push(new SelectAssignedTo(value));
+                self.User.push(new SelectedItem(value));
             });
             $.each(response.Result.Accounts, function (key, value) {
                 self.Account.push(new SelectAccount(value));
@@ -127,7 +127,7 @@ ContactViewModel.prototype.createPage = function () {
     result.done(function (response) {
         if (response.Status === true) {
             $.each(response.Result, function (k, v) {
-                self.Countries.push(new Country(v));
+                self.Countries.push(new SelectedItem(v));
             });
             self.isBusy(false);
         }

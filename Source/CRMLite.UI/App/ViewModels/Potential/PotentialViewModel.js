@@ -32,7 +32,6 @@ function PotentialViewModel() {
     self.SearchLeadSource = ko.observable();
     self.SearchSalesStage = ko.observable();
     self.isBusy = ko.observable(false);
-    self.SelectedContact = ko.observable(new Contact({}));
     self.selectedCountry = ko.observable().extend({ required: { params: true, message: "Please Select Country" } });
     self.selectedState = ko.observable().extend({ required: { params: true, message: "Please Select State" } });
     self.SelectedPotential = ko.observable(new Potential({}));
@@ -113,7 +112,7 @@ function PotentialViewModel() {
         });
     };
 };
-PotentialViewModel.prototype.init = function () {
+PotentialViewModel.prototype.init = function (userId) {
     var self = this;
     self.isCreate(true);
     self.isUpdate(false);
@@ -137,21 +136,23 @@ PotentialViewModel.prototype.init = function () {
             var oTable = $('#pagination').dataTable();
             //oTable.fnSort([[6, 'desc']]);
             $.each(response.Result.Contacts, function (k, v) {
-                self.Contacts.push(new Contact(v));
+                self.Contacts.push(new SelectAccount(v));
             });
             $.each(response.Result.LeadSource, function (k, v) {
-                self.Leadsource.push(new SelectLeadSource(v));
+                self.Leadsource.push(new SelectedItem(v));
             });
             $.each($.parseJSON(response.Result.Accounts), function (k, v) {
                 self.Account.push(new SelectAccount(v));
             });
             $.each(response.Result.SalesStage, function (k, v) {
-                self.Salesstage.push(new SelectLeadStatus(v));
+                self.Salesstage.push(new SelectedItem(v));
             });
             $.each($.parseJSON(response.Result.Users), function (k, v) {
-                self.User.push(new SelectAssignedTo(v));
+                self.User.push(new SelectedItem(v));
             });
-            
+            if (userId) {
+                self.SelectedPotential().selectedAssignedTo(userId);
+            }
             self.isBusy(false);
                 }
             else {

@@ -139,11 +139,13 @@ namespace CRMLite.UI.Controllers
                 //{
                 //    roleId = new long[] { 1 };
                 //}
-                _accountService.UpdateAccount(model.FirstName + "" + model.LastName, WebUser.Email, WebUser.Email, model.Address, model.Phone, roleId, user.PersonId, WebUser.Id, model.Image);
+                //_accountService.UpdateAccount(model.FirstName + "" + model.LastName, WebUser.Email, WebUser.Email, model.Address, model.Phone, roleId, user.PersonId, WebUser.Id, model.Image);
+                _accountService.UpdateAccount(model.FirstName, model.LastName, WebUser.Email, WebUser.Id, model.Phone, model.Address, model.Image, true);
                 ViewBag.Message = "Successfully updated your profile";
                 ViewBag.Image = model.Image;
                 WebUser.Image = model.Image;
                 WebUser.Name = model.FirstName;
+                LogInUser(user, "");
             }
             return View();
         }

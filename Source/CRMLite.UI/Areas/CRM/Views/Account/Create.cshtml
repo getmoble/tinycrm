@@ -1,4 +1,5 @@
-﻿@{
+﻿@model  PropznetCommon.Features.CRM.ViewModel.User.UserProfileViewModel
+@{
     ViewBag.Title = "Create";
 }
 <div class="col-md-12">
@@ -79,7 +80,7 @@
         $(document).ready(function () {
             var vm = new AccountViewModel();
             ko.applyBindings(vm);
-            vm.init();
+            vm.init(@Model.Id);
         });
     </script>
 

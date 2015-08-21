@@ -82,6 +82,16 @@ function LeadViewModel() {
         });
 
     };
+    self.initDate = function () {
+        var date = new Date();
+        date.setDate(date.getDate());
+        $('#RecievedOn').datepicker({
+            format: 'dd/mm/yyyy',
+            clearBtn: true,
+            todayHighlight: date,
+            autoclose: true,
+        });
+    }
     self.getLead = function () {
         var self = this;
         var id = $("#hdnLeadId").val();
@@ -136,36 +146,31 @@ function LeadViewModel() {
 
     };
 };
-LeadViewModel.prototype.init = function () {
+LeadViewModel.prototype.init = function (userId) {
     var self = this;
     self.isBusy(true);
-    var date = new Date();
-    date.setDate(date.getDate());
-    $('#RecievedOn').datepicker({
-        format: 'dd/mm/yyyy',
-        clearBtn: true,
-        todayHighlight: date,
-        autoclose: true,
-    });
     var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.leadapiGetData));
     result.done(function (data) {
         if (data.Status == true) {
             self.selectedLead(new Lead({}));
             $.each(data.Result.User, function (k, v) {
-                self.Assignto.push(new SelectAssignedTo(v));
+                self.Assignto.push(new SelectedItem(v));
             });
             $.each(data.Result.LeadStatus, function (k, v) {
-                self.Leadstatus.push(new SelectLeadStatus(v));
+                self.Leadstatus.push(new SelectedItem(v));
             });
             $.each(data.Result.LeadSource, function (k, v) {
-                self.Leadsource.push(new SelectLeadSource(v));
+                self.Leadsource.push(new SelectedItem(v));
             });
             $.each(data.Result.SalesStage, function (k, v) {
-                self.salesStage.push(new SelectSalesStage(v));
+                self.salesStage.push(new SelectedItem(v));
             });
             var id = $("#hdnLeadId").val();
             if (id) {
                 self.getLead();
+            }
+            if (userId) {
+                self.selectedLead().SelectedAssignedTo(userId);
             }
             self.isBusy(false);
         }
@@ -173,6 +178,14 @@ LeadViewModel.prototype.init = function () {
         else {
             toastr["error"](data.Message, "Notification");
         }
+        var date = new Date();
+        date.setDate(date.getDate());
+        $('#RecievedOn').datepicker({
+            format: 'dd/mm/yyyy',
+            clearBtn: true,
+            todayHighlight: date,
+            autoclose: true,
+        });
     });
 
 
@@ -218,16 +231,16 @@ LeadViewModel.prototype.LeadListing = function () {
         if (data.Status == true) {
             self.selectedLead(new Lead({}));
             $.each(data.Result.User, function (k, v) {
-                self.Assignto.push(new SelectAssignedTo(v));
+                self.Assignto.push(new SelectedItem(v));
             });
             $.each(data.Result.LeadStatus, function (k, v) {
-                self.Leadstatus.push(new SelectLeadStatus(v));
+                self.Leadstatus.push(new SelectedItem(v));
             });
             $.each(data.Result.LeadSource, function (k, v) {
-                self.Leadsource.push(new SelectLeadSource(v));
+                self.Leadsource.push(new SelectedItem(v));
             });
             $.each(data.Result.SalesStage, function (k, v) {
-                self.salesStage.push(new SelectSalesStage(v));
+                self.salesStage.push(new SelectedItem(v));
             });
         }
         else {

@@ -35,7 +35,7 @@
         result.done(function (response) {
             if (response.Status) {
                 $.each(response.Result.User, function (key, value) {
-                    self.Users.push(new SelectAssignedTo(value));
+                    self.Users.push(new SelectedItem(value));
                 });
             } else {            
           
@@ -61,7 +61,7 @@
         });
     };
 };
-AccountViewModel.prototype.init = function () {
+AccountViewModel.prototype.init = function (userId) {
     var self = this;
     self.isBusy(true);
     self.SelectedAccount().resetValidation();
@@ -81,8 +81,12 @@ AccountViewModel.prototype.init = function () {
                 });
                 var oTable = $('#pagination').dataTable();
                 $.each(response.Result.User, function (key, value) {
-                    self.Users.push(new SelectAssignedTo(value));
+                    self.Users.push(new SelectedItem(value));
                 });
+                if(userId)
+                {
+                    self.SelectedAccount().SelectedAssignedto(userId);
+                }
         }
         else
         {

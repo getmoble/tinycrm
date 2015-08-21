@@ -1,4 +1,4 @@
-﻿
+﻿@model  PropznetCommon.Features.CRM.ViewModel.User.UserProfileViewModel
 @{
     ViewBag.Title = "Create";
 }
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Contact</label>
-                                <select data-bind="options: $root.Contacts ,optionsText: 'FirstName', optionsValue: 'Id', value:SelectedContact, optionsCaption:'Select Contact'" class="form-control"></select>
+                                <select data-bind="options: $root.Contacts ,optionsText: 'Name', optionsValue: 'Id', value:SelectedContact, optionsCaption:'Select Contact'" class="form-control"></select>
                             </div>
                             <div class="form-group">
                                 <label>Lead Source</label>
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label>Enquired On</label> 
                                 <div class="input-group">
-                                    <input type="text" placeholder="Click here to Add Time" id="EnquiredOn" data-bind="value:EnquiredOn" class="form-control datepicker">
+                                    <input type="text" placeholder="Click here to add date" id="EnquiredOn" data-bind="value:EnquiredOn" class="form-control datepicker">
                                     <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label>Expected Close Date</label>
                                 <div class="input-group">
-                                    <input type="text" placeholder="Click here to Add Time" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control datepicker">
+                                    <input type="text" placeholder="Click here to add date" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control datepicker">
                                     <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
                                 </div>
                            
@@ -161,12 +161,13 @@
         <script src="~/Content/js/select2.min.js"></script>
         <script src="~/App/ViewModels/Account/AccountModel.js"></script>
         <script src="~/App/ViewModels/CRM/models.js"></script>
+        <script src="~/App/ViewModels/Potential/PotentialModel.js"></script>
         <script src="~/App/ViewModels/Potential/PotentialViewModel.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 var vm = new PotentialViewModel();
                 ko.applyBindings(vm);
-                vm.init();
+                vm.init(@Model.Id);
             });
         </script>
    <script type="text/javascript">

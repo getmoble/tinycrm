@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label>Recieved On</label>
                             <div class="input-group">
-                                <input type="text" placeholder="Click here to Add Time" id="RecievedOn" data-bind="value:RecievedOn" class="form-control datepicker">
+                                <input type="text" placeholder="Click here to add date" id="RecievedOn" data-bind="value:RecievedOn" class="form-control datepicker">
                                 <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
                             </div>
                         </div>
@@ -100,13 +100,15 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/App/ViewModels/CRM/models.js"></script>
-    <script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var vm = new LeadViewModel();
-            ko.applyBindings(vm);
-            vm.init();
-        });
-    </script>
+<script src="~/App/ViewModels/Lead/ConvertLead.js"></script>
+<script src="~/App/ViewModels/Lead/LeadModel.js"></script>
+<script src="~/App/ViewModels/CRM/models.js"></script>
+<script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    var vm = new LeadViewModel();
+    ko.applyBindings(vm);
+    vm.init();
+    });
+</script>
 }

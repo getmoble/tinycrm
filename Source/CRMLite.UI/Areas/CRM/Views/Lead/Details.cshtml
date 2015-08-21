@@ -101,16 +101,17 @@
         </div>
     </div>
     </div>
-    @section scripts{
-        <script src="~/Content/js/emailinjector.js"></script>
-        <script src="~/App/ViewModels/CRM/models.js"></script>
-        <script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
-        <script src="~/Content/js/mailus.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var vm = new LeadViewModel();
-                ko.applyBindings(vm);
-                vm.leaddetail();
-            });
-        </script>
+@section scripts{
+<script src="~/Content/js/emailinjector.js"></script>
+<script src="~/App/ViewModels/Lead/LeadModel.js"></script>
+<script src="~/App/ViewModels/CRM/models.js"></script>
+<script src="~/App/ViewModels/Lead/LeadViewModel.js"></script>
+<script src="~/Content/js/mailus.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var vm = new LeadViewModel();
+        ko.applyBindings(vm);
+        vm.leaddetail();
+    });
+</script>
     }
