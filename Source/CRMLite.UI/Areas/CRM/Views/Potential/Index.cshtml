@@ -10,25 +10,25 @@
         
             @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManagePotential))
 {
-    <button type="button" class="btn btn-primary pull-right  m-t-lg m-b-sm " data-bind="click:gotoPotentialPage"><i class="fa fa-plus"></i> Create</button>
+    <button type="button" class="btn btn-primary pull-right  m-t-lg m-b-sm  f-width" data-bind="click:gotoPotentialPage"><i class="fa fa-plus"></i> Create</button>
 }
         
         <div class="clearfix"></div>
         <div class="bdr marB-md pad-sm clearfix">
-            <div class="col-md-3 m-b-md">
-                <div class="row">
+            <div class="width-25 f-width">
+                
                     <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SearchSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
-                </div>
+               
             </div>
-            <div class="col-md-3">
+            <div class="width-25 f-width">
                 <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SearchLeadSource, optionsCaption:'Select LeadSource'" class="form-control"></select>
             </div>
-            <div class="col-md-3">
+            <div class="width-25 f-width">
                 <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SearchUser, optionsCaption:'Assigned To'" class="form-control"></select>
             </div>
-            <div class="col-md-2">
+           
                 <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
-            </div>
+         
         </div>
         <div class="clearfix"></div>
     <div class="scroll-horrizontal">
