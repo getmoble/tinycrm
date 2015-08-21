@@ -1,4 +1,5 @@
-﻿@model  PropznetCommon.Features.CRM.ViewModel.User.UserProfileViewModel
+﻿@model  PropznetCommon.Features.CRM.ViewModel.Lead.LeadViewModel
+@using CRMLite.UI.Helpers;
 <div class="col-md-12 m-top20">
     <h3 class="inline-b">Create Lead</h3>
 </div>
@@ -8,12 +9,9 @@
             <div class="col-md-12">
                 <h4 class="text-primary">Lead Information</h4>
             </div>
-           
-                
-
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label>First Name</label>
+                           @Html.RequiredLabelFor(model => model.FirstName, new { @class = "control-label" })
                             <input type="text" data-bind="value:FirstName" class="form-control" />
                         </div>
                         <div class="form-group">
@@ -36,7 +34,7 @@
                             <select data-bind="options: $root.Leadstatus ,optionsText: 'Name',optionsValue: 'Id', value:SelectedLeadStatus" class="form-control"></select>
                         </div>
                         <div class="form-group">
-                            <label>Lead Source</label>
+                            @Html.RequiredLabelFor(model => model.LeadSource, new { @class = "control-label" })
                             <select data-bind="options: $root.Leadsource ,optionsText: 'Name',optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select LeadSource'" class="form-control"></select>
                         </div>
                         <div class="form-group">
@@ -94,6 +92,9 @@
             
         </div>
         <div class="col-md-12">
+            <div class="pull-right">
+                <span class="required">*</span><i>Indicates required field</i>
+            </div>
             <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.saveLead"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
         </div>
     </div>
@@ -110,7 +111,7 @@
     $(document).ready(function () {
         var vm = new LeadViewModel();
         ko.applyBindings(vm);
-        vm.init(@Model.Id);
+        vm.init(@Model.UserId);
     });
 </script>
 }

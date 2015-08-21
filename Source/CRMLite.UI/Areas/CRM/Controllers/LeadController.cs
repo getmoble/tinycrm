@@ -15,9 +15,8 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(() =>
             {
-                UserProfileViewModel userVm = new UserProfileViewModel();
-                userVm.Id = WebUser.Id;
-                userVm.FirstName = WebUser.Name;
+                LeadViewModel userVm = new LeadViewModel();
+                userVm.UserId = WebUser.Id;
                 return View("Create", userVm);
             });
         }

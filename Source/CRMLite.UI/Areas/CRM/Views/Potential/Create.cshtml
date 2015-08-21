@@ -1,4 +1,5 @@
-﻿@model  PropznetCommon.Features.CRM.ViewModel.User.UserProfileViewModel
+﻿@model  PropznetCommon.Features.CRM.ViewModel.Potential.PotentialViewModel
+@using CRMLite.UI.Helpers;
 @{
     ViewBag.Title = "Create";
 }
@@ -17,21 +18,21 @@
                         <div class="col-lg-6">
 
                             <div class="form-group">
-                                <label>Potential Name *</label>
+                                @Html.RequiredLabelFor(model => model.Name, new { @class = "control-label" })
                                 <input type="text" class="form-control" data-bind="value:PotentialName" />
                             </div>
                             <div class="form-group">
-                                <label>Related To Account *</label>@*<span class="mandatory">*</span>*@
+                              @Html.RequiredLabelFor(model => model.AccountName, new { @class = "control-label" })
                                 <div class="f-w-9">
                                     <select data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:AccountId, optionsCaption:'Select Account',select2: { width: '100%' }" class="select2-drop-mask atagcolor form-control"></select>
                                 </div><button class="btn btn-primary" data-toggle="modal" data-target="#createAccount"><i class="fa fa-plus"></i></button>
                             </div>
                             <div class="form-group">
-                                <label>Contact</label>
+                               @Html.RequiredLabelFor(model => model.ContactNo, new { @class = "control-label" })
                                 <select data-bind="options: $root.Contacts ,optionsText: 'Name', optionsValue: 'Id', value:SelectedContact, optionsCaption:'Select Contact'" class="form-control"></select>
                             </div>
                             <div class="form-group">
-                                <label>Lead Source</label>
+                                @Html.RequiredLabelFor(model => model.LeadSourceName, new { @class = "control-label" })
                                 <select data-bind="options: $root.Leadsource ,optionsText: 'Name', optionsValue: 'Id', value:SelectedLeadSource, optionsCaption:'Select Lead Source'" class="form-control"></select>
                             </div>
                             <div class="form-group">
@@ -48,17 +49,17 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Expected Amount</label>
+                                @Html.RequiredLabelFor(model => model.ExpectedAmount, new { @class = "control-label" })
                                 <input type="text" class="form-control" data-bind="value:PotentialAmount,numericOnly:true" />
                             </div>
 
                   
                             <div class="form-group">
-                                <label>Sales Stage *</label>
+                               @Html.RequiredLabelFor(model => model.SalesStageName, new { @class = "control-label" })
                                 <select data-bind="options: $root.Salesstage ,optionsText: 'Name', optionsValue: 'Id', value:SelectedSalesStage, optionsCaption:'Select Sales Stage'" class="form-control"></select>
                             </div>
                             <div class="form-group">
-                                <label>Assigned To *</label>
+                                @Html.RequiredLabelFor(model => model.AssignedTo, new { @class = "control-label" })
                                 <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:selectedAssignedTo, optionsCaption:'Select User'" class="form-control"></select>
                             </div>
                             <div class="form-group">
@@ -80,11 +81,11 @@
                
             </div>
         </div>
-
-       
-        
     </div>
     <div class="col-md-12">
+        <div class="pull-right">
+            <span class="required">*</span><i>Indicates required field</i>
+        </div>
         <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:$root.busy,click:$root.savePotential"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
     </div>
 </div> 
@@ -167,7 +168,7 @@
             $(document).ready(function () {
                 var vm = new PotentialViewModel();
                 ko.applyBindings(vm);
-                vm.init(@Model.Id);
+                vm.init(@Model.UserId);
             });
         </script>
    <script type="text/javascript">

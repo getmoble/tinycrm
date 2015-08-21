@@ -1,4 +1,6 @@
-﻿<div class="col-md-12 m-top20">
+﻿@model  PropznetCommon.Features.CRM.ViewModel.User.UserProfileViewModel
+@using CRMLite.UI.Helpers;
+<div class="col-md-12 m-top20">
     <h3 class="inline-b">
         Create User
     </h3>
@@ -9,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group ">
-                    <label>First Name</label>
+                    @Html.RequiredLabelFor(model => model.FirstName, new { @class = "control-label" })
                     <input type="text" data-bind="value:FirstName" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -17,7 +19,7 @@
                     <input type="text" data-bind="value:LastName" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
+                    @Html.RequiredLabelFor(model => model.Email, new { @class = "control-label" })
                     <input type="text" data-bind="value:Email, event:{ change: $parent.checkEmail}" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -25,7 +27,7 @@
                     <input type="text" data-bind="value:PhoneNumber,numericOnly:true" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Address</label>
+                    @Html.RequiredLabelFor(model => model.Address, new { @class = "control-label" })
                     <textarea data-bind="value:Address" class="form-control"></textarea>
                 </div>
             </div>
@@ -53,7 +55,9 @@
     </div>
 </div>
 <div class="col-md-12">
-
+    <div class="pull-right">
+        <span class="required">*</span><i>Indicates required field</i>
+    </div>
     <button class="btn btn-primary ladda-button" data-style="expand-left" data-bind="ladda:IsButtonBusy,click:SaveUser"><span class=" ladda-label"><i class="fa fa-save"></i> Save</span></button>
 
 </div>

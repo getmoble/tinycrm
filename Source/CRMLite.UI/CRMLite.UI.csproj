@@ -420,6 +420,7 @@
     <Compile Include="Helpers\DynamicMenuRenderingHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\LabelExtensionsAsteriskHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UnitOfWork.cs" />

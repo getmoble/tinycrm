@@ -2,6 +2,7 @@
 using CRMLite.Infrastructure;
 using CRMLite.Infrastructure.Enum;
 using PropznetCommon.Features.CRM.ViewModel.User;
+using PropznetCommon.Features.CRM.ViewModel.Potential;
 
 namespace CRMLite.UI.Areas.CRM.Controllers
 {
@@ -15,9 +16,8 @@ namespace CRMLite.UI.Areas.CRM.Controllers
         {
             return RedirectIfNotLoggedIn(() =>
             {
-                UserProfileViewModel userVm = new UserProfileViewModel();
-                userVm.Id = WebUser.Id;
-                userVm.FirstName = WebUser.Name;
+                PotentialViewModel userVm = new PotentialViewModel();
+                userVm.UserId = WebUser.Id;
                 return View("Create", userVm);
             });
         }
