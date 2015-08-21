@@ -10,8 +10,9 @@
     
         @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageLead))
 {
-    <button type="button" class="btn btn-primary pull-right  m-b-sm m-t-lg" data-bind="click:gotoCreatePage">
-        <i class="fa fa-plus"></i> Create</button>
+    <button type="button" class="btn btn-primary pull-right m-t-md m-b-sm f-width" data-bind="click:gotoCreatePage">
+        <i class="fa fa-plus"></i> Create
+    </button>
 }
    
 

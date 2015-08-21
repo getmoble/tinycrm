@@ -10,16 +10,16 @@
    
         @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageContact))
 {
-    <button type="button" class="btn btn-primary pull-right  m-t-lg m-b-sm " data-bind="click:gotoContactPage"><i class="fa fa-plus"></i> Create</button>
+    <button type="button" class="btn btn-primary pull-right m-t-md m-b-sm f-width" data-bind="click:gotoContactPage"><i class="fa fa-plus"></i> Create</button>
 }
     
 
     <div class="clearfix"></div>
     <div class="bdr marB-md pad-sm clearfix">
-        <div class="col-md-4 m-b-md">
-            <div class="row">
+        <div class="width-25 f-width">
+          
                 <input type="text" class="form-control" placeholder="Search by Title" data-bind="value:SearchTitle" />
-            </div>
+          
         </div>
         @*<div class="col-md-3">
             <select data-bind="options: $root.Account ,optionsText: 'Name', optionsValue: 'Id', value:SearchAccount, optionsCaption:'Select Account'" class="form-control"></select>
@@ -27,7 +27,7 @@
         <div class="col-md-4">
             <select data-bind="options: $root.User ,optionsText: 'Name', optionsValue: 'Id', value:SearchUser, optionsCaption:'Assigned To'" class="form-control"></select>
         </div>*@
-        <div class="col-md-3">
+        <div class="width-25 f-width">
             <button type="button" class="btn btn-primary f-width" data-bind="click:search"><i class="fa fa-search"></i> Search</button>
         </div>
     </div>

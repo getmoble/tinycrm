@@ -41,9 +41,21 @@
 
             <a class="btn btn-link visible-xs" id="settings" data-toggle="dropdown" data-target=".nav-user"><i class="fa fa-cog"></i></a>
         </div> 
-        <ul class="nav navbar-nav hidden-xs">   </ul> 
+        <ul class="nav navbar-nav hidden-xs">   </ul>
+        
+          
+
+                <div class="search-fields">
+                    <form autocomplete="on" action="">
+                        <input type="text" placeholder="Search" name="s" id="s"><input type="submit" value="" id="searchSubmit">
+                    </form>
+                </div>
+
+          
+
+       
         <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">  
-                <li class="dropdown">
+                @*<li class="dropdown">
                     <a href="#" class="dropdown-toggle dker search-icon" data-toggle="dropdown"><i class="fa fa-fw fa-search"></i></a>
              <section class="dropdown-menu aside-xl animated fadeInUp"> 
             <section class="panel bg-white"> 
@@ -54,7 +66,7 @@
                      <span class="input-group-btn"> 
                          <button type="button" id="searchSubmit" value="" class="btn btn-info"><i class="fa fa-search"></i></button> 
                          </span> </div> </div> </form>
-                  </section> </section> </li> 
+                  </section> </section> </li>*@ 
         
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="thumb-sm avatar pull-left"> <img src="/Upload/Avatar/@ViewBag.Image" alt="avatar"> </span>@UserHTMLHelper.RenderUserName()<b class="caret"></b> </a>

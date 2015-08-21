@@ -13,24 +13,24 @@
        
             @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageUser))
 {
-    <button type="button" class="btn btn-primary pull-right m-t-lg m-bottom10 m-b-sm" data-bind="click:GotoUserPage"><i class="fa fa-plus"></i> Create</button>
+    <button type="button" class="btn btn-primary pull-right  m-t-lg m-b-sm  f-width" data-bind="click:GotoUserPage"><i class="fa fa-plus"></i> Create</button>
 }
         
   
     <div class="clearfix"></div>
     <div class="bdr marB-md pad-sm clearfix">
-        <div class="col-md-4 row m-b-md">
+        <div class="width-25 f-width">
             <input type="text" class="form-control" data-bind="value:SearchName" placeholder="First Name" />
         </div>
-        <div class="col-md-3">
+        <div class="width-25 f-width">
             <input type="text" class="form-control" data-bind="value:SearchEmail" placeholder="Email" />
         </div>
-        <div class="col-md-4">
+        <div class="width-25 f-width">
             <input type="text" class="form-control" data-bind="value:SearchPhone,numericOnly:true" placeholder="Phone" />
         </div>
-        <div class="pull-right f-width">
-            <button type="button" class="btn btn-primary f-width cd-as" data-bind="click:$root.Search"><i class="fa fa-search"></i> Search</button>
-        </div>
+        
+        <button type="button" class="btn btn-primary f-width" data-bind="click:$root.Search"><i class="fa fa-search"></i> Search</button>
+        
     </div>
     <div class="clearfix"></div>
     <div class="scroll-horrizontal">
