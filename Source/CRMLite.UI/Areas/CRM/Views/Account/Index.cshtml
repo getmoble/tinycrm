@@ -58,7 +58,7 @@
                                     <td>
                                         @if (@PermissionChecker.CheckPermission(ViewBag.UserPermissions, PermissionCodes.ManageAccount))
                                         {
-                                            <a href="#" data-bind="click:$root.ToDo"><i class="fa fa-lg fa-calendar " data-toggle="tooltip" data-placement="top" title="To Do" data-original-title="To Do"></i></a>@:&nbsp;&nbsp;
+                                            @*<a href="#" data-bind="click:$root.ToDo"><i class="fa fa-lg fa-calendar " data-toggle="tooltip" data-placement="top" title="To Do" data-original-title="To Do"></i></a>@:&nbsp;&nbsp;*@
                                             <a href="#" data-bind="click:$root.getEditPage"><i class="fa fa-lg fa-pencil-square-o " data-toggle="tooltip" data-placement="top" title="Edit" data-original-title="Edit"></i></a>@:&nbsp;&nbsp;
                                             <a href="#" data-bind="click:$root.accountdelete"><i class="fa fa-lg fa-trash-o" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"></i></a>
                                         }

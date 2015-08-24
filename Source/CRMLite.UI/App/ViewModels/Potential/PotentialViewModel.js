@@ -76,19 +76,23 @@ function PotentialViewModel() {
         $('#accordion').on('shown.bs.collapse', toggleChevron);
         self.isCreate(false);
         self.isUpdate(true);
-        var potentialIdValue = $("#hdnPotentialId").data('value');    
+        var potentialIdValue = $("#hdnPotentialId").val();
         var result = CRMLite.dataManager.getData(ko.toJS(CRMLite.CRM.potentialapiGetPotential) + potentialIdValue);
         result.done(function (data) {
             if (data.Status == true) {
                 self.SelectedPotential(new Potential(data.Result));
                     var date = new Date();
                     date.setDate(date.getDate());
-                    $('#ExpectedDate').datepicker({
-                        format: 'dd/mm/yyyy',
-                        clearBtn: true,
-                        todayHighlight: date,
-                        autoclose: true,
-                    });
+    
+         var date = new Date();
+         date.setDate(date.getDate());
+         $('.datepicker').datepicker({
+             format: 'dd/mm/yyyy',
+             clearBtn: true,
+             todayHighlight: date,
+             autoclose: true,
+         });
+     
             }
             else {
                 CRMLite.showMesssage.error(response.Message, "Error");
@@ -151,6 +155,11 @@ PotentialViewModel.prototype.init = function (userId) {
             $.each($.parseJSON(response.Result.Users), function (k, v) {
                 self.User.push(new SelectedItem(v));
             });
+            var id = $("#hdnPotentialId").val();
+                   
+            if (id) {
+                self.potentialedit();
+            }
             if (userId) {
                 self.SelectedPotential().selectedAssignedTo(userId);
             }
@@ -170,7 +179,6 @@ PotentialViewModel.prototype.savePotential = function () {
     var self = this;
     self.SelectedPotential().resetValidation();
 
-    self.SelectedPotential().ExpectedCloseDate($("#ExpectedDate").val());
     if (self.SelectedPotential().modelState.isValid()) {
       
         self.busy(true);

@@ -8,7 +8,7 @@
         Edit Potential
     </h3>
 
-<input type="hidden" id="hdnPotentialId" data-value="@ViewBag.PotentialId" />
+<input type="hidden" id="hdnPotentialId" value="@ViewBag.PotentialId" />
 <div class="panel with-nav-tabs">
     <div class="panel-heading">
         <ul class="nav nav-tabs">
@@ -44,7 +44,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Enquired On</label>
-                                        <input type="text" class="form-control" data-bind="value:EnquiredOn" />
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Click here to add date" id="EnquiredOn" data-bind="value:EnquiredOn" class="form-control datepicker">
+                                            <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label data-bind="visible:IsDropdownVisbility">User</label>
@@ -68,10 +71,10 @@
                                     <div class="form-group">
                                         <label>Expected Close Date</label>
                                         <div class="input-group">
-                                            <input type="text" placeholder="Click here to add date" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control timepicker">
+                                            <input type="text" placeholder="Click here to add date" id="ExpectedDate" data-bind="value:ExpectedCloseDate" class="form-control datepicker">
                                             <span class="input-group-addon"><i class="fa fa-calendar-o fa-fw"></i></span>
                                         </div>
-                                        @*<input type="text" class="form-control" data-bind="datepicker:ExpectedCloseDate,datepickerOptions: { 'dateFormat': 'dd/mm/yy' },value:ExpectedCloseDate" />*@
+
                                     </div>
                                 </div>
 
@@ -198,7 +201,19 @@
             var vm = new PotentialViewModel();
             ko.applyBindings(vm);
             vm.init();
-            vm.potentialedit();
+            //vm.potentialedit();
         });
     </script>
+<script type="text/javascript">
+    $(function () {
+        var date = new Date();
+        date.setDate(date.getDate());
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            clearBtn: true,
+            todayHighlight: date,
+            autoclose: true,
+        });
+    });
+</script>
 }

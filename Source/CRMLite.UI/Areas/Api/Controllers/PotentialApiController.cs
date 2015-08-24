@@ -24,6 +24,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
         readonly ILeadStatusService _leadStatusService;
         readonly ISalesStageService _salesStageService;
         readonly ICRMLiteContactService _contactService;
+        readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _crmaccountService;
         readonly IUserService _userService;
         readonly ICountryService _countryService;
         readonly PropznetCommon.Features.CRM.Interfaces.Services.IAccountService _accountService;
@@ -34,13 +35,15 @@ namespace CRMLite.UI.Areas.Api.Controllers
                                       ICRMLiteContactService contactService,
                                       IUserService userService,
                                       ICountryService countryService,
-                                      PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService)
+                                      PropznetCommon.Features.CRM.Interfaces.Services.IAccountService accountService,
+            PropznetCommon.Features.CRM.Interfaces.Services.IAccountService crmaccountService)
         {
             _potentialService = potentialService;
             _leadSourceService = leadSourceService;
             _leadStatusService = leadStatusService;
             _salesStageService = salesStageService;
             _contactService = contactService;
+            _crmaccountService = crmaccountService;
             _userService = userService;
             _countryService = countryService;
             _accountService = accountService;
@@ -60,7 +63,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         var contacts = _contactService.GetAllContacts();
                         var countries = _countryService.GetAllCountries();
                         //var states = _stateService.GetAllStates();
-                        var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                        var accounts = _crmaccountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
                         var potentialvm = new List<PotentialViewModel>();
                         string propertyType = null;
                         foreach (var potential in potentials)
@@ -129,7 +132,7 @@ namespace CRMLite.UI.Areas.Api.Controllers
                         var getusers = _userService.GetAllUsers().ToList();
                         var contacts = _contactService.GetAllContacts();
                         var countries = _countryService.GetAllCountries();
-                        var accounts = _accountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
+                        var accounts = _crmaccountService.GetAllAccountsByUserId(WebUser.Id, WebUser.PermissionCodes);
                         var potentialvm = new List<PotentialViewModel>();
                         string propertyType = null;
                         foreach (var potential in potentials)
