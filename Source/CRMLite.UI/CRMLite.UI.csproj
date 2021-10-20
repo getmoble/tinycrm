@@ -20,6 +20,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,10 +132,6 @@
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="PropznetCommon.Features.CRM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\PropznetCommon.Features.CRM.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -502,6 +500,10 @@
     <ProjectReference Include="..\CRMLite.Infrastructure\CRMLite.Infrastructure.csproj">
       <Project>{3d5d45b4-e95a-4102-9506-a90cec2b0a74}</Project>
       <Name>CRMLite.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PropznetCommon.Features.CRM\PropznetCommon.Features.CRM.csproj">
+      <Project>{0915475b-c0b2-487c-b9f4-bda20fcfaa76}</Project>
+      <Name>PropznetCommon.Features.CRM</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

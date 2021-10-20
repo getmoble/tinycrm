@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{825CF62D-0470-4DAF-99E0-A86F4D5081BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropznetCommon.Features.CRM", "PropznetCommon.Features.CRM\PropznetCommon.Features.CRM.csproj", "{0915475B-C0B2-487C-B9F4-BDA20FCFAA76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropznetCommon.Features.ERP", "PropznetCommon.Features.ERP\PropznetCommon.Features.ERP.csproj", "{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropznetCommon.Features.Common", "PropznetCommon.Features.Common\PropznetCommon.Features.Common.csproj", "{DBC4CB99-2C15-443C-A91C-7E94351ABFF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropznetCommon.Features.Accounting", "PropznetCommon.Features.Accounting\PropznetCommon.Features.Accounting.csproj", "{37EAFA19-AF15-4002-8DE9-DA774AAA31C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0915475B-C0B2-487C-B9F4-BDA20FCFAA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0915475B-C0B2-487C-B9F4-BDA20FCFAA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0915475B-C0B2-487C-B9F4-BDA20FCFAA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0915475B-C0B2-487C-B9F4-BDA20FCFAA76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBC4CB99-2C15-443C-A91C-7E94351ABFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBC4CB99-2C15-443C-A91C-7E94351ABFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBC4CB99-2C15-443C-A91C-7E94351ABFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBC4CB99-2C15-443C-A91C-7E94351ABFF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37EAFA19-AF15-4002-8DE9-DA774AAA31C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EAFA19-AF15-4002-8DE9-DA774AAA31C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EAFA19-AF15-4002-8DE9-DA774AAA31C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EAFA19-AF15-4002-8DE9-DA774AAA31C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0915475B-C0B2-487C-B9F4-BDA20FCFAA76} = {825CF62D-0470-4DAF-99E0-A86F4D5081BD}
+		{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B} = {825CF62D-0470-4DAF-99E0-A86F4D5081BD}
+		{DBC4CB99-2C15-443C-A91C-7E94351ABFF2} = {825CF62D-0470-4DAF-99E0-A86F4D5081BD}
+		{37EAFA19-AF15-4002-8DE9-DA774AAA31C2} = {825CF62D-0470-4DAF-99E0-A86F4D5081BD}
+	EndGlobalSection
+EndGlobal

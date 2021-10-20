@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A6B1A5E-7205-4BAC-82BB-07B733C6DB8B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PropznetCommon.Features.ERP</RootNamespace>
+    <AssemblyName>PropznetCommon.Features.ERP</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Auth.SingleTenant">
+      <HintPath>..\lib\Common.Auth.SingleTenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Data">
+      <HintPath>..\packages\Logiticks.Common.Data.1.0.6\lib\Common.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Providers.Email">
+      <HintPath>..\packages\Logiticks.Common.Providers.Email.1.0.2\lib\Common.Providers.Email.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Security">
+      <HintPath>..\lib\Common.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Settings">
+      <HintPath>..\packages\Logiticks.Common.Settings.1.0.1\lib\Common.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Utilities">
+      <HintPath>..\packages\Logiticks.Common.Utilities.1.0.1\lib\Common.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\AmenityMapRepository.cs" />
+    <Compile Include="DAL\AmenityRepository.cs" />
+    <Compile Include="DAL\ChargeRepository.cs" />
+    <Compile Include="DAL\CityRepository.cs" />
+    <Compile Include="DAL\CommunicationDetailRepository.cs" />
+    <Compile Include="DAL\CountryRepository.cs" />
+    <Compile Include="DAL\ManagerRepository.cs" />
+    <Compile Include="DAL\ManagerRoleRepository.cs" />
+    <Compile Include="DAL\OwnerRepository.cs" />
+    <Compile Include="DAL\PortfolioOwnerMapRepository.cs" />
+    <Compile Include="DAL\PortfolioRepository.cs" />
+    <Compile Include="DAL\PropertyAgentMapRepository.cs" />
+    <Compile Include="DAL\PropertyAmenityMapRepository.cs" />
+    <Compile Include="DAL\PropertyChargeMapRepository.cs" />
+    <Compile Include="DAL\PropertyManagerMapRepository.cs" />
+    <Compile Include="DAL\PropertyOwnerMapRepository.cs" />
+    <Compile Include="DAL\PropertyRentalCommissionMapRepository.cs" />
+    <Compile Include="DAL\PropertyRentalCommissionRepository.cs" />
+    <Compile Include="DAL\PropertyRentInfoMapRepository.cs" />
+    <Compile Include="DAL\PropertyRepository.cs" />
+    <Compile Include="DAL\PropertyUnityMapRepository.cs" />
+    <Compile Include="DAL\PropertyRentInfoRepository.cs" />
+    <Compile Include="DAL\RentMarketingInformationRepository.cs" />
+    <Compile Include="DAL\PropertySaleInfoRepository.cs" />
+    <Compile Include="DAL\SaleMarketingInformationRepository.cs" />
+    <Compile Include="DAL\StateRepository.cs" />
+    <Compile Include="DAL\UnitAmenityMapRepository.cs" />
+    <Compile Include="DAL\UnitChargeMapRepository.cs" />
+    <Compile Include="DAL\UnitManagerMapRepository.cs" />
+    <Compile Include="DAL\UnitOwnerMapRepository.cs" />
+    <Compile Include="DAL\UnitRentalCommissionMapRepository.cs" />
+    <Compile Include="DAL\UnitRentalCommissionRepository.cs" />
+    <Compile Include="DAL\UnitRentInfoMapRepository.cs" />
+    <Compile Include="DAL\UnitRentInfoRepository.cs" />
+    <Compile Include="DAL\UnitRepository.cs" />
+    <Compile Include="DAL\UnitSaleInfoRepository.cs" />
+    <Compile Include="DAL\UnitTypeRepository.cs" />
+    <Compile Include="DAL\Data\ERPDataContext.cs" />
+    <Compile Include="DAL\Data\ERPDataContext.Entities.cs" />
+    <Compile Include="DAL\Data\DataSeeder.cs" />
+    <Compile Include="Entities\Agent.cs" />
+    <Compile Include="Entities\AmenitiesMap.cs" />
+    <Compile Include="Entities\Amenity.cs" />
+    <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\Asset.cs" />
+    <Compile Include="Entities\AssetMap.cs" />
+    <Compile Include="Entities\Charge.cs" />
+    <Compile Include="Entities\Enum\ChargeType.cs" />
+    <Compile Include="Entities\Enum\SourceType.cs" />
+    <Compile Include="Entities\ERPCommunicationDetail.cs" />
+    <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\DocumentMap.cs" />
+    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\EmailMap.cs" />
+    <Compile Include="Entities\Enum\ERPCommissionType.cs" />
+    <Compile Include="Entities\Enum\EmailType.cs" />
+    <Compile Include="Entities\Enum\ERPEntityType.cs" />
+    <Compile Include="Entities\Enum\FurnishType.cs" />
+    <Compile Include="Entities\Enum\ListingType.cs" />
+    <Compile Include="Entities\Enum\MaintananceType.cs" />
+    <Compile Include="Entities\Enum\OwnerType.cs" />
+    <Compile Include="Entities\Enum\Payment.cs" />
+    <Compile Include="Entities\Enum\PaymentMethods.cs" />
+    <Compile Include="Entities\Enum\PaymentStatus.cs" />
+    <Compile Include="Entities\Enum\ERPPropertyCategory.cs" />
+    <Compile Include="Entities\Enum\PropertyFor.cs" />
+    <Compile Include="Entities\Enum\PropertyMeasurementUnit.cs" />
+    <Compile Include="Entities\Enum\ERPPropertyType.cs" />
+    <Compile Include="Entities\Enum\RentalTerm.cs" />
+    <Compile Include="Entities\Enum\SalesCommission.cs" />
+    <Compile Include="Entities\Enum\Status.cs" />
+    <Compile Include="Entities\Enum\ToDoStatus.cs" />
+    <Compile Include="Entities\Enum\UsageType.cs" />
+    <Compile Include="Entities\Enum\Vaccancy.cs" />
+    <Compile Include="Entities\ERPEntityBase.cs" />
+    <Compile Include="Entities\ERPMapBase.cs" />
+    <Compile Include="Entities\FeeType.cs" />
+    <Compile Include="Entities\FloorPlan.cs" />
+    <Compile Include="Entities\FloorPlanMap.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\ImageGallery.cs" />
+    <Compile Include="Entities\ImageGalleryMap.cs" />
+    <Compile Include="Entities\LeasingFee.cs" />
+    <Compile Include="Entities\LeasingFeeMap.cs" />
+    <Compile Include="Entities\Ledger.cs" />
+    <Compile Include="Entities\Maintenance.cs" />
+    <Compile Include="Entities\Manager.cs" />
+    <Compile Include="Entities\ManagerRoles.cs" />
+    <Compile Include="Entities\Owner.cs" />
+    <Compile Include="Entities\Portfolio.cs" />
+    <Compile Include="Entities\PortfolioOwnerMap.cs" />
+    <Compile Include="Entities\ERPProperty.cs" />
+    <Compile Include="Entities\PropertyAgentMap.cs" />
+    <Compile Include="Entities\PropertyAmenityMap.cs" />
+    <Compile Include="Entities\PropertyChargeMap.cs" />
+    <Compile Include="Entities\PropertyManagerMap.cs" />
+    <Compile Include="Entities\PropertyOwnerMap.cs" />
+    <Compile Include="Entities\PropertyRentalCommission.cs" />
+    <Compile Include="Entities\PropertyRentalCommissionMap.cs" />
+    <Compile Include="Entities\PropertyRentInfoMap.cs" />
+    <Compile Include="Entities\PropertyUnitMap.cs" />
+    <Compile Include="Entities\PropertyRentInfo.cs" />
+    <Compile Include="Entities\RentMarketingInformation.cs" />
+    <Compile Include="Entities\PropertySaleInfo.cs" />
+    <Compile Include="Entities\SaleMarketingInformation.cs" />
+    <Compile Include="Entities\TenantDetailMap.cs" />
+    <Compile Include="Entities\TenantDetails.cs" />
+    <Compile Include="Entities\ERPToDo.cs" />
+    <Compile Include="Entities\ERPToDoMap.cs" />
+    <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Entities\UnitAmenityMap.cs" />
+    <Compile Include="Entities\UnitChargeMap.cs" />
+    <Compile Include="Entities\UnitManagerMap.cs" />
+    <Compile Include="Entities\UnitOwnerMap.cs" />
+    <Compile Include="Entities\UnitRentalCommission.cs" />
+    <Compile Include="Entities\UnitRentalCommissionMap.cs" />
+    <Compile Include="Entities\UnitRentInfo.cs" />
+    <Compile Include="Entities\UnitRentInfoMap.cs" />
+    <Compile Include="Entities\UnitSaleInfo.cs" />
+    <Compile Include="Entities\UnitType.cs" />
+    <Compile Include="Entities\WorkOrder.cs" />
+    <Compile Include="Entities\WorkOrderMap.cs" />
+    <Compile Include="Entities\WorkOrderType.cs" />
+    <Compile Include="Interfaces\DAL\IAmenityMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IAmenityRepository.cs" />
+    <Compile Include="Interfaces\DAL\IChargeRepository.cs" />
+    <Compile Include="Interfaces\DAL\ICityRepository.cs" />
+    <Compile Include="Interfaces\DAL\ICommunicationDetailRepository.cs" />
+    <Compile Include="Interfaces\DAL\ICountryRepository.cs" />
+    <Compile Include="Interfaces\DAL\IManagerRepository.cs" />
+    <Compile Include="Interfaces\DAL\IOwnerRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPortfolioOwnerMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPortfolioRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyAgentMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyAmenityMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyChargeMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyManagerMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyOwnerMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyRentalCommissionMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyRentalCommissionRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyRentInfoMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyUnitMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertyRentInfoRepository.cs" />
+    <Compile Include="Interfaces\DAL\IRentMarketingInformationRepository.cs" />
+    <Compile Include="Interfaces\DAL\IPropertySaleInfoRepository.cs" />
+    <Compile Include="Interfaces\DAL\ISaleMarketingInformationRepository.cs" />
+    <Compile Include="Interfaces\DAL\IStateRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitAmenityMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitChargeMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitManagerMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitOwnerMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitRentalCommissionMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitRentInfoMapRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitRentInfoRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitSaleInfoRepository.cs" />
+    <Compile Include="Interfaces\DAL\IUnitTypeRepository.cs" />
+    <Compile Include="Interfaces\DAL\UnitRentalCommissionRepository.cs" />
+    <Compile Include="Interfaces\Data\IERPDataContext.cs" />
+    <Compile Include="Interfaces\DAL\IManagerRoleRepository.cs" />
+    <Compile Include="Interfaces\Services\IAmenityService.cs" />
+    <Compile Include="Interfaces\Services\IChargeService.cs" />
+    <Compile Include="Interfaces\Services\ICommunicationDetailService.cs" />
+    <Compile Include="Interfaces\Services\ILocationService.cs" />
+    <Compile Include="Interfaces\Services\IManagerRoleService.cs" />
+    <Compile Include="Interfaces\Services\IManagerService.cs" />
+    <Compile Include="Interfaces\Services\IOwnerService.cs" />
+    <Compile Include="Interfaces\Services\IPortfolioOwnerMapService.cs" />
+    <Compile Include="Interfaces\Services\IPortfolioService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyAgentMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyAmenityMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyChargeMapSevice.cs" />
+    <Compile Include="Interfaces\Services\IPropertyManagerMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyOwnerMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyRentalCommissionMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyRentalCommissionService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyRentInfoMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyUnitMapService.cs" />
+    <Compile Include="Interfaces\Services\IPropertyRentInfoService.cs" />
+    <Compile Include="Interfaces\Services\IRentMarketingInformationService.cs" />
+    <Compile Include="Interfaces\Services\IPropertySaleInfoServicce.cs" />
+    <Compile Include="Interfaces\Services\ISaleMarketingInformationService.cs" />
+    <Compile Include="Interfaces\Services\IUnitAmenityMapService.cs" />
+    <Compile Include="Interfaces\Services\IUnitChargeMapService.cs" />
+    <Compile Include="Interfaces\Services\IUnitManagerMapService.cs" />
+    <Compile Include="Interfaces\Services\IUnitOwnerMapservice.cs" />
+    <Compile Include="Interfaces\Services\IUnitRentalCommissionMapService.cs" />
+    <Compile Include="Interfaces\Services\IUnitRentalCommissionService.cs" />
+    <Compile Include="Interfaces\Services\IUnitRentInfoMapService.cs" />
+    <Compile Include="Interfaces\Services\IUnitRentInfoService.cs" />
+    <Compile Include="Interfaces\Services\IUnitSaleInfoService.cs" />
+    <Compile Include="Interfaces\Services\IUnitService.cs" />
+    <Compile Include="Interfaces\Services\IUnitTypeService.cs" />
+    <Compile Include="Model\Amenity\AmenityMapModel.cs" />
+    <Compile Include="Model\Amenity\AmenityModel.cs" />
+    <Compile Include="Model\Charge\ChargeModel.cs" />
+    <Compile Include="Model\CommunicationDetail\CommunicationDetailModel.cs" />
+    <Compile Include="Model\Manager\ManagerModel.cs" />
+    <Compile Include="Model\Manager\ManagerSearchFilter.cs" />
+    <Compile Include="Model\MarketingInformation\RentMarketingInformationModel.cs" />
+    <Compile Include="Model\MarketingInformation\SaleMarketingInformationModel.cs" />
+    <Compile Include="Model\Owner\OwnerModel.cs" />
+    <Compile Include="Model\Owner\OwnerSearchFilter.cs" />
+    <Compile Include="Model\Portfolio\PortfolioModel.cs" />
+    <Compile Include="Model\Portfolio\PortfolioOwnerMapModel.cs" />
+    <Compile Include="Model\Portfolio\PortfolioSearchFilter.cs" />
+    <Compile Include="Model\Property\PropertyAgentMapModel.cs" />
+    <Compile Include="Model\Property\PropertyAmenityMapModel.cs" />
+    <Compile Include="Model\Property\PropertyChargeMapModel.cs" />
+    <Compile Include="Model\Property\PropertyManagerMapModel.cs" />
+    <Compile Include="Model\Property\PropertyModel.cs" />
+    <Compile Include="Model\Property\PropertyOwnerMapModel.cs" />
+    <Compile Include="Model\Property\PropertyRentalCommissionMapModel.cs" />
+    <Compile Include="Model\Property\PropertyRentalCommissionModel.cs" />
+    <Compile Include="Model\Property\PropertyRentInfoMapModel.cs" />
+    <Compile Include="Model\Property\PropertySearchFilter.cs" />
+    <Compile Include="Model\Property\PropertyUnitMapModel.cs" />
+    <Compile Include="Model\Property\SalesCommissionModel.cs" />
+    <Compile Include="Model\RentInfo\RentInfoModel.cs" />
+    <Compile Include="Model\SaleInfo\PropertySaleInfoModel.cs" />
+    <Compile Include="Model\SaleInfo\UnitSaleInfoModel.cs" />
+    <Compile Include="Model\Unit\SalesCommissionModel.cs" />
+    <Compile Include="Model\Unit\UnitAmenityMapModel.cs" />
+    <Compile Include="Model\Unit\UnitChargeMapModel.cs" />
+    <Compile Include="Model\Unit\UnitManagerMapModel.cs" />
+    <Compile Include="Model\Unit\UnitModel.cs" />
+    <Compile Include="Model\Unit\UnitOwnerMapModel.cs" />
+    <Compile Include="Model\Unit\UnitRentalCommissionMapModel.cs" />
+    <Compile Include="Model\Unit\UnitRentalCommissionModel.cs" />
+    <Compile Include="Model\Unit\UnitRentInfoMapModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AmenityService.cs" />
+    <Compile Include="Services\ChargeService.cs" />
+    <Compile Include="Services\CommunicationDetailService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\ManagerRoleService.cs" />
+    <Compile Include="Services\ManagerService.cs" />
+    <Compile Include="Services\OwnerService.cs" />
+    <Compile Include="Services\PortfolioOwnerMapService.cs" />
+    <Compile Include="Services\PortfolioService.cs" />
+    <Compile Include="Services\PropertyAgentMapService.cs" />
+    <Compile Include="Services\PropertyAmenityMapService.cs" />
+    <Compile Include="Services\PropertyChargeMapService.cs" />
+    <Compile Include="Services\PropertyManagerMapService.cs" />
+    <Compile Include="Services\PropertyOwnerMapService.cs" />
+    <Compile Include="Services\PropertyRentalCommissionMapService.cs" />
+    <Compile Include="Services\PropertyRentalCommissionService.cs" />
+    <Compile Include="Services\PropertyRentInfoMapService.cs" />
+    <Compile Include="Services\PropertyService.cs" />
+    <Compile Include="Services\PropertyUnitMapService.cs" />
+    <Compile Include="Services\PropertyRentInfoService.cs" />
+    <Compile Include="Services\RentMarketingInformationService.cs" />
+    <Compile Include="Services\PropertySaleInfoService.cs" />
+    <Compile Include="Services\SaleMarketingInformationService.cs" />
+    <Compile Include="Services\UnitAmenityMapService.cs" />
+    <Compile Include="Services\UnitChargeMapService.cs" />
+    <Compile Include="Services\UnitManagerMapService.cs" />
+    <Compile Include="Services\UnitOwnerMapService.cs" />
+    <Compile Include="Services\UnitRentalCommissionMapService.cs" />
+    <Compile Include="Services\UnitRentalCommissionService.cs" />
+    <Compile Include="Services\UnitRentInfoMapService.cs" />
+    <Compile Include="Services\UnitRentInfoService.cs" />
+    <Compile Include="Services\UnitSaleInfoService.cs" />
+    <Compile Include="Services\UnitService.cs" />
+    <Compile Include="Services\UnitTypeService.cs" />
+    <Compile Include="ViewModel\AmenityViewModel.cs" />
+    <Compile Include="ViewModel\ChargeViewModel.cs" />
+    <Compile Include="ViewModel\ManagerViewModel.cs" />
+    <Compile Include="ViewModel\MarketingInformationViewModel.cs" />
+    <Compile Include="ViewModel\OwnerViewModel.cs" />
+    <Compile Include="ViewModel\PortfolioViewModel.cs" />
+    <Compile Include="ViewModel\PropertyRentalCommissionViewModel.cs" />
+    <Compile Include="ViewModel\PropertyViewModel.cs" />
+    <Compile Include="ViewModel\RecoverPasswordViewModel.cs" />
+    <Compile Include="ViewModel\RentInfoViewModel.cs" />
+    <Compile Include="ViewModel\SalesCommissionViewModel.cs" />
+    <Compile Include="ViewModel\SaveMorePropertyInformationViewModel.cs" />
+    <Compile Include="ViewModel\SaveMoreUnitInformationViewModel.cs" />
+    <Compile Include="ViewModel\SettingViewModel.cs" />
+    <Compile Include="ViewModel\UnitAmenityMapViewModel.cs" />
+    <Compile Include="ViewModel\UnitRentalCommissionViewModel.cs" />
+    <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Compile Include="ViewModel\UserProfileViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
