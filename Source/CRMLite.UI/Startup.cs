@@ -12,9 +12,9 @@ namespace CRMLite.UI
     {
         public void Configuration(IAppBuilder app)
         {
-            GlobalConfiguration.Configuration.UseSqlServerStorage(ConfigurationManager.ConnectionStrings["CRM_HangFire"].ConnectionString);
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
+            //GlobalConfiguration.Configuration.UseSqlServerStorage(ConfigurationManager.ConnectionStrings["CRM_HangFire"].ConnectionString);
+            //app.UseHangfireDashboard();
+            //app.UseHangfireServer();
         }
     }
 }
